@@ -117,6 +117,24 @@ func TestParseMavenLock_OnePackage(t *testing.T) {
 	})
 }
 
+func TestParseMavenLock_OnePackageWithMultipleVersionVariable(t *testing.T) {
+	t.Parallel()
+	lockfileRelativePath := "fixtures/maven/multiple-version-variables.xml"
+	packages, err := lockfile.ParseMavenLock(lockfileRelativePath)
+
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:      "org.apache.maven:maven-artifact",
+			Version:   "1.0.0-SNAPSHOT",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+		},
+	})
+}
+
 func TestParseMavenLock_TwoPackages(t *testing.T) {
 	t.Parallel()
 
