@@ -6,8 +6,11 @@ import (
 	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/pkg/models"
 	"os"
+	"path"
 	"path/filepath"
 )
+
+const MAX_PARENT_DEPTH = 10
 
 type MavenLockDependency struct {
 	XMLName    xml.Name `xml:"dependency"`
@@ -16,6 +19,12 @@ type MavenLockDependency struct {
 	Version    string   `xml:"version"`
 	Start      models.FilePosition
 	End        models.FilePosition
+	SourceFile string
+}
+
+type MavenLockParent struct {
+	XMLName      xml.Name `xml:"parent"`
+	RelativePath string   `xml:"relativePath"`
 }
 
 type MavenLockDependencyHolder struct {
@@ -66,6 +75,7 @@ func (mld MavenLockDependency) ResolveVersion(lockfile MavenLockFile) string {
 
 type MavenLockFile struct {
 	XMLName             xml.Name                  `xml:"project"`
+	Parent              MavenLockParent           `xml:"parent"`
 	ModelVersion        string                    `xml:"modelVersion"`
 	GroupID             string                    `xml:"groupId"`
 	ArtifactID          string                    `xml:"artifactId"`
@@ -142,11 +152,77 @@ func (e MavenLockExtractor) ShouldExtract(path string) bool {
 	return filepath.Base(path) == "pom.xml"
 }
 
-func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
+/**
+** This function merge a child lockfile into the parent one.
+** It copies all information originating from the child in it, overriding any common properties/dependencies
+**/
+func (e MavenLockExtractor) mergeLockfiles(childLockfile *MavenLockFile, parentLockfile *MavenLockFile) *MavenLockFile {
+	parentLockfile.Parent = childLockfile.Parent
+	parentLockfile.ArtifactID = childLockfile.ArtifactID
+	parentLockfile.GroupID = childLockfile.GroupID
+	parentLockfile.ModelVersion = childLockfile.ModelVersion
+
+	// Child properties take precedence over parent defined ones
+	for key, value := range childLockfile.Properties.m {
+		parentLockfile.Properties.m[key] = value
+	}
+	// We add child dependency at the end, this way they will override the parent ones during transformation to a map
+	parentLockfile.Dependencies.Dependencies = append(parentLockfile.Dependencies.Dependencies, childLockfile.Dependencies.Dependencies...)
+	parentLockfile.ManagedDependencies.Dependencies = append(parentLockfile.ManagedDependencies.Dependencies, childLockfile.ManagedDependencies.Dependencies...)
+	return parentLockfile
+}
+
+func (e MavenLockExtractor) enrichDependencies(f DepFile, dependencies []MavenLockDependency) MavenLockDependencyHolder {
+	result := make([]MavenLockDependency, len(dependencies))
+	for index, dependency := range dependencies {
+		if len(dependency.SourceFile) == 0 {
+			dependency.SourceFile = f.Path()
+		}
+		result[index] = dependency
+	}
+	return MavenLockDependencyHolder{Dependencies: result}
+}
+
+func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int) (*MavenLockFile, error) {
 	var parsedLockfile *MavenLockFile
-
+	if depth >= MAX_PARENT_DEPTH {
+		return nil, fmt.Errorf("maven file decoding reached the max depth (%d/%d), check for a circular dependency", depth, MAX_PARENT_DEPTH)
+	}
+	// Decoding the original lockfile and enrich its dependencies
 	err := xml.NewDecoder(f).Decode(&parsedLockfile)
+	if err != nil {
+		return nil, err
+	}
+	parsedLockfile.Dependencies = e.enrichDependencies(f, parsedLockfile.Dependencies.Dependencies)
+	parsedLockfile.ManagedDependencies = e.enrichDependencies(f, parsedLockfile.ManagedDependencies.Dependencies)
+	if parsedLockfile.Parent == (MavenLockParent{}) {
+		return parsedLockfile, nil
+	}
 
+	// If a parent is defined, use its relative path to find the file, then recurse to decode it properly and enrich its dependencies
+	// If the relativePath is not defined, default to ../pom.xml
+	parentRelativePath := parsedLockfile.Parent.RelativePath
+	if len(parentRelativePath) == 0 {
+		parentRelativePath = "../pom.xml"
+	}
+	parentPath := path.Join(path.Dir(f.Path()), parentRelativePath)
+	parentFile, err := OpenLocalDepFile(parentPath)
+	if err != nil {
+		return nil, err
+	}
+	parentLockfile, parentErr := e.decodeMavenFile(parentFile, depth+1)
+	if parentErr != nil {
+		return nil, parentErr
+	}
+	parentLockfile.Dependencies = e.enrichDependencies(parentFile, parentLockfile.Dependencies.Dependencies)
+	parentLockfile.ManagedDependencies = e.enrichDependencies(parentFile, parentLockfile.ManagedDependencies.Dependencies)
+
+	// Once everything is decoded and enriched, merge them together
+	return e.mergeLockfiles(parsedLockfile, parentLockfile), nil
+}
+
+func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
+	parsedLockfile, err := e.decodeMavenFile(f, 0)
 	if err != nil {
 		return []PackageDetails{}, fmt.Errorf("could not extract from %s: %w", f.Path(), err)
 	}
@@ -157,12 +233,13 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		finalName := lockPackage.GroupID + ":" + lockPackage.ArtifactID
 
 		details[finalName] = PackageDetails{
-			Name:      finalName,
-			Version:   lockPackage.ResolveVersion(*parsedLockfile),
-			Ecosystem: MavenEcosystem,
-			CompareAs: MavenEcosystem,
-			Start:     lockPackage.Start,
-			End:       lockPackage.End,
+			Name:       finalName,
+			Version:    lockPackage.ResolveVersion(*parsedLockfile),
+			Ecosystem:  MavenEcosystem,
+			CompareAs:  MavenEcosystem,
+			Start:      lockPackage.Start,
+			End:        lockPackage.End,
+			SourceFile: lockPackage.SourceFile,
 		}
 	}
 
@@ -171,12 +248,13 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		finalName := lockPackage.GroupID + ":" + lockPackage.ArtifactID
 
 		details[finalName] = PackageDetails{
-			Name:      finalName,
-			Version:   lockPackage.ResolveVersion(*parsedLockfile),
-			Ecosystem: MavenEcosystem,
-			CompareAs: MavenEcosystem,
-			Start:     lockPackage.Start,
-			End:       lockPackage.End,
+			Name:       finalName,
+			Version:    lockPackage.ResolveVersion(*parsedLockfile),
+			Ecosystem:  MavenEcosystem,
+			CompareAs:  MavenEcosystem,
+			Start:      lockPackage.Start,
+			End:        lockPackage.End,
+			SourceFile: lockPackage.SourceFile,
 		}
 	}
 
