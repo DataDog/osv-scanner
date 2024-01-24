@@ -126,7 +126,7 @@ func (dependencyHolder *MavenLockDependencyHolder) UnmarshalXML(decoder *xml.Dec
 	dependencyHolder.Dependencies = make([]MavenLockDependency, 0)
 DecodingLoop:
 	for {
-		startLine, startColumn := decoder.InputPos()
+		startLine, _ := decoder.InputPos()
 		token, err := decoder.Token()
 		if err != nil {
 			return err
@@ -134,13 +134,13 @@ DecodingLoop:
 		switch elem := token.(type) {
 		case xml.StartElement:
 			dependency := MavenLockDependency{}
-			dependency.Start = models.FilePosition{Line: startLine, Column: startColumn}
+			dependency.Start = models.FilePosition{Line: startLine}
 			err := decoder.DecodeElement(&dependency, &elem)
 			if err != nil {
 				return err
 			}
-			endLine, endColumn := decoder.InputPos()
-			dependency.End = models.FilePosition{Line: endLine, Column: endColumn}
+			endLine, _ := decoder.InputPos()
+			dependency.End = models.FilePosition{Line: endLine}
 			dependencyHolder.Dependencies = append(dependencyHolder.Dependencies, dependency)
 		case xml.EndElement:
 			if elem.Name == start.Name {
