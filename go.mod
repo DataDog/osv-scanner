@@ -5,30 +5,33 @@ go 1.21
 require (
 	deps.dev/api/v3alpha v0.0.0-20231114023923-e40c4d5c34e5
 	github.com/BurntSushi/toml v1.3.2
-	github.com/CycloneDX/cyclonedx-go v0.8.0
+	github.com/CycloneDX/cyclonedx-go v0.7.1
 	github.com/go-git/go-billy/v5 v5.5.0
-	github.com/go-git/go-git/v5 v5.11.0
+	github.com/go-git/go-git/v5 v5.7.0
 	github.com/google/go-cmp v0.6.0
 	github.com/hexops/gotextdiff v1.0.3
 	github.com/ianlancetaylor/demangle v0.0.0-20231023195312-e2daf7ba7156
-	github.com/jedib0t/go-pretty/v6 v6.4.9
+	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/owenrumney/go-sarif/v2 v2.3.0
-	github.com/package-url/packageurl-go v0.1.2
+	github.com/package-url/packageurl-go v0.1.1
 	github.com/pandatix/go-cvss v0.6.2
-	github.com/spdx/tools-golang v0.5.3
-	github.com/urfave/cli/v2 v2.26.0
+	github.com/spdx/tools-golang v0.5.2
+	github.com/urfave/cli/v2 v2.25.7
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
 	golang.org/x/mod v0.14.0
 	golang.org/x/sync v0.5.0
 	golang.org/x/term v0.15.0
 	golang.org/x/vuln v1.0.1
-	google.golang.org/grpc v1.59.0
+	google.golang.org/grpc v1.58.3
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
-	// Vanity URL for https://github.com/imdario/mergo
-	dario.cat/mergo v1.0.0 // indirect
+	github.com/acomagu/bufpipe v1.0.4 // indirect
+	github.com/imdario/mergo v0.3.15 // indirect
+)
+
+require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20230923063757-afb1ddc0824c // indirect
 	github.com/anchore/go-struct-converter v0.0.0-20230627203149-c72ef8859ca9 // indirect
