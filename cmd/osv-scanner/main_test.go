@@ -531,7 +531,7 @@ func TestRun(t *testing.T) {
 			wantExitCode: 127,
 			wantStdout:   "",
 			wantStderr: `
-				unsupported output format "unknown" - must be one of: table, json, markdown, sarif, gh-annotations, datadog-sbom, datadog-offline-sbom, cyclonedx-1-4
+				unsupported output format "unknown" - must be one of: table, json, markdown, sarif, gh-annotations, cyclonedx-1-4
 			`,
 		},
 		// one specific supported lockfile with ignore
@@ -923,31 +923,6 @@ func TestRun_LocalDatabases(t *testing.T) {
 				Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
 				Loaded Packagist local db from %%/osv-scanner/Packagist/all.zip
 				No issues found
-			`,
-			wantStderr: "",
-		},
-		// one specific supported sbom with vulns
-		{
-			name:         "",
-			args:         []string{"", "--experimental-local-db", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/postgres-stretch.cdx.xml"},
-			wantExitCode: 1,
-			wantStdout: `
-				Scanning dir ./fixtures/sbom-insecure/postgres-stretch.cdx.xml
-				Scanned <rootdir>/fixtures/sbom-insecure/postgres-stretch.cdx.xml as CycloneDX SBOM and found 136 packages
-				Loaded Debian local db from %%/osv-scanner/Debian/all.zip
-				Loaded Go local db from %%/osv-scanner/Go/all.zip
-				Loaded OSS-Fuzz local db from %%/osv-scanner/OSS-Fuzz/all.zip
-				+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-				| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE                        | VERSION                            | SOURCE                                          |
-				+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-				| https://osv.dev/GHSA-f3fp-gc8g-vw66 | 5.9  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-g2j6-57v7-gm8c | 6.1  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-m8cg-xc2p-r3fc | 2.5  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-v95c-p5hm-xq8f | 6    | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-vpvm-3wq2-2wvm | 7    | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-xr7r-f8xq-vfvv | 8.6  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-p782-xgp4-8hr8 | 5.3  | Go        | golang.org/x/sys               | v0.0.0-20210817142637-7d9622a276b7 | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
 			`,
 			wantStderr: "",
 		},
