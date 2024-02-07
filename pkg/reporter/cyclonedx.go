@@ -1,20 +1,19 @@
 package reporter
 
 import (
+	"encoding/json"
 	"fmt"
-	"io"
-	"net/url"
-	"strconv"
-
 	"github.com/CycloneDX/cyclonedx-go"
 	"github.com/google/osv-scanner/pkg/models"
 	"github.com/google/osv-scanner/pkg/reporter/purl"
+	"io"
+	"strings"
 )
 
 const componentType = "library"
 type CycloneDXVersion int
 
-type bomCreator func(packageSources []models.PackageSource) *cyclonedx.BOM
+type bomCreator func(stderr io.Writer, packageSources []models.PackageSource) *cyclonedx.BOM
 
 type CycloneDXReporter struct {
 	hasPrintedError bool
@@ -27,13 +26,22 @@ type packageDetails struct {
 	Name      string
 	Version   string
 	Ecosystem string
-	Locations []packageLocation
+	Locations []packageLocations
 }
 
 type packageLocation struct {
-	Filename string
-	Start    models.FilePosition
-	End      models.FilePosition
+	Filename    string `json:"file_name"`
+	LineStart   int    `json:"line_start"`
+	LineEnd     int    `json:"line_end"`
+	ColumnStart int    `json:"column_start"`
+	ColumnEnd   int    `json:"column_end"`
+}
+
+type packageLocations struct {
+	Block     packageLocation `json:"block"`
+	Namespace packageLocation `json:"namespace,omitempty"`
+	Name      packageLocation `json:"name,omitempty"`
+	Version   packageLocation `json:"version,omitempty"`
 }
 
 const (
@@ -84,13 +92,13 @@ func (r *CycloneDXReporter) PrintTextf(msg string, a ...any) {
 
 func (r *CycloneDXReporter) PrintResult(vulnResults *models.VulnerabilityResults) error {
 	bomCreator := specVersionToBomCreator[r.version]
-	bom := bomCreator(vulnResults.Results)
+	bom := bomCreator(r.stderr, vulnResults.Results)
 	encoder := cyclonedx.NewBOMEncoder(r.stdout, cyclonedx.BOMFileFormatJSON)
 
 	return encoder.Encode(bom)
 }
 
-func toCycloneDX14Bom(packageSources []models.PackageSource) *cyclonedx.BOM {
+func toCycloneDX14Bom(_ io.Writer, packageSources []models.PackageSource) *cyclonedx.BOM {
 	bom := cyclonedx.NewBOM()
 	components := make([]cyclonedx.Component, 0)
 	bom.JSONSchema = cycloneDx14Schema
@@ -112,7 +120,7 @@ func toCycloneDX14Bom(packageSources []models.PackageSource) *cyclonedx.BOM {
 	return bom
 }
 
-func toCycloneDX15Bom(packageSources []models.PackageSource) *cyclonedx.BOM {
+func toCycloneDX15Bom(stderr io.Writer, packageSources []models.PackageSource) *cyclonedx.BOM {
 	bom := cyclonedx.NewBOM()
 	components := make([]cyclonedx.Component, 0)
 	bom.JSONSchema = cycloneDx15Schema
@@ -131,8 +139,14 @@ func toCycloneDX15Bom(packageSources []models.PackageSource) *cyclonedx.BOM {
 		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
 
 		for index, location := range packageDetail.Locations {
+			err, location := createLocationString(location)
+			if err != nil {
+				_, _ = fmt.Fprintf(stderr, fmt.Sprintf("An error occured when creating the location structure : %v", err.Error()))
+				continue
+			}
+
 			occurrence := cyclonedx.EvidenceOccurrence{
-				Location: createLocationURL(location),
+				Location: location,
 			}
 			(*component.Evidence.Occurrences)[index] = occurrence
 		}
@@ -141,19 +155,16 @@ func toCycloneDX15Bom(packageSources []models.PackageSource) *cyclonedx.BOM {
 	return bom
 }
 
-func createLocationURL(location packageLocation) string {
-	locationURL := &url.URL{
-		Scheme:   "file",
-		Path:     location.Filename,
-		OmitHost: true,
+func createLocationString(location packageLocations) (error, string) {
+	buffer := strings.Builder{}
+	encoder := json.NewEncoder(&buffer)
+
+	err := encoder.Encode(location)
+	if err != nil {
+		return err, ""
 	}
 
-	queryParams := locationURL.Query()
-	queryParams.Add("start_line", strconv.Itoa(location.Start.Line))
-	queryParams.Add("end_line", strconv.Itoa(location.End.Line))
-	locationURL.RawQuery = queryParams.Encode()
-
-	return locationURL.String()
+	return nil, buffer.String()
 }
 
 func groupByPackage(packageSources []models.PackageSource) map[string]packageDetails {
@@ -166,30 +177,33 @@ func groupByPackage(packageSources []models.PackageSource) map[string]packageDet
 				continue
 			}
 			existingPackage, packageExists := uniquePackages[packageURL.ToString()]
+			location := extractPackageLocations(packageSource.Source, pkg.Package)
 			if packageExists {
 				// Package exists we need to add a location
-				existingPackage.Locations = append(existingPackage.Locations, packageLocation{
-					Filename: packageSource.Source.Path,
-					Start:    pkg.Package.Start,
-					End:      pkg.Package.End,
-				})
+				existingPackage.Locations = append(existingPackage.Locations, location)
 			} else {
 				// Create a new package and update the map
 				newPackage := packageDetails{
 					Name:      pkg.Package.Name,
 					Version:   pkg.Package.Version,
 					Ecosystem: pkg.Package.Ecosystem,
-					Locations: make([]packageLocation, 1),
+					Locations: make([]packageLocations, 1),
 				}
-				newPackage.Locations[0] = packageLocation{
-					Filename: packageSource.Source.Path,
-					Start:    pkg.Package.Start,
-					End:      pkg.Package.End,
-				}
+				newPackage.Locations[0] = location
 				uniquePackages[packageURL.ToString()] = newPackage
 			}
 		}
 	}
 
 	return uniquePackages
+}
+
+func extractPackageLocations(pkgSource models.SourceInfo, pkgInfos models.PackageInfo) packageLocations {
+	return packageLocations{
+		Block: packageLocation{
+			Filename:  pkgSource.Path,
+			LineStart: pkgInfos.LinePosition.Start,
+			LineEnd:   pkgInfos.LinePosition.End,
+		},
+	}
 }
