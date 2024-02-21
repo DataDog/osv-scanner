@@ -8,6 +8,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/google/osv-scanner/pkg/models"
+
 	"github.com/google/osv-scanner/internal/cachedregexp"
 	"gopkg.in/yaml.v3"
 )
@@ -24,20 +26,23 @@ type PnpmLockPackage struct {
 	Name       string                    `yaml:"name"`
 	Version    string                    `yaml:"version"`
 	Dev        bool                      `yaml:"dev"`
+	models.FilePosition
 }
+
+type PnpmLockPackages map[string]PnpmLockPackage
 
 type PnpmLockfile struct {
-	Version  float64                    `yaml:"lockfileVersion"`
-	Packages map[string]PnpmLockPackage `yaml:"packages,omitempty"`
+	Version  float64          `yaml:"lockfileVersion"`
+	Packages PnpmLockPackages `yaml:"packages,omitempty"`
 }
 
-type pnpmLockfileV6 struct {
-	Version  string                     `yaml:"lockfileVersion"`
-	Packages map[string]PnpmLockPackage `yaml:"packages,omitempty"`
+type PnpmLockfileV6 struct {
+	Version  string           `yaml:"lockfileVersion"`
+	Packages PnpmLockPackages `yaml:"packages,omitempty"`
 }
 
 func (l *PnpmLockfile) UnmarshalYAML(unmarshal func(interface{}) error) error {
-	var lockfileV6 pnpmLockfileV6
+	var lockfileV6 PnpmLockfileV6
 
 	if err := unmarshal(&lockfileV6); err != nil {
 		return err
@@ -51,6 +56,37 @@ func (l *PnpmLockfile) UnmarshalYAML(unmarshal func(interface{}) error) error {
 
 	l.Version = parsedVersion
 	l.Packages = lockfileV6.Packages
+
+	return nil
+}
+
+func (pnpmLockPackages *PnpmLockPackages) UnmarshalYAML(value *yaml.Node) error {
+	if *pnpmLockPackages == nil {
+		*pnpmLockPackages = make(map[string]PnpmLockPackage)
+	}
+
+	for i := 0; i < len(value.Content); i += 2 {
+		var pnpmLockPackage PnpmLockPackage
+		keyNode := value.Content[i]
+		valueNode := value.Content[i+1]
+
+		pnpmLockPackage.SetLineStart(keyNode.Line)
+		pnpmLockPackage.SetColumnStart(keyNode.Column)
+
+		lastValueNode := valueNode
+		for lastValueNode.Kind == yaml.MappingNode {
+			lastValueNode = lastValueNode.Content[len(lastValueNode.Content)-1]
+		}
+
+		pnpmLockPackage.SetLineEnd(lastValueNode.Line)
+		pnpmLockPackage.SetColumnEnd(lastValueNode.Column + len(lastValueNode.Value))
+
+		if err := valueNode.Decode(&pnpmLockPackage); err != nil {
+			return err
+		}
+
+		(*pnpmLockPackages)[keyNode.Value] = pnpmLockPackage
+	}
 
 	return nil
 }
@@ -163,6 +199,8 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 			Version:   version,
 			Ecosystem: PnpmEcosystem,
 			CompareAs: PnpmEcosystem,
+			Line:      pkg.Line,
+			Column:    pkg.Column,
 			Commit:    commit,
 			DepGroups: depGroups,
 		})

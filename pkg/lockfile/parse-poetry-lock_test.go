@@ -4,6 +4,8 @@ import (
 	"io/fs"
 	"testing"
 
+	"github.com/google/osv-scanner/pkg/models"
+
 	"github.com/google/osv-scanner/pkg/lockfile"
 )
 
@@ -73,7 +75,7 @@ func TestParsePoetryLock_InvalidToml(t *testing.T) {
 
 	packages, err := lockfile.ParsePoetryLock("fixtures/poetry/not-toml.txt")
 
-	expectErrContaining(t, err, "could not extract from")
+	expectErrContaining(t, err, "could not decode toml from")
 	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
@@ -102,6 +104,8 @@ func TestParsePoetryLock_OnePackage(t *testing.T) {
 		{
 			Name:      "numpy",
 			Version:   "1.23.3",
+			Line:      models.Position{Start: 1, End: 7},
+			Column:    models.Position{Start: 1, End: 26},
 			Ecosystem: lockfile.PoetryEcosystem,
 			CompareAs: lockfile.PoetryEcosystem,
 		},
@@ -121,12 +125,16 @@ func TestParsePoetryLock_TwoPackages(t *testing.T) {
 		{
 			Name:      "proto-plus",
 			Version:   "1.22.0",
+			Line:      models.Position{Start: 1, End: 13},
+			Column:    models.Position{Start: 1, End: 47},
 			Ecosystem: lockfile.PoetryEcosystem,
 			CompareAs: lockfile.PoetryEcosystem,
 		},
 		{
 			Name:      "protobuf",
 			Version:   "4.21.5",
+			Line:      models.Position{Start: 15, End: 21},
+			Column:    models.Position{Start: 1, End: 26},
 			Ecosystem: lockfile.PoetryEcosystem,
 			CompareAs: lockfile.PoetryEcosystem,
 		},
@@ -146,6 +154,8 @@ func TestParsePoetryLock_PackageWithMetadata(t *testing.T) {
 		{
 			Name:      "emoji",
 			Version:   "2.0.0",
+			Line:      models.Position{Start: 1, End: 10},
+			Column:    models.Position{Start: 1, End: 42},
 			Ecosystem: lockfile.PoetryEcosystem,
 			CompareAs: lockfile.PoetryEcosystem,
 		},
@@ -165,6 +175,8 @@ func TestParsePoetryLock_PackageWithGitSource(t *testing.T) {
 		{
 			Name:      "ike",
 			Version:   "0.2.0",
+			Line:      models.Position{Start: 1, End: 14},
+			Column:    models.Position{Start: 1, End: 64},
 			Ecosystem: lockfile.PoetryEcosystem,
 			CompareAs: lockfile.PoetryEcosystem,
 			Commit:    "cd66602cd29f61a2d2e7fb995fef1e61708c034d",
@@ -185,6 +197,8 @@ func TestParsePoetryLock_PackageWithLegacySource(t *testing.T) {
 		{
 			Name:      "appdirs",
 			Version:   "1.4.4",
+			Line:      models.Position{Start: 1, End: 12},
+			Column:    models.Position{Start: 1, End: 23},
 			Ecosystem: lockfile.PoetryEcosystem,
 			CompareAs: lockfile.PoetryEcosystem,
 			Commit:    "",
@@ -205,6 +219,8 @@ func TestParsePoetryLock_OptionalPackage(t *testing.T) {
 		{
 			Name:      "numpy",
 			Version:   "1.23.3",
+			Line:      models.Position{Start: 1, End: 7},
+			Column:    models.Position{Start: 1, End: 26},
 			Ecosystem: lockfile.PoetryEcosystem,
 			CompareAs: lockfile.PoetryEcosystem,
 			DepGroups: []string{"optional"},

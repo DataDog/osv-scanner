@@ -4,6 +4,8 @@ import (
 	"io/fs"
 	"testing"
 
+	"github.com/google/osv-scanner/pkg/models"
+
 	"github.com/google/osv-scanner/pkg/lockfile"
 )
 
@@ -73,7 +75,7 @@ func TestParsePipenvLock_InvalidJson(t *testing.T) {
 
 	packages, err := lockfile.ParsePipenvLock("fixtures/pipenv/not-json.txt")
 
-	expectErrContaining(t, err, "could not extract from")
+	expectErrContaining(t, err, "could not decode json from")
 	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
@@ -104,6 +106,8 @@ func TestParsePipenvLock_OnePackage(t *testing.T) {
 			Version:   "2.1.1",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 19, End: 64},
+			Column:    models.Position{Start: 9, End: 10},
 		},
 	})
 }
@@ -123,6 +127,8 @@ func TestParsePipenvLock_OnePackageDev(t *testing.T) {
 			Version:   "2.1.1",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 20, End: 65},
+			Column:    models.Position{Start: 9, End: 10},
 			DepGroups: []string{"dev"},
 		},
 	})
@@ -143,12 +149,16 @@ func TestParsePipenvLock_TwoPackages(t *testing.T) {
 			Version:   "2.1.2",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 19, End: 26},
+			Column:    models.Position{Start: 7, End: 8},
 		},
 		{
 			Name:      "markupsafe",
 			Version:   "2.1.1",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 29, End: 74},
+			Column:    models.Position{Start: 7, End: 8},
 			DepGroups: []string{"dev"},
 		},
 	})
@@ -169,12 +179,16 @@ func TestParsePipenvLock_TwoPackagesAlt(t *testing.T) {
 			Version:   "2.1.2",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 19, End: 26},
+			Column:    models.Position{Start: 7, End: 9},
 		},
 		{
 			Name:      "markupsafe",
 			Version:   "2.1.1",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 27, End: 72},
+			Column:    models.Position{Start: 7, End: 8},
 		},
 	})
 }
@@ -194,18 +208,24 @@ func TestParsePipenvLock_MultiplePackages(t *testing.T) {
 			Version:   "2.1.2",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 19, End: 26},
+			Column:    models.Position{Start: 7, End: 9},
 		},
 		{
 			Name:      "pluggy",
 			Version:   "1.0.1",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 27, End: 31},
+			Column:    models.Position{Start: 7, End: 9},
 		},
 		{
 			Name:      "pluggy",
 			Version:   "1.0.0",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 88, End: 95},
+			Column:    models.Position{Start: 7, End: 8},
 			DepGroups: []string{"dev"},
 		},
 		{
@@ -213,6 +233,8 @@ func TestParsePipenvLock_MultiplePackages(t *testing.T) {
 			Version:   "2.1.1",
 			Ecosystem: lockfile.PipenvEcosystem,
 			CompareAs: lockfile.PipenvEcosystem,
+			Line:      models.Position{Start: 32, End: 77},
+			Column:    models.Position{Start: 7, End: 8},
 		},
 	})
 }

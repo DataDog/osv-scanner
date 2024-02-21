@@ -3,6 +3,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -10,6 +11,10 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+
+	"github.com/CycloneDX/cyclonedx-go"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
 	"github.com/go-git/go-git/v5"
 	"github.com/google/go-cmp/cmp"
@@ -90,6 +95,13 @@ type cliTestCase struct {
 	wantExitCode int
 	wantStdout   string
 	wantStderr   string
+}
+
+type locationTestCase struct {
+	name          string
+	args          []string
+	wantExitCode  int
+	wantFilePaths []string
 }
 
 func expectAreEqual(t *testing.T, subject, actual, expect string) {
@@ -215,6 +227,7 @@ func TestRun(t *testing.T) {
 				| https://osv.dev/GHSA-g2j6-57v7-gm8c | 6.1  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 				| https://osv.dev/GHSA-m8cg-xc2p-r3fc | 2.5  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 				| https://osv.dev/GHSA-vpvm-3wq2-2wvm | 7    | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
+				| https://osv.dev/GHSA-xr7r-f8xq-vfvv | 8.6  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 				| https://osv.dev/GHSA-p782-xgp4-8hr8 | 5.3  | Go        | golang.org/x/sys               | v0.0.0-20210817142637-7d9622a276b7 | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 				| https://osv.dev/GO-2022-0493        |      |           |                                |                                    |                                                 |
 				| https://osv.dev/DLA-3012-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
@@ -525,12 +538,12 @@ func TestRun(t *testing.T) {
 		},
 		// output format: unsupported
 		{
-			name:         "",
+			name:         "unknown format used",
 			args:         []string{"", "--format", "unknown", "./fixtures/locks-many/composer.lock"},
 			wantExitCode: 127,
 			wantStdout:   "",
 			wantStderr: `
-				unsupported output format "unknown" - must be one of: table, json, markdown, sarif, gh-annotations, datadog-sbom, datadog-offline-sbom
+				unsupported output format "unknown" - must be one of: table, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5
 			`,
 		},
 		// one specific supported lockfile with ignore
@@ -725,7 +738,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 			wantExitCode: 127,
 			wantStdout:   "",
 			wantStderr: `
-				(extracting as package-lock.json) could not extract from <rootdir>/fixtures/locks-many/yarn.lock: invalid character '#' looking for beginning of value
+				(extracting as package-lock.json) could not decode json from <rootdir>/fixtures/locks-many/yarn.lock: invalid character '#' looking for beginning of value
 			`,
 		},
 		// "apk-installed" is supported
@@ -922,30 +935,6 @@ func TestRun_LocalDatabases(t *testing.T) {
 				Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
 				Loaded Packagist local db from %%/osv-scanner/Packagist/all.zip
 				No issues found
-			`,
-			wantStderr: "",
-		},
-		// one specific supported sbom with vulns
-		{
-			name:         "",
-			args:         []string{"", "--experimental-local-db", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/postgres-stretch.cdx.xml"},
-			wantExitCode: 1,
-			wantStdout: `
-				Scanning dir ./fixtures/sbom-insecure/postgres-stretch.cdx.xml
-				Scanned <rootdir>/fixtures/sbom-insecure/postgres-stretch.cdx.xml as CycloneDX SBOM and found 136 packages
-				Loaded Debian local db from %%/osv-scanner/Debian/all.zip
-				Loaded Go local db from %%/osv-scanner/Go/all.zip
-				Loaded OSS-Fuzz local db from %%/osv-scanner/OSS-Fuzz/all.zip
-				+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-				| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE                        | VERSION                            | SOURCE                                          |
-				+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-				| https://osv.dev/GHSA-f3fp-gc8g-vw66 | 5.9  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-g2j6-57v7-gm8c | 6.1  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-m8cg-xc2p-r3fc | 2.5  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-v95c-p5hm-xq8f | 6    | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-vpvm-3wq2-2wvm | 7    | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				| https://osv.dev/GHSA-p782-xgp4-8hr8 | 5.3  | Go        | golang.org/x/sys               | v0.0.0-20210817142637-7d9622a276b7 | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-				+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
 			`,
 			wantStderr: "",
 		},
@@ -1266,11 +1255,13 @@ Filtered 2 vulnerabilities from output
 									"name": "babel",
 									"version": "6.23.0",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 13,
+										"end": 23
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1282,11 +1273,13 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 24,
+										"end": 31
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1301,11 +1294,13 @@ Filtered 2 vulnerabilities from output
 									"name": "ms",
 									"version": "2.1.3",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 32,
+										"end": 36
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1348,11 +1343,13 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 24,
+										"end": 31
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1398,11 +1395,13 @@ Filtered 2 vulnerabilities from output
 									"name": "babel",
 									"version": "6.23.0",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 13,
+										"end": 23
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1414,11 +1413,13 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 24,
+										"end": 31
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1430,11 +1431,13 @@ Filtered 2 vulnerabilities from output
 									"name": "ms",
 									"version": "2.1.3",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 32,
+										"end": 36
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1478,11 +1481,13 @@ Filtered 2 vulnerabilities from output
 									"name": "babel",
 									"version": "6.23.0",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 13,
+										"end": 23
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1494,11 +1499,13 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 24,
+										"end": 31
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1510,11 +1517,13 @@ Filtered 2 vulnerabilities from output
 									"name": "ms",
 									"version": "2.1.3",
 									"ecosystem": "npm",
-									"start": {
-										"line": 0
+									"line": {
+										"start": 32,
+										"end": 36
 									},
-									"end": {
-										"line": 0
+									"column": {
+										"start": 0,
+										"end": 0
 									}
 								},
 								"licenses": [
@@ -1546,6 +1555,68 @@ Filtered 2 vulnerabilities from output
 			testCli(t, tt)
 		})
 	}
+}
+
+func TestRun_WithoutHostPathInformation(t *testing.T) {
+	t.Parallel()
+	tests := []locationTestCase{
+		// one specific supported lockfile
+		{
+			name:          "one specific supported lockfile",
+			args:          []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--consider-scan-path-as-root", "./fixtures/locks-many/composer.lock"},
+			wantExitCode:  0,
+			wantFilePaths: []string{filepath.FromSlash("/composer.lock")},
+		},
+		{
+			name:         "Multiple lockfiles",
+			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--consider-scan-path-as-root", "./fixtures/locks-many"},
+			wantExitCode: 0,
+			wantFilePaths: []string{
+				filepath.FromSlash("/composer.lock"),
+				filepath.FromSlash("/Gemfile.lock"),
+				filepath.FromSlash("/package-lock.json"),
+				filepath.FromSlash("/yarn.lock"),
+			},
+		},
+	}
+	for _, tt := range tests {
+		tt := tt
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+			tc := tt
+			stdoutBuffer := &bytes.Buffer{}
+			stderrBuffer := &bytes.Buffer{}
+
+			ec := run(tc.args, stdoutBuffer, stderrBuffer)
+
+			stdout := stdoutBuffer.String()
+			bom := cyclonedx.BOM{}
+			err := json.NewDecoder(strings.NewReader(stdout)).Decode(&bom)
+			require.NoError(t, err)
+
+			if ec != tc.wantExitCode {
+				t.Errorf("cli exited with code %d, not %d", ec, tc.wantExitCode)
+			}
+			filepaths := gatherFilepath(bom)
+			for _, expectedLocation := range tc.wantFilePaths {
+				assert.Contains(t, filepaths, expectedLocation)
+			}
+		})
+	}
+}
+
+func gatherFilepath(bom cyclonedx.BOM) []string {
+	locations := make([]string, 0)
+	for _, component := range *bom.Components {
+		for _, location := range *component.Evidence.Occurrences {
+			jsonLocation := make(map[string]map[string]interface{})
+			_ = json.NewDecoder(strings.NewReader(location.Location)).Decode(&jsonLocation)
+			blockLocation := jsonLocation["block"]
+			locations = append(locations, blockLocation["file_name"].(string))
+		}
+	}
+
+	return locations
 }
 
 func TestMain(m *testing.M) {

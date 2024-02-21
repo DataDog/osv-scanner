@@ -30,16 +30,18 @@ import (
 )
 
 type ScannerActions struct {
-	LockfilePaths        []string
-	SBOMPaths            []string
-	DirectoryPaths       []string
-	GitCommits           []string
-	Recursive            bool
-	SkipGit              bool
-	NoIgnore             bool
-	DockerContainerNames []string
-	ConfigOverridePath   string
-	CallAnalysisStates   map[string]bool
+	LockfilePaths          []string
+	SBOMPaths              []string
+	DirectoryPaths         []string
+	GitCommits             []string
+	Recursive              bool
+	SkipGit                bool
+	NoIgnore               bool
+	Debug                  bool
+	DockerContainerNames   []string
+	ConfigOverridePath     string
+	CallAnalysisStates     map[string]bool
+	ConsiderScanPathAsRoot bool
 
 	ExperimentalScannerActions
 }
@@ -390,8 +392,8 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string) ([]scannedPa
 				Path: sourcePath,
 				Type: "lockfile",
 			},
-			Start: pkgDetail.Start,
-			End:   pkgDetail.End,
+			Line:   pkgDetail.Line,
+			Column: pkgDetail.Column,
 		}
 	}
 
@@ -699,8 +701,8 @@ type scannedPackage struct {
 	Ecosystem lockfile.Ecosystem
 	Commit    string
 	Version   string
-	Start     models.FilePosition
-	End       models.FilePosition
+	Line      models.Position
+	Column    models.Position
 	Source    models.SourceInfo
 	DepGroups []string
 }
@@ -730,6 +732,10 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 
 	//nolint:prealloc // Not sure how many there will be in advance.
 	var scannedPackages []scannedPackage
+
+	if actions.Debug {
+		os.Setenv("debug", "true")
+	}
 
 	if actions.ConfigOverridePath != "" {
 		err := configManager.UseOverride(actions.ConfigOverridePath)
@@ -781,6 +787,13 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		pkgs, err := scanDir(r, dir, actions.SkipGit, actions.Recursive, !actions.NoIgnore, actions.CompareOffline)
 		if err != nil {
 			return models.VulnerabilityResults{}, err
+		}
+		if actions.ConsiderScanPathAsRoot {
+			pkgs, err = removeHostPath(dir, pkgs)
+
+			if err != nil {
+				return models.VulnerabilityResults{}, err
+			}
 		}
 		scannedPackages = append(scannedPackages, pkgs...)
 	}
@@ -851,6 +864,27 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		} else {
 			return results, VulnerabilitiesFoundErr
 		}
+	}
+
+	return results, nil
+}
+
+func removeHostPath(scanPath string, results []scannedPackage) ([]scannedPackage, error) {
+	hostPath, err := filepath.Abs(scanPath)
+	if err != nil {
+		return nil, err
+	}
+	stats, err := os.Lstat(hostPath)
+	if err != nil {
+		return nil, err
+	}
+	if !stats.IsDir() {
+		hostPath = filepath.Dir(hostPath)
+	}
+
+	for index, pkg := range results {
+		pkg.Source.Path = strings.TrimPrefix(pkg.Source.Path, hostPath)
+		results[index] = pkg
 	}
 
 	return results, nil

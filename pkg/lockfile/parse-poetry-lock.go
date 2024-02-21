@@ -1,10 +1,16 @@
 package lockfile
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"path/filepath"
+	"strings"
+
+	"github.com/google/osv-scanner/internal/utility/fileposition"
 
 	"github.com/BurntSushi/toml"
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 type PoetryLockPackageSource struct {
@@ -17,11 +23,12 @@ type PoetryLockPackage struct {
 	Version  string                  `toml:"version"`
 	Optional bool                    `toml:"optional"`
 	Source   PoetryLockPackageSource `toml:"source"`
+	models.FilePosition
 }
 
 type PoetryLockFile struct {
-	Version  int                 `toml:"version"`
-	Packages []PoetryLockPackage `toml:"package"`
+	Version  int                  `toml:"version"`
+	Packages []*PoetryLockPackage `toml:"package"`
 }
 
 const PoetryEcosystem = PipEcosystem
@@ -35,11 +42,23 @@ func (e PoetryLockExtractor) ShouldExtract(path string) bool {
 func (e PoetryLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	var parsedLockfile *PoetryLockFile
 
-	_, err := toml.NewDecoder(f).Decode(&parsedLockfile)
-
+	content, err := os.Open(f.Path())
 	if err != nil {
 		return []PackageDetails{}, fmt.Errorf("could not extract from %s: %w", f.Path(), err)
 	}
+
+	var lines []string
+	scanner := bufio.NewScanner(content)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	decoder := toml.NewDecoder(strings.NewReader(strings.Join(lines, "\n")))
+
+	if _, err := decoder.Decode(&parsedLockfile); err != nil {
+		return []PackageDetails{}, fmt.Errorf("could not decode toml from %s: %w", f.Path(), err)
+	}
+
+	fileposition.InTOML("[[package]]", "[metadata]", parsedLockfile.Packages, lines)
 
 	packages := make([]PackageDetails, 0, len(parsedLockfile.Packages))
 
@@ -48,6 +67,8 @@ func (e PoetryLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			Name:      lockPackage.Name,
 			Version:   lockPackage.Version,
 			Commit:    lockPackage.Source.Commit,
+			Line:      lockPackage.Line,
+			Column:    lockPackage.Column,
 			Ecosystem: PoetryEcosystem,
 			CompareAs: PoetryEcosystem,
 		}

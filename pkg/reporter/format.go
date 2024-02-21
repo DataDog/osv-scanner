@@ -5,7 +5,7 @@ import (
 	"io"
 )
 
-var format = []string{"table", "json", "markdown", "sarif", "gh-annotations", "datadog-sbom", "datadog-offline-sbom"}
+var format = []string{"table", "json", "markdown", "sarif", "gh-annotations", "cyclonedx-1-4", "cyclonedx-1-5"}
 
 func Format() []string {
 	return format

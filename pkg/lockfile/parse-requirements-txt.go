@@ -6,6 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/google/osv-scanner/internal/utility/fileposition"
+	"github.com/google/osv-scanner/pkg/models"
+
 	"github.com/google/osv-scanner/internal/cachedregexp"
 )
 
@@ -14,7 +17,7 @@ const PipEcosystem Ecosystem = "PyPI"
 // todo: expand this to support more things, e.g.
 //
 //	https://pip.pypa.io/en/stable/reference/requirements-file-format/#example
-func parseLine(line string) PackageDetails {
+func parseLine(path string, line string, lineNumber int, lineOffset int, columnStart int, columnEnd int) PackageDetails {
 	// Remove environment markers
 	// pre https://pip.pypa.io/en/stable/reference/requirement-specifiers/#overview
 	line = strings.Split(line, ";")[0]
@@ -53,10 +56,13 @@ func parseLine(line string) PackageDetails {
 	}
 
 	return PackageDetails{
-		Name:      normalizedRequirementName(name),
-		Version:   version,
-		Ecosystem: PipEcosystem,
-		CompareAs: PipEcosystem,
+		Name:       normalizedRequirementName(name),
+		Version:    version,
+		Line:       models.Position{Start: lineNumber, End: lineNumber + lineOffset},
+		Column:     models.Position{Start: columnStart, End: columnEnd},
+		Ecosystem:  PipEcosystem,
+		CompareAs:  PipEcosystem,
+		SourceFile: path,
 	}
 }
 
@@ -109,7 +115,8 @@ func isLineContinuation(line string) bool {
 type RequirementsTxtExtractor struct{}
 
 func (e RequirementsTxtExtractor) ShouldExtract(path string) bool {
-	return filepath.Base(path) == "requirements.txt"
+	baseFilepath := filepath.Base(path)
+	return strings.Contains(baseFilepath, "requirements") && strings.HasSuffix(baseFilepath, ".txt")
 }
 
 func (e RequirementsTxtExtractor) Extract(f DepFile) ([]PackageDetails, error) {
@@ -131,14 +138,24 @@ func parseRequirementsTxt(f DepFile, requiredAlready map[string]struct{}) ([]Pac
 	}
 
 	scanner := bufio.NewScanner(f)
+	var lineNumber, lineOffset, columnStart, columnEnd int
+
 	for scanner.Scan() {
+		lineNumber += lineOffset + 1
+		lineOffset = 0
+
 		line := scanner.Text()
+		lastLine := line
+		columnStart = fileposition.GetFirstNonEmptyCharacterIndexInLine(line)
 
 		for isLineContinuation(line) {
 			line = strings.TrimSuffix(line, "\\")
 
 			if scanner.Scan() {
-				line += scanner.Text()
+				lineOffset++
+				newLine := scanner.Text()
+				line += newLine
+				lastLine = newLine
 			}
 		}
 
@@ -183,7 +200,9 @@ func parseRequirementsTxt(f DepFile, requiredAlready map[string]struct{}) ([]Pac
 			continue
 		}
 
-		detail := parseLine(line)
+		columnEnd = fileposition.GetLastNonEmptyCharacterIndexInLine(lastLine)
+
+		detail := parseLine(f.Path(), line, lineNumber, lineOffset, columnStart, columnEnd)
 		key := detail.Name + "@" + detail.Version
 		if _, ok := packages[key]; !ok {
 			packages[key] = detail
