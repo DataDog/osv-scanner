@@ -267,14 +267,6 @@ func TestParseGoLock_Replacements_Local(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:      "./fork/net",
-			Version:   "",
-			Ecosystem: lockfile.GoEcosystem,
-			CompareAs: lockfile.GoEcosystem,
-			Line:      models.Position{Start: 7, End: 7},
-			Column:    models.Position{Start: 5, End: 42},
-		},
-		{
 			Name:      "github.com/BurntSushi/toml",
 			Version:   "1.0.0",
 			Ecosystem: lockfile.GoEcosystem,
