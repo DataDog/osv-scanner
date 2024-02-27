@@ -41,6 +41,7 @@ type NpmLockPackage struct {
 	Version      string            `json:"version"`
 	Resolved     string            `json:"resolved"`
 	Dependencies map[string]string `json:"dependencies"`
+	Link         bool              `json:"link,omitempty"`
 
 	Dev         bool `json:"dev,omitempty"`
 	DevOptional bool `json:"devOptional,omitempty"`
@@ -209,7 +210,8 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 			finalVersion = commit
 		}
 
-		if _, ok := details[finalName+"@"+finalVersion]; !ok {
+		_, exists := details[finalName+"@"+finalVersion]
+		if !exists && !detail.Link {
 			details[finalName+"@"+finalVersion] = PackageDetails{
 				Name:      finalName,
 				Version:   detail.Version,
