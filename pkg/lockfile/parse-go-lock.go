@@ -82,9 +82,17 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		}
 
 		for _, replacement := range replacements {
+			version := strings.TrimPrefix(replace.New.Version, "v")
+
+			if len(version) == 0 {
+				// There is no version specified on the replacement, it means the artifact is directly accessible
+				// the package itself will then be scanned so there is no need to keep it
+				delete(packages, replacement)
+				continue
+			}
 			packages[replacement] = PackageDetails{
 				Name:      replace.New.Path,
-				Version:   strings.TrimPrefix(replace.New.Version, "v"),
+				Version:   version,
 				Ecosystem: GoEcosystem,
 				CompareAs: GoEcosystem,
 				Line:      models.Position{Start: start.Line, End: end.Line},
