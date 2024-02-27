@@ -293,11 +293,12 @@ func TestRun(t *testing.T) {
 		{
 			name:         "all supported lockfiles in the directory should be checked",
 			args:         []string{"", "./fixtures/locks-many-with-invalid"},
-			wantExitCode: 127,
+			wantExitCode: 0,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many-with-invalid
 				Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
 				Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
+				No issues found
 			`,
 			wantStderr: `
 				Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
@@ -983,13 +984,14 @@ func TestRun_LocalDatabases(t *testing.T) {
 		{
 			name:         "",
 			args:         []string{"", "--experimental-local-db", "./fixtures/locks-many-with-invalid"},
-			wantExitCode: 127,
+			wantExitCode: 0,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many-with-invalid
 				Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
 				Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
 				Loaded RubyGems local db from %%/osv-scanner/RubyGems/all.zip
 				Loaded npm local db from %%/osv-scanner/npm/all.zip
+				No issues found
 			`,
 			wantStderr: `
 				Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
