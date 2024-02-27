@@ -1,6 +1,7 @@
 package lockfile_test
 
 import (
+	"github.com/stretchr/testify/require"
 	"io/fs"
 	"os"
 	"path"
@@ -737,6 +738,37 @@ func TestParseRequirementsTxt_WithBadROption(t *testing.T) {
 
 	expectErrIs(t, err, fs.ErrNotExist)
 	expectPackages(t, packages, []lockfile.PackageDetails{})
+}
+
+func TestParseRequirementsTxt_WithURLROption(t *testing.T) {
+	t.Parallel()
+	lockfileRelativePath := filepath.FromSlash("fixtures/pip/with-url-r-option.txt")
+	dir, err := os.Getwd()
+	require.NoError(t, err)
+	basePath := filepath.Join(dir, lockfileRelativePath)
+
+	packages, err := lockfile.ParseRequirementsTxt(lockfileRelativePath)
+	require.NoError(t, err)
+
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:      "requests",
+			Version:   "1.2.3",
+			Commit:    "",
+			Ecosystem: lockfile.PipEcosystem,
+			CompareAs: lockfile.PipEcosystem,
+			Line: models.Position{
+				Start: 1,
+				End:   1,
+			},
+			Column: models.Position{
+				Start: 1,
+				End:   16,
+			},
+			SourceFile: basePath,
+			DepGroups:  []string{"with-url-r-option"},
+		},
+	})
 }
 
 func TestParseRequirementsTxt_DuplicateROptions(t *testing.T) {
