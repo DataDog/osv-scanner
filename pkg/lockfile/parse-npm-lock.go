@@ -210,6 +210,12 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 			finalVersion = commit
 		}
 
+		if finalVersion == "" {
+			// If version and commit are not set in the lockfile, it means the package is defined locally
+			// with its own package.json, without any version defined for it, lets default on 0.0.0
+			detail.Version = "0.0.0"
+		}
+
 		_, exists := details[finalName+"@"+finalVersion]
 		if !exists && !detail.Link {
 			details[finalName+"@"+finalVersion] = PackageDetails{
