@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/reporter/sbom"
+	"github.com/google/osv-scanner/pkg/models"
 
 	sbom_test "github.com/google/osv-scanner/internal/utility/sbom"
 
@@ -368,6 +368,7 @@ func TestRun(t *testing.T) {
 			wantStdout: `
 				{
 					"results": [],
+					"results_by_purl": {},
 					"experimental_config": {
 						"licenses": {
 							"summary": false,
@@ -388,6 +389,7 @@ func TestRun(t *testing.T) {
 			wantStdout: `
 				{
 					"results": [],
+					"results_by_purl": {},
 					"experimental_config": {
 						"licenses": {
 							"summary": false,
@@ -1066,6 +1068,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 			wantStdout: `
 				{
 					"results": [],
+					"results_by_purl": {},
 					"experimental_config": {
 						"licenses": {
 							"summary": false,
@@ -1087,6 +1090,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 			wantStdout: `
 				{
 					"results": [],
+					"results_by_purl": {},
 					"experimental_config": {
 						"licenses": {
 							"summary": false,
@@ -1264,8 +1268,8 @@ Filtered 2 vulnerabilities from output
 										"end": 23
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1282,8 +1286,8 @@ Filtered 2 vulnerabilities from output
 										"end": 31
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1303,8 +1307,8 @@ Filtered 2 vulnerabilities from output
 										"end": 36
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1314,6 +1318,56 @@ Filtered 2 vulnerabilities from output
 						]
 					}
 				],
+				"results_by_purl": {
+					"pkg:npm/babel@6.23.0": {
+						"Name": "babel",
+						"Version": "6.23.0",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 13,
+									"line_end": 23,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					},
+					"pkg:npm/human-signals@5.0.0": {
+						"Name": "human-signals",
+						"Version": "5.0.0",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 24,
+									"line_end": 31,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					},
+					"pkg:npm/ms@2.1.3": {
+						"Name": "ms",
+						"Version": "2.1.3",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 32,
+									"line_end": 36,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					}
+				},
 				"experimental_config": {
 					"licenses": {
 						"summary": false,
@@ -1352,8 +1406,8 @@ Filtered 2 vulnerabilities from output
 										"end": 31
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1366,6 +1420,24 @@ Filtered 2 vulnerabilities from output
 						]
 					}
 				],
+				"results_by_purl": {
+					"pkg:npm/human-signals@5.0.0": {
+						"Name": "human-signals",
+						"Version": "5.0.0",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 24,
+									"line_end": 31,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					}
+				},
 				"experimental_config": {
 					"licenses": {
 						"summary": false,
@@ -1404,8 +1476,8 @@ Filtered 2 vulnerabilities from output
 										"end": 23
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1422,8 +1494,8 @@ Filtered 2 vulnerabilities from output
 										"end": 31
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1440,8 +1512,8 @@ Filtered 2 vulnerabilities from output
 										"end": 36
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1451,6 +1523,56 @@ Filtered 2 vulnerabilities from output
 						]
 					}
 				],
+				"results_by_purl": {
+					"pkg:npm/babel@6.23.0": {
+						"Name": "babel",
+						"Version": "6.23.0",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 13,
+									"line_end": 23,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					},
+					"pkg:npm/human-signals@5.0.0": {
+						"Name": "human-signals",
+						"Version": "5.0.0",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 24,
+									"line_end": 31,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					},
+					"pkg:npm/ms@2.1.3": {
+						"Name": "ms",
+						"Version": "2.1.3",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 32,
+									"line_end": 36,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					}
+				},
 				"experimental_config": {
 					"licenses": {
 						"summary": false,
@@ -1490,8 +1612,8 @@ Filtered 2 vulnerabilities from output
 										"end": 23
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1508,8 +1630,8 @@ Filtered 2 vulnerabilities from output
 										"end": 31
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1526,8 +1648,8 @@ Filtered 2 vulnerabilities from output
 										"end": 36
 									},
 									"column": {
-										"start": 0,
-										"end": 0
+										"start": 5,
+										"end": 6
 									}
 								},
 								"licenses": [
@@ -1537,6 +1659,56 @@ Filtered 2 vulnerabilities from output
 						]
 					}
 				],
+				"results_by_purl": {
+					"pkg:npm/babel@6.23.0": {
+						"Name": "babel",
+						"Version": "6.23.0",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 13,
+									"line_end": 23,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					},
+					"pkg:npm/human-signals@5.0.0": {
+						"Name": "human-signals",
+						"Version": "5.0.0",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 24,
+									"line_end": 31,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					},
+					"pkg:npm/ms@2.1.3": {
+						"Name": "ms",
+						"Version": "2.1.3",
+						"Ecosystem": "npm",
+						"Locations": [
+							{
+								"block": {
+									"file_name": "<rootdir>/fixtures/locks-licenses/package-lock.json",
+									"line_start": 32,
+									"line_end": 36,
+									"column_start": 5,
+									"column_end": 6
+								}
+							}
+						]
+					}
+				},
 				"experimental_config": {
 					"licenses": {
 						"summary": true,
@@ -1633,8 +1805,8 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 	err := json.NewDecoder(strings.NewReader(stdout)).Decode(&bom)
 	require.NoError(t, err)
 
-	location := sbom.PackageLocations{
-		Block: &sbom.PackageLocation{
+	packageLocations := models.PackageLocations{
+		Block: &models.PackageLocation{
 			Filename:    filepath.FromSlash("/pom.xml"),
 			LineStart:   25,
 			LineEnd:     28,
@@ -1643,7 +1815,7 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 		},
 	}
 	jsonLocation := strings.Builder{}
-	require.NoError(t, json.NewEncoder(&jsonLocation).Encode(location))
+	require.NoError(t, json.NewEncoder(&jsonLocation).Encode(packageLocations))
 
 	expectedComponent := cyclonedx.Component{
 		BOMRef:     "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
