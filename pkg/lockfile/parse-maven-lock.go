@@ -2,6 +2,7 @@ package lockfile
 
 import (
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"os"
 	"path"
@@ -62,9 +63,10 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 		if !ok {
 			fmt.Fprintf(
 				os.Stderr,
-				"Failed to resolve a property. fieldToResolve \"%s\" could not be found for \"%s\"\n",
+				"Failed to resolve a property. fieldToResolve \"%s\" could not be found for \"%s\" (%s)\n",
 				string(bytes),
 				lockfile.GroupID+":"+lockfile.ArtifactID,
+				mld.SourceFile,
 			)
 
 			return []byte("")
@@ -243,6 +245,10 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int) (*MavenLockFil
 		parentRelativePath = path.Join(parentRelativePath, "pom.xml")
 	}
 	parentPath := filepath.FromSlash(filepath.Join(filepath.Dir(f.Path()), parentRelativePath))
+	if _, err := os.Stat(parentPath); errors.Is(err, os.ErrNotExist) {
+		// If the parent pom does not exist, it still can be in an external repository, but it is unreachable from the parser
+		return parsedLockfile, nil
+	}
 	parentFile, err := OpenLocalDepFile(parentPath)
 	if err != nil {
 		return nil, err
