@@ -301,7 +301,7 @@ func TestRun(t *testing.T) {
 				No issues found
 			`,
 			wantStderr: `
-				Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
+				Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock (could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
 			`,
 		},
 		// only the files in the given directories are checked by default (no recursion)
@@ -994,7 +994,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 				No issues found
 			`,
 			wantStderr: `
-				Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
+				Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock (could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
 			`,
 		},
 		// only the files in the given directories are checked by default (no recursion)
