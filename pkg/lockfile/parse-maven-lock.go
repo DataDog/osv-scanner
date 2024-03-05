@@ -57,6 +57,11 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 		var property string
 		var ok bool
 
+		if strings.HasPrefix(propName, "pom.") {
+			// the pom. prefix is the legacy value of project. prefix even if it is deprecated, it is still supported
+			propName = "project" + strings.TrimPrefix(propName, "pom")
+		}
+
 		// If the fieldToResolve is the internal version fieldToResolve, then lets use the one declared
 		if strings.HasPrefix(propName, "project.") {
 			property, ok = projectProperties[propName]
