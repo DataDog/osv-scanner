@@ -91,6 +91,35 @@ func TestParseGoLock_NoPackages(t *testing.T) {
 	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
+func TestParseGoLock_WithPathMajor(t *testing.T) {
+	t.Parallel()
+
+	packages, err := lockfile.ParseGoLock("fixtures/go/with-path-major.mod")
+
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:      "github.com/elastic/go-elasticsearch/v8",
+			Version:   "8",
+			Ecosystem: lockfile.GoEcosystem,
+			CompareAs: lockfile.GoEcosystem,
+			Line:      models.Position{Start: 2, End: 2},
+			Column:    models.Position{Start: 1, End: 54},
+		},
+		{
+			Name:      "stdlib",
+			Version:   "1.11.0",
+			Ecosystem: lockfile.GoEcosystem,
+			CompareAs: lockfile.GoEcosystem,
+			Line:      models.Position{Start: 0, End: 0},
+			Column:    models.Position{Start: 0, End: 0},
+		},
+	})
+}
+
 func TestParseGoLock_OnePackage(t *testing.T) {
 	t.Parallel()
 
