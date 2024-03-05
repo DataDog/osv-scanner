@@ -127,7 +127,8 @@ func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency) map[st
 
 		// we can't resolve a version from a "file:" dependency
 		if strings.HasPrefix(detail.Version, "file:") {
-			finalVersion = ""
+			finalVersion = "0.0.0"
+			version = "0.0.0"
 		} else {
 			commit = tryExtractCommit(detail.Version)
 
