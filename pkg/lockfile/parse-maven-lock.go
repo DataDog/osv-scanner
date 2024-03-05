@@ -242,6 +242,10 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int) (*MavenLockFil
 	if err != nil {
 		return nil, err
 	}
+
+	if parsedLockfile.Properties.m == nil {
+		parsedLockfile.Properties.m = map[string]string{}
+	}
 	parsedLockfile.Dependencies = e.enrichDependencies(f, parsedLockfile.Dependencies.Dependencies)
 	parsedLockfile.ManagedDependencies = e.enrichDependencies(f, parsedLockfile.ManagedDependencies.Dependencies)
 	if parsedLockfile.Parent == (MavenLockParent{}) {
