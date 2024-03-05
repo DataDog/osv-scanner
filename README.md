@@ -117,17 +117,20 @@ dependencies which are declared using a standard and enforced way in each suppor
 We will detail here known limitations.
 
 ### NPM / PNPM
- - Only dependencies declared with a version using semver is supported. Versions declared as `file:*` will be filtered
+
+- Only dependencies declared with a version using semver is supported. Versions declared as `file:*` will be filtered
 
 ### Maven
- - Build system configuration properties (e.g maven.version, tomcat.version) are not supported
- - Only locally defined parent pom files are scanned and reported. If the parent is defined in a registry, it will be skipped.
-   It also means that if a property is defined in a registry defined parent configuration, it won't be available.
+
+- Build system configuration properties (e.g maven.version, tomcat.version) are not supported
+- Only locally defined parent pom files are scanned and reported. If the parent is defined in a registry, it will be skipped.
+  It also means that if a property is defined in a registry defined parent configuration, it won't be available.
 
 ### Go
- - go.mod files including version which is not canonical to go (a semver version prefixed by 'v'). The version reported will depend on the package path:
-   - If the path contains a major version in the path as defined in the [go.mod documentation](https://go.dev/doc/modules/gomod-ref#require) it will be reported
-   - Otherwise, the default v0.0.0 will be reported
+
+- go.mod files including version which is not canonical to go (a semver version prefixed by 'v'). The version reported will depend on the package path:
+  - If the path contains a major version in the path as defined in the [go.mod documentation](https://go.dev/doc/modules/gomod-ref#require) it will be reported
+  - Otherwise, the default v0.0.0 will be reported
 
 ## Contributing code
 
