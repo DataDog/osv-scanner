@@ -118,7 +118,7 @@ We will detail here any known limitations.
 
 ### NPM / PNPM
 
-- Only dependencies declared with a version using semver is supported. Versions declared as `file:*` will be filtered
+- Only dependencies declared with a version using semver are supported. Versions declared as `file:*` will be filtered out.
 
 ### Maven
 
