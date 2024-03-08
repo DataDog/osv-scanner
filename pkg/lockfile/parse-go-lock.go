@@ -41,7 +41,7 @@ func defaultNonCanonicalVersions(path, version string) (string, error) {
 
 	if resolvedVersion == "" {
 		// If it is still not resolved, we default on 0.0.0 as we do with other package managers
-		_, _ = fmt.Fprintf(os.Stderr, "%s@%s is not a canonical path, defaulting to v0.0.0", path, resolvedVersion)
+		_, _ = fmt.Fprintf(os.Stderr, "%s@%s is not a canonical path, defaulting to v0.0.0\n", path, resolvedVersion)
 		return "v0.0.0", nil
 	}
 
