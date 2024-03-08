@@ -111,8 +111,8 @@ The SBOM will be formatted using the CycloneDX 1.5 specification and will includ
 
 ## Limitations of OSV-Scanner
 
-OSV scanner reads package manager dependencies declarations files or their lock files. It means OSV can only scan
-dependencies which are declared using a standard and enforced way in each supported dependency manager.
+OSV scanner reads package manager dependencies declaration files or their lock files. It means OSV can only scan
+dependencies which are declared in a standard and enforced way by each supported dependency manager.
 
 We will detail here known limitations.
 
