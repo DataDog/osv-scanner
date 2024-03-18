@@ -1805,41 +1805,107 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 	err := json.NewDecoder(strings.NewReader(stdout)).Decode(&bom)
 	require.NoError(t, err)
 
-	packageLocations := models.PackageLocations{
-		Block: models.PackageLocation{
-			Filename:    filepath.FromSlash("/pom.xml"),
-			LineStart:   25,
-			LineEnd:     28,
-			ColumnStart: 5,
-			ColumnEnd:   18,
-		},
-	}
-	jsonLocation := strings.Builder{}
-	require.NoError(t, json.NewEncoder(&jsonLocation).Encode(packageLocations))
-
-	expectedComponent := cyclonedx.Component{
-		BOMRef:     "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-		PackageURL: "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-		Type:       "library",
-		Name:       "com.google.code.findbugs:jsr305",
-		Version:    "3.0.2",
-		Evidence: &cyclonedx.Evidence{
-			Occurrences: &[]cyclonedx.EvidenceOccurrence{
-				{
-					Location: jsonLocation.String(),
-				},
-			},
-		},
-	}
 	expectedBom := cyclonedx.BOM{
 		JSONSchema:  "http://cyclonedx.org/schema/bom-1.5.schema.json",
 		BOMFormat:   cyclonedx.BOMFormat,
 		SpecVersion: cyclonedx.SpecVersion1_5,
 		Version:     1,
-		Components:  &[]cyclonedx.Component{expectedComponent},
+		Components: &[]cyclonedx.Component{
+			{
+				BOMRef:     "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
+				PackageURL: "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
+				Type:       "library",
+				Name:       "com.google.code.findbugs:jsr305",
+				Version:    "3.0.2",
+				Evidence: buildLocationJson(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    filepath.FromSlash("/pom.xml"),
+						LineStart:   25,
+						LineEnd:     28,
+						ColumnStart: 5,
+						ColumnEnd:   18,
+					},
+				}),
+			},
+			{
+				BOMRef:     "pkg:maven/org.apache.maven/maven-artifact",
+				PackageURL: "pkg:maven/org.apache.maven/maven-artifact",
+				Type:       "library",
+				Name:       "org.apache.maven:maven-artifact",
+				Evidence: buildLocationJson(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    filepath.FromSlash("/pom.xml"),
+						LineStart:   30,
+						LineEnd:     33,
+						ColumnStart: 5,
+						ColumnEnd:   18,
+					},
+				}),
+			},
+			{
+				BOMRef:     "pkg:pypi/boto3",
+				PackageURL: "pkg:pypi/boto3",
+				Type:       "library",
+				Name:       "boto3",
+				Evidence: buildLocationJson(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    filepath.FromSlash("/requirements.txt"),
+						LineStart:   1,
+						LineEnd:     1,
+						ColumnStart: 1,
+						ColumnEnd:   6,
+					},
+				}),
+			},
+			{
+				BOMRef:     "pkg:golang/github.com/elastic/go-elasticsearch",
+				PackageURL: "pkg:golang/github.com/elastic/go-elasticsearch",
+				Type:       "library",
+				Name:       "github.com/elastic/go-elasticsearch",
+				Evidence: buildLocationJson(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    filepath.FromSlash("/go.mod"),
+						LineStart:   2,
+						LineEnd:     2,
+						ColumnStart: 1,
+						ColumnEnd:   51,
+					},
+				}),
+			},
+			{
+				BOMRef:     "pkg:golang/stdlib@1.11.0",
+				PackageURL: "pkg:golang/stdlib@1.11.0",
+				Type:       "library",
+				Name:       "stdlib",
+				Version:    "1.11.0",
+				Evidence: buildLocationJson(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    filepath.FromSlash("/go.mod"),
+						LineStart:   0,
+						LineEnd:     0,
+						ColumnStart: 0,
+						ColumnEnd:   0,
+					},
+				}),
+			},
+		},
 	}
 
 	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
+}
+
+func buildLocationJson(t *testing.T, packageLocations models.PackageLocations) *cyclonedx.Evidence {
+	t.Helper()
+	jsonLocation := strings.Builder{}
+	require.NoError(t, json.NewEncoder(&jsonLocation).Encode(packageLocations))
+
+	return &cyclonedx.Evidence{
+		Occurrences: &[]cyclonedx.EvidenceOccurrence{
+			{
+				Location: jsonLocation.String(),
+			},
+		},
+	}
 }
 
 func gatherFilepath(bom cyclonedx.BOM) []string {
