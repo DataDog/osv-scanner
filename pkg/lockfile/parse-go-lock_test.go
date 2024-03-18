@@ -132,7 +132,7 @@ func TestParseGoLock_WithoutSupportedVersioning(t *testing.T) {
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "github.com/elastic/go-elasticsearch",
-			Version:   "0.0.0",
+			Version:   "",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
 			Line:      models.Position{Start: 2, End: 2},

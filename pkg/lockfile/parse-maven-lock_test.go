@@ -105,6 +105,33 @@ func TestParseMavenLock_NoPackages(t *testing.T) {
 	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
+func TestParseMavenLock_NoVersion(t *testing.T) {
+	t.Parallel()
+	lockfileRelativePath := "fixtures/maven/no-version.xml"
+	packages, err := lockfile.ParseMavenLock(lockfileRelativePath)
+
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+	sourcePath := path.Join(dir, lockfileRelativePath)
+
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:       "org.apache.maven:maven-artifact",
+			Version:    "",
+			Ecosystem:  lockfile.MavenEcosystem,
+			CompareAs:  lockfile.MavenEcosystem,
+			Line:       models.Position{Start: 7, End: 10},
+			Column:     models.Position{Start: 5, End: 18},
+			SourceFile: filepath.FromSlash(sourcePath),
+		},
+	})
+}
+
 func TestParseMavenLock_OnePackage(t *testing.T) {
 	t.Parallel()
 	lockfileRelativePath := "fixtures/maven/one-package.xml"

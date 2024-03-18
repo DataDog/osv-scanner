@@ -16,6 +16,7 @@ import (
 )
 
 const GoEcosystem Ecosystem = "Go"
+const unknownVersion string = "v0.0.0-unknown-version"
 
 func deduplicatePackages(packages map[string]PackageDetails) map[string]PackageDetails {
 	details := map[string]PackageDetails{}
@@ -41,9 +42,9 @@ func defaultNonCanonicalVersions(path, version string) (string, error) {
 	}
 
 	if resolvedVersion == "" {
-		// If it is still not resolved, we default on 0.0.0 as we do with other package managers
-		_, _ = fmt.Fprintf(os.Stderr, "%s@%s is not a canonical path, defaulting to v0.0.0\n", path, resolvedVersion)
-		return "v0.0.0", nil
+		// When a version is not resolved, we still have to default to at least v0 and then filter it as the mod package check for the major path which have to be valid
+		_, _ = fmt.Fprintf(os.Stderr, "%s@%s is not a canonical path, defaulting to an empty version\n", path, resolvedVersion)
+		resolvedVersion = unknownVersion
 	}
 
 	return resolvedVersion, nil
@@ -71,9 +72,14 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	for _, require := range parsedLockfile.Require {
 		var start = require.Syntax.Start
 		var end = require.Syntax.End
+		var version = strings.TrimPrefix(require.Mod.Version, "v")
+
+		if require.Mod.Version == unknownVersion {
+			version = ""
+		}
 		packages[require.Mod.Path+"@"+require.Mod.Version] = PackageDetails{
 			Name:      require.Mod.Path,
-			Version:   strings.TrimPrefix(require.Mod.Version, "v"),
+			Version:   version,
 			Ecosystem: GoEcosystem,
 			CompareAs: GoEcosystem,
 			Line:      models.Position{Start: start.Line, End: end.Line},
@@ -107,7 +113,7 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		for _, replacement := range replacements {
 			version := strings.TrimPrefix(replace.New.Version, "v")
 
-			if len(version) == 0 {
+			if len(version) == 0 || version == unknownVersion {
 				// There is no version specified on the replacement, it means the artifact is directly accessible
 				// the package itself will then be scanned so there is no need to keep it
 				delete(packages, replacement)
