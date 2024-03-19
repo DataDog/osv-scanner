@@ -1,11 +1,12 @@
 package grouper_test
 
 import (
+	"testing"
+
 	"github.com/google/osv-scanner/pkg/grouper"
 	"github.com/google/osv-scanner/pkg/lockfile"
 	"github.com/google/osv-scanner/pkg/models"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
