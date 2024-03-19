@@ -608,7 +608,7 @@ func TestMavenLockDependency_ResolveVersion(t *testing.T) {
 			name:   "",
 			fields: fields{Version: "(,1.0]"},
 			args:   args{lockfile: lockfile.MavenLockFile{}},
-			want:   "0",
+			want:   "",
 		},
 		// [1.2,1.3]: Hard requirement for any version between 1.2 and 1.3 inclusive.
 		{
@@ -636,14 +636,14 @@ func TestMavenLockDependency_ResolveVersion(t *testing.T) {
 			name:   "",
 			fields: fields{Version: "(,1.0],[1.2,)"},
 			args:   args{lockfile: lockfile.MavenLockFile{}},
-			want:   "0",
+			want:   "",
 		},
 		// (,1.1),(1.1,): Hard requirement for any version except 1.1; for example because 1.1 has a critical vulnerability.
 		{
 			name:   "",
 			fields: fields{Version: "(,1.1),(1.1,)"},
 			args:   args{lockfile: lockfile.MavenLockFile{}},
-			want:   "0",
+			want:   "",
 		},
 	}
 	for _, tt := range tests {
