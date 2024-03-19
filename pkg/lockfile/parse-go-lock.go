@@ -42,7 +42,7 @@ func defaultNonCanonicalVersions(path, version string) (string, error) {
 	}
 
 	if resolvedVersion == "" {
-		// When a version is not resolved, we still have to default to at least v0 and then filter it as the mod package check for the major path which have to be valid
+		// When a version is not resolved, we still have to default to a valid version as the mod package check for the major path which have to be valid when parsing the file
 		_, _ = fmt.Fprintf(os.Stderr, "%s@%s is not a canonical path, defaulting to an empty version\n", path, resolvedVersion)
 		resolvedVersion = unknownVersion
 	}
