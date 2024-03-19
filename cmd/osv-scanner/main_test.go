@@ -1817,7 +1817,7 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 				Type:       "library",
 				Name:       "com.google.code.findbugs:jsr305",
 				Version:    "3.0.2",
-				Evidence: buildLocationJson(t, models.PackageLocations{
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
 					Block: models.PackageLocation{
 						Filename:    filepath.FromSlash("/pom.xml"),
 						LineStart:   25,
@@ -1832,7 +1832,7 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 				PackageURL: "pkg:maven/org.apache.maven/maven-artifact",
 				Type:       "library",
 				Name:       "org.apache.maven:maven-artifact",
-				Evidence: buildLocationJson(t, models.PackageLocations{
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
 					Block: models.PackageLocation{
 						Filename:    filepath.FromSlash("/pom.xml"),
 						LineStart:   30,
@@ -1847,7 +1847,7 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 				PackageURL: "pkg:pypi/boto3",
 				Type:       "library",
 				Name:       "boto3",
-				Evidence: buildLocationJson(t, models.PackageLocations{
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
 					Block: models.PackageLocation{
 						Filename:    filepath.FromSlash("/requirements.txt"),
 						LineStart:   1,
@@ -1862,7 +1862,7 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 				PackageURL: "pkg:golang/github.com/elastic/go-elasticsearch",
 				Type:       "library",
 				Name:       "github.com/elastic/go-elasticsearch",
-				Evidence: buildLocationJson(t, models.PackageLocations{
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
 					Block: models.PackageLocation{
 						Filename:    filepath.FromSlash("/go.mod"),
 						LineStart:   2,
@@ -1878,7 +1878,7 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 				Type:       "library",
 				Name:       "stdlib",
 				Version:    "1.11.0",
-				Evidence: buildLocationJson(t, models.PackageLocations{
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
 					Block: models.PackageLocation{
 						Filename:    filepath.FromSlash("/go.mod"),
 						LineStart:   0,
@@ -1894,7 +1894,7 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
 }
 
-func buildLocationJson(t *testing.T, packageLocations models.PackageLocations) *cyclonedx.Evidence {
+func buildLocationEvidence(t *testing.T, packageLocations models.PackageLocations) *cyclonedx.Evidence {
 	t.Helper()
 	jsonLocation := strings.Builder{}
 	require.NoError(t, json.NewEncoder(&jsonLocation).Encode(packageLocations))
