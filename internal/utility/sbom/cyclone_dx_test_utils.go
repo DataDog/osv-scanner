@@ -18,7 +18,11 @@ func AssertBomEqual(t *testing.T, expected, actual cyclonedx.BOM, assertLocation
 	for _, expectedComponent := range *expected.Components {
 		matchedComponent := assertComponentsContains(t, expectedComponent, *actual.Components)
 		if assertLocations {
-			assertOccurrencesEquals(t, *expectedComponent.Evidence.Occurrences, *matchedComponent.Evidence.Occurrences)
+			if matchedComponent.Evidence != nil && expectedComponent.Evidence != nil {
+				assertOccurrencesEquals(t, *expectedComponent.Evidence.Occurrences, *matchedComponent.Evidence.Occurrences)
+			} else if expectedComponent.Evidence != nil {
+				assert.Fail(t, "matched component evidence is nil where it expected to be set", expectedComponent)
+			}
 		}
 	}
 }

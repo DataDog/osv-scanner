@@ -1827,6 +1827,13 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 					},
 				}),
 			},
+			{
+				BOMRef:     "pkg:nuget/Test.Core@6.0.5",
+				PackageURL: "pkg:nuget/Test.Core@6.0.5",
+				Type:       "library",
+				Name:       "Test.Core",
+				Version:    "6.0.5",
+			},
 		},
 	}
 	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
