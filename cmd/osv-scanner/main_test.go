@@ -1752,6 +1752,21 @@ func TestRun_WithoutHostPathInformation(t *testing.T) {
 				filepath.FromSlash("/yarn.lock"),
 			},
 		},
+		{
+			name:          "one specific supported lockfile (relative path)",
+			args:          []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many/yarn.lock"},
+			wantExitCode:  0,
+			wantFilePaths: []string{filepath.FromSlash("yarn.lock")},
+		},
+		{
+			name:         "Multiple lockfiles (relative path)",
+			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many"},
+			wantExitCode: 0,
+			wantFilePaths: []string{
+				filepath.FromSlash("package-lock.json"),
+				filepath.FromSlash("yarn.lock"),
+			},
+		},
 	}
 	for _, tt := range tests {
 		tt := tt
