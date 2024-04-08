@@ -237,7 +237,8 @@ func run(args []string, stdout, stderr io.Writer) int {
 				},
 			}, r)
 
-			if err != nil && !errors.Is(err, osvscanner.VulnerabilitiesFoundErr) {
+			shouldIgnoreError := errors.Is(err, osvscanner.VulnerabilitiesFoundErr) || errors.Is(err, osvscanner.NoPackagesFoundErr)
+			if err != nil && !shouldIgnoreError {
 				return err
 			}
 

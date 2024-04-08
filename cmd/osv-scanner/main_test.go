@@ -182,7 +182,7 @@ func TestRun(t *testing.T) {
 			name:         "",
 			args:         []string{""},
 			wantExitCode: 0,
-			wantStdout:   "",
+			wantStdout:   "No issues found",
 			wantStderr: `
         No package sources found, --help for usage information.
 			`,
@@ -264,6 +264,7 @@ func TestRun(t *testing.T) {
 			wantExitCode: 0,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+				No issues found
 			`,
 			wantStderr: `
 				No package sources found, --help for usage information.
@@ -644,6 +645,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 			wantExitCode: 0,
 			wantStdout: `
 				Scanned <rootdir>/fixtures/locks-many/replace-local.mod file as a go.mod and found 0 packages
+				No issues found
 			`,
 			wantStderr: "No package sources found, --help for usage information.",
 		},
@@ -950,6 +952,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 			wantExitCode: 0,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+				No issues found
 			`,
 			wantStderr: `
 				No package sources found, --help for usage information.
