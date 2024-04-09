@@ -3,11 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/google/osv-scanner/pkg/lockfile"
 	"io"
 	"os"
 	"slices"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/lockfile"
 
 	"github.com/google/osv-scanner/internal/version"
 	"github.com/google/osv-scanner/pkg/osv"
