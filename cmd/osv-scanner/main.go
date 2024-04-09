@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/lockfile"
 	"io"
 	"os"
 	"slices"
@@ -157,6 +158,10 @@ func run(args []string, stdout, stderr io.Writer) int {
 			&cli.BoolFlag{
 				Name:  "paths-relative-to-scan-dir",
 				Usage: "Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator)",
+			},
+			&cli.StringSliceFlag{
+				Name:  "enable-parsers",
+				Usage: fmt.Sprintf("Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: %v)", lockfile.ListExtractors()),
 			},
 		},
 		ArgsUsage: "[directory1 directory2...]",
