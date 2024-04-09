@@ -221,6 +221,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 				CallAnalysisStates:     callAnalysisStates,
 				ConsiderScanPathAsRoot: context.Bool("consider-scan-path-as-root"),
 				PathRelativeToScanDir:  context.Bool("paths-relative-to-scan-dir"),
+				EnableParsers:          context.StringSlice("enable-parsers"),
 				ExperimentalScannerActions: osvscanner.ExperimentalScannerActions{
 					LocalDBPath:    context.String("experimental-local-db-path"),
 					CompareLocally: context.Bool("experimental-local-db"),
