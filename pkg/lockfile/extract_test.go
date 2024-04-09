@@ -175,3 +175,13 @@ func TestListExtractors(t *testing.T) {
 		t.Errorf("Expected last element to be %s, but got %s", lastExpected, last)
 	}
 }
+
+func TestDisabledExtractor(t *testing.T) {
+	t.Parallel()
+
+	extractor, extractedAs := lockfile.FindExtractor("/path/to/my/composer.lock", "", map[string]bool{})
+
+	if extractor != nil {
+		t.Errorf("Expected no extractor to be found but one has been found (%s)", extractedAs)
+	}
+}
