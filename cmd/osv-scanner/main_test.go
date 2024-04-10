@@ -181,8 +181,8 @@ func TestRun(t *testing.T) {
 		{
 			name:         "",
 			args:         []string{""},
-			wantExitCode: 128,
-			wantStdout:   "",
+			wantExitCode: 0,
+			wantStdout:   "No issues found",
 			wantStderr: `
         No package sources found, --help for usage information.
 			`,
@@ -261,9 +261,10 @@ func TestRun(t *testing.T) {
 		{
 			name:         "",
 			args:         []string{"", "./fixtures/locks-many/not-a-lockfile.toml"},
-			wantExitCode: 128,
+			wantExitCode: 0,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+				No issues found
 			`,
 			wantStderr: `
 				No package sources found, --help for usage information.
@@ -641,9 +642,10 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 		{
 			name:         "one lockfile with local path",
 			args:         []string{"", "--lockfile=go.mod:./fixtures/locks-many/replace-local.mod"},
-			wantExitCode: 128,
+			wantExitCode: 0,
 			wantStdout: `
 				Scanned <rootdir>/fixtures/locks-many/replace-local.mod file as a go.mod and found 0 packages
+				No issues found
 			`,
 			wantStderr: "No package sources found, --help for usage information.",
 		},
@@ -947,9 +949,10 @@ func TestRun_LocalDatabases(t *testing.T) {
 		{
 			name:         "",
 			args:         []string{"", "--experimental-local-db", "./fixtures/locks-many/not-a-lockfile.toml"},
-			wantExitCode: 128,
+			wantExitCode: 0,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+				No issues found
 			`,
 			wantStderr: `
 				No package sources found, --help for usage information.
@@ -1846,6 +1849,58 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 				Type:       "library",
 				Name:       "Test.Core",
 				Version:    "6.0.5",
+			},
+		},
+	}
+	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
+}
+
+func TestRun_WithExplicitParsers(t *testing.T) {
+	t.Parallel()
+	args := []string{
+		"",
+		"-r",
+		"--experimental-only-packages",
+		"--format=cyclonedx-1-5",
+		"--consider-scan-path-as-root",
+		"--enable-parsers=pom.xml",
+		"./fixtures/integration-test-locks",
+	}
+	stdoutBuffer := &bytes.Buffer{}
+	stderrBuffer := &bytes.Buffer{}
+
+	ec := run(args, stdoutBuffer, stderrBuffer)
+
+	if ec != 0 {
+		require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
+	}
+
+	stdout := stdoutBuffer.String()
+	bom := cyclonedx.BOM{}
+	err := json.NewDecoder(strings.NewReader(stdout)).Decode(&bom)
+	require.NoError(t, err)
+
+	expectedBom := cyclonedx.BOM{
+		JSONSchema:  "http://cyclonedx.org/schema/bom-1.5.schema.json",
+		BOMFormat:   cyclonedx.BOMFormat,
+		SpecVersion: cyclonedx.SpecVersion1_5,
+		Version:     1,
+		Components: &[]cyclonedx.Component{
+			{
+				BOMRef:     "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
+				PackageURL: "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
+				Type:       "library",
+				Name:       "com.google.code.findbugs:jsr305",
+				Version:    "3.0.2",
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   25,
+						LineEnd:     28,
+						ColumnStart: 5,
+						ColumnEnd:   18,
+					},
+				}),
 			},
 		},
 	}
