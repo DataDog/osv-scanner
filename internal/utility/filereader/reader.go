@@ -1,10 +1,11 @@
 package filereader
 
 import (
+	"io"
+
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
-	"io"
 )
 
 func CharsetDecoder(_ string, input io.Reader) (io.Reader, error) {

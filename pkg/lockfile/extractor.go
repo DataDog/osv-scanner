@@ -2,12 +2,13 @@ package lockfile
 
 import (
 	"errors"
-	"golang.org/x/text/encoding"
-	"golang.org/x/text/encoding/unicode"
-	"golang.org/x/text/transform"
 	"io"
 	"os"
 	"path/filepath"
+
+	"golang.org/x/text/encoding"
+	"golang.org/x/text/encoding/unicode"
+	"golang.org/x/text/transform"
 )
 
 var ErrOpenNotSupported = errors.New("this file does not support opening files")

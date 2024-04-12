@@ -4,11 +4,12 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"github.com/google/osv-scanner/internal/utility/filereader"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/osv-scanner/internal/utility/filereader"
 
 	"github.com/google/osv-scanner/pkg/models"
 

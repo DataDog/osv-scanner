@@ -2157,7 +2157,6 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 			sbom_test.AssertBomEqual(t, expectedBom, bom, true)
 		})
 	}
-
 }
 
 func buildLocationEvidence(t *testing.T, packageLocations models.PackageLocations) *cyclonedx.Evidence {
