@@ -1915,6 +1915,7 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 	t.Parallel()
 	testCases := []encodingTestCase{
 		{encoding: "UTF-16"},
+		{encoding: "Windows-1252"},
 	}
 
 	expectedBom := cyclonedx.BOM{
