@@ -1995,7 +1995,15 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 				Type:       "library",
 				Name:       "wrappy",
 				Version:    "1.0.2",
-				Evidence:   sbom_test.BuildEmptyEvidence(), // TODO : Check why no location come up (package-lock.json)
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    "package-lock.json",
+						LineStart:   5,
+						LineEnd:     9,
+						ColumnStart: 5,
+						ColumnEnd:   6,
+					},
+				}),
 			},
 			{
 				BOMRef:     "pkg:nuget/Test.Core@6.0.5",
@@ -2011,7 +2019,15 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 				Type:       "library",
 				Name:       "markupsafe",
 				Version:    "2.1.1",
-				Evidence:   sbom_test.BuildEmptyEvidence(), // TODO : Check why no location come up (Pipfile.lock)
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    "Pipfile.lock",
+						LineStart:   19,
+						LineEnd:     64,
+						ColumnStart: 9,
+						ColumnEnd:   10,
+					},
+				}),
 			},
 			{
 				BOMRef:     "pkg:npm/acorn@8.7.0",

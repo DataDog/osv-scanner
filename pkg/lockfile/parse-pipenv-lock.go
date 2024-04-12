@@ -1,9 +1,9 @@
 package lockfile
 
 import (
-	"bufio"
 	"encoding/json"
 	"fmt"
+	"io"
 	"path/filepath"
 	"strings"
 
@@ -38,11 +38,11 @@ func (e PipenvLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		return []PackageDetails{}, fmt.Errorf("could not extract from %s: %w", f.Path(), err)
 	}
 
-	scanner := bufio.NewScanner(content)
-	contentString := ""
-	for scanner.Scan() {
-		contentString += scanner.Text()
+	contentBytes, err := io.ReadAll(content)
+	if err != nil {
+		return []PackageDetails{}, fmt.Errorf("could not read from %s: %w", f.Path(), err)
 	}
+	contentString := string(contentBytes)
 	lines := strings.Split(contentString, "\n")
 	decoder := json.NewDecoder(strings.NewReader(contentString))
 
