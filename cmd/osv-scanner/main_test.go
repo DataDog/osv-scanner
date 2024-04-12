@@ -1914,6 +1914,7 @@ func TestRun_WithExplicitParsers(t *testing.T) {
 func TestRun_WithEncodedLockfile(t *testing.T) {
 	t.Parallel()
 	testCases := []encodingTestCase{
+		{encoding: "UTF-8"},
 		{encoding: "UTF-16"},
 		{encoding: "Windows-1252"},
 	}
