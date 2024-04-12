@@ -1,7 +1,7 @@
 package semantic_test
 
 import (
-	"bufio"
+	"github.com/google/osv-scanner/internal/utility/filereader"
 	"os"
 	"strings"
 	"testing"
@@ -54,7 +54,7 @@ func runAgainstEcosystemFixture(t *testing.T, ecosystem models.Ecosystem, filena
 
 	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
+	scanner := filereader.NewScanner(file)
 
 	total := 0
 	failed := 0

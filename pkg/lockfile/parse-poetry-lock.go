@@ -1,8 +1,8 @@
 package lockfile
 
 import (
-	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/internal/utility/filereader"
 	"os"
 	"path/filepath"
 	"strings"
@@ -48,7 +48,7 @@ func (e PoetryLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	}
 
 	var lines []string
-	scanner := bufio.NewScanner(content)
+	scanner := filereader.NewScanner(f)
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}

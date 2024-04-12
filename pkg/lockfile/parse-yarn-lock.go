@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/internal/utility/filereader"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -215,7 +216,7 @@ func (e YarnLockExtractor) ShouldExtract(path string) bool {
 }
 
 func (e YarnLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
-	scanner := bufio.NewScanner(f)
+	scanner := filereader.NewScanner(f)
 
 	yarnPackages := groupYarnPackageLines(scanner)
 
