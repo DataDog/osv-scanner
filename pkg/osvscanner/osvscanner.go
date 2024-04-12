@@ -1,10 +1,10 @@
 package osvscanner
 
 import (
+	"bufio"
 	"crypto/md5" //nolint:gosec
 	"errors"
 	"fmt"
-	"github.com/google/osv-scanner/internal/utility/filereader"
 	"io/fs"
 	"os"
 	"os/exec"
@@ -582,7 +582,7 @@ func scanDebianDocker(r reporter.Reporter, dockerImageName string) ([]scannedPac
 	// TODO: Do error checking here
 	//nolint:errcheck
 	defer cmd.Wait()
-	scanner := filereader.NewScanner(stdout)
+	scanner := bufio.NewScanner(stdout)
 	var packages []scannedPackage
 	for scanner.Scan() {
 		text := scanner.Text()

@@ -1,9 +1,9 @@
 package lockfile
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
-	"os"
 	"path"
 	"path/filepath"
 	"reflect"
@@ -256,12 +256,16 @@ func (e NpmLockExtractor) ShouldExtract(path string) bool {
 func (e NpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	var parsedLockfile *NpmLockfile
 
-	content, err := os.ReadFile(f.Path())
+	content, err := OpenLocalDepFile(f.Path())
 	if err != nil {
 		return []PackageDetails{}, fmt.Errorf("could not extract from %s: %w", f.Path(), err)
 	}
 
-	contentString := string(content)
+	scanner := bufio.NewScanner(content)
+	contentString := ""
+	for scanner.Scan() {
+		contentString += scanner.Text()
+	}
 	lines := strings.Split(contentString, "\n")
 	decoder := json.NewDecoder(strings.NewReader(contentString))
 

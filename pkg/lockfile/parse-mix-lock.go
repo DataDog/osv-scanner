@@ -1,8 +1,8 @@
 package lockfile
 
 import (
+	"bufio"
 	"fmt"
-	"github.com/google/osv-scanner/internal/utility/filereader"
 	"os"
 	"path/filepath"
 	"strings"
@@ -21,7 +21,7 @@ func (e MixLockExtractor) ShouldExtract(path string) bool {
 func (e MixLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	re := cachedregexp.MustCompile(`^ +"(\w+)": \{.+,$`)
 
-	scanner := filereader.NewScanner(f)
+	scanner := bufio.NewScanner(f)
 
 	var packages []PackageDetails
 

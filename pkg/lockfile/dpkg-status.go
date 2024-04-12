@@ -3,7 +3,6 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
-	"github.com/google/osv-scanner/internal/utility/filereader"
 	"sort"
 	"strings"
 
@@ -113,7 +112,7 @@ func (e DpkgStatusExtractor) ShouldExtract(path string) bool {
 }
 
 func (e DpkgStatusExtractor) Extract(f DepFile) ([]PackageDetails, error) {
-	scanner := filereader.NewScanner(f)
+	scanner := bufio.NewScanner(f)
 	packageGroups := groupDpkgPackageLines(scanner)
 
 	packages := make([]PackageDetails, 0, len(packageGroups))

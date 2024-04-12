@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/internal/utility/filereader"
 	"os"
 	"path"
 	"path/filepath"
@@ -238,7 +239,9 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int) (*MavenLockFil
 		return nil, fmt.Errorf("maven file decoding reached the max depth (%d/%d), check for a circular dependency", depth, maxParentDepth)
 	}
 	// Decoding the original lockfile and enrich its dependencies
-	err := xml.NewDecoder(f).Decode(&parsedLockfile)
+	decoder := xml.NewDecoder(f)
+	decoder.CharsetReader = filereader.CharsetDecoder
+	err := decoder.Decode(&parsedLockfile)
 	if err != nil {
 		return nil, err
 	}

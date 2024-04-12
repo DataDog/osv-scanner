@@ -1,8 +1,8 @@
 package lockfile
 
 import (
+	"bufio"
 	"fmt"
-	"github.com/google/osv-scanner/internal/utility/filereader"
 	"path/filepath"
 	"strings"
 )
@@ -52,7 +52,7 @@ func (e GradleLockExtractor) ShouldExtract(path string) bool {
 
 func (e GradleLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	pkgs := make([]PackageDetails, 0)
-	scanner := filereader.NewScanner(f)
+	scanner := bufio.NewScanner(f)
 
 	for scanner.Scan() {
 		lockLine := strings.TrimSpace(scanner.Text())

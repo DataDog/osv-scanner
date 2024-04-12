@@ -1,8 +1,8 @@
 package lockfile
 
 import (
+	"bufio"
 	"fmt"
-	"github.com/google/osv-scanner/internal/utility/filereader"
 	"path/filepath"
 	"strings"
 
@@ -154,8 +154,8 @@ func parseRequirementsTxt(f DepFile, requiredAlready map[string]struct{}) ([]Pac
 
 		return false
 	}
-	
-	scanner := filereader.NewScanner(f)
+
+	scanner := bufio.NewScanner(f)
 	var lineNumber, lineOffset, columnStart, columnEnd int
 
 	for scanner.Scan() {

@@ -1,8 +1,8 @@
 package lockfile
 
 import (
+	"bufio"
 	"fmt"
-	"github.com/google/osv-scanner/internal/utility/filereader"
 	"log"
 	"path/filepath"
 	"strings"
@@ -168,7 +168,7 @@ func (e GemfileLockExtractor) ShouldExtract(path string) bool {
 func (e GemfileLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	var parser gemfileLockfileParser
 
-	scanner := filereader.NewScanner(f)
+	scanner := bufio.NewScanner(f)
 
 	for scanner.Scan() {
 		parser.parse(scanner.Text())
