@@ -1991,6 +1991,13 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 						ColumnStart: 1,
 						ColumnEnd:   42,
 					},
+					Version: &models.PackageLocation{
+						Filename:    "go.mod",
+						LineStart:   5,
+						LineEnd:     5,
+						ColumnStart: 37,
+						ColumnEnd:   41,
+					},
 				}),
 			},
 			{
