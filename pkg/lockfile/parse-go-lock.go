@@ -54,7 +54,7 @@ func (e GoLockExtractor) ShouldExtract(path string) bool {
 }
 
 func splitLines(data []byte) []string {
-	str := string(data[:])
+	str := string(data)
 	return strings.Split(str, "\n")
 }
 
