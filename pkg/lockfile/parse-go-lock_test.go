@@ -524,6 +524,10 @@ func TestParseGoLock_Replacements_NoVersion(t *testing.T) {
 				Line:   models.Position{Start: 7, End: 7},
 				Column: models.Position{Start: 47, End: 51},
 			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 7, End: 7},
+				Column: models.Position{Start: 25, End: 45},
+			},
 		},
 	})
 }
