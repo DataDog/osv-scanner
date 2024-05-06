@@ -94,6 +94,7 @@ func extractNamePosition(lines []string, name string, start modfile.Position, en
 		return nil
 	}
 	nameEndColumn := nameStartColumn + len(name)
+
 	return &models.FilePosition{
 		Line:   models.Position{Start: start.Line, End: end.Line},
 		Column: models.Position{Start: nameStartColumn, End: nameEndColumn},

@@ -77,6 +77,7 @@ func mapToPackageLocation(path string, location *models.FilePosition) *models.Pa
 	if location == nil || !isLocationExtractedSuccessfully(*location) {
 		return nil
 	}
+
 	return &models.PackageLocation{
 		Filename:    path,
 		LineStart:   location.Line.Start,
