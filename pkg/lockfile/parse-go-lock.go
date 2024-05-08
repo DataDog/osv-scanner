@@ -2,6 +2,7 @@ package lockfile
 
 import (
 	"fmt"
+	"github.com/google/osv-scanner/internal/utility/fileposition"
 	"io"
 	"os"
 	"path/filepath"

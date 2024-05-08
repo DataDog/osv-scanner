@@ -1,6 +1,7 @@
 package lockfile_test
 
 import (
+	"fmt"
 	"io/fs"
 	"testing"
 
@@ -100,6 +101,10 @@ func TestParseGoLock_WithPathMajor(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
+	for _, p := range packages {
+		fmt.Println(p.VersionLocation)
+		fmt.Println(p.NameLocation)
+	}
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "github.com/elastic/go-elasticsearch/v8",
