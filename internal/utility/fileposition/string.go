@@ -1,8 +1,9 @@
 package fileposition
 
 import (
-	"github.com/google/osv-scanner/pkg/models"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 func ExtractStringPositionInBlock(block []string, str string, blockStartLine int) *models.FilePosition {
@@ -18,5 +19,6 @@ func ExtractStringPositionInBlock(block []string, str string, blockStartLine int
 			}
 		}
 	}
+
 	return nil
 }
