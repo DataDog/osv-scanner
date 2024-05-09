@@ -7,8 +7,13 @@ import (
 )
 
 func ExtractStringPositionInBlock(block []string, str string, blockStartLine int) *models.FilePosition {
+	return ExtractDelimitedStringPositionInBlock(block, str, blockStartLine, "", "")
+}
+
+func ExtractDelimitedStringPositionInBlock(block []string, str string, blockStartLine int, prefix string, suffix string) *models.FilePosition {
 	for i, line := range block {
-		if strings.Contains(line, str) {
+		search := prefix + str + suffix
+		if strings.Contains(line, search) {
 			linePosition := blockStartLine + i
 			columnStart := strings.Index(line, str) + 1
 			columnEnd := columnStart + len(str)
