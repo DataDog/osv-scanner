@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 	"strings"
 )
@@ -19,7 +20,7 @@ func isGradleLockFileDepLine(line string) bool {
 	return !ret
 }
 
-func parseToGradlePackageDetail(line string) (PackageDetails, error) {
+func parseToGradlePackageDetail(line string, lineNumber int) (PackageDetails, error) {
 	parts := strings.SplitN(line, ":", 3)
 	if len(parts) < 3 {
 		return PackageDetails{}, fmt.Errorf("invalid line in gradle lockfile: %s", line)
@@ -33,6 +34,10 @@ func parseToGradlePackageDetail(line string) (PackageDetails, error) {
 		Version:   version,
 		Ecosystem: MavenEcosystem,
 		CompareAs: MavenEcosystem,
+		BlockLocation: models.FilePosition{
+			Line:   models.Position{Start: lineNumber, End: lineNumber},
+			Column: models.Position{Start: 1, End: len(line) + 1},
+		},
 	}, nil
 }
 
@@ -54,13 +59,16 @@ func (e GradleLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	pkgs := make([]PackageDetails, 0)
 	scanner := bufio.NewScanner(f)
 
+	lineNumber := 0
 	for scanner.Scan() {
+		lineNumber++
+
 		lockLine := strings.TrimSpace(scanner.Text())
 		if !isGradleLockFileDepLine(lockLine) {
 			continue
 		}
 
-		pkg, err := parseToGradlePackageDetail(lockLine)
+		pkg, err := parseToGradlePackageDetail(lockLine, lineNumber)
 		if err != nil {
 			continue
 		}
