@@ -88,7 +88,7 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 			}
 			position = fileposition.ExtractRegexpPositionInBlock(lockfile.Lines[projectPropertySourceFile], property, 1)
 			if projectPropertySourceFile != lockfile.MainSourceFile {
-				position.FileName = &projectPropertySourceFile
+				position.Filename = &projectPropertySourceFile
 			}
 		} else {
 			lockProperty, ok = lockfile.Properties.m[propName]
@@ -101,7 +101,7 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 					// We should locate the property in its source file
 					position = fileposition.ExtractDelimitedRegexpPositionInBlock(lockfile.Lines[lockProperty.SourceFile], "(.*)", 1, propOpenTag, propCloseTag)
 					if lockProperty.SourceFile != lockfile.MainSourceFile {
-						position.FileName = &(lockProperty.SourceFile)
+						position.Filename = &(lockProperty.SourceFile)
 					}
 				}
 			}
@@ -431,7 +431,7 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 			pkgDetails.VersionLocation = versionPosition
 			if lockPackage.SourceFile != pkgDetails.SourceFile {
-				pkgDetails.VersionLocation.FileName = &(lockPackage.SourceFile)
+				pkgDetails.VersionLocation.Filename = &(lockPackage.SourceFile)
 			}
 		}
 		if strings.TrimSpace(lockPackage.Scope) != "" {

@@ -413,7 +413,7 @@ func TestMavenLock_WithParent(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 15, End: 15},
 				Column:   models.Position{Start: 18, End: 30},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -452,7 +452,7 @@ func TestMavenLock_WithParent(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 23, End: 28},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -472,7 +472,7 @@ func TestMavenLock_WithParent(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 5, End: 5},
 				Column:   models.Position{Start: 25, End: 30},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -492,7 +492,7 @@ func TestMavenLock_WithParent(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 8, End: 8},
 				Column:   models.Position{Start: 12, End: 24},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -550,7 +550,7 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 14, End: 14},
 				Column:   models.Position{Start: 18, End: 30},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -589,7 +589,7 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 23, End: 28},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -609,7 +609,7 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 5, End: 5},
 				Column:   models.Position{Start: 25, End: 30},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -667,7 +667,7 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 14, End: 14},
 				Column:   models.Position{Start: 18, End: 30},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -706,7 +706,7 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 23, End: 28},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -726,7 +726,7 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 5, End: 5},
 				Column:   models.Position{Start: 25, End: 30},
-				FileName: &parentPath,
+				Filename: &parentPath,
 			},
 			SourceFile: childPath,
 		},
@@ -785,7 +785,7 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 15, End: 15},
 				Column:   models.Position{Start: 18, End: 30},
-				FileName: &rootPath,
+				Filename: &rootPath,
 			},
 			SourceFile: parentPath,
 		},
@@ -824,7 +824,7 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 23, End: 28},
-				FileName: &rootPath,
+				Filename: &rootPath,
 			},
 			SourceFile: parentPath,
 		},
@@ -844,7 +844,7 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 6, End: 6},
 				Column:   models.Position{Start: 20, End: 42},
-				FileName: &rootPath,
+				Filename: &rootPath,
 			},
 			SourceFile: childPath,
 		},
@@ -864,7 +864,7 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 8, End: 8},
 				Column:   models.Position{Start: 12, End: 24},
-				FileName: &rootPath,
+				Filename: &rootPath,
 			},
 			SourceFile: parentPath,
 		},

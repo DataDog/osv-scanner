@@ -8,7 +8,7 @@ type Position struct {
 type FilePosition struct {
 	Line     Position `json:"line"`
 	Column   Position `json:"column"`
-	FileName *string  `json:"file_name"`
+	Filename *string  `json:"file_name,omitempty"`
 }
 
 type IFilePosition interface {

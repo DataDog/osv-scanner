@@ -1278,8 +1278,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1299,8 +1298,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1323,8 +1321,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1425,8 +1422,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1498,8 +1494,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1519,8 +1514,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1540,8 +1534,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1643,8 +1636,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1664,8 +1656,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [
@@ -1685,8 +1676,7 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										},
-										"file_name": null
+										}
 									}
 								},
 								"licenses": [

@@ -78,8 +78,8 @@ func mapToPackageLocation(path string, location *models.FilePosition) *models.Pa
 		return nil
 	}
 
-	if location.FileName != nil {
-		path = *location.FileName
+	if location.Filename != nil {
+		path = *location.Filename
 	}
 
 	return &models.PackageLocation{
