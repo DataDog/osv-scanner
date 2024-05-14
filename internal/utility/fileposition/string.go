@@ -13,8 +13,7 @@ func BytesToLines(data []byte) []string {
 	return strings.Split(str, "\n")
 }
 
-func extractPositionFromLine(blockStartLine int, i int, line string, str string) *models.FilePosition {
-	linePosition := blockStartLine + i
+func extractPositionFromLine(linePosition int, line string, str string) *models.FilePosition {
 	columnStart := strings.Index(line, str) + 1
 	columnEnd := columnStart + len(str)
 
@@ -32,7 +31,7 @@ func ExtractDelimitedStringPositionInBlock(block []string, str string, blockStar
 	for i, line := range block {
 		search := prefix + str + suffix
 		if strings.Contains(line, search) {
-			return extractPositionFromLine(blockStartLine, i, line, str)
+			return extractPositionFromLine(blockStartLine+i, line, str)
 		}
 	}
 
@@ -54,7 +53,7 @@ func ExtractDelimitedRegexpPositionInBlock(block []string, str string, blockStar
 				str = matches[1]
 			}
 
-			return extractPositionFromLine(blockStartLine, i, line, str)
+			return extractPositionFromLine(blockStartLine+i, line, str)
 		}
 	}
 
