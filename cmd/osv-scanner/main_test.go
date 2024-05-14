@@ -1278,7 +1278,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1298,7 +1299,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1321,7 +1323,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1422,7 +1425,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1494,7 +1498,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1514,7 +1519,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1534,7 +1540,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1636,7 +1643,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1656,7 +1664,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1676,7 +1685,8 @@ Filtered 2 vulnerabilities from output
 										"column": {
 											"start": 5,
 											"end": 6
-										}
+										},
+										"file_name": null
 									}
 								},
 								"licenses": [
@@ -1865,6 +1875,20 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 						ColumnStart: 5,
 						ColumnEnd:   18,
 					},
+					Name: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   27,
+						LineEnd:     27,
+						ColumnStart: 19,
+						ColumnEnd:   25,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   19,
+						LineEnd:     19,
+						ColumnStart: 18,
+						ColumnEnd:   23,
+					},
 				}),
 			},
 			{
@@ -1923,6 +1947,20 @@ func TestRun_WithExplicitParsers(t *testing.T) {
 						LineEnd:     28,
 						ColumnStart: 5,
 						ColumnEnd:   18,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   27,
+						LineEnd:     27,
+						ColumnStart: 19,
+						ColumnEnd:   25,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   19,
+						LineEnd:     19,
+						ColumnStart: 18,
+						ColumnEnd:   23,
 					},
 				}),
 			},
@@ -2108,6 +2146,20 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 						LineEnd:     28,
 						ColumnStart: 5,
 						ColumnEnd:   18,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "pom.xml",
+						LineStart:   27,
+						LineEnd:     27,
+						ColumnStart: 19,
+						ColumnEnd:   25,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "pom.xml",
+						LineStart:   19,
+						LineEnd:     19,
+						ColumnStart: 18,
+						ColumnEnd:   23,
 					},
 				}),
 			},
