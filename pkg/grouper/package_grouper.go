@@ -1,6 +1,8 @@
 package grouper
 
 import (
+	"strings"
+
 	"github.com/google/osv-scanner/pkg/models"
 	"github.com/google/osv-scanner/pkg/reporter/purl"
 )
@@ -17,7 +19,7 @@ func GroupByPURL(packageSources []models.PackageSource) map[string]models.Packag
 			}
 			existingPackage, packageExists := uniquePackages[packageURL.ToString()]
 			isLocationExtracted := isLocationExtractedSuccessfully(pkg.Package.BlockLocation)
-			location := extractPackageLocations(packageSource.Source, pkg.Package)
+			location := extractPackageLocations(packageSource.Source.HostPath, pkg.Package)
 
 			if packageExists && isLocationExtracted {
 				locationHash := location.Block.Hash()
@@ -53,13 +55,14 @@ func GroupByPURL(packageSources []models.PackageSource) map[string]models.Packag
 }
 
 func isLocationExtractedSuccessfully(filePosition models.FilePosition) bool {
-	return filePosition.Line.Start > 0 && filePosition.Line.End > 0 && filePosition.Column.Start > 0 && filePosition.Column.End > 0
+	return filePosition.Line.Start > 0 && filePosition.Line.End > 0 && filePosition.Column.Start > 0 && filePosition.Column.End > 0 && filePosition.Filename != ""
 }
 
-func extractPackageLocations(pkgSource models.SourceInfo, pkgInfos models.PackageInfo) models.PackageLocations {
+func extractPackageLocations(hostPath string, pkgInfos models.PackageInfo) models.PackageLocations {
+	blockFilename := strings.TrimPrefix(pkgInfos.BlockLocation.Filename, hostPath)
 	locations := models.PackageLocations{
 		Block: models.PackageLocation{
-			Filename:    pkgSource.Path,
+			Filename:    blockFilename,
 			LineStart:   pkgInfos.BlockLocation.Line.Start,
 			LineEnd:     pkgInfos.BlockLocation.Line.End,
 			ColumnStart: pkgInfos.BlockLocation.Column.Start,
@@ -67,23 +70,20 @@ func extractPackageLocations(pkgSource models.SourceInfo, pkgInfos models.Packag
 		},
 	}
 
-	locations.Version = mapToPackageLocation(pkgSource.Path, pkgInfos.VersionLocation)
-	locations.Name = mapToPackageLocation(pkgSource.Path, pkgInfos.NameLocation)
+	locations.Name = mapToPackageLocation(hostPath, pkgInfos.NameLocation)
+	locations.Version = mapToPackageLocation(hostPath, pkgInfos.VersionLocation)
 
 	return locations
 }
 
-func mapToPackageLocation(path string, location *models.FilePosition) *models.PackageLocation {
+func mapToPackageLocation(hostPath string, location *models.FilePosition) *models.PackageLocation {
 	if location == nil || !isLocationExtractedSuccessfully(*location) {
 		return nil
 	}
-
-	if location.Filename != nil {
-		path = *location.Filename
-	}
+	filename := strings.TrimPrefix(location.Filename, hostPath)
 
 	return &models.PackageLocation{
-		Filename:    path,
+		Filename:    filename,
 		LineStart:   location.Line.Start,
 		LineEnd:     location.Line.End,
 		ColumnStart: location.Column.Start,

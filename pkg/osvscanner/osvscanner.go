@@ -378,12 +378,6 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 
 	packages := make([]scannedPackage, len(parsedLockfile.Packages))
 	for i, pkgDetail := range parsedLockfile.Packages {
-		var sourcePath string
-		if len(pkgDetail.SourceFile) > 0 {
-			sourcePath = pkgDetail.SourceFile
-		} else {
-			sourcePath = path
-		}
 		packages[i] = scannedPackage{
 			Name:      pkgDetail.Name,
 			Version:   pkgDetail.Version,
@@ -391,7 +385,7 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 			Ecosystem: pkgDetail.Ecosystem,
 			DepGroups: pkgDetail.DepGroups,
 			Source: models.SourceInfo{
-				Path: sourcePath,
+				Path: path,
 				Type: "lockfile",
 			},
 			BlockLocation:   pkgDetail.BlockLocation,
@@ -906,8 +900,10 @@ func removeHostPath(scanPath string, results []scannedPackage, shouldBeRelative 
 	}
 
 	for index, pkg := range results {
+		pkg.Source.HostPath = hostPath
 		pkg.Source.Path = filepath.ToSlash(strings.TrimPrefix(pkg.Source.Path, hostPath))
 		if shouldBeRelative {
+			pkg.Source.HostPath += "/"
 			pkg.Source.Path = strings.TrimPrefix(pkg.Source.Path, "/")
 		}
 		results[index] = pkg
