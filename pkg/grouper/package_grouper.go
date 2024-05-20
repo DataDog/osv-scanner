@@ -1,6 +1,7 @@
 package grouper
 
 import (
+	"path/filepath"
 	"strings"
 
 	"github.com/google/osv-scanner/pkg/models"
@@ -59,7 +60,7 @@ func isLocationExtractedSuccessfully(filePosition models.FilePosition) bool {
 }
 
 func extractPackageLocations(hostPath string, pkgInfos models.PackageInfo) models.PackageLocations {
-	blockFilename := strings.TrimPrefix(pkgInfos.BlockLocation.Filename, hostPath)
+	blockFilename := filepath.ToSlash(strings.TrimPrefix(pkgInfos.BlockLocation.Filename, hostPath))
 	locations := models.PackageLocations{
 		Block: models.PackageLocation{
 			Filename:    blockFilename,
@@ -80,7 +81,7 @@ func mapToPackageLocation(hostPath string, location *models.FilePosition) *model
 	if location == nil || !isLocationExtractedSuccessfully(*location) {
 		return nil
 	}
-	filename := strings.TrimPrefix(location.Filename, hostPath)
+	filename := filepath.ToSlash(strings.TrimPrefix(location.Filename, hostPath))
 
 	return &models.PackageLocation{
 		Filename:    filename,
