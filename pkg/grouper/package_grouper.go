@@ -64,6 +64,7 @@ func removeHostPath(source models.SourceInfo, absolutePath string) string {
 	if !strings.HasPrefix(source.Path, "/") {
 		path = strings.TrimPrefix(path, "/")
 	}
+
 	return path
 }
 
