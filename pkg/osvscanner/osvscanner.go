@@ -903,7 +903,6 @@ func removeHostPath(scanPath string, results []scannedPackage, shouldBeRelative 
 		pkg.Source.HostPath = hostPath
 		pkg.Source.Path = filepath.ToSlash(strings.TrimPrefix(pkg.Source.Path, hostPath))
 		if shouldBeRelative {
-			pkg.Source.HostPath += "/"
 			pkg.Source.Path = strings.TrimPrefix(pkg.Source.Path, "/")
 		}
 		results[index] = pkg
