@@ -14,8 +14,9 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 	input := []models.PackageSource{
 		{
 			Source: models.SourceInfo{
-				Path: "/dir/lockfile.xml",
-				Type: "",
+				ScanPath: "/dir",
+				Path:     "/dir/lockfile.xml",
+				Type:     "",
 			},
 			Packages: []models.PackageVulns{
 				{
@@ -70,8 +71,9 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 		},
 		{
 			Source: models.SourceInfo{
-				Path: "/dir2/lockfile.json",
-				Type: "",
+				ScanPath: "/dir2",
+				Path:     "/dir2/lockfile.json",
+				Type:     "",
 			},
 			Packages: []models.PackageVulns{
 				{
@@ -97,7 +99,7 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 		},
 	}
 
-	result := grouper.GroupByPURL(input)
+	result := grouper.GroupByPURL(input, false, false)
 
 	expected := map[string]models.PackageDetails{
 		"pkg:maven/foo.bar/the-first-package@1.0.0": {

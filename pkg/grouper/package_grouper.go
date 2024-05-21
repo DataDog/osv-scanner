@@ -1,14 +1,12 @@
 package grouper
 
 import (
-	"path/filepath"
-	"strings"
-
+	"github.com/google/osv-scanner/internal/utility/fileposition"
 	"github.com/google/osv-scanner/pkg/models"
 	"github.com/google/osv-scanner/pkg/reporter/purl"
 )
 
-func GroupByPURL(packageSources []models.PackageSource) map[string]models.PackageDetails {
+func GroupByPURL(packageSources []models.PackageSource, considerScanPathAsRoot bool, pathRelativeToScanDir bool) map[string]models.PackageDetails {
 	uniquePackages := make(map[string]models.PackageDetails)
 
 	for _, packageSource := range packageSources {
@@ -20,7 +18,7 @@ func GroupByPURL(packageSources []models.PackageSource) map[string]models.Packag
 			}
 			existingPackage, packageExists := uniquePackages[packageURL.ToString()]
 			isLocationExtracted := isLocationExtractedSuccessfully(pkg.Package.BlockLocation)
-			location := extractPackageLocations(packageSource.Source, pkg.Package)
+			location := extractPackageLocations(packageSource.Source.ScanPath, pkg.Package, considerScanPathAsRoot, pathRelativeToScanDir)
 
 			if packageExists && isLocationExtracted {
 				locationHash := location.Block.Hash()
@@ -59,19 +57,10 @@ func isLocationExtractedSuccessfully(filePosition models.FilePosition) bool {
 	return filePosition.Line.Start > 0 && filePosition.Line.End > 0 && filePosition.Column.Start > 0 && filePosition.Column.End > 0 && filePosition.Filename != ""
 }
 
-func removeHostPath(source models.SourceInfo, absolutePath string) string {
-	path := filepath.ToSlash(strings.TrimPrefix(absolutePath, source.HostPath))
-	if !strings.HasPrefix(source.Path, "/") {
-		path = strings.TrimPrefix(path, "/")
-	}
-
-	return path
-}
-
-func extractPackageLocations(source models.SourceInfo, pkgInfos models.PackageInfo) models.PackageLocations {
+func extractPackageLocations(scanPath string, pkgInfos models.PackageInfo, considerScanPathAsRoot bool, pathRelativeToScanDir bool) models.PackageLocations {
 	locations := models.PackageLocations{
 		Block: models.PackageLocation{
-			Filename:    removeHostPath(source, pkgInfos.BlockLocation.Filename),
+			Filename:    fileposition.RemoveHostPath(scanPath, pkgInfos.BlockLocation.Filename, considerScanPathAsRoot, pathRelativeToScanDir),
 			LineStart:   pkgInfos.BlockLocation.Line.Start,
 			LineEnd:     pkgInfos.BlockLocation.Line.End,
 			ColumnStart: pkgInfos.BlockLocation.Column.Start,
@@ -79,19 +68,19 @@ func extractPackageLocations(source models.SourceInfo, pkgInfos models.PackageIn
 		},
 	}
 
-	locations.Name = mapToPackageLocation(source, pkgInfos.NameLocation)
-	locations.Version = mapToPackageLocation(source, pkgInfos.VersionLocation)
+	locations.Name = mapToPackageLocation(scanPath, pkgInfos.NameLocation, considerScanPathAsRoot, pathRelativeToScanDir)
+	locations.Version = mapToPackageLocation(scanPath, pkgInfos.VersionLocation, considerScanPathAsRoot, pathRelativeToScanDir)
 
 	return locations
 }
 
-func mapToPackageLocation(source models.SourceInfo, location *models.FilePosition) *models.PackageLocation {
+func mapToPackageLocation(scanPath string, location *models.FilePosition, considerScanPathAsRoot bool, pathRelativeToScanDir bool) *models.PackageLocation {
 	if location == nil || !isLocationExtractedSuccessfully(*location) {
 		return nil
 	}
 
 	return &models.PackageLocation{
-		Filename:    removeHostPath(source, location.Filename),
+		Filename:    fileposition.RemoveHostPath(scanPath, location.Filename, considerScanPathAsRoot, pathRelativeToScanDir),
 		LineStart:   location.Line.Start,
 		LineEnd:     location.Line.End,
 		ColumnStart: location.Column.Start,
