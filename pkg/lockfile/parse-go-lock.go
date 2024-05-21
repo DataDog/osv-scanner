@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/google/osv-scanner/internal/utility/fileposition"
+
 	"golang.org/x/mod/module"
 
 	"github.com/google/osv-scanner/pkg/models"
@@ -57,6 +59,7 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	var parsedLockfile *modfile.File
 
 	b, err := io.ReadAll(f)
+	lines := fileposition.BytesToLines(b)
 
 	if err == nil {
 		parsedLockfile, err = modfile.Parse(f.Path(), b, defaultNonCanonicalVersions)
@@ -71,19 +74,28 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	for _, require := range parsedLockfile.Require {
 		var start = require.Syntax.Start
 		var end = require.Syntax.End
+		block := lines[start.Line-1 : end.Line]
+		version := strings.TrimPrefix(require.Mod.Version, "v")
+		name := require.Mod.Path
+
 		packages[require.Mod.Path+"@"+require.Mod.Version] = PackageDetails{
-			Name:      require.Mod.Path,
-			Version:   strings.TrimPrefix(require.Mod.Version, "v"),
+			Name:      name,
+			Version:   version,
 			Ecosystem: GoEcosystem,
 			CompareAs: GoEcosystem,
-			Line:      models.Position{Start: start.Line, End: end.Line},
-			Column:    models.Position{Start: start.LineRune, End: end.LineRune},
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: start.Line, End: end.Line},
+				Column: models.Position{Start: start.LineRune, End: end.LineRune},
+			},
+			VersionLocation: fileposition.ExtractStringPositionInBlock(block, version, start.Line),
+			NameLocation:    fileposition.ExtractStringPositionInBlock(block, name, start.Line),
 		}
 	}
 
 	for _, replace := range parsedLockfile.Replace {
 		var start = replace.Syntax.Start
 		var end = replace.Syntax.End
+		block := lines[start.Line-1 : end.Line]
 		var replacements []string
 
 		if replace.Old.Version == "" {
@@ -106,6 +118,7 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 		for _, replacement := range replacements {
 			version := strings.TrimPrefix(replace.New.Version, "v")
+			name := replace.New.Path
 
 			if len(version) == 0 {
 				// There is no version specified on the replacement, it means the artifact is directly accessible
@@ -114,12 +127,16 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 				continue
 			}
 			packages[replacement] = PackageDetails{
-				Name:      replace.New.Path,
+				Name:      name,
 				Version:   version,
 				Ecosystem: GoEcosystem,
 				CompareAs: GoEcosystem,
-				Line:      models.Position{Start: start.Line, End: end.Line},
-				Column:    models.Position{Start: start.LineRune, End: end.LineRune},
+				BlockLocation: models.FilePosition{
+					Line:   models.Position{Start: start.Line, End: end.Line},
+					Column: models.Position{Start: start.LineRune, End: end.LineRune},
+				},
+				VersionLocation: fileposition.ExtractStringPositionInBlock(block, version, start.Line),
+				NameLocation:    fileposition.ExtractStringPositionInBlock(block, name, start.Line),
 			}
 		}
 	}

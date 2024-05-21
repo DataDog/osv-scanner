@@ -121,12 +121,22 @@ func TestParseMavenLock_OnePackage(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "org.apache.maven:maven-artifact",
-			Version:    "1.0.0",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 7, End: 11},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.apache.maven:maven-artifact",
+			Version:   "1.0.0",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 7, End: 11},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 9, End: 9},
+				Column: models.Position{Start: 19, End: 33},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 10, End: 10},
+				Column: models.Position{Start: 16, End: 21},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 	})
@@ -147,12 +157,22 @@ func TestParseMavenLock_OnePackageWithMultipleVersionVariable(t *testing.T) {
 	sourcePath := path.Join(dir, lockfileRelativePath)
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "org.apache.maven:maven-artifact",
-			Version:    "1.0.0-SNAPSHOT",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 9, End: 13},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.apache.maven:maven-artifact",
+			Version:   "1.0.0-SNAPSHOT",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 9, End: 13},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 11, End: 11},
+				Column: models.Position{Start: 19, End: 33},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 12, End: 12},
+				Column: models.Position{Start: 16, End: 40},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 	})
@@ -173,21 +193,41 @@ func TestParseMavenLock_TwoPackages(t *testing.T) {
 	sourcePath := path.Join(dir, lockfileRelativePath)
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "io.netty:netty-all",
-			Version:    "4.1.42.Final",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 7, End: 11},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "io.netty:netty-all",
+			Version:   "4.1.42.Final",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 7, End: 11},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 9, End: 9},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 10, End: 10},
+				Column: models.Position{Start: 16, End: 28},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 		{
-			Name:       "org.slf4j:slf4j-log4j12",
-			Version:    "1.7.25",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 12, End: 16},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.slf4j:slf4j-log4j12",
+			Version:   "1.7.25",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 12, End: 16},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 14, End: 14},
+				Column: models.Position{Start: 19, End: 32},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 15, End: 15},
+				Column: models.Position{Start: 16, End: 22},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 	})
@@ -196,7 +236,7 @@ func TestParseMavenLock_TwoPackages(t *testing.T) {
 func TestParseMavenLock_WithDependencyManagement(t *testing.T) {
 	t.Parallel()
 	lockfileRelativePath := filepath.FromSlash("fixtures/maven/with-dependency-management.xml")
-	packages, err := lockfile.ParseMavenLock("fixtures/maven/with-dependency-management.xml")
+	packages, err := lockfile.ParseMavenLock(lockfileRelativePath)
 
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
@@ -208,21 +248,41 @@ func TestParseMavenLock_WithDependencyManagement(t *testing.T) {
 	sourcePath := path.Join(dir, lockfileRelativePath)
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "io.netty:netty-all",
-			Version:    "4.1.42.Final",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 7, End: 10},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "io.netty:netty-all",
+			Version:   "4.1.42.Final",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 7, End: 10},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 9, End: 9},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 23, End: 23},
+				Column: models.Position{Start: 18, End: 30},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 		{
-			Name:       "org.slf4j:slf4j-log4j12",
-			Version:    "1.7.25",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 11, End: 15},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.slf4j:slf4j-log4j12",
+			Version:   "1.7.25",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 11, End: 15},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 13, End: 13},
+				Column: models.Position{Start: 19, End: 32},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 14, End: 14},
+				Column: models.Position{Start: 16, End: 22},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 	})
@@ -243,30 +303,60 @@ func TestParseMavenLock_Interpolation(t *testing.T) {
 	sourcePath := path.Join(dir, lockfileRelativePath)
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "org.mine:mypackage",
-			Version:    "1.0.0",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 18, End: 22},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:mypackage",
+			Version:   "1.0.0",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 18, End: 22},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 12, End: 12},
+				Column: models.Position{Start: 23, End: 28},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 		{
-			Name:       "org.mine:my.package",
-			Version:    "2.3.4",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 24, End: 28},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:my.package",
+			Version:   "2.3.4",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 24, End: 28},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 26, End: 26},
+				Column: models.Position{Start: 19, End: 29},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 13, End: 13},
+				Column: models.Position{Start: 25, End: 30},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 		{
-			Name:       "org.mine:ranged-package",
-			Version:    "9.4.35.v20201120",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 30, End: 33},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:ranged-package",
+			Version:   "9.4.35.v20201120",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 30, End: 33},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 32, End: 32},
+				Column: models.Position{Start: 19, End: 33},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 14, End: 14},
+				Column: models.Position{Start: 20, End: 42},
+			},
 			SourceFile: filepath.FromSlash(sourcePath),
 		},
 	})
@@ -289,57 +379,121 @@ func TestMavenLock_WithParent(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "com.google.code.findbugs:jsr305",
-			Version:    "3.0.2",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 26, End: 29},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "com.google.code.findbugs:jsr305",
+			Version:   "3.0.2",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 26, End: 29},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 28, End: 28},
+				Column: models.Position{Start: 19, End: 25},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 18, End: 23},
+			},
 			SourceFile: parentPath,
 		},
 		{
-			Name:       "io.netty:netty-all",
-			Version:    "4.1.42.Final",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 14, End: 17},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "io.netty:netty-all",
+			Version:   "4.1.42.Final",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 14, End: 17},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 16, End: 16},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 15, End: 15},
+				Column:   models.Position{Start: 18, End: 30},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.slf4j:slf4j-log4j12",
-			Version:    "1.7.25",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 18, End: 22},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.slf4j:slf4j-log4j12",
+			Version:   "1.7.25",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 18, End: 22},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 19, End: 32},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 21, End: 21},
+				Column: models.Position{Start: 16, End: 22},
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.mine:mypackage",
-			Version:    "1.0.0",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 23, End: 27},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:mypackage",
+			Version:   "1.0.0",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 23, End: 27},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 25, End: 25},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 23, End: 28},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.mine:my.package",
-			Version:    "2.3.4",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 28, End: 32},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:my.package",
+			Version:   "2.3.4",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 28, End: 32},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 30, End: 30},
+				Column: models.Position{Start: 19, End: 29},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 25, End: 30},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "dev.foo:bar",
-			Version:    "1.0-SNAPSHOT",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 33, End: 37},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "dev.foo:bar",
+			Version:   "1.0-SNAPSHOT",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 33, End: 37},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 35, End: 35},
+				Column: models.Position{Start: 19, End: 22},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 8, End: 8},
+				Column:   models.Position{Start: 12, End: 24},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 	})
@@ -362,48 +516,101 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "com.google.code.findbugs:jsr305",
-			Version:    "3.0.2",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 25, End: 28},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "com.google.code.findbugs:jsr305",
+			Version:   "3.0.2",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 25, End: 28},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 27, End: 27},
+				Column: models.Position{Start: 19, End: 25},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 19, End: 19},
+				Column: models.Position{Start: 18, End: 23},
+			},
 			SourceFile: parentPath,
 		},
 		{
-			Name:       "io.netty:netty-all",
-			Version:    "4.1.42.Final",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 14, End: 17},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "io.netty:netty-all",
+			Version:   "4.1.42.Final",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 14, End: 17},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 16, End: 16},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 14, End: 14},
+				Column:   models.Position{Start: 18, End: 30},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.slf4j:slf4j-log4j12",
-			Version:    "1.7.25",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 18, End: 22},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.slf4j:slf4j-log4j12",
+			Version:   "1.7.25",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 18, End: 22},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 19, End: 32},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 21, End: 21},
+				Column: models.Position{Start: 16, End: 22},
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.mine:mypackage",
-			Version:    "1.0.0",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 23, End: 27},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:mypackage",
+			Version:   "1.0.0",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 23, End: 27},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 25, End: 25},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 23, End: 28},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.mine:my.package",
-			Version:    "2.3.4",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 28, End: 32},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:my.package",
+			Version:   "2.3.4",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 28, End: 32},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 30, End: 30},
+				Column: models.Position{Start: 19, End: 29},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 25, End: 30},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 	})
@@ -426,49 +633,141 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "com.google.code.findbugs:jsr305",
-			Version:    "3.0.2",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 25, End: 28},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "com.google.code.findbugs:jsr305",
+			Version:   "3.0.2",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 25, End: 28},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 27, End: 27},
+				Column: models.Position{Start: 19, End: 25},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 19, End: 19},
+				Column: models.Position{Start: 18, End: 23},
+			},
 			SourceFile: parentPath,
 		},
 		{
-			Name:       "io.netty:netty-all",
-			Version:    "4.1.42.Final",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 13, End: 16},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "io.netty:netty-all",
+			Version:   "4.1.42.Final",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 13, End: 16},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 15, End: 15},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 14, End: 14},
+				Column:   models.Position{Start: 18, End: 30},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.slf4j:slf4j-log4j12",
-			Version:    "1.7.25",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 17, End: 21},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.slf4j:slf4j-log4j12",
+			Version:   "1.7.25",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 17, End: 21},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 19, End: 19},
+				Column: models.Position{Start: 19, End: 32},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 16, End: 22},
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.mine:mypackage",
-			Version:    "1.0.0",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 22, End: 26},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:mypackage",
+			Version:   "1.0.0",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 22, End: 26},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 24, End: 24},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 23, End: 28},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "org.mine:my.package",
-			Version:    "2.3.4",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 27, End: 31},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:my.package",
+			Version:   "2.3.4",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 27, End: 31},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 29, End: 29},
+				Column: models.Position{Start: 19, End: 29},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 25, End: 30},
+				Filename: &parentPath,
+			},
 			SourceFile: childPath,
+		},
+	})
+}
+
+func TestMavenLock_WithParent_Child_Project(t *testing.T) {
+	t.Parallel()
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	parentPath := filepath.FromSlash(filepath.Join(dir, "fixtures/maven/parent-project-version.xml"))
+	childPath := filepath.FromSlash(filepath.Join(dir, "fixtures/maven/children/with-parent-child-project-version.xml"))
+	packages, err := lockfile.ParseMavenLock(childPath)
+
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:      "com.google.code.findbugs:jsr305",
+			Version:   "1.0-CHILD-SNAPSHOT",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 11, End: 15},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 13, End: 13},
+				Column: models.Position{Start: 19, End: 25},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 6, End: 6},
+				Column:   models.Position{Start: 12, End: 30},
+				Filename: &childPath,
+			},
+			SourceFile: parentPath,
 		},
 	})
 }
@@ -491,57 +790,121 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:       "com.google.code.findbugs:jsr305",
-			Version:    "3.0.2",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 26, End: 29},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "com.google.code.findbugs:jsr305",
+			Version:   "3.0.2",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 26, End: 29},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 28, End: 28},
+				Column: models.Position{Start: 19, End: 25},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 18, End: 23},
+			},
 			SourceFile: rootPath,
 		},
 		{
-			Name:       "io.netty:netty-all",
-			Version:    "4.1.42.Final",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 14, End: 17},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "io.netty:netty-all",
+			Version:   "4.1.42.Final",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 14, End: 17},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 16, End: 16},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 15, End: 15},
+				Column:   models.Position{Start: 18, End: 30},
+				Filename: &rootPath,
+			},
 			SourceFile: parentPath,
 		},
 		{
-			Name:       "org.slf4j:slf4j-log4j12",
-			Version:    "1.7.25",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 18, End: 22},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.slf4j:slf4j-log4j12",
+			Version:   "1.7.25",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 18, End: 22},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 19, End: 32},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 21, End: 21},
+				Column: models.Position{Start: 16, End: 22},
+			},
 			SourceFile: parentPath,
 		},
 		{
-			Name:       "org.mine:mypackage",
-			Version:    "1.0.0",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 23, End: 27},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:mypackage",
+			Version:   "1.0.0",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 23, End: 27},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 25, End: 25},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 23, End: 28},
+				Filename: &rootPath,
+			},
 			SourceFile: parentPath,
 		},
 		{
-			Name:       "org.mine:my.package",
-			Version:    "9.4.35.v20201120",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 14, End: 18},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "org.mine:my.package",
+			Version:   "9.4.35.v20201120",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 14, End: 18},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 16, End: 16},
+				Column: models.Position{Start: 19, End: 29},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 6, End: 6},
+				Column:   models.Position{Start: 20, End: 42},
+				Filename: &rootPath,
+			},
 			SourceFile: childPath,
 		},
 		{
-			Name:       "dev.foo:bar",
-			Version:    "1.0-SNAPSHOT",
-			Ecosystem:  lockfile.MavenEcosystem,
-			CompareAs:  lockfile.MavenEcosystem,
-			Line:       models.Position{Start: 33, End: 37},
-			Column:     models.Position{Start: 5, End: 18},
+			Name:      "dev.foo:bar",
+			Version:   "1.0-SNAPSHOT",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 33, End: 37},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 35, End: 35},
+				Column: models.Position{Start: 19, End: 22},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 8, End: 8},
+				Column:   models.Position{Start: 12, End: 24},
+				Filename: &rootPath,
+			},
 			SourceFile: parentPath,
 		},
 	})
@@ -627,7 +990,7 @@ func TestMavenLockDependency_ResolveVersion(t *testing.T) {
 			mld := lockfile.MavenLockDependency{
 				Version: tt.fields.Version,
 			}
-			if got := mld.ResolveVersion(tt.args.lockfile); got != tt.want {
+			if got, _ := mld.ResolveVersion(tt.args.lockfile); got != tt.want {
 				t.Errorf("ResolveVersion() = %v, want %v", got, tt.want)
 			}
 		})
@@ -654,9 +1017,19 @@ func TestParseMavenLock_WithScope(t *testing.T) {
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 3, End: 8},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  []string{"test"},
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 3, End: 8},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 5, End: 5},
+				Column: models.Position{Start: 19, End: 24},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 6, End: 6},
+				Column: models.Position{Start: 16, End: 20},
+			},
+			DepGroups: []string{"test"},
 		},
 	})
 }
@@ -682,9 +1055,19 @@ func TestParseMavenLock_WithUnusedDependencyManagementDependencies(t *testing.T)
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 17, End: 21},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  nil,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 17, End: 21},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 19, End: 19},
+				Column: models.Position{Start: 19, End: 28},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 20, End: 20},
+				Column: models.Position{Start: 16, End: 28},
+			},
+			DepGroups: nil,
 		},
 	})
 }
@@ -710,9 +1093,19 @@ func TestParseMavenLock_WithOverriddenDependencyVersions(t *testing.T) {
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 14, End: 18},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  nil,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 14, End: 18},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 16, End: 16},
+				Column: models.Position{Start: 19, End: 24},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 17, End: 17},
+				Column: models.Position{Start: 16, End: 20},
+			},
+			DepGroups: nil,
 		},
 	})
 }
@@ -738,9 +1131,19 @@ func TestParseMavenLock_WithProjectVersionProperty(t *testing.T) {
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 8, End: 12},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  nil,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 8, End: 12},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 10, End: 10},
+				Column: models.Position{Start: 19, End: 22},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 5, End: 5},
+				Column: models.Position{Start: 12, End: 24},
+			},
+			DepGroups: nil,
 		},
 		{
 			Name:       "dev.bar:foo",
@@ -749,9 +1152,19 @@ func TestParseMavenLock_WithProjectVersionProperty(t *testing.T) {
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 13, End: 17},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  nil,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 13, End: 17},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 15, End: 15},
+				Column: models.Position{Start: 19, End: 22},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 5, End: 5},
+				Column: models.Position{Start: 12, End: 24},
+			},
+			DepGroups: nil,
 		},
 	})
 }
@@ -773,9 +1186,19 @@ func TestParseMavenLock_ResolveProperties(t *testing.T) {
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 27, End: 30},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  nil,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 27, End: 30},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 6, End: 6},
+				Column: models.Position{Start: 21, End: 30},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 4, End: 4},
+				Column: models.Position{Start: 20, End: 32},
+			},
+			DepGroups: nil,
 		},
 		{
 			Name:       "com.google.code.findbugs:jsr305",
@@ -784,9 +1207,19 @@ func TestParseMavenLock_ResolveProperties(t *testing.T) {
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 31, End: 35},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  nil,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 31, End: 35},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 8, End: 8},
+				Column: models.Position{Start: 24, End: 30},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 3, End: 3},
+				Column: models.Position{Start: 20, End: 42},
+			},
+			DepGroups: nil,
 		},
 		{
 			Name:       "io.ktor:ktor-server-netty-jvm",
@@ -795,9 +1228,19 @@ func TestParseMavenLock_ResolveProperties(t *testing.T) {
 			CompareAs:  lockfile.MavenEcosystem,
 			Commit:     "",
 			SourceFile: lockfilePath,
-			Line:       models.Position{Start: 36, End: 40},
-			Column:     models.Position{Start: 5, End: 18},
-			DepGroups:  nil,
+			BlockLocation: models.FilePosition{
+				Line:   models.Position{Start: 36, End: 40},
+				Column: models.Position{Start: 5, End: 18},
+			},
+			NameLocation: &models.FilePosition{
+				Line:   models.Position{Start: 38, End: 38},
+				Column: models.Position{Start: 19, End: 35},
+			},
+			VersionLocation: &models.FilePosition{
+				Line:   models.Position{Start: 3, End: 3},
+				Column: models.Position{Start: 20, End: 42},
+			},
+			DepGroups: nil,
 		},
 	})
 }

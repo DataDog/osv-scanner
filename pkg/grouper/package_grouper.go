@@ -16,7 +16,7 @@ func GroupByPURL(packageSources []models.PackageSource) map[string]models.Packag
 				continue
 			}
 			existingPackage, packageExists := uniquePackages[packageURL.ToString()]
-			isLocationExtracted := isLocationExtractedSuccessfully(pkg.Package)
+			isLocationExtracted := isLocationExtractedSuccessfully(pkg.Package.BlockLocation)
 			location := extractPackageLocations(packageSource.Source, pkg.Package)
 
 			if packageExists && isLocationExtracted {
@@ -52,18 +52,41 @@ func GroupByPURL(packageSources []models.PackageSource) map[string]models.Packag
 	return uniquePackages
 }
 
-func isLocationExtractedSuccessfully(pkgInfos models.PackageInfo) bool {
-	return pkgInfos.Line.Start > 0 && pkgInfos.Line.End > 0 && pkgInfos.Column.Start > 0 && pkgInfos.Column.End > 0
+func isLocationExtractedSuccessfully(filePosition models.FilePosition) bool {
+	return filePosition.Line.Start > 0 && filePosition.Line.End > 0 && filePosition.Column.Start > 0 && filePosition.Column.End > 0
 }
 
 func extractPackageLocations(pkgSource models.SourceInfo, pkgInfos models.PackageInfo) models.PackageLocations {
-	return models.PackageLocations{
+	locations := models.PackageLocations{
 		Block: models.PackageLocation{
 			Filename:    pkgSource.Path,
-			LineStart:   pkgInfos.Line.Start,
-			LineEnd:     pkgInfos.Line.End,
-			ColumnStart: pkgInfos.Column.Start,
-			ColumnEnd:   pkgInfos.Column.End,
+			LineStart:   pkgInfos.BlockLocation.Line.Start,
+			LineEnd:     pkgInfos.BlockLocation.Line.End,
+			ColumnStart: pkgInfos.BlockLocation.Column.Start,
+			ColumnEnd:   pkgInfos.BlockLocation.Column.End,
 		},
+	}
+
+	locations.Version = mapToPackageLocation(pkgSource.Path, pkgInfos.VersionLocation)
+	locations.Name = mapToPackageLocation(pkgSource.Path, pkgInfos.NameLocation)
+
+	return locations
+}
+
+func mapToPackageLocation(path string, location *models.FilePosition) *models.PackageLocation {
+	if location == nil || !isLocationExtractedSuccessfully(*location) {
+		return nil
+	}
+
+	if location.Filename != nil {
+		path = *location.Filename
+	}
+
+	return &models.PackageLocation{
+		Filename:    path,
+		LineStart:   location.Line.Start,
+		LineEnd:     location.Line.End,
+		ColumnStart: location.Column.Start,
+		ColumnEnd:   location.Column.End,
 	}
 }

@@ -227,6 +227,7 @@ func TestRun(t *testing.T) {
 				| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE                        | VERSION                            | SOURCE                                          |
 				+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
 				| https://osv.dev/CVE-2022-48174      | 9.8  | Alpine    | busybox                        | 1.35.0-r29                         | fixtures/sbom-insecure/alpine.cdx.xml           |
+				| https://osv.dev/CVE-2023-42366      | 5.5  | Alpine    | busybox                        | 1.35.0-r29                         | fixtures/sbom-insecure/alpine.cdx.xml           |
 				| https://osv.dev/CVE-2022-37434      | 9.8  | Alpine    | zlib                           | 1.2.10-r2                          | fixtures/sbom-insecure/alpine.cdx.xml           |
 				| https://osv.dev/DLA-3022-1          |      | Debian    | dpkg                           | 1.18.25                            | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 				| https://osv.dev/GHSA-v95c-p5hm-xq8f | 6    | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
@@ -256,6 +257,7 @@ func TestRun(t *testing.T) {
 				| OSV URL                        | CVSS | ECOSYSTEM | PACKAGE | VERSION    | SOURCE                                |
 				+--------------------------------+------+-----------+---------+------------+---------------------------------------+
 				| https://osv.dev/CVE-2022-48174 | 9.8  | Alpine    | busybox | 1.35.0-r29 | fixtures/sbom-insecure/alpine.cdx.xml |
+				| https://osv.dev/CVE-2023-42366 | 5.5  | Alpine    | busybox | 1.35.0-r29 | fixtures/sbom-insecure/alpine.cdx.xml |
 				| https://osv.dev/CVE-2022-37434 | 9.8  | Alpine    | zlib    | 1.2.10-r2  | fixtures/sbom-insecure/alpine.cdx.xml |
 				+--------------------------------+------+-----------+---------+------------+---------------------------------------+
 			`,
@@ -278,7 +280,7 @@ func TestRun(t *testing.T) {
 		{
 			name:         "Scan locks-many",
 			args:         []string{"", "./fixtures/locks-many"},
-			wantExitCode: 0,
+			wantExitCode: 1,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many
 				Scanned <rootdir>/fixtures/locks-many/Gemfile.lock file and found 1 package
@@ -290,7 +292,11 @@ func TestRun(t *testing.T) {
 				CVE-2022-48174 has been filtered out because: Test manifest file (alpine.cdx.xml)
 				GHSA-whgm-jr23-g3j9 and 1 alias have been filtered out because: Test manifest file
 				Filtered 2 vulnerabilities from output
-				No issues found
+				+--------------------------------+------+-----------+---------+------------+------------------------------------+
+        | OSV URL                        | CVSS | ECOSYSTEM | PACKAGE | VERSION    | SOURCE                             |
+        +--------------------------------+------+-----------+---------+------------+------------------------------------+
+        | https://osv.dev/CVE-2023-42366 | 5.5  | Alpine    | busybox | 1.35.0-r29 | fixtures/locks-many/alpine.cdx.xml |
+        +--------------------------------+------+-----------+---------+------------+------------------------------------+
 			`,
 			wantStderr: "",
 		},
@@ -1153,7 +1159,7 @@ func TestRun_Licenses(t *testing.T) {
 		{
 			name:         "No vulnerabilities with license summary",
 			args:         []string{"", "--experimental-licenses-summary", "./fixtures/locks-many"},
-			wantExitCode: 0,
+			wantExitCode: 1,
 			wantStdout: `
 				Scanning dir ./fixtures/locks-many
 				Scanned <rootdir>/fixtures/locks-many/Gemfile.lock file and found 1 package
@@ -1165,6 +1171,11 @@ func TestRun_Licenses(t *testing.T) {
 				CVE-2022-48174 has been filtered out because: Test manifest file (alpine.cdx.xml)
 				GHSA-whgm-jr23-g3j9 and 1 alias have been filtered out because: Test manifest file
 				Filtered 2 vulnerabilities from output
+				+--------------------------------+------+-----------+---------+------------+------------------------------------+
+        | OSV URL                        | CVSS | ECOSYSTEM | PACKAGE | VERSION    | SOURCE                             |
+        +--------------------------------+------+-----------+---------+------------+------------------------------------+
+        | https://osv.dev/CVE-2023-42366 | 5.5  | Alpine    | busybox | 1.35.0-r29 | fixtures/locks-many/alpine.cdx.xml |
+        +--------------------------------+------+-----------+---------+------------+------------------------------------+
 				+------------+-------------------------+
 				| LICENSE    | NO. OF PACKAGE VERSIONS |
 				+------------+-------------------------+
@@ -1178,7 +1189,7 @@ func TestRun_Licenses(t *testing.T) {
 		{
 			name:         "No vulnerabilities with license summary in markdown",
 			args:         []string{"", "--experimental-licenses-summary", "--format=markdown", "./fixtures/locks-many"},
-			wantExitCode: 0,
+			wantExitCode: 1,
 			wantStdout: `Scanning dir ./fixtures/locks-many
 Scanned <rootdir>/fixtures/locks-many/Gemfile.lock file and found 1 package
 Scanned <rootdir>/fixtures/locks-many/alpine.cdx.xml as CycloneDX SBOM and found 15 packages
@@ -1189,6 +1200,9 @@ Loaded filter from: <rootdir>/fixtures/locks-many/osv-scanner.toml
 CVE-2022-48174 has been filtered out because: Test manifest file (alpine.cdx.xml)
 GHSA-whgm-jr23-g3j9 and 1 alias have been filtered out because: Test manifest file
 Filtered 2 vulnerabilities from output
+| OSV URL | CVSS | Ecosystem | Package | Version | Source |
+| --- | --- | --- | --- | --- | --- |
+| https://osv.dev/CVE-2023-42366 | 5.5 | Alpine | busybox | 1.35.0-r29 | fixtures/locks-many/alpine.cdx.xml |
 | License | No. of package versions |
 | --- | ---:|
 | Apache-2.0 | 1 |
@@ -1270,13 +1284,15 @@ Filtered 2 vulnerabilities from output
 									"name": "babel",
 									"version": "6.23.0",
 									"ecosystem": "npm",
-									"line": {
-										"start": 13,
-										"end": 23
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 13,
+											"end": 23
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1288,13 +1304,15 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"line": {
-										"start": 24,
-										"end": 31
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 24,
+											"end": 31
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1309,13 +1327,15 @@ Filtered 2 vulnerabilities from output
 									"name": "ms",
 									"version": "2.1.3",
 									"ecosystem": "npm",
-									"line": {
-										"start": 32,
-										"end": 36
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 32,
+											"end": 36
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1408,13 +1428,15 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"line": {
-										"start": 24,
-										"end": 31
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 24,
+											"end": 31
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1478,13 +1500,15 @@ Filtered 2 vulnerabilities from output
 									"name": "babel",
 									"version": "6.23.0",
 									"ecosystem": "npm",
-									"line": {
-										"start": 13,
-										"end": 23
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 13,
+											"end": 23
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1496,13 +1520,15 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"line": {
-										"start": 24,
-										"end": 31
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 24,
+											"end": 31
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1514,13 +1540,15 @@ Filtered 2 vulnerabilities from output
 									"name": "ms",
 									"version": "2.1.3",
 									"ecosystem": "npm",
-									"line": {
-										"start": 32,
-										"end": 36
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 32,
+											"end": 36
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1614,13 +1642,15 @@ Filtered 2 vulnerabilities from output
 									"name": "babel",
 									"version": "6.23.0",
 									"ecosystem": "npm",
-									"line": {
-										"start": 13,
-										"end": 23
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 13,
+											"end": 23
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1632,13 +1662,15 @@ Filtered 2 vulnerabilities from output
 									"name": "human-signals",
 									"version": "5.0.0",
 									"ecosystem": "npm",
-									"line": {
-										"start": 24,
-										"end": 31
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 24,
+											"end": 31
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1650,13 +1682,15 @@ Filtered 2 vulnerabilities from output
 									"name": "ms",
 									"version": "2.1.3",
 									"ecosystem": "npm",
-									"line": {
-										"start": 32,
-										"end": 36
-									},
-									"column": {
-										"start": 5,
-										"end": 6
+									"blockLocation": {
+										"line": {
+											"start": 32,
+											"end": 36
+										},
+										"column": {
+											"start": 5,
+											"end": 6
+										}
 									}
 								},
 								"licenses": [
@@ -1845,6 +1879,20 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 						ColumnStart: 5,
 						ColumnEnd:   18,
 					},
+					Name: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   27,
+						LineEnd:     27,
+						ColumnStart: 19,
+						ColumnEnd:   25,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   19,
+						LineEnd:     19,
+						ColumnStart: 18,
+						ColumnEnd:   23,
+					},
 				}),
 			},
 			{
@@ -1903,6 +1951,20 @@ func TestRun_WithExplicitParsers(t *testing.T) {
 						LineEnd:     28,
 						ColumnStart: 5,
 						ColumnEnd:   18,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   27,
+						LineEnd:     27,
+						ColumnStart: 19,
+						ColumnEnd:   25,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "/pom.xml",
+						LineStart:   19,
+						LineEnd:     19,
+						ColumnStart: 18,
+						ColumnEnd:   23,
 					},
 				}),
 			},
@@ -1971,6 +2033,20 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 						ColumnStart: 1,
 						ColumnEnd:   42,
 					},
+					Version: &models.PackageLocation{
+						Filename:    "go.mod",
+						LineStart:   5,
+						LineEnd:     5,
+						ColumnStart: 37,
+						ColumnEnd:   42,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "go.mod",
+						LineStart:   5,
+						LineEnd:     5,
+						ColumnStart: 9,
+						ColumnEnd:   35,
+					},
 				}),
 			},
 			{
@@ -1979,7 +2055,15 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 				Type:       "library",
 				Name:       "org.springframework.security:spring-security-crypto",
 				Version:    "5.7.3",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
+				Evidence: buildLocationEvidence(t, models.PackageLocations{
+					Block: models.PackageLocation{
+						Filename:    "gradle.lockfile",
+						LineStart:   4,
+						LineEnd:     4,
+						ColumnStart: 1,
+						ColumnEnd:   119,
+					},
+				}),
 			},
 			{
 				BOMRef:     "pkg:hex/plug@1.11.1",
@@ -2027,6 +2111,20 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 						ColumnStart: 9,
 						ColumnEnd:   10,
 					},
+					Version: &models.PackageLocation{
+						Filename:    "Pipfile.lock",
+						LineStart:   63,
+						LineEnd:     63,
+						ColumnStart: 25,
+						ColumnEnd:   32,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "Pipfile.lock",
+						LineStart:   19,
+						LineEnd:     19,
+						ColumnStart: 10,
+						ColumnEnd:   20,
+					},
 				}),
 			},
 			{
@@ -2059,6 +2157,20 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 						ColumnStart: 1,
 						ColumnEnd:   26,
 					},
+					Version: &models.PackageLocation{
+						Filename:    "poetry.lock",
+						LineStart:   3,
+						LineEnd:     3,
+						ColumnStart: 12,
+						ColumnEnd:   18,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "poetry.lock",
+						LineStart:   2,
+						LineEnd:     2,
+						ColumnStart: 9,
+						ColumnEnd:   14,
+					},
 				}),
 			},
 			{
@@ -2074,6 +2186,20 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 						LineEnd:     28,
 						ColumnStart: 5,
 						ColumnEnd:   18,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "pom.xml",
+						LineStart:   27,
+						LineEnd:     27,
+						ColumnStart: 19,
+						ColumnEnd:   25,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "pom.xml",
+						LineStart:   19,
+						LineEnd:     19,
+						ColumnStart: 18,
+						ColumnEnd:   23,
 					},
 				}),
 			},
@@ -2106,6 +2232,20 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 						LineEnd:     1,
 						ColumnStart: 1,
 						ColumnEnd:   15,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "requirements.txt",
+						LineStart:   1,
+						LineEnd:     1,
+						ColumnStart: 9,
+						ColumnEnd:   15,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "requirements.txt",
+						LineStart:   1,
+						LineEnd:     1,
+						ColumnStart: 1,
+						ColumnEnd:   7,
 					},
 				}),
 			},
