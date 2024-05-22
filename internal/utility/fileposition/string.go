@@ -49,10 +49,8 @@ func ExtractDelimitedRegexpPositionInBlock(block []string, str string, blockStar
 	for i, line := range block {
 		matches := regex.FindStringSubmatch(line)
 		if len(matches) > 0 {
-			// The group was captured -> Replace group regexp with captured value
-			if len(matches) == 2 {
-				str = matches[1]
-			}
+			// Replace regexp with captured value
+			str = matches[1]
 
 			return extractPositionFromLine(blockStartLine+i, line, str)
 		}

@@ -103,6 +103,15 @@ func TestExtractDelimitedRegexpPositionInBlock(t *testing.T) {
 		},
 		{
 			block:          []string{"abcdef", "ghijkl", "mnopqr"},
+			str:            "(h.*)l",
+			blockStartLine: 1,
+			position: &models.FilePosition{
+				Line:   models.Position{Start: 2, End: 2},
+				Column: models.Position{Start: 2, End: 7},
+			},
+		},
+		{
+			block:          []string{"abcdef", "ghijkl", "mnopqr"},
 			str:            "a+kl",
 			blockStartLine: 1,
 			position:       nil,
