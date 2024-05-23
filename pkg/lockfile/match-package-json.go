@@ -1,13 +1,13 @@
 package lockfile
 
-type PackageJsonMatcher struct{}
+type PackageJSONMatcher struct{}
 
-func (m PackageJsonMatcher) GetSourceFile(lockfile DepFile) (DepFile, error) {
+func (m PackageJSONMatcher) GetSourceFile(lockfile DepFile) (DepFile, error) {
 	return lockfile.Open("package.json")
 }
 
-func (m PackageJsonMatcher) Match(_ DepFile, _ []PackageDetails) error {
+func (m PackageJSONMatcher) Match(_ DepFile, _ []PackageDetails) error {
 	return nil
 }
 
-var _ Matcher = PackageJsonMatcher{}
+var _ Matcher = PackageJSONMatcher{}
