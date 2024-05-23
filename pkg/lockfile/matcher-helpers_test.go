@@ -1,9 +1,10 @@
 package lockfile_test
 
 import (
-	"github.com/google/osv-scanner/pkg/lockfile"
 	"os"
 	"testing"
+
+	"github.com/google/osv-scanner/pkg/lockfile"
 )
 
 func TestMain(m *testing.M) {
