@@ -40,7 +40,6 @@ func groupYarnPackageLines(scanner *bufio.Scanner) []YarnPackage {
 
 	var line string
 	for scanner.Scan() {
-
 		line = scanner.Text()
 
 		if shouldSkipYarnLine(line) {
@@ -71,8 +70,8 @@ func extractYarnPackageNameAndTargetVersions(str string) (string, []string) {
 	parts := strings.Split(str, ",")
 
 	var name, right string
-	var targetVersions []string
 	var isScoped bool
+	var targetVersions = make([]string, 0)
 
 	for _, part := range parts {
 		part = strings.TrimPrefix(part, " ")
@@ -95,6 +94,7 @@ func extractYarnPackageNameAndTargetVersions(str string) (string, []string) {
 				resolvedName, resolvedTargetVersions := extractYarnPackageNameAndTargetVersions(right)
 				name = resolvedName
 				targetVersions = append(targetVersions, resolvedTargetVersions...)
+
 				continue
 			}
 		}

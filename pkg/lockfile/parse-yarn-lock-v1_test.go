@@ -3,12 +3,13 @@ package lockfile_test
 import (
 	"bytes"
 	"errors"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/google/osv-scanner/pkg/lockfile"
 )
@@ -58,6 +59,7 @@ func TestParseYarnLock_v1_OnePackage(t *testing.T) {
 	})
 }
 
+//nolint:paralleltest
 func TestParseYarnLock_v1_OnePackage_MatcherFailed(t *testing.T) {
 	dir, err := os.Getwd()
 	if err != nil {
