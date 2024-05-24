@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 {
   "name": "osv-scanner",
   "dependencies": {
     "balanced-match": "^1.0.0"
   }
 }
+=======
+{
+  "name": "osv-scanner",
+  "dependencies": {
+    "balanced-match": "^1.0.0"
+  }
+}
+>>>>>>> 7cb9870 (✅ Do match in extract, not only extractor + fix tests)
