@@ -99,12 +99,16 @@ func extractYarnPackageNameAndTargetVersions(str string) (string, []string) {
 			}
 		}
 
-		prefixes := []string{"file", "link"}
+		// for yarn v2 - it could include these prefixes even when they are not included in package.json
+		prefixes := []string{"file", "link", "portal"}
 		for _, prefix := range prefixes {
 			if strings.HasPrefix(right, prefix+":") {
 				right = strings.TrimPrefix(right, prefix+":")
 			}
 		}
+
+		// for yarn v2 - "file:path/to/dir::locator=...%40workspace%3A.": -> file:path/to/dir
+		right, _, _ = strings.Cut(right, "::locator")
 
 		targetVersions = append(targetVersions, right)
 	}

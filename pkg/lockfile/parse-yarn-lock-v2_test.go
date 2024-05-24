@@ -413,7 +413,7 @@ func TestParseYarnLock_v2_Files(t *testing.T) {
 		{
 			Name:           "my-package",
 			Version:        "0.0.2",
-			TargetVersions: []string{"../../deps/my-local-package::locator=my-project%40workspace%3A."},
+			TargetVersions: []string{"../../deps/my-local-package"},
 			Ecosystem:      lockfile.YarnEcosystem,
 			CompareAs:      lockfile.YarnEcosystem,
 			Commit:         "",
