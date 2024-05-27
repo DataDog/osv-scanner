@@ -1,10 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 32619cd (📚 Fix encoding)
 {
   "name": "osv-scanner",
   "dependencies": {
     "balanced-match": "^1.0.0"
   }
 }
+<<<<<<< HEAD
 =======
 {
   "name": "osv-scanner",
@@ -13,3 +17,5 @@
   }
 }
 >>>>>>> 7cb9870 (✅ Do match in extract, not only extractor + fix tests)
+=======
+>>>>>>> 32619cd (📚 Fix encoding)
