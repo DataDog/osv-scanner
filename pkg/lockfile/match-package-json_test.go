@@ -34,10 +34,9 @@ func TestPackageJSONMatcher_GetSourceFile(t *testing.T) {
 	}
 
 	basePath := "fixtures/package-json/one-package/"
-	lockfilePath := filepath.FromSlash(filepath.Join(dir, basePath+"npm-v1.json"))
 	sourcefilePath := filepath.FromSlash(filepath.Join(dir, basePath+"package.json"))
 
-	lockFile, err := lockfile.OpenLocalDepFile(lockfilePath)
+	lockFile, err := lockfile.OpenLocalDepFile(basePath + "npm-v1.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -52,13 +51,8 @@ func TestPackageJSONMatcher_GetSourceFile(t *testing.T) {
 
 func TestPackageJSONMatcher_Match_OnePackage(t *testing.T) {
 	t.Parallel()
-	dir, err := os.Getwd()
-	if err != nil {
-		t.Errorf("Got unexpected error: %v", err)
-	}
 
-	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/one-package/package.json"))
-	sourceFile, err := lockfile.OpenLocalDepFile(path)
+	sourceFile, err := lockfile.OpenLocalDepFile("fixtures/package-json/one-package/package.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -79,17 +73,17 @@ func TestPackageJSONMatcher_Match_OnePackage(t *testing.T) {
 			Name:           "lodash",
 			TargetVersions: []string{"^4.0.0"},
 			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 11, End: 11},
+				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 5, End: 23},
 				Filename: sourceFile.Path(),
 			},
 			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 11, End: 11},
+				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 6, End: 12},
 				Filename: sourceFile.Path(),
 			},
 			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 11, End: 11},
+				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 16, End: 22},
 				Filename: sourceFile.Path(),
 			},
@@ -99,13 +93,8 @@ func TestPackageJSONMatcher_Match_OnePackage(t *testing.T) {
 
 func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 	t.Parallel()
-	dir, err := os.Getwd()
-	if err != nil {
-		t.Errorf("Got unexpected error: %v", err)
-	}
 
-	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/transitive-dependencies/package.json"))
-	sourceFile, err := lockfile.OpenLocalDepFile(path)
+	sourceFile, err := lockfile.OpenLocalDepFile("fixtures/package-json/transitive-dependencies/package.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -146,17 +135,17 @@ func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 			Name:           "debug",
 			TargetVersions: []string{"^0.7", "~0.7.2"},
 			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
+				Line:     models.Position{Start: 5, End: 5},
 				Column:   models.Position{Start: 5, End: 20},
 				Filename: sourceFile.Path(),
 			},
 			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
+				Line:     models.Position{Start: 5, End: 5},
 				Column:   models.Position{Start: 6, End: 11},
 				Filename: sourceFile.Path(),
 			},
 			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
+				Line:     models.Position{Start: 5, End: 5},
 				Column:   models.Position{Start: 15, End: 19},
 				Filename: sourceFile.Path(),
 			},
@@ -165,17 +154,17 @@ func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 			Name:           "jear",
 			TargetVersions: []string{"^0.1.4"},
 			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
+				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 5, End: 21},
 				Filename: sourceFile.Path(),
 			},
 			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
+				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 6, End: 10},
 				Filename: sourceFile.Path(),
 			},
 			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
+				Line:     models.Position{Start: 4, End: 4},
 				Column:   models.Position{Start: 14, End: 20},
 				Filename: sourceFile.Path(),
 			},

@@ -1,7 +1,7 @@
 {
   "name": "osv-scanner",
   "dependencies": {
-    "debug": "^0.7",
-    "jear": "^0.1.4"
+    "jear": "^0.1.4",
+    "debug": "^0.7"
   }
 }
