@@ -7,8 +7,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/google/osv-scanner/pkg/models"
-
 	"github.com/google/osv-scanner/internal/cachedregexp"
 	"gopkg.in/yaml.v3"
 )
@@ -25,43 +23,44 @@ type PnpmLockPackage struct {
 	Name       string                    `yaml:"name"`
 	Version    string                    `yaml:"version"`
 	Dev        bool                      `yaml:"dev"`
-	models.FilePosition
+}
+
+type PnpmLockDependency struct {
+	Specifier string `yaml:"specifier"`
+	Version   string `yaml:"version"`
 }
 
 type PnpmLockPackages map[string]PnpmLockPackage
+type PnpmSpecifiers map[string]string
+type PnpmDependencies map[string]PnpmLockDependency
 
 type PnpmLockfile struct {
-	Version    string           `yaml:"lockfileVersion"`
-	Packages   PnpmLockPackages `yaml:"packages,omitempty"`
-	SourceFile string
+	Version      string           `yaml:"lockfileVersion"`
+	Packages     PnpmLockPackages `yaml:"packages,omitempty"`
+	Specifiers   PnpmSpecifiers   `yaml:"specifiers,omitempty"`
+	Dependencies PnpmDependencies `yaml:"dependencies,omitempty"`
 }
 
-func (pnpmLockPackages *PnpmLockPackages) UnmarshalYAML(value *yaml.Node) error {
-	if *pnpmLockPackages == nil {
-		*pnpmLockPackages = make(map[string]PnpmLockPackage)
+func (pnpmDependencies *PnpmDependencies) UnmarshalYAML(value *yaml.Node) error {
+	if *pnpmDependencies == nil {
+		*pnpmDependencies = make(map[string]PnpmLockDependency)
 	}
 
 	for i := 0; i < len(value.Content); i += 2 {
-		var pnpmLockPackage PnpmLockPackage
+		var pnpmLockDependency PnpmLockDependency
 		keyNode := value.Content[i]
 		valueNode := value.Content[i+1]
 
-		pnpmLockPackage.SetLineStart(keyNode.Line)
-		pnpmLockPackage.SetColumnStart(keyNode.Column)
-
-		lastValueNode := valueNode
-		for lastValueNode.Kind == yaml.MappingNode {
-			lastValueNode = lastValueNode.Content[len(lastValueNode.Content)-1]
+		// lockfileVersion >6.0
+		if valueNode.Kind == yaml.MappingNode {
+			if err := valueNode.Decode(&pnpmLockDependency); err != nil {
+				return err
+			}
+		} else {
+			pnpmLockDependency.Version = valueNode.Value
 		}
 
-		pnpmLockPackage.SetLineEnd(lastValueNode.Line)
-		pnpmLockPackage.SetColumnEnd(lastValueNode.Column + len(lastValueNode.Value))
-
-		if err := valueNode.Decode(&pnpmLockPackage); err != nil {
-			return err
-		}
-
-		(*pnpmLockPackages)[keyNode.Value] = pnpmLockPackage
+		(*pnpmDependencies)[keyNode.Value] = pnpmLockDependency
 	}
 
 	return nil
@@ -146,6 +145,12 @@ func parseNameAtVersion(value string) (name string, version string) {
 	return matches[1], matches[2]
 }
 
+func sanitizeLocalDependencyPath(value string, prefix string) string {
+	value = strings.TrimPrefix(value, prefix+":")
+	// Current dir locations may include an initial './'
+	return strings.TrimPrefix(value, "./")
+}
+
 func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 	packages := make([]PackageDetails, 0, len(lockfile.Packages))
 
@@ -184,25 +189,49 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 			depGroups = append(depGroups, "dev")
 		}
 
+		targetVersions := make([]string, 1)
+		if v, ok := lockfile.Specifiers[name]; ok {
+			dependencyVersion := lockfile.Dependencies[name].Version
+
+			// Sanitize the target/dependency version
+			prefixes := []string{"file", "link", "portal"}
+			for _, prefix := range prefixes {
+				if strings.HasPrefix(v, prefix+":") || strings.HasPrefix(dependencyVersion, prefix+":") {
+					v = sanitizeLocalDependencyPath(v, prefix)
+					dependencyVersion = sanitizeLocalDependencyPath(dependencyVersion, prefix)
+				}
+			}
+
+			// Multiple versions of the same dependency -> We want to set the
+			// target versions only for the one included in the dependencies map
+			if strings.Contains(s, dependencyVersion) {
+				targetVersions[0] = v
+			}
+		} else if d, ok := lockfile.Dependencies[name]; ok {
+			targetVersions[0] = d.Specifier
+		}
+
+		if targetVersions[0] == "" {
+			targetVersions = nil
+		}
+
 		packages = append(packages, PackageDetails{
-			Name:      name,
-			Version:   version,
-			Ecosystem: PnpmEcosystem,
-			CompareAs: PnpmEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     pkg.Line,
-				Column:   pkg.Column,
-				Filename: lockfile.SourceFile,
-			},
-			Commit:    commit,
-			DepGroups: depGroups,
+			Name:           name,
+			Version:        version,
+			TargetVersions: targetVersions,
+			Ecosystem:      PnpmEcosystem,
+			CompareAs:      PnpmEcosystem,
+			Commit:         commit,
+			DepGroups:      depGroups,
 		})
 	}
 
 	return packages
 }
 
-type PnpmLockExtractor struct{}
+type PnpmLockExtractor struct {
+	WithMatcher
+}
 
 func (e PnpmLockExtractor) ShouldExtract(path string) bool {
 	return filepath.Base(path) == "pnpm-lock.yaml"
@@ -221,18 +250,19 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	if parsedLockfile == nil {
 		parsedLockfile = &PnpmLockfile{}
 	}
-	parsedLockfile.SourceFile = f.Path()
 
 	return parsePnpmLock(*parsedLockfile), nil
 }
 
-var _ Extractor = PnpmLockExtractor{}
+var PnpmExtractor = PnpmLockExtractor{
+	WithMatcher{Matcher: PackageJSONMatcher{}},
+}
 
 //nolint:gochecknoinits
 func init() {
-	registerExtractor("pnpm-lock.yaml", PnpmLockExtractor{})
+	registerExtractor("pnpm-lock.yaml", PnpmExtractor)
 }
 
 func ParsePnpmLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, PnpmLockExtractor{})
+	return extractFromFile(pathToLockfile, PnpmExtractor)
 }
