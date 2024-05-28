@@ -282,7 +282,7 @@ func TestParseGoLock_TwoPackages(t *testing.T) {
 		},
 		{
 			Name:      "stdlib",
-			Version:   "1.17.0",
+			Version:   "1.17",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
 			BlockLocation: models.FilePosition{
@@ -415,7 +415,7 @@ func TestParseGoLock_IndirectPackages(t *testing.T) {
 		},
 		{
 			Name:      "stdlib",
-			Version:   "1.17.0",
+			Version:   "1.17",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
 			BlockLocation: models.FilePosition{

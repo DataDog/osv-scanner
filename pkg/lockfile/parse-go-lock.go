@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"golang.org/x/exp/maps"
 	"github.com/google/osv-scanner/internal/utility/fileposition"
 
 	"golang.org/x/mod/module"
@@ -159,18 +160,9 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	}
 
 	if parsedLockfile.Go != nil && parsedLockfile.Go.Version != "" {
-		v := semantic.ParseSemverLikeVersion(parsedLockfile.Go.Version, 3)
-
-		goVersion := fmt.Sprintf(
-			"%d.%d.%d",
-			v.Components.Fetch(0),
-			v.Components.Fetch(1),
-			v.Components.Fetch(2),
-		)
-
 		packages["stdlib"] = PackageDetails{
 			Name:      "stdlib",
-			Version:   goVersion,
+			Version:   parsedLockfile.Go.Version,
 			Ecosystem: GoEcosystem,
 			CompareAs: GoEcosystem,
 			BlockLocation: models.FilePosition{
@@ -179,7 +171,7 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		}
 	}
 
-	return pkgDetailsMapToSlice(deduplicatePackages(packages)), nil
+	return maps.Values(deduplicatePackages(packages)), nil
 }
 
 var _ Extractor = GoLockExtractor{}

@@ -10,6 +10,8 @@ import (
 	"sort"
 	"strings"
 
+	"golang.org/x/exp/maps"
+
 	"github.com/google/osv-scanner/internal/utility/fileposition"
 
 	"github.com/google/osv-scanner/pkg/models"
@@ -22,6 +24,8 @@ type NpmLockDependency struct {
 
 	Dev      bool `json:"dev,omitempty"`
 	Optional bool `json:"optional,omitempty"`
+
+	Requires map[string]string `json:"requires,omitempty"`
 
 	models.FilePosition
 }
@@ -37,15 +41,20 @@ func (npmLockDependency *NpmLockDependency) GetNestedDependencies() map[string]*
 
 type NpmLockPackage struct {
 	// For an aliased package, Name is the real package name
-	Name         string            `json:"name"`
-	Version      string            `json:"version"`
-	Resolved     string            `json:"resolved"`
-	Dependencies map[string]string `json:"dependencies"`
-	Link         bool              `json:"link,omitempty"`
+	Name     string `json:"name"`
+	Version  string `json:"version"`
+	Resolved string `json:"resolved"`
+
+	Dependencies         map[string]string `json:"dependencies,omitempty"`
+	DevDependencies      map[string]string `json:"devDependencies,omitempty"`
+	OptionalDependencies map[string]string `json:"optionalDependencies,omitempty"`
+	PeerDependencies     map[string]string `json:"peerDependencies,omitempty"`
 
 	Dev         bool `json:"dev,omitempty"`
 	DevOptional bool `json:"devOptional,omitempty"`
 	Optional    bool `json:"optional,omitempty"`
+
+	Link bool `json:"link,omitempty"`
 
 	models.FilePosition
 }
@@ -54,9 +63,9 @@ type NpmLockfile struct {
 	Version    int `json:"lockfileVersion"`
 	SourceFile string
 	// npm v1- lockfiles use "dependencies"
-	Dependencies map[string]*NpmLockDependency `json:"dependencies"`
+	Dependencies map[string]NpmLockDependency `json:"dependencies,omitempty"`
 	// npm v2+ lockfiles use "packages"
-	Packages map[string]*NpmLockPackage `json:"packages,omitempty"`
+	Packages map[string]NpmLockPackage `json:"packages,omitempty"`
 }
 
 const NpmEcosystem Ecosystem = "npm"
@@ -87,21 +96,21 @@ func mergePkgDetailsMap(m1 map[string]PackageDetails, m2 map[string]PackageDetai
 	return details
 }
 
-func (npmLockDependency *NpmLockDependency) depGroups() []string {
-	if npmLockDependency.Dev && npmLockDependency.Optional {
+func (dep *NpmLockDependency) depGroups() []string {
+	if dep.Dev && dep.Optional {
 		return []string{"dev", "optional"}
 	}
-	if npmLockDependency.Dev {
+	if dep.Dev {
 		return []string{"dev"}
 	}
-	if npmLockDependency.Optional {
+	if dep.Optional {
 		return []string{"optional"}
 	}
 
 	return nil
 }
 
-func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency, path string) map[string]PackageDetails {
+func parseNpmLockDependencies(dependencies map[string]NpmLockDependency) map[string]PackageDetails {
 	details := map[string]PackageDetails{}
 
 	keys := reflect.ValueOf(dependencies).MapKeys()
@@ -112,7 +121,7 @@ func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency, path s
 		name := key.Interface().(string)
 		detail := dependencies[name]
 		if detail.Dependencies != nil {
-			details = mergePkgDetailsMap(details, parseNpmLockDependencies(detail.Dependencies, path))
+			maps.Copy(details, parseNpmLockDependencies(detail.Dependencies))
 		}
 
 		version := detail.Version
@@ -172,14 +181,14 @@ func extractNpmPackageName(name string) string {
 	return pkgName
 }
 
-func (npmLockDependency NpmLockPackage) depGroups() []string {
-	if npmLockDependency.Dev {
+func (pkg NpmLockPackage) depGroups() []string {
+	if pkg.Dev {
 		return []string{"dev"}
 	}
-	if npmLockDependency.Optional {
+	if pkg.Optional {
 		return []string{"optional"}
 	}
-	if npmLockDependency.DevOptional {
+	if pkg.DevOptional {
 		return []string{"dev", "optional"}
 	}
 
@@ -281,7 +290,7 @@ func (e NpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	}
 	parsedLockfile.SourceFile = f.Path()
 
-	return pkgDetailsMapToSlice(parseNpmLock(*parsedLockfile, lines)), nil
+	return maps.Values(parseNpmLock(*parsedLockfile, lines)), nil
 }
 
 var _ Extractor = NpmLockExtractor{}

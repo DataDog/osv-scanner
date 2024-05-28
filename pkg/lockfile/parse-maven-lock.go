@@ -19,6 +19,7 @@ import (
 	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/google/osv-scanner/internal/cachedregexp"
+	"golang.org/x/exp/maps"
 )
 
 const maxParentDepth = 10
@@ -438,7 +439,7 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		details[finalName] = pkgDetails
 	}
 
-	return pkgDetailsMapToSlice(details), nil
+	return maps.Values(details), nil
 }
 
 var _ Extractor = MavenLockExtractor{}

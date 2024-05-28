@@ -23,8 +23,9 @@ type ConfigManager struct {
 }
 
 type Config struct {
-	IgnoredVulns []IgnoreEntry `toml:"IgnoredVulns"`
-	LoadPath     string        `toml:"LoadPath"`
+	IgnoredVulns      []IgnoreEntry `toml:"IgnoredVulns"`
+	LoadPath          string        `toml:"LoadPath"`
+	GoVersionOverride string        `toml:"GoVersionOverride"`
 }
 
 type IgnoreEntry struct {
@@ -84,7 +85,7 @@ func (c *ConfigManager) Get(r reporter.Reporter, targetPath string) Config {
 
 	config, configErr := tryLoadConfig(configPath)
 	if configErr == nil {
-		r.PrintTextf("Loaded filter from: %s\n", config.LoadPath)
+		r.Infof("Loaded filter from: %s\n", config.LoadPath)
 	} else {
 		// If config doesn't exist, use the default config
 		config = c.DefaultConfig
