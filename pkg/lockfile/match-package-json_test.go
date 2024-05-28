@@ -1,6 +1,7 @@
 package lockfile_test
 
 import (
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -94,7 +95,7 @@ func TestPackageJSONMatcher_Match_OnePackage(t *testing.T) {
 func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 	t.Parallel()
 
-	sourceFile, err := lockfile.OpenLocalDepFile("fixtures/package-json/transitive-dependencies/package.json")
+	sourceFile, err := lockfile.OpenLocalDepFile("fixtures/package-json/transitive/package.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -126,6 +127,16 @@ func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
+	for k, pkg := range packages {
+		fmt.Println(k)
+		fmt.Println(pkg.Name, pkg.TargetVersions, pkg.BlockLocation)
+		if pkg.NameLocation != nil {
+			fmt.Println(*pkg.NameLocation)
+		}
+		if pkg.VersionLocation != nil {
+			fmt.Println(*pkg.VersionLocation)
+		}
+	}
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "commander",
