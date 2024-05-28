@@ -10,8 +10,11 @@ import (
 )
 
 func BytesToLines(data []byte) []string {
+	re := cachedregexp.MustCompile(`\r\n|\r|\n`)
 	str := string(data)
-	return strings.Split(str, "\n")
+	lines := re.Split(str, -1)
+
+	return lines
 }
 
 func extractPositionFromLine(linePosition int, line string, str string) *models.FilePosition {
