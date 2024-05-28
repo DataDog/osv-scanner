@@ -17,11 +17,12 @@ type CycloneDXReporter struct {
 	version    sbom.CycloneDXVersion
 }
 
-func NewCycloneDXReporter(stdout io.Writer, stderr io.Writer, version sbom.CycloneDXVersion) *CycloneDXReporter {
+func NewCycloneDXReporter(stdout io.Writer, stderr io.Writer, version sbom.CycloneDXVersion, level VerbosityLevel) *CycloneDXReporter {
 	return &CycloneDXReporter{
 		stdout:     stdout,
 		stderr:     stderr,
 		hasErrored: false,
+		level:      level,
 		version:    version,
 	}
 }

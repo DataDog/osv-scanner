@@ -3,6 +3,7 @@ package scan
 import (
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/lockfile"
 	"io"
 	"os"
 	"slices"
@@ -132,6 +133,22 @@ func Command(stdout, stderr io.Writer, r *reporter.Reporter) *cli.Command {
 				TakesFile: true,
 				Hidden:    true,
 			},
+			&cli.BoolFlag{
+				Name:  "experimental-only-packages",
+				Usage: "only collects packages, does not scan for vulnerabilities",
+			},
+			&cli.BoolFlag{
+				Name:  "consider-scan-path-as-root",
+				Usage: "Transform package path root to be the scanning path, thus removing any information about the host",
+			},
+			&cli.BoolFlag{
+				Name:  "paths-relative-to-scan-dir",
+				Usage: "Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator)",
+			},
+			&cli.StringSliceFlag{
+				Name:  "enable-parsers",
+				Usage: fmt.Sprintf("Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: %v)", lockfile.ListExtractors()),
+			},
 		},
 		ArgsUsage: "[directory1 directory2...]",
 		Action: func(c *cli.Context) error {
@@ -200,15 +217,18 @@ func action(context *cli.Context, stdout, stderr io.Writer) (reporter.Reporter, 
 	}
 
 	vulnResult, err := osvscanner.DoScan(osvscanner.ScannerActions{
-		LockfilePaths:        context.StringSlice("lockfile"),
-		SBOMPaths:            context.StringSlice("sbom"),
-		DockerContainerNames: context.StringSlice("docker"),
-		Recursive:            context.Bool("recursive"),
-		SkipGit:              context.Bool("skip-git"),
-		NoIgnore:             context.Bool("no-ignore"),
-		ConfigOverridePath:   context.String("config"),
-		DirectoryPaths:       context.Args().Slice(),
-		CallAnalysisStates:   callAnalysisStates,
+		LockfilePaths:          context.StringSlice("lockfile"),
+		SBOMPaths:              context.StringSlice("sbom"),
+		DockerContainerNames:   context.StringSlice("docker"),
+		Recursive:              context.Bool("recursive"),
+		SkipGit:                context.Bool("skip-git"),
+		NoIgnore:               context.Bool("no-ignore"),
+		ConfigOverridePath:     context.String("config"),
+		DirectoryPaths:         context.Args().Slice(),
+		CallAnalysisStates:     callAnalysisStates,
+		ConsiderScanPathAsRoot: context.Bool("consider-scan-path-as-root"),
+		PathRelativeToScanDir:  context.Bool("paths-relative-to-scan-dir"),
+		EnableParsers:          context.StringSlice("enable-parsers"),
 		ExperimentalScannerActions: osvscanner.ExperimentalScannerActions{
 			LocalDBPath:    context.String("experimental-local-db-path"),
 			CompareLocally: context.Bool("experimental-local-db"),
@@ -222,6 +242,7 @@ func action(context *cli.Context, stdout, stderr io.Writer) (reporter.Reporter, 
 			ScanLicensesSummary:   context.Bool("experimental-licenses-summary"),
 			ScanLicensesAllowlist: context.StringSlice("experimental-licenses"),
 			ScanOCIImage:          context.String("experimental-oci-image"),
+			OnlyPackages:          context.Bool("experimental-only-packages"),
 		},
 	}, r)
 
