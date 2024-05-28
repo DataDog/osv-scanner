@@ -33,8 +33,11 @@ func TestPackageJSONMatcher_GetSourceFile(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/one-package"))
-	lockFile, err := lockfile.OpenLocalDepFile(path + "/npm-v1.json")
+	basePath := "fixtures/package-json/one-package/"
+	lockfilePath := filepath.FromSlash(filepath.Join(dir, basePath+"npm-v1.json"))
+	sourcefilePath := filepath.FromSlash(filepath.Join(dir, basePath+"package.json"))
+
+	lockFile, err := lockfile.OpenLocalDepFile(lockfilePath)
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -44,7 +47,7 @@ func TestPackageJSONMatcher_GetSourceFile(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	assert.Equal(t, path+"/package.json", sourceFile.Path())
+	assert.Equal(t, sourcefilePath, sourceFile.Path())
 }
 
 func TestPackageJSONMatcher_Match_OnePackage(t *testing.T) {
@@ -54,8 +57,8 @@ func TestPackageJSONMatcher_Match_OnePackage(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/one-package"))
-	sourceFile, err := lockfile.OpenLocalDepFile(path + "/package.json")
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/one-package/package.json"))
+	sourceFile, err := lockfile.OpenLocalDepFile(path)
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -101,8 +104,8 @@ func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/transitive-dependencies"))
-	sourceFile, err := lockfile.OpenLocalDepFile(path + "/package.json")
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/transitive-dependencies/package.json"))
+	sourceFile, err := lockfile.OpenLocalDepFile(path)
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
