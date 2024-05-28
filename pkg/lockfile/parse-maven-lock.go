@@ -19,7 +19,6 @@ import (
 	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/google/osv-scanner/internal/cachedregexp"
-	"golang.org/x/exp/maps"
 )
 
 const maxParentDepth = 10

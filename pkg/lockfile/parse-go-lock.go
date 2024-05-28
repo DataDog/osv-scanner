@@ -7,14 +7,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"golang.org/x/exp/maps"
 	"github.com/google/osv-scanner/internal/utility/fileposition"
+	"golang.org/x/exp/maps"
 
 	"golang.org/x/mod/module"
 
 	"github.com/google/osv-scanner/pkg/models"
 
-	"github.com/google/osv-scanner/internal/semantic"
 	"golang.org/x/mod/modfile"
 )
 

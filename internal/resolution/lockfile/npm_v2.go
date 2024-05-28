@@ -37,7 +37,7 @@ func (rw NpmLockfileIO) nodesFromPackages(lockJSON lockfile.NpmLockfile) (*resol
 		VersionType: resolve.Concrete,
 		Version:     root.Version,
 	})
-	nodeModuleTree := rw.makeNodeModuleDeps(root, true)
+	nodeModuleTree := rw.makeNodeModuleDeps(*root, true)
 	nodeModuleTree.NodeID = nID
 
 	// paths for npm workspace subfolders, not inside root node_modules
@@ -65,7 +65,7 @@ func (rw NpmLockfileIO) nodesFromPackages(lockJSON lockfile.NpmLockfile) (*resol
 				VersionType: resolve.Concrete,
 				Version:     pkg.Version,
 			})
-			m := rw.makeNodeModuleDeps(pkg, true) // NB: including the dev dependencies
+			m := rw.makeNodeModuleDeps(*pkg, true) // NB: including the dev dependencies
 			m.NodeID = nID
 			workspaceModules[path[0]] = m
 
@@ -123,7 +123,7 @@ func (rw NpmLockfileIO) nodesFromPackages(lockJSON lockfile.NpmLockfile) (*resol
 			VersionType: resolve.Concrete,
 			Version:     pkg.Version,
 		})
-		parent.Children[name] = rw.makeNodeModuleDeps(pkg, false)
+		parent.Children[name] = rw.makeNodeModuleDeps(*pkg, false)
 		parent.Children[name].NodeID = nID
 		parent.Children[name].Parent = parent
 		parent.Children[name].ActualName = pkg.Name
@@ -155,7 +155,7 @@ func (rw NpmLockfileIO) makeNodeModuleDeps(pkg lockfile.NpmLockPackage, includeD
 	return &nm
 }
 
-func (rw NpmLockfileIO) packageNamesByNodeModuleDepth(packages map[string]lockfile.NpmLockPackage) []string {
+func (rw NpmLockfileIO) packageNamesByNodeModuleDepth(packages map[string]*lockfile.NpmLockPackage) []string {
 	keys := maps.Keys(packages)
 	slices.SortFunc(keys, func(a, b string) int {
 		aSplit := strings.Split(a, "node_modules/")

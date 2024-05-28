@@ -6,8 +6,6 @@ import (
 	"os"
 	"slices"
 
-	"github.com/google/osv-scanner/pkg/lockfile"
-
 	"github.com/google/osv-scanner/cmd/osv-scanner/fix"
 	"github.com/google/osv-scanner/cmd/osv-scanner/scan"
 	"github.com/google/osv-scanner/cmd/osv-scanner/update"
@@ -59,7 +57,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 		case errors.Is(err, osvscanner.VulnerabilitiesFoundErr):
 			return 1
 		case errors.Is(err, osvscanner.NoPackagesFoundErr):
-			r.PrintWarnf("No package sources found, --help for usage information.\n")
+			r.Warnf("No package sources found, --help for usage information.\n")
 			return 0
 		case errors.Is(err, osvscanner.ErrAPIFailed):
 			r.Errorf("%v\n", err)
