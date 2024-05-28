@@ -149,6 +149,10 @@ func Command(stdout, stderr io.Writer, r *reporter.Reporter) *cli.Command {
 				Name:  "enable-parsers",
 				Usage: fmt.Sprintf("Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: %v)", lockfile.ListExtractors()),
 			},
+			&cli.BoolFlag{
+				Name:  "no-config",
+				Usage: "Disable osv-scanner config and always use a default configuration",
+			},
 		},
 		ArgsUsage: "[directory1 directory2...]",
 		Action: func(c *cli.Context) error {
@@ -229,6 +233,7 @@ func action(context *cli.Context, stdout, stderr io.Writer) (reporter.Reporter, 
 		ConsiderScanPathAsRoot: context.Bool("consider-scan-path-as-root"),
 		PathRelativeToScanDir:  context.Bool("paths-relative-to-scan-dir"),
 		EnableParsers:          context.StringSlice("enable-parsers"),
+		NoConfig:               context.Bool("no-config"),
 		ExperimentalScannerActions: osvscanner.ExperimentalScannerActions{
 			LocalDBPath:    context.String("experimental-local-db-path"),
 			CompareLocally: context.Bool("experimental-local-db"),

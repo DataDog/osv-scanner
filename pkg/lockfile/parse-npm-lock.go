@@ -111,8 +111,8 @@ func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency, path s
 
 		// we can't resolve a version from a "file:" dependency
 		if strings.HasPrefix(detail.Version, "file:") {
-			finalVersion = "0.0.0"
-			version = "0.0.0"
+			finalVersion = ""
+			version = ""
 		} else {
 			commit = tryExtractCommit(detail.Version)
 
@@ -260,7 +260,7 @@ func (e NpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	decoder := json.NewDecoder(strings.NewReader(contentString))
 
 	if err := decoder.Decode(&parsedLockfile); err != nil {
-		return []PackageDetails{}, fmt.Errorf("could not decode json from %s: %w", f.Path(), err)
+		return []PackageDetails{}, fmt.Errorf("could not extract from %s: %w", f.Path(), err)
 	}
 	parsedLockfile.SourceFile = f.Path()
 

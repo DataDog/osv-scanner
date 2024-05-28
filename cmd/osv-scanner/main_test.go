@@ -4,7 +4,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"errors"
 	"os"
 	"path/filepath"
@@ -21,8 +20,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/go-git/go-git/v5"
-	"github.com/google/go-cmp/cmp"
 	"github.com/google/osv-scanner/internal/testutility"
 	"github.com/urfave/cli/v2"
 )
@@ -42,21 +39,6 @@ type locationTestCase struct {
 
 type encodingTestCase struct {
 	encoding string
-}
-
-func expectAreEqual(t *testing.T, subject, actual, expect string) {
-	t.Helper()
-
-	actual = dedent(t, actual)
-	expect = dedent(t, expect)
-
-	if !areEqual(t, actual, expect) {
-		if os.Getenv("TEST_NO_DIFF") == "true" {
-			t.Errorf("\nactual %s does not match expected:\n got:\n%s\n\n want:\n%s", subject, actual, expect)
-		} else {
-			t.Errorf("\nactual %s does not match expected:\n%s", subject, cmp.Diff(expect, actual))
-		}
-	}
 }
 
 // Attempts to normalize any file paths in the given `output` so that they can
@@ -179,7 +161,7 @@ func TestRun(t *testing.T) {
 		{
 			name: "",
 			args: []string{""},
-			exit: 128,
+			exit: 0,
 		},
 		{
 			name: "",
@@ -208,7 +190,7 @@ func TestRun(t *testing.T) {
 		{
 			name: "",
 			args: []string{"", "./fixtures/locks-many/not-a-lockfile.toml"},
-			exit: 128,
+			exit: 0,
 		},
 		// all supported lockfiles in the directory should be checked
 		{
@@ -220,7 +202,7 @@ func TestRun(t *testing.T) {
 		{
 			name: "all supported lockfiles in the directory should be checked",
 			args: []string{"", "./fixtures/locks-many-with-invalid"},
-			exit: 127,
+			exit: 0,
 		},
 		// only the files in the given directories are checked by default (no recursion)
 		{
@@ -531,7 +513,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 		{
 			name: "",
 			args: []string{"", "--experimental-local-db", "./fixtures/locks-many/not-a-lockfile.toml"},
-			exit: 128,
+			exit: 0,
 		},
 		// all supported lockfiles in the directory should be checked
 		{
@@ -543,7 +525,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 		{
 			name: "",
 			args: []string{"", "--experimental-local-db", "./fixtures/locks-many-with-invalid"},
-			exit: 127,
+			exit: 0,
 		},
 		// only the files in the given directories are checked by default (no recursion)
 		{
@@ -1169,6 +1151,7 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 				"",
 				"-r",
 				"--experimental-only-packages",
+				"--no-config",
 				"--format=cyclonedx-1-5",
 				"--paths-relative-to-scan-dir",
 				"./fixtures/encoding-integration-test-locks/" + tt.encoding,

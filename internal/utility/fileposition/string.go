@@ -25,6 +25,9 @@ func extractPositionFromLine(linePosition int, line string, str string) *models.
 }
 
 func ExtractStringPositionInBlock(block []string, str string, blockStartLine int) *models.FilePosition {
+	if len(str) == 0 {
+		return nil
+	}
 	return ExtractDelimitedStringPositionInBlock(block, str, blockStartLine, "", "")
 }
 

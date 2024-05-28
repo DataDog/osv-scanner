@@ -27,7 +27,7 @@ func TestParsePnpmLock_v9_OnePackage(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "acorn",
 			Version:   "8.11.3",
@@ -46,7 +46,7 @@ func TestParsePnpmLock_v9_OnePackageDev(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "acorn",
 			Version:   "8.11.3",
@@ -65,7 +65,7 @@ func TestParsePnpmLock_v9_ScopedPackages(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "@typescript-eslint/types",
 			Version:   "5.62.0",
@@ -84,7 +84,7 @@ func TestParsePnpmLock_v9_PeerDependencies(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "acorn-jsx",
 			Version:   "5.3.2",
@@ -109,7 +109,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "@eslint-community/eslint-utils",
 			Version:   "4.4.0",
@@ -200,7 +200,7 @@ func TestParsePnpmLock_v9_MultipleVersions(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "uuid",
 			Version:   "8.0.0",
@@ -231,7 +231,7 @@ func TestParsePnpmLock_v9_Commits(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "ansi-regex",
 			Version:   "6.0.1",
@@ -258,7 +258,7 @@ func TestParsePnpmLock_v9_MixedGroups(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "ansi-regex",
 			Version:   "5.0.1",

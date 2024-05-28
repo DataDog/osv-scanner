@@ -48,6 +48,7 @@ type ScannerActions struct {
 	ConsiderScanPathAsRoot bool
 	PathRelativeToScanDir  bool
 	EnableParsers          []string
+	NoConfig               bool
 
 	ExperimentalScannerActions
 }
@@ -803,6 +804,10 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		}
 	}
 
+	if actions.NoConfig {
+		configManager.UseDefault()
+	}
+
 	if actions.ExperimentalScannerActions.ScanOCIImage != "" {
 		r.Infof("Scanning image %s\n", actions.ExperimentalScannerActions.ScanOCIImage)
 		pkgs, err := scanImage(r, actions.ExperimentalScannerActions.ScanOCIImage)
@@ -881,7 +886,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 	overrideGoVersion(r, filteredScannedPackages, &configManager)
 
 	if actions.OnlyPackages {
-		vulnerabilityResults := groupBySource(r, scannedPackages, actions)
+		vulnerabilityResults := groupBySource(r, filteredScannedPackages, actions)
 
 		return vulnerabilityResults, nil
 	}
