@@ -3,11 +3,12 @@ package scan
 import (
 	"errors"
 	"fmt"
-	"github.com/google/osv-scanner/pkg/lockfile"
 	"io"
 	"os"
 	"slices"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/lockfile"
 
 	"github.com/google/osv-scanner/pkg/osvscanner"
 	"github.com/google/osv-scanner/pkg/reporter"

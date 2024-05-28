@@ -28,6 +28,7 @@ func ExtractStringPositionInBlock(block []string, str string, blockStartLine int
 	if len(str) == 0 {
 		return nil
 	}
+
 	return ExtractDelimitedStringPositionInBlock(block, str, blockStartLine, "", "")
 }
 

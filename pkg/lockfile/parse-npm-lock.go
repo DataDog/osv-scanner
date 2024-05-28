@@ -30,9 +30,9 @@ type NpmLockDependency struct {
 	models.FilePosition
 }
 
-func (npmLockDependency *NpmLockDependency) GetNestedDependencies() map[string]*models.FilePosition {
+func (dep *NpmLockDependency) GetNestedDependencies() map[string]*models.FilePosition {
 	result := make(map[string]*models.FilePosition)
-	for key, value := range npmLockDependency.Dependencies {
+	for key, value := range dep.Dependencies {
 		result[key] = &value.FilePosition
 	}
 
