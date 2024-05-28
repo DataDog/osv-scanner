@@ -85,7 +85,9 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 				projectPropertySourceFile = lockfile.ProjectVersionSourceFile
 			}
 			position = fileposition.ExtractStringPositionInBlock(lockfile.Lines[projectPropertySourceFile], property, 1)
-			position.Filename = projectPropertySourceFile
+			if position != nil {
+				position.Filename = projectPropertySourceFile
+			}
 		} else {
 			lockProperty, ok = lockfile.Properties.m[propName]
 			if ok {
