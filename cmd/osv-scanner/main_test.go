@@ -1205,7 +1205,7 @@ func gatherFilepath(bom cyclonedx.BOM) []string {
 func TestRun_OCIImage(t *testing.T) {
 	t.Parallel()
 
-	//testutility.SkipIfNotAcceptanceTesting(t, "Not consistent on MacOS/Windows")
+	testutility.SkipIfNotAcceptanceTesting(t, "Not consistent on MacOS/Windows")
 
 	tests := []cliTestCase{
 		{
