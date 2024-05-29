@@ -246,12 +246,7 @@ func (e NpmLockExtractor) ShouldExtract(path string) bool {
 func (e NpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	var parsedLockfile *NpmLockfile
 
-	content, err := OpenLocalDepFile(f.Path())
-	if err != nil {
-		return []PackageDetails{}, fmt.Errorf("could not extract from %s: %w", f.Path(), err)
-	}
-
-	contentBytes, err := io.ReadAll(content)
+	contentBytes, err := io.ReadAll(f)
 	if err != nil {
 		return []PackageDetails{}, fmt.Errorf("could not read from %s: %w", f.Path(), err)
 	}
