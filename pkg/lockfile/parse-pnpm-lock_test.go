@@ -1,6 +1,10 @@
 package lockfile_test
 
 import (
+	"bytes"
+	"errors"
+	"github.com/stretchr/testify/assert"
+	"io"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -125,6 +129,55 @@ func TestParsePnpmLock_OnePackage(t *testing.T) {
 			CompareAs:      lockfile.PnpmEcosystem,
 		},
 	})
+}
+
+//nolint:paralleltest
+func TestParsePnpmLock_OnePackage_MatcherFailed(t *testing.T) {
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	stderr := os.Stderr
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+	os.Stderr = w
+
+	// Mock matcher to fail
+	matcherError := errors.New("matcher failed")
+	lockfile.PnpmExtractor.Matcher = FailingMatcher{Error: matcherError}
+
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/pnpm/one-package.yaml"))
+	packages, err := lockfile.ParsePnpmLock(path)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	// Capture stderr
+	_ = w.Close()
+	os.Stderr = stderr
+	var buffer bytes.Buffer
+	_, err = io.Copy(&buffer, r)
+	if err != nil {
+		t.Errorf("failed to copy stderr output: %v", err)
+	}
+	_ = r.Close()
+
+	assert.Contains(t, buffer.String(), matcherError.Error())
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+		{
+			Name:           "acorn",
+			Version:        "8.7.0",
+			TargetVersions: []string{"^8.7.0"},
+			Ecosystem:      lockfile.PnpmEcosystem,
+			CompareAs:      lockfile.PnpmEcosystem,
+		},
+	})
+
+	// Reset matcher mock
+	MockAllMatchers()
 }
 
 func TestParsePnpmLock_OnePackageV6Lockfile(t *testing.T) {
