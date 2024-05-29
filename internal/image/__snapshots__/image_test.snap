@@ -81,7 +81,7 @@
         {
           "name": "ca-certificates-cacert",
           "version": "20191127-r2",
-          "commit": "f24637bad53762e9a2f847dd2e67bb91b1a615c2",
+          "commit": "9677580919b73ca6eff94d3d31b9a846b4e40612",
           "ecosystem": "Alpine:v3.18",
           "compareAs": "Alpine",
           "blockLocation": {
@@ -896,6 +896,63 @@
               "end": 0
             },
             "file_name": ""
+          }
+        }
+      ]
+    },
+    {
+      "filePath": "/usr/app/node_modules/.package-lock.json",
+      "parsedAs": "node_modules",
+      "packages": [
+        {
+          "name": "cryo",
+          "version": "0.0.6",
+          "ecosystem": "npm",
+          "compareAs": "npm",
+          "blockLocation": {
+            "line": {
+              "start": 7,
+              "end": 14
+            },
+            "column": {
+              "start": 5,
+              "end": 6
+            },
+            "file_name": "/usr/app/node_modules/.package-lock.json"
+          }
+        },
+        {
+          "name": "minimist",
+          "version": "0.0.8",
+          "ecosystem": "npm",
+          "compareAs": "npm",
+          "blockLocation": {
+            "line": {
+              "start": 15,
+              "end": 20
+            },
+            "column": {
+              "start": 5,
+              "end": 6
+            },
+            "file_name": "/usr/app/node_modules/.package-lock.json"
+          }
+        },
+        {
+          "name": "mkdirp",
+          "version": "0.5.0",
+          "ecosystem": "npm",
+          "compareAs": "npm",
+          "blockLocation": {
+            "line": {
+              "start": 21,
+              "end": 33
+            },
+            "column": {
+              "start": 5,
+              "end": 6
+            },
+            "file_name": "/usr/app/node_modules/.package-lock.json"
           }
         }
       ]
