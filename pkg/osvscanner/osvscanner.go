@@ -48,7 +48,6 @@ type ScannerActions struct {
 	ConsiderScanPathAsRoot bool
 	PathRelativeToScanDir  bool
 	EnableParsers          []string
-	NoConfig               bool
 
 	ExperimentalScannerActions
 }
@@ -802,10 +801,6 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 			r.Errorf("Failed to read config file: %s\n", err)
 			return models.VulnerabilityResults{}, err
 		}
-	}
-
-	if actions.NoConfig {
-		configManager.UseDefault()
 	}
 
 	if actions.ExperimentalScannerActions.ScanOCIImage != "" {

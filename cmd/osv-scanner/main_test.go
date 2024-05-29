@@ -1151,7 +1151,6 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 				"",
 				"-r",
 				"--experimental-only-packages",
-				"--no-config",
 				"--format=cyclonedx-1-5",
 				"--paths-relative-to-scan-dir",
 				"./fixtures/encoding-integration-test-locks/" + tt.encoding,

@@ -63,10 +63,6 @@ func (c *ConfigManager) UseOverride(configPath string) error {
 	return nil
 }
 
-func (c *ConfigManager) UseDefault() {
-	c.OverrideConfig = &c.DefaultConfig
-}
-
 // Attempts to get the config
 func (c *ConfigManager) Get(r reporter.Reporter, targetPath string) Config {
 	if c.OverrideConfig != nil {
