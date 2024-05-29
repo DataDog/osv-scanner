@@ -154,6 +154,11 @@ func extractNpmPackageName(name string) string {
 	return pkgName
 }
 
+func extractRootKeyPackageName(name string) string {
+	_, right, _ := strings.Cut(name, "/")
+	return right
+}
+
 func (pkg NpmLockPackage) depGroups() []string {
 	if pkg.Dev {
 		return []string{"dev"}
@@ -207,10 +212,10 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 		// the dependencies with the version written as it appears in the package.json
 		var targetVersions []string
 		var targetVersion string
-		blockName := path.Base(namePath)
-		if dep, depOk := packages[""].Dependencies[blockName]; depOk {
+		rootKey := extractRootKeyPackageName(namePath)
+		if dep, depOk := packages[""].Dependencies[rootKey]; depOk {
 			targetVersion = dep
-		} else if devDep, devDepOk := packages[""].DevDependencies[blockName]; devDepOk {
+		} else if devDep, devDepOk := packages[""].DevDependencies[rootKey]; devDepOk {
 			targetVersion = devDep
 		}
 
@@ -229,15 +234,7 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 				}
 			}
 
-			// Multiple versions of the same dependency -> We want to set the
-			// target versions only for the one define by the user, not those that
-			// are transitive dependencies conflicting by version (thus they are installed
-			// in another dependency node_modules folder)
-			if strings.Count(namePath, "node_modules/") > 1 {
-				targetVersion = ""
-			} else {
-				targetVersions = []string{targetVersion}
-			}
+			targetVersions = []string{targetVersion}
 		}
 
 		_, exists := details[finalName+"@"+finalVersion]
