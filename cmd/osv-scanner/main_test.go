@@ -657,30 +657,30 @@ func TestRun_WithoutHostPathInformation(t *testing.T) {
 			name:          "one specific supported lockfile",
 			args:          []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--consider-scan-path-as-root", "./fixtures/locks-many/yarn.lock"},
 			wantExitCode:  0,
-			wantFilePaths: []string{"/yarn.lock"},
+			wantFilePaths: []string{"/package.json"},
 		},
 		{
 			name:         "Multiple lockfiles",
 			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--consider-scan-path-as-root", "./fixtures/locks-many"},
 			wantExitCode: 0,
 			wantFilePaths: []string{
-				"/package-lock.json",
-				"/yarn.lock",
+				"/package-lock.json", // TODO: remove when NPM is using the JSON matcher
+				"/package.json",
 			},
 		},
 		{
 			name:          "one specific supported lockfile (relative path)",
 			args:          []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many/yarn.lock"},
 			wantExitCode:  0,
-			wantFilePaths: []string{"yarn.lock"},
+			wantFilePaths: []string{"package.json"},
 		},
 		{
 			name:         "Multiple lockfiles (relative path)",
 			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many"},
 			wantExitCode: 0,
 			wantFilePaths: []string{
-				"package-lock.json",
-				"yarn.lock",
+				"package-lock.json", // TODO: remove when NPM is using the JSON matcher
+				"package.json",
 			},
 		},
 	}
@@ -1132,11 +1132,25 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 				Version:    "1.0.2",
 				Evidence: buildLocationEvidence(t, models.PackageLocations{
 					Block: models.PackageLocation{
-						Filename:    "yarn.lock",
-						LineStart:   5,
-						LineEnd:     8,
-						ColumnStart: 1,
-						ColumnEnd:   108,
+						Filename:    "package.json",
+						LineStart:   4,
+						LineEnd:     4,
+						ColumnStart: 5,
+						ColumnEnd:   31,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "package.json",
+						LineStart:   4,
+						LineEnd:     4,
+						ColumnStart: 6,
+						ColumnEnd:   20,
+					},
+					Version: &models.PackageLocation{
+						Filename:    "package.json",
+						LineStart:   4,
+						LineEnd:     4,
+						ColumnStart: 24,
+						ColumnEnd:   30,
 					},
 				}),
 			},
