@@ -212,10 +212,12 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 		var targetVersions []string
 		var targetVersion string
 		rootKey := extractRootKeyPackageName(namePath)
-		if dep, depOk := packages[""].Dependencies[rootKey]; depOk {
-			targetVersion = dep
-		} else if devDep, devDepOk := packages[""].DevDependencies[rootKey]; devDepOk {
-			targetVersion = devDep
+		if p, ok := packages[""]; ok {
+			if dep, ok := p.Dependencies[rootKey]; ok {
+				targetVersion = dep
+			} else if devDep, ok := p.DevDependencies[rootKey]; ok {
+				targetVersion = devDep
+			}
 		}
 
 		if len(targetVersion) > 0 {
