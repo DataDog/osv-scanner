@@ -55,6 +55,8 @@ type NpmLockPackage struct {
 	Optional    bool `json:"optional,omitempty"`
 
 	Link bool `json:"link,omitempty"`
+
+	models.FilePosition
 }
 
 type NpmLockfile struct {
@@ -257,6 +259,8 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 
 func parseNpmLock(lockfile NpmLockfile, lines []string) map[string]PackageDetails {
 	if lockfile.Packages != nil {
+		fileposition.InJSON("packages", lockfile.Packages, lines, 0)
+
 		return parseNpmLockPackages(lockfile.Packages)
 	}
 
