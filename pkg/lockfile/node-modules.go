@@ -11,9 +11,7 @@ func (e NodeModulesExtractor) ShouldExtract(path string) bool {
 }
 
 func (e NodeModulesExtractor) Extract(f DepFile) ([]PackageDetails, error) {
-	extractor := NpmLockExtractor{}
-
-	return extractor.Extract(f)
+	return NpmExtractor.Extract(f)
 }
 
 var _ Extractor = NodeModulesExtractor{}

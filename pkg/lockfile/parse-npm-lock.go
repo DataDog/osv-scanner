@@ -68,7 +68,6 @@ type NpmLockfile struct {
 
 const NpmEcosystem Ecosystem = "npm"
 
-
 func (dep *NpmLockDependency) depGroups() []string {
 	if dep.Dev && dep.Optional {
 		return []string{"dev", "optional"}
