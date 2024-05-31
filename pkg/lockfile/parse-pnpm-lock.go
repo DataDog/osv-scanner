@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/google/osv-scanner/internal/cachedregexp"
@@ -34,11 +35,22 @@ type PnpmLockPackages map[string]PnpmLockPackage
 type PnpmSpecifiers map[string]string
 type PnpmDependencies map[string]PnpmLockDependency
 
+type PnpmImporters struct {
+	Dot struct {
+		Dependencies         PnpmDependencies `yaml:"dependencies,omitempty"`
+		OptionalDependencies PnpmDependencies `yaml:"optionalDependencies,omitempty"`
+		DevDependencies      PnpmDependencies `yaml:"devDependencies,omitempty"`
+	} `yaml:".,omitempty"`
+}
+
 type PnpmLockfile struct {
-	Version      string           `yaml:"lockfileVersion"`
-	Packages     PnpmLockPackages `yaml:"packages,omitempty"`
-	Specifiers   PnpmSpecifiers   `yaml:"specifiers,omitempty"`
-	Dependencies PnpmDependencies `yaml:"dependencies,omitempty"`
+	Version              string           `yaml:"lockfileVersion"`
+	Packages             PnpmLockPackages `yaml:"packages,omitempty"`
+	Specifiers           PnpmSpecifiers   `yaml:"specifiers,omitempty"`
+	Dependencies         PnpmDependencies `yaml:"dependencies,omitempty"`
+	OptionalDependencies PnpmDependencies `yaml:"optionalDependencies,omitempty"`
+	DevDependencies      PnpmDependencies `yaml:"devDependencies,omitempty"`
+	Importers            PnpmImporters    `yaml:"importers,omitempty"`
 }
 
 func (pnpmDependencies *PnpmDependencies) UnmarshalYAML(value *yaml.Node) error {
@@ -146,9 +158,23 @@ func parseNameAtVersion(value string) (name string, version string) {
 }
 
 func sanitizeLocalDependencyPath(value string, prefix string) string {
-	value = strings.TrimPrefix(value, prefix+":")
-	// Current dir locations may include an initial './'
-	return strings.TrimPrefix(value, "./")
+	if strings.HasPrefix(value, prefix+":") {
+		value = strings.TrimPrefix(value, prefix+":")
+		// Current dir locations may include an initial './'
+		return strings.TrimPrefix(value, "./")
+	}
+
+	return value
+}
+
+func getVersionInfo(name string, maps ...map[string]PnpmLockDependency) (specifier, version string, found bool) {
+	for _, m := range maps {
+		if info, ok := m[name]; ok {
+			return info.Specifier, info.Version, true
+		}
+	}
+
+	return "", "", false
 }
 
 func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
@@ -156,6 +182,16 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 
 	for s, pkg := range lockfile.Packages {
 		name, version := extractPnpmPackageNameAndVersion(s, lockfile.Version)
+
+		// Extract right part of key to then match the specifier
+		var lastIndex int
+		lockfileVersion, _ := strconv.ParseFloat(strings.ReplaceAll(lockfile.Version, "-flavoured", ""), 32)
+		if lockfileVersion >= 6.0 {
+			lastIndex = strings.LastIndex(s, "@")
+		} else {
+			lastIndex = strings.LastIndex(s, "/")
+		}
+		right := s[lastIndex+1:]
 
 		// "name" is only present if it's not in the dependency path and takes
 		// priority over whatever name we think we've extracted (if any)
@@ -189,30 +225,35 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 			depGroups = append(depGroups, "dev")
 		}
 
-		targetVersions := make([]string, 1)
-		if v, ok := lockfile.Specifiers[name]; ok {
-			dependencyVersion := lockfile.Dependencies[name].Version
+		var targetVersions []string
+		var targetVersion string
+		var dependencyVersion string
 
-			// Sanitize the target/dependency version
-			prefixes := []string{"file", "link", "portal"}
-			for _, prefix := range prefixes {
-				if strings.HasPrefix(v, prefix+":") || strings.HasPrefix(dependencyVersion, prefix+":") {
-					v = sanitizeLocalDependencyPath(v, prefix)
-					dependencyVersion = sanitizeLocalDependencyPath(dependencyVersion, prefix)
-				}
+		// Find target and dependency version
+		if sp, ok := lockfile.Specifiers[name]; ok {
+			// lockfile version <6.0
+			targetVersion = sp
+			dependencyVersion = ""
+			if _, v, f := getVersionInfo(name, lockfile.Dependencies, lockfile.OptionalDependencies, lockfile.DevDependencies); f {
+				dependencyVersion = v
 			}
-
-			// Multiple versions of the same dependency -> We want to set the
-			// target versions only for the one included in the dependencies map
-			if strings.Contains(s, dependencyVersion) {
-				targetVersions[0] = v
-			}
-		} else if d, ok := lockfile.Dependencies[name]; ok {
-			targetVersions[0] = d.Specifier
+		} else if sp, v, f := getVersionInfo(name, lockfile.Dependencies, lockfile.Importers.Dot.Dependencies, lockfile.Importers.Dot.OptionalDependencies, lockfile.Importers.Dot.DevDependencies); f {
+			// lockfile version >6.0
+			targetVersion = sp
+			dependencyVersion = v
 		}
 
-		if targetVersions[0] == "" {
-			targetVersions = nil
+		// Sanitize the target/dependency version
+		prefixes := []string{"file", "link", "portal"}
+		for _, prefix := range prefixes {
+			targetVersion = sanitizeLocalDependencyPath(targetVersion, prefix)
+			dependencyVersion = sanitizeLocalDependencyPath(dependencyVersion, prefix)
+		}
+
+		// Multiple versions of the same dependency -> We want to set the
+		// target versions only for the one included in the dependencies map
+		if strings.Contains(dependencyVersion, right) {
+			targetVersions = []string{targetVersion}
 		}
 
 		packages = append(packages, PackageDetails{
