@@ -174,7 +174,7 @@ func (pkg NpmLockPackage) depGroups() []string {
 	return nil
 }
 
-func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]PackageDetails {
+func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[string]PackageDetails {
 	details := map[string]PackageDetails{}
 
 	keys := reflect.ValueOf(packages).MapKeys()
@@ -248,8 +248,13 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 				TargetVersions: targetVersions,
 				Ecosystem:      NpmEcosystem,
 				CompareAs:      NpmEcosystem,
-				Commit:         commit,
-				DepGroups:      detail.depGroups(),
+				BlockLocation: models.FilePosition{
+					Line:     detail.Line,
+					Column:   detail.Column,
+					Filename: path,
+				},
+				Commit:    commit,
+				DepGroups: detail.depGroups(),
 			}
 		}
 	}
@@ -261,7 +266,7 @@ func parseNpmLock(lockfile NpmLockfile, lines []string) map[string]PackageDetail
 	if lockfile.Packages != nil {
 		fileposition.InJSON("packages", lockfile.Packages, lines, 0)
 
-		return parseNpmLockPackages(lockfile.Packages)
+		return parseNpmLockPackages(lockfile.Packages, lockfile.SourceFile)
 	}
 
 	fileposition.InJSON("dependencies", lockfile.Dependencies, lines, 0)
