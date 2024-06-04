@@ -3,6 +3,7 @@ package lockfile_test
 import (
 	"bytes"
 	"errors"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"io/fs"
 	"os"
@@ -72,7 +73,7 @@ func TestParsePnpmLock_FileDoesNotExist(t *testing.T) {
 	packages, err := lockfile.ParsePnpmLock("fixtures/pnpm/does-not-exist")
 
 	expectErrIs(t, err, fs.ErrNotExist)
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{})
+	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
 func TestParsePnpmLock_InvalidYaml(t *testing.T) {
@@ -81,7 +82,7 @@ func TestParsePnpmLock_InvalidYaml(t *testing.T) {
 	packages, err := lockfile.ParsePnpmLock("fixtures/pnpm/not-yaml.txt")
 
 	expectErrContaining(t, err, "could not extract from")
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{})
+	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
 func TestParsePnpmLock_Empty(t *testing.T) {
@@ -93,7 +94,7 @@ func TestParsePnpmLock_Empty(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{})
+	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
 func TestParsePnpmLock_NoPackages(t *testing.T) {
@@ -105,7 +106,7 @@ func TestParsePnpmLock_NoPackages(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{})
+	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
 func TestParsePnpmLock_OnePackage(t *testing.T) {
@@ -121,13 +122,20 @@ func TestParsePnpmLock_OnePackage(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "acorn",
 			Version:        "8.7.0",
 			TargetVersions: []string{"^8.7.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 15},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -167,13 +175,20 @@ func TestParsePnpmLock_OnePackage_MatcherFailed(t *testing.T) {
 	_ = r.Close()
 
 	assert.Contains(t, buffer.String(), matcherError.Error())
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "acorn",
 			Version:        "8.7.0",
 			TargetVersions: []string{"^8.7.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 15},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 
@@ -194,13 +209,20 @@ func TestParsePnpmLock_OnePackageV6Lockfile(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "acorn",
 			Version:        "8.7.0",
 			TargetVersions: []string{"8.7.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 10, End: 14},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -218,13 +240,20 @@ func TestParsePnpmLock_OnePackageDev(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "acorn",
 			Version:        "8.7.0",
 			TargetVersions: []string{"^8.7.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 15},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -242,13 +271,20 @@ func TestParsePnpmLock_ScopedPackages(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "@typescript-eslint/types",
 			Version:        "5.13.0",
 			TargetVersions: []string{"^5.0.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 14},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -266,13 +302,20 @@ func TestParsePnpmLock_ScopedPackagesV6Lockfile(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "@typescript-eslint/types",
 			Version:        "5.57.1",
 			TargetVersions: []string{"^5.0.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 10, End: 13},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -290,13 +333,20 @@ func TestParsePnpmLock_PeerDependencies(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "acorn-jsx",
 			Version:        "5.3.2",
 			TargetVersions: []string{"^5.3.2"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 13, End: 19},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:           "acorn",
@@ -304,6 +354,13 @@ func TestParsePnpmLock_PeerDependencies(t *testing.T) {
 			TargetVersions: []string{"^8.7.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 21, End: 25},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -321,13 +378,20 @@ func TestParsePnpmLock_PeerDependenciesAdvanced(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "@typescript-eslint/eslint-plugin",
 			Version:        "5.13.0",
 			TargetVersions: []string{"^5.12.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 17, End: 42},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:           "@typescript-eslint/parser",
@@ -335,36 +399,78 @@ func TestParsePnpmLock_PeerDependenciesAdvanced(t *testing.T) {
 			TargetVersions: []string{"^5.12.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 44, End: 62},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "@typescript-eslint/type-utils",
 			Version:   "5.13.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 64, End: 81},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "@typescript-eslint/types",
 			Version:   "5.13.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 83, End: 86},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "@typescript-eslint/typescript-estree",
 			Version:   "5.13.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 88, End: 107},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "@typescript-eslint/utils",
 			Version:   "5.13.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 109, End: 125},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "eslint-utils",
 			Version:   "3.0.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 127, End: 135},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:           "eslint",
@@ -372,12 +478,26 @@ func TestParsePnpmLock_PeerDependenciesAdvanced(t *testing.T) {
 			TargetVersions: []string{"^8.0.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 137, End: 179},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "tsutils",
 			Version:   "3.21.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 181, End: 189},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -395,91 +515,189 @@ func TestParsePnpmLock_MultiplePackages(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "aws-sdk",
 			Version:        "2.1087.0",
 			TargetVersions: []string{"^2.1087.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 24},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "base64-js",
 			Version:   "1.5.1",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 26, End: 28},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "buffer",
 			Version:   "4.9.2",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 30, End: 36},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "events",
 			Version:   "1.1.1",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 38, End: 41},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "ieee754",
 			Version:   "1.1.13",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 43, End: 45},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "isarray",
 			Version:   "1.0.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 47, End: 49},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "jmespath",
 			Version:   "0.16.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 51, End: 54},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "punycode",
 			Version:   "1.3.2",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 56, End: 58},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "querystring",
 			Version:   "0.2.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 60, End: 64},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "sax",
 			Version:   "1.2.1",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 66, End: 68},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "url",
 			Version:   "0.10.3",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 70, End: 75},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "uuid",
 			Version:   "3.3.2",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 77, End: 81},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "xml2js",
 			Version:   "0.4.19",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 83, End: 88},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "xmlbuilder",
 			Version:   "9.0.7",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 90, End: 93},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -497,12 +715,19 @@ func TestParsePnpmLock_MultipleVersions(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "uuid",
 			Version:   "3.3.2",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 13, End: 17},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:           "uuid",
@@ -510,12 +735,26 @@ func TestParsePnpmLock_MultipleVersions(t *testing.T) {
 			TargetVersions: []string{"^8.0.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 19, End: 22},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "xmlbuilder",
 			Version:   "9.0.7",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 24, End: 27},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -533,7 +772,7 @@ func TestParsePnpmLock_Tarball(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "@my-org/my-package",
 			Version:        "3.2.3",
@@ -541,7 +780,14 @@ func TestParsePnpmLock_Tarball(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			Commit:         "",
-			DepGroups:      []string{"dev"},
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 10, End: 14},
+					Column:   models.Position{Start: 3, End: 14},
+					Filename: path,
+				},
+			},
+			DepGroups: []string{"dev"},
 		},
 	})
 }
@@ -559,48 +805,97 @@ func TestParsePnpmLock_Exotic(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "foo",
 			Version:   "1.0.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 10, End: 10},
+					Column:   models.Position{Start: 3, End: 14},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "@foo/bar",
 			Version:   "1.0.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 11},
+					Column:   models.Position{Start: 3, End: 19},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "foo",
 			Version:   "1.1.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 12, End: 12},
+					Column:   models.Position{Start: 3, End: 32},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "@foo/bar",
 			Version:   "1.1.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 13, End: 13},
+					Column:   models.Position{Start: 3, End: 37},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "foo",
 			Version:   "1.2.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 15, End: 15},
+					Column:   models.Position{Start: 3, End: 25},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "foo",
 			Version:   "1.3.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 16, End: 16},
+					Column:   models.Position{Start: 3, End: 35},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "foo",
 			Version:   "1.4.0",
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 17, End: 17},
+					Column:   models.Position{Start: 3, End: 40},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -618,7 +913,7 @@ func TestParsePnpmLock_Commits(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "my-bitbucket-package",
 			Version:        "1.0.0",
@@ -626,6 +921,13 @@ func TestParsePnpmLock_Commits(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			Commit:         "6104ae42cd32c3d724036d3964678f197b2c9cdb",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 14, End: 18},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:           "@my-scope/my-package",
@@ -634,6 +936,13 @@ func TestParsePnpmLock_Commits(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			Commit:         "267087851ad5fac92a184749c27cd539e2fc862e",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 20, End: 26},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "@my-scope/my-other-package",
@@ -641,6 +950,13 @@ func TestParsePnpmLock_Commits(t *testing.T) {
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
 			Commit:    "fbfc962ab51eb1d754749b68c064460221fbd689",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 28, End: 32},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "faker-parser",
@@ -648,6 +964,13 @@ func TestParsePnpmLock_Commits(t *testing.T) {
 			Ecosystem: lockfile.PnpmEcosystem,
 			CompareAs: lockfile.PnpmEcosystem,
 			Commit:    "d2dc42a9351d4d89ec48c525e34f612b6d77993f",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 34, End: 40},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:           "mocks",
@@ -656,6 +979,13 @@ func TestParsePnpmLock_Commits(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			Commit:         "590f321b4eb3f692bb211bd74e22947639a6f79d",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 42, End: 48},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 	})
 }
@@ -673,7 +1003,7 @@ func TestParsePnpmLock_Files(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:           "my-file-package",
 			Version:        "0.0.0",
@@ -681,6 +1011,13 @@ func TestParsePnpmLock_Files(t *testing.T) {
 			Ecosystem:      lockfile.NpmEcosystem,
 			CompareAs:      lockfile.NpmEcosystem,
 			Commit:         "",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 10, End: 14},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "a-local-package",
@@ -688,6 +1025,13 @@ func TestParsePnpmLock_Files(t *testing.T) {
 			Ecosystem: lockfile.NpmEcosystem,
 			CompareAs: lockfile.NpmEcosystem,
 			Commit:    "",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 16, End: 20},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "a-nested-local-package",
@@ -695,6 +1039,13 @@ func TestParsePnpmLock_Files(t *testing.T) {
 			Ecosystem: lockfile.NpmEcosystem,
 			CompareAs: lockfile.NpmEcosystem,
 			Commit:    "",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 22, End: 26},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "one-up",
@@ -702,6 +1053,13 @@ func TestParsePnpmLock_Files(t *testing.T) {
 			Ecosystem: lockfile.NpmEcosystem,
 			CompareAs: lockfile.NpmEcosystem,
 			Commit:    "",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 28, End: 32},
+					Column:   models.Position{Start: 3, End: 15},
+					Filename: path,
+				},
+			},
 		},
 		{
 			Name:      "one-up-with-peer",
@@ -709,6 +1067,13 @@ func TestParsePnpmLock_Files(t *testing.T) {
 			Ecosystem: lockfile.NpmEcosystem,
 			CompareAs: lockfile.NpmEcosystem,
 			Commit:    "",
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 34, End: 40},
+					Column:   models.Position{Start: 3, End: 25},
+					Filename: path,
+				},
+			},
 		},
 	})
 }

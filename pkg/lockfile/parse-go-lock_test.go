@@ -112,20 +112,22 @@ func TestParseGoLock_WithPathMajor(t *testing.T) {
 			Version:   "8",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 1, End: 54},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 46, End: 47},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 9, End: 47},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 1, End: 54},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 46, End: 47},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 9, End: 47},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -133,10 +135,12 @@ func TestParseGoLock_WithPathMajor(t *testing.T) {
 			Version:   "1.11",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 0, End: 0},
-				Column:   models.Position{Start: 0, End: 0},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 0, End: 0},
+					Column:   models.Position{Start: 0, End: 0},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -161,15 +165,17 @@ func TestParseGoLock_WithoutSupportedVersioning(t *testing.T) {
 			Version:   "0.0.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 1, End: 51},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 9, End: 44},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 1, End: 51},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 9, End: 44},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -177,10 +183,12 @@ func TestParseGoLock_WithoutSupportedVersioning(t *testing.T) {
 			Version:   "1.11",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 0, End: 0},
-				Column:   models.Position{Start: 0, End: 0},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 0, End: 0},
+					Column:   models.Position{Start: 0, End: 0},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -205,20 +213,22 @@ func TestParseGoLock_OnePackage(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 2, End: 35},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 30, End: 35},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 2, End: 28},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 2, End: 35},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 30, End: 35},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 2, End: 28},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -243,20 +253,22 @@ func TestParseGoLock_TwoPackages(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 2, End: 35},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 30, End: 35},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 2, End: 28},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 2, End: 35},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 30, End: 35},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 2, End: 28},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -264,20 +276,22 @@ func TestParseGoLock_TwoPackages(t *testing.T) {
 			Version:   "2.4.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 2, End: 25},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 20, End: 25},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 2, End: 18},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 2, End: 25},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 20, End: 25},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 2, End: 18},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -285,10 +299,12 @@ func TestParseGoLock_TwoPackages(t *testing.T) {
 			Version:   "1.17",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 0, End: 0},
-				Column:   models.Position{Start: 0, End: 0},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 0, End: 0},
+					Column:   models.Position{Start: 0, End: 0},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -313,20 +329,22 @@ func TestParseGoLock_IndirectPackages(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 2, End: 35},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 30, End: 35},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 2, End: 28},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 2, End: 35},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 30, End: 35},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 2, End: 28},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -334,20 +352,22 @@ func TestParseGoLock_IndirectPackages(t *testing.T) {
 			Version:   "2.4.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 2, End: 25},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 20, End: 25},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 2, End: 18},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 2, End: 25},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 20, End: 25},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 2, End: 18},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -355,20 +375,22 @@ func TestParseGoLock_IndirectPackages(t *testing.T) {
 			Version:   "0.1.9",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 11, End: 11},
-				Column:   models.Position{Start: 2, End: 38},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 11, End: 11},
-				Column:   models.Position{Start: 33, End: 38},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 11, End: 11},
-				Column:   models.Position{Start: 2, End: 31},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 11},
+					Column:   models.Position{Start: 2, End: 38},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 11, End: 11},
+					Column:   models.Position{Start: 33, End: 38},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 11, End: 11},
+					Column:   models.Position{Start: 2, End: 31},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -376,20 +398,22 @@ func TestParseGoLock_IndirectPackages(t *testing.T) {
 			Version:   "0.0.14",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 12, End: 12},
-				Column:   models.Position{Start: 2, End: 36},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 12, End: 12},
-				Column:   models.Position{Start: 30, End: 36},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 12, End: 12},
-				Column:   models.Position{Start: 2, End: 28},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 12, End: 12},
+					Column:   models.Position{Start: 2, End: 36},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 12, End: 12},
+					Column:   models.Position{Start: 30, End: 36},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 12, End: 12},
+					Column:   models.Position{Start: 2, End: 28},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -397,20 +421,22 @@ func TestParseGoLock_IndirectPackages(t *testing.T) {
 			Version:   "0.0.0-20210630005230-0f9fa26af87c",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
-				Column:   models.Position{Start: 2, End: 53},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
-				Column:   models.Position{Start: 20, End: 53},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
-				Column:   models.Position{Start: 2, End: 18},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 13, End: 13},
+					Column:   models.Position{Start: 2, End: 53},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 13, End: 13},
+					Column:   models.Position{Start: 20, End: 53},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 13, End: 13},
+					Column:   models.Position{Start: 2, End: 18},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -418,10 +444,12 @@ func TestParseGoLock_IndirectPackages(t *testing.T) {
 			Version:   "1.17",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 0, End: 0},
-				Column:   models.Position{Start: 0, End: 0},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 0, End: 0},
+					Column:   models.Position{Start: 0, End: 0},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -446,20 +474,22 @@ func TestParseGoLock_Replacements_One(t *testing.T) {
 			Version:   "1.4.5",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 1, End: 63},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 58, End: 63},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 36, End: 56},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 1, End: 63},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 58, End: 63},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 36, End: 56},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -484,20 +514,22 @@ func TestParseGoLock_Replacements_Mixed(t *testing.T) {
 			Version:   "1.4.5",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 5, End: 59},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 54, End: 59},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 32, End: 52},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 5, End: 59},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 54, End: 59},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 32, End: 52},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -505,20 +537,22 @@ func TestParseGoLock_Replacements_Mixed(t *testing.T) {
 			Version:   "0.5.6",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 5, End: 28},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 23, End: 28},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 5, End: 21},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 5, End: 28},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 23, End: 28},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 5, End: 21},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -543,20 +577,22 @@ func TestParseGoLock_Replacements_Local(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 5, End: 38},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 33, End: 38},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 5, End: 31},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 5, End: 38},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 33, End: 38},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 5, End: 31},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -564,15 +600,17 @@ func TestParseGoLock_Replacements_Local(t *testing.T) {
 			Version:   "",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 5, End: 42},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 32, End: 42},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 5, End: 42},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 32, End: 42},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -597,20 +635,22 @@ func TestParseGoLock_Replacements_Different(t *testing.T) {
 			Version:   "1.4.5",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 5, End: 59},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 54, End: 59},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 32, End: 52},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 5, End: 59},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 54, End: 59},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 32, End: 52},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -618,20 +658,22 @@ func TestParseGoLock_Replacements_Different(t *testing.T) {
 			Version:   "1.4.2",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 5, End: 59},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 54, End: 59},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 32, End: 52},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 8, End: 8},
+					Column:   models.Position{Start: 5, End: 59},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 8, End: 8},
+					Column:   models.Position{Start: 54, End: 59},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 8, End: 8},
+					Column:   models.Position{Start: 32, End: 52},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -656,20 +698,22 @@ func TestParseGoLock_Replacements_NotRequired(t *testing.T) {
 			Version:   "0.5.6",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 5, End: 28},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 23, End: 28},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 5, End: 21},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 5, End: 28},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 23, End: 28},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 2, End: 2},
+					Column:   models.Position{Start: 5, End: 21},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -677,20 +721,22 @@ func TestParseGoLock_Replacements_NotRequired(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 5, End: 38},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 33, End: 38},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 5, End: 31},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 5, End: 38},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 33, End: 38},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 5, End: 31},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -715,20 +761,22 @@ func TestParseGoLock_Replacements_NoVersion(t *testing.T) {
 			Version:   "1.4.5",
 			Ecosystem: lockfile.GoEcosystem,
 			CompareAs: lockfile.GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 5, End: 52},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 47, End: 52},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 25, End: 45},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 5, End: 52},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 47, End: 52},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 25, End: 45},
+					Filename: path,
+				},
 			},
 		},
 	})

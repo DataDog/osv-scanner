@@ -123,20 +123,22 @@ func TestParseMavenLock_OnePackage(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 11},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 19, End: 33},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 10, End: 10},
-				Column:   models.Position{Start: 16, End: 21},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 11},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 9, End: 9},
+					Column:   models.Position{Start: 19, End: 33},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 10, End: 10},
+					Column:   models.Position{Start: 16, End: 21},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -161,20 +163,22 @@ func TestParseMavenLock_OnePackageWithMultipleVersionVariable(t *testing.T) {
 			Version:   "1.0.0-SNAPSHOT",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 9, End: 13},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 11, End: 11},
-				Column:   models.Position{Start: 19, End: 33},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 12, End: 12},
-				Column:   models.Position{Start: 16, End: 40},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 9, End: 13},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 11, End: 11},
+					Column:   models.Position{Start: 19, End: 33},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 12, End: 12},
+					Column:   models.Position{Start: 16, End: 40},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -199,20 +203,22 @@ func TestParseMavenLock_TwoPackages(t *testing.T) {
 			Version:   "4.1.42.Final",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 11},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 10, End: 10},
-				Column:   models.Position{Start: 16, End: 28},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 11},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 9, End: 9},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 10, End: 10},
+					Column:   models.Position{Start: 16, End: 28},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -220,20 +226,22 @@ func TestParseMavenLock_TwoPackages(t *testing.T) {
 			Version:   "1.7.25",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 12, End: 16},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 14, End: 14},
-				Column:   models.Position{Start: 19, End: 32},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 15, End: 15},
-				Column:   models.Position{Start: 16, End: 22},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 12, End: 16},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 14, End: 14},
+					Column:   models.Position{Start: 19, End: 32},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 15, End: 15},
+					Column:   models.Position{Start: 16, End: 22},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -258,20 +266,22 @@ func TestParseMavenLock_WithDependencyManagement(t *testing.T) {
 			Version:   "4.1.42.Final",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 10},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 23, End: 23},
-				Column:   models.Position{Start: 18, End: 30},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 10},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 9, End: 9},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 23, End: 23},
+					Column:   models.Position{Start: 18, End: 30},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -279,20 +289,22 @@ func TestParseMavenLock_WithDependencyManagement(t *testing.T) {
 			Version:   "1.7.25",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 11, End: 15},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
-				Column:   models.Position{Start: 19, End: 32},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 14, End: 14},
-				Column:   models.Position{Start: 16, End: 22},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 15},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 13, End: 13},
+					Column:   models.Position{Start: 19, End: 32},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 14, End: 14},
+					Column:   models.Position{Start: 16, End: 22},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -317,20 +329,22 @@ func TestParseMavenLock_Interpolation(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 18, End: 22},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 12, End: 12},
-				Column:   models.Position{Start: 23, End: 28},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 18, End: 22},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 12, End: 12},
+					Column:   models.Position{Start: 23, End: 28},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -338,20 +352,22 @@ func TestParseMavenLock_Interpolation(t *testing.T) {
 			Version:   "2.3.4",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 24, End: 28},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 26, End: 26},
-				Column:   models.Position{Start: 19, End: 29},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
-				Column:   models.Position{Start: 25, End: 30},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 24, End: 28},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 26, End: 26},
+					Column:   models.Position{Start: 19, End: 29},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 13, End: 13},
+					Column:   models.Position{Start: 25, End: 30},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -359,20 +375,22 @@ func TestParseMavenLock_Interpolation(t *testing.T) {
 			Version:   "9.4.35.v20201120",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 30, End: 33},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 32, End: 32},
-				Column:   models.Position{Start: 19, End: 33},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 14, End: 14},
-				Column:   models.Position{Start: 20, End: 42},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 30, End: 33},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 32, End: 32},
+					Column:   models.Position{Start: 19, End: 33},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 14, End: 14},
+					Column:   models.Position{Start: 20, End: 42},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -398,20 +416,22 @@ func TestMavenLock_WithParent(t *testing.T) {
 			Version:   "3.0.2",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 26, End: 29},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 28, End: 28},
-				Column:   models.Position{Start: 19, End: 25},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 18, End: 23},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 26, End: 29},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 28, End: 28},
+					Column:   models.Position{Start: 19, End: 25},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 18, End: 23},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -419,20 +439,22 @@ func TestMavenLock_WithParent(t *testing.T) {
 			Version:   "4.1.42.Final",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 14, End: 17},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 16, End: 16},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 15, End: 15},
-				Column:   models.Position{Start: 18, End: 30},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 14, End: 17},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 16, End: 16},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 15, End: 15},
+					Column:   models.Position{Start: 18, End: 30},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -440,20 +462,22 @@ func TestMavenLock_WithParent(t *testing.T) {
 			Version:   "1.7.25",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 18, End: 22},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 19, End: 32},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 21, End: 21},
-				Column:   models.Position{Start: 16, End: 22},
-				Filename: childPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 18, End: 22},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 19, End: 32},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 21, End: 21},
+					Column:   models.Position{Start: 16, End: 22},
+					Filename: childPath,
+				},
 			},
 		},
 		{
@@ -461,20 +485,22 @@ func TestMavenLock_WithParent(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 23, End: 27},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 25, End: 25},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 23, End: 28},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 23, End: 27},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 25, End: 25},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 23, End: 28},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -482,20 +508,22 @@ func TestMavenLock_WithParent(t *testing.T) {
 			Version:   "2.3.4",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 28, End: 32},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 30, End: 30},
-				Column:   models.Position{Start: 19, End: 29},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 25, End: 30},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 28, End: 32},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 30, End: 30},
+					Column:   models.Position{Start: 19, End: 29},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 25, End: 30},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -503,20 +531,22 @@ func TestMavenLock_WithParent(t *testing.T) {
 			Version:   "1.0-SNAPSHOT",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 33, End: 37},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 35, End: 35},
-				Column:   models.Position{Start: 19, End: 22},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 12, End: 24},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 33, End: 37},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 35, End: 35},
+					Column:   models.Position{Start: 19, End: 22},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 8, End: 8},
+					Column:   models.Position{Start: 12, End: 24},
+					Filename: parentPath,
+				},
 			},
 		},
 	})
@@ -542,20 +572,22 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			Version:   "3.0.2",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 25, End: 28},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 27, End: 27},
-				Column:   models.Position{Start: 19, End: 25},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 19, End: 19},
-				Column:   models.Position{Start: 18, End: 23},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 25, End: 28},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 27, End: 27},
+					Column:   models.Position{Start: 19, End: 25},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 19, End: 19},
+					Column:   models.Position{Start: 18, End: 23},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -563,20 +595,22 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			Version:   "4.1.42.Final",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 14, End: 17},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 16, End: 16},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 14, End: 14},
-				Column:   models.Position{Start: 18, End: 30},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 14, End: 17},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 16, End: 16},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 14, End: 14},
+					Column:   models.Position{Start: 18, End: 30},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -584,20 +618,22 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			Version:   "1.7.25",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 18, End: 22},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 19, End: 32},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 21, End: 21},
-				Column:   models.Position{Start: 16, End: 22},
-				Filename: childPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 18, End: 22},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 19, End: 32},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 21, End: 21},
+					Column:   models.Position{Start: 16, End: 22},
+					Filename: childPath,
+				},
 			},
 		},
 		{
@@ -605,20 +641,22 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 23, End: 27},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 25, End: 25},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 23, End: 28},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 23, End: 27},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 25, End: 25},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 23, End: 28},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -626,20 +664,22 @@ func TestMavenLock_WithParentDirOnly(t *testing.T) {
 			Version:   "2.3.4",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 28, End: 32},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 30, End: 30},
-				Column:   models.Position{Start: 19, End: 29},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 25, End: 30},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 28, End: 32},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 30, End: 30},
+					Column:   models.Position{Start: 19, End: 29},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 25, End: 30},
+					Filename: parentPath,
+				},
 			},
 		},
 	})
@@ -665,20 +705,22 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			Version:   "3.0.2",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 25, End: 28},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 27, End: 27},
-				Column:   models.Position{Start: 19, End: 25},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 19, End: 19},
-				Column:   models.Position{Start: 18, End: 23},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 25, End: 28},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 27, End: 27},
+					Column:   models.Position{Start: 19, End: 25},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 19, End: 19},
+					Column:   models.Position{Start: 18, End: 23},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -686,20 +728,22 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			Version:   "4.1.42.Final",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 13, End: 16},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 15, End: 15},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 14, End: 14},
-				Column:   models.Position{Start: 18, End: 30},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 13, End: 16},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 15, End: 15},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 14, End: 14},
+					Column:   models.Position{Start: 18, End: 30},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -707,20 +751,22 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			Version:   "1.7.25",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 17, End: 21},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 19, End: 19},
-				Column:   models.Position{Start: 19, End: 32},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 16, End: 22},
-				Filename: childPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 17, End: 21},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 19, End: 19},
+					Column:   models.Position{Start: 19, End: 32},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 16, End: 22},
+					Filename: childPath,
+				},
 			},
 		},
 		{
@@ -728,20 +774,22 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 22, End: 26},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 24, End: 24},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 23, End: 28},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 22, End: 26},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 24, End: 24},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 23, End: 28},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -749,20 +797,22 @@ func TestMavenLock_WithParentWithoutRelativePath(t *testing.T) {
 			Version:   "2.3.4",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 27, End: 31},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 29, End: 29},
-				Column:   models.Position{Start: 19, End: 29},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 25, End: 30},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 27, End: 31},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 29, End: 29},
+					Column:   models.Position{Start: 19, End: 29},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 25, End: 30},
+					Filename: parentPath,
+				},
 			},
 		},
 	})
@@ -788,20 +838,22 @@ func TestMavenLock_WithParent_Child_Project(t *testing.T) {
 			Version:   "1.0-CHILD-SNAPSHOT",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 11, End: 15},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
-				Column:   models.Position{Start: 19, End: 25},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 12, End: 30},
-				Filename: childPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 11, End: 15},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 13, End: 13},
+					Column:   models.Position{Start: 19, End: 25},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 12, End: 30},
+					Filename: childPath,
+				},
 			},
 		},
 	})
@@ -828,20 +880,22 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			Version:   "3.0.2",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 26, End: 29},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: rootPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 28, End: 28},
-				Column:   models.Position{Start: 19, End: 25},
-				Filename: rootPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 18, End: 23},
-				Filename: rootPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 26, End: 29},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: rootPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 28, End: 28},
+					Column:   models.Position{Start: 19, End: 25},
+					Filename: rootPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 18, End: 23},
+					Filename: rootPath,
+				},
 			},
 		},
 		{
@@ -849,20 +903,22 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			Version:   "4.1.42.Final",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 14, End: 17},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 16, End: 16},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 15, End: 15},
-				Column:   models.Position{Start: 18, End: 30},
-				Filename: rootPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 14, End: 17},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 16, End: 16},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 15, End: 15},
+					Column:   models.Position{Start: 18, End: 30},
+					Filename: rootPath,
+				},
 			},
 		},
 		{
@@ -870,20 +926,22 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			Version:   "1.7.25",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 18, End: 22},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 19, End: 32},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 21, End: 21},
-				Column:   models.Position{Start: 16, End: 22},
-				Filename: parentPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 18, End: 22},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 19, End: 32},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 21, End: 21},
+					Column:   models.Position{Start: 16, End: 22},
+					Filename: parentPath,
+				},
 			},
 		},
 		{
@@ -891,20 +949,22 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			Version:   "1.0.0",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 23, End: 27},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 25, End: 25},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 23, End: 28},
-				Filename: rootPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 23, End: 27},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 25, End: 25},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 23, End: 28},
+					Filename: rootPath,
+				},
 			},
 		},
 		{
@@ -912,20 +972,22 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			Version:   "9.4.35.v20201120",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 14, End: 18},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: childPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 16, End: 16},
-				Column:   models.Position{Start: 19, End: 29},
-				Filename: childPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 20, End: 42},
-				Filename: rootPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 14, End: 18},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: childPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 16, End: 16},
+					Column:   models.Position{Start: 19, End: 29},
+					Filename: childPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 20, End: 42},
+					Filename: rootPath,
+				},
 			},
 		},
 		{
@@ -933,20 +995,22 @@ func TestMavenLock_WithMultipleParents(t *testing.T) {
 			Version:   "1.0-SNAPSHOT",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 33, End: 37},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: parentPath,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 35, End: 35},
-				Column:   models.Position{Start: 19, End: 22},
-				Filename: parentPath,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 12, End: 24},
-				Filename: rootPath,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 33, End: 37},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: parentPath,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 35, End: 35},
+					Column:   models.Position{Start: 19, End: 22},
+					Filename: parentPath,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 8, End: 8},
+					Column:   models.Position{Start: 12, End: 24},
+					Filename: rootPath,
+				},
 			},
 		},
 	})
@@ -1059,20 +1123,22 @@ func TestParseMavenLock_WithScope(t *testing.T) {
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 3, End: 8},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 19, End: 24},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 16, End: 20},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 3, End: 8},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 19, End: 24},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 16, End: 20},
+					Filename: path,
+				},
 			},
 			DepGroups: []string{"test"},
 		},
@@ -1099,20 +1165,22 @@ func TestParseMavenLock_WithUnusedDependencyManagementDependencies(t *testing.T)
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 17, End: 21},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 19, End: 19},
-				Column:   models.Position{Start: 19, End: 28},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 16, End: 28},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 17, End: 21},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 19, End: 19},
+					Column:   models.Position{Start: 19, End: 28},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 20, End: 20},
+					Column:   models.Position{Start: 16, End: 28},
+					Filename: path,
+				},
 			},
 			DepGroups: nil,
 		},
@@ -1139,20 +1207,22 @@ func TestParseMavenLock_WithOverriddenDependencyVersions(t *testing.T) {
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 14, End: 18},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 16, End: 16},
-				Column:   models.Position{Start: 19, End: 24},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 17, End: 17},
-				Column:   models.Position{Start: 16, End: 20},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 14, End: 18},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 16, End: 16},
+					Column:   models.Position{Start: 19, End: 24},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 17, End: 17},
+					Column:   models.Position{Start: 16, End: 20},
+					Filename: path,
+				},
 			},
 			DepGroups: nil,
 		},
@@ -1179,20 +1249,22 @@ func TestParseMavenLock_WithProjectVersionProperty(t *testing.T) {
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 8, End: 12},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 10, End: 10},
-				Column:   models.Position{Start: 19, End: 22},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 12, End: 24},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 8, End: 12},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 10, End: 10},
+					Column:   models.Position{Start: 19, End: 22},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 12, End: 24},
+					Filename: path,
+				},
 			},
 			DepGroups: nil,
 		},
@@ -1202,20 +1274,22 @@ func TestParseMavenLock_WithProjectVersionProperty(t *testing.T) {
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 13, End: 17},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 15, End: 15},
-				Column:   models.Position{Start: 19, End: 22},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 12, End: 24},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 13, End: 17},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 15, End: 15},
+					Column:   models.Position{Start: 19, End: 22},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 12, End: 24},
+					Filename: path,
+				},
 			},
 			DepGroups: nil,
 		},
@@ -1238,20 +1312,22 @@ func TestParseMavenLock_ResolveProperties(t *testing.T) {
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 27, End: 30},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 21, End: 30},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 20, End: 32},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 27, End: 30},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 21, End: 30},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 20, End: 32},
+					Filename: path,
+				},
 			},
 			DepGroups: nil,
 		},
@@ -1261,20 +1337,22 @@ func TestParseMavenLock_ResolveProperties(t *testing.T) {
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 31, End: 35},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 24, End: 30},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 20, End: 42},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 31, End: 35},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 8, End: 8},
+					Column:   models.Position{Start: 24, End: 30},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 20, End: 42},
+					Filename: path,
+				},
 			},
 			DepGroups: nil,
 		},
@@ -1284,20 +1362,22 @@ func TestParseMavenLock_ResolveProperties(t *testing.T) {
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 36, End: 40},
-				Column:   models.Position{Start: 5, End: 18},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 38, End: 38},
-				Column:   models.Position{Start: 19, End: 35},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 3, End: 3},
-				Column:   models.Position{Start: 20, End: 42},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 36, End: 40},
+					Column:   models.Position{Start: 5, End: 18},
+					Filename: path,
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 38, End: 38},
+					Column:   models.Position{Start: 19, End: 35},
+					Filename: path,
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 3, End: 3},
+					Column:   models.Position{Start: 20, End: 42},
+					Filename: path,
+				},
 			},
 			DepGroups: nil,
 		},

@@ -140,10 +140,12 @@ func TestParseGradleLock_OnePackage(t *testing.T) {
 			Version:   "5.7.3",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 1, End: 119},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 1, End: 119},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -168,10 +170,12 @@ func TestParseGradleLock_MultiplePackage(t *testing.T) {
 			Version:   "2.7.4",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 1, End: 134},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 1, End: 134},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -179,10 +183,12 @@ func TestParseGradleLock_MultiplePackage(t *testing.T) {
 			Version:   "2.7.5",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
-				Column:   models.Position{Start: 1, End: 104},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 6, End: 6},
+					Column:   models.Position{Start: 1, End: 104},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -190,10 +196,12 @@ func TestParseGradleLock_MultiplePackage(t *testing.T) {
 			Version:   "2.7.6",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 1, End: 85},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 1, End: 85},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -201,10 +209,12 @@ func TestParseGradleLock_MultiplePackage(t *testing.T) {
 			Version:   "2.7.7",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 1, End: 116},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 8, End: 8},
+					Column:   models.Position{Start: 1, End: 116},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -212,10 +222,12 @@ func TestParseGradleLock_MultiplePackage(t *testing.T) {
 			Version:   "2.7.8",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 1, End: 121},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 9, End: 9},
+					Column:   models.Position{Start: 1, End: 121},
+					Filename: path,
+				},
 			},
 		},
 	})
@@ -240,10 +252,12 @@ func TestParseGradleLock_WithInvalidLines(t *testing.T) {
 			Version:   "2.7.4",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 7, End: 7},
-				Column:   models.Position{Start: 1, End: 134},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 7, End: 7},
+					Column:   models.Position{Start: 1, End: 134},
+					Filename: path,
+				},
 			},
 		},
 		{
@@ -251,10 +265,12 @@ func TestParseGradleLock_WithInvalidLines(t *testing.T) {
 			Version:   "2.7.5",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 14, End: 14},
-				Column:   models.Position{Start: 1, End: 144},
-				Filename: path,
+			LockfileLocations: lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 14, End: 14},
+					Column:   models.Position{Start: 1, End: 144},
+					Filename: path,
+				},
 			},
 		},
 	})
