@@ -3,6 +3,7 @@ package lockfile
 import (
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"path/filepath"
 	"strconv"
@@ -24,6 +25,7 @@ type PnpmLockPackage struct {
 	Name       string                    `yaml:"name"`
 	Version    string                    `yaml:"version"`
 	Dev        bool                      `yaml:"dev"`
+	models.FilePosition
 }
 
 type PnpmLockDependency struct {
@@ -51,6 +53,48 @@ type PnpmLockfile struct {
 	OptionalDependencies PnpmDependencies `yaml:"optionalDependencies,omitempty"`
 	DevDependencies      PnpmDependencies `yaml:"devDependencies,omitempty"`
 	Importers            PnpmImporters    `yaml:"importers,omitempty"`
+}
+
+func (pnpmLockPackages *PnpmLockPackages) UnmarshalYAML(value *yaml.Node) error {
+	if *pnpmLockPackages == nil {
+		*pnpmLockPackages = make(map[string]PnpmLockPackage)
+	}
+
+	for i := 0; i < len(value.Content); i += 2 {
+		var pnpmLockPackage PnpmLockPackage
+		keyNode := value.Content[i]
+		valueNode := value.Content[i+1]
+
+		pnpmLockPackage.SetLineStart(keyNode.Line)
+		pnpmLockPackage.SetColumnStart(keyNode.Column)
+
+		columnOffset := 0
+		lastValueNode := valueNode
+		for lastValueNode.Kind == yaml.MappingNode {
+			lastValueNode = lastValueNode.Content[len(lastValueNode.Content)-1]
+			// column pointer does not include style delimiters
+			if lastValueNode.Style != 0 {
+				columnOffset++
+				// single and double-quoted styles add 2 delimiters instead of 1
+				if lastValueNode.Style == yaml.SingleQuotedStyle || lastValueNode.Style == yaml.DoubleQuotedStyle {
+					columnOffset++
+				}
+			}
+		}
+
+		pnpmLockPackage.SetLineEnd(lastValueNode.Line)
+
+		columnEnd := lastValueNode.Column + len(lastValueNode.Value)
+		pnpmLockPackage.SetColumnEnd(columnEnd + columnOffset)
+
+		if err := valueNode.Decode(&pnpmLockPackage); err != nil {
+			return err
+		}
+
+		(*pnpmLockPackages)[keyNode.Value] = pnpmLockPackage
+	}
+
+	return nil
 }
 
 func (pnpmDependencies *PnpmDependencies) UnmarshalYAML(value *yaml.Node) error {
@@ -177,7 +221,7 @@ func getVersionInfo(name string, maps ...map[string]PnpmLockDependency) (specifi
 	return "", "", false
 }
 
-func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
+func parsePnpmLock(lockfile PnpmLockfile, path string) []PackageDetails {
 	packages := make([]PackageDetails, 0, len(lockfile.Packages))
 
 	for s, pkg := range lockfile.Packages {
@@ -263,7 +307,14 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 			Ecosystem:      PnpmEcosystem,
 			CompareAs:      PnpmEcosystem,
 			Commit:         commit,
-			DepGroups:      depGroups,
+			LockfileLocations: Locations{
+				Block: models.FilePosition{
+					Line:     pkg.Line,
+					Column:   pkg.Column,
+					Filename: path,
+				},
+			},
+			DepGroups: depGroups,
 		})
 	}
 
@@ -292,7 +343,7 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		parsedLockfile = &PnpmLockfile{}
 	}
 
-	return parsePnpmLock(*parsedLockfile), nil
+	return parsePnpmLock(*parsedLockfile, f.Path()), nil
 }
 
 var PnpmExtractor = PnpmLockExtractor{
