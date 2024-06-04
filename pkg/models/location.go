@@ -21,11 +21,19 @@ type PackageLocation struct {
 	ColumnEnd   int    `json:"column_end"`
 }
 
-type PackageLocations struct {
+type SourcefilePackageLocations struct {
 	Block     PackageLocation  `json:"block"`
 	Namespace *PackageLocation `json:"namespace,omitempty"`
 	Name      *PackageLocation `json:"name,omitempty"`
 	Version   *PackageLocation `json:"version,omitempty"`
+}
+
+type PackageLocations struct {
+	Block      PackageLocation             `json:"block"`
+	Namespace  *PackageLocation            `json:"namespace,omitempty"`
+	Name       *PackageLocation            `json:"name,omitempty"`
+	Version    *PackageLocation            `json:"version,omitempty"`
+	Sourcefile *SourcefilePackageLocations `json:"sourcefile,omitempty"`
 }
 
 func (location PackageLocations) MarshalToJSONString() (string, error) {

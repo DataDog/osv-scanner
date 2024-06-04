@@ -169,13 +169,18 @@ type AnalysisInfo struct {
 	Called bool `json:"called"`
 }
 
+type FileLocations struct {
+	Block   FilePosition  `json:"block,omitempty"`
+	Version *FilePosition `json:"version,omitempty"`
+	Name    *FilePosition `json:"name,omitempty"`
+}
+
 // Specific package information
 type PackageInfo struct {
-	Name            string        `json:"name"`
-	Version         string        `json:"version"`
-	Ecosystem       string        `json:"ecosystem"`
-	Commit          string        `json:"commit,omitempty"`
-	BlockLocation   FilePosition  `json:"blockLocation"`
-	VersionLocation *FilePosition `json:"versionLocation,omitempty"`
-	NameLocation    *FilePosition `json:"nameLocation,omitempty"`
+	Name                string         `json:"name"`
+	Version             string         `json:"version"`
+	Ecosystem           string         `json:"ecosystem"`
+	Commit              string         `json:"commit,omitempty"`
+	LockfileLocations   FileLocations  `json:"lockfileLocations"`
+	SourcefileLocations *FileLocations `json:"sourcefileLocations,omitempty"`
 }
