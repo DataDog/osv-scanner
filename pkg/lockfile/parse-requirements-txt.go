@@ -78,13 +78,15 @@ func parseLine(path string, line string, lineNumber int, lineOffset int, columnS
 	}
 
 	return PackageDetails{
-		Name:            normalizedRequirementName(name),
-		Version:         version,
-		BlockLocation:   blockLocation,
-		NameLocation:    nameLocation,
-		VersionLocation: versionLocation,
-		Ecosystem:       PipEcosystem,
-		CompareAs:       PipEcosystem,
+		Name:    normalizedRequirementName(name),
+		Version: version,
+		LockfileLocations: Locations{
+			Block:   blockLocation,
+			Name:    nameLocation,
+			Version: versionLocation,
+		},
+		Ecosystem: PipEcosystem,
+		CompareAs: PipEcosystem,
 	}
 }
 

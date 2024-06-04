@@ -80,14 +80,16 @@ func (e PoetryLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		}
 
 		pkgDetails := PackageDetails{
-			Name:            lockPackage.Name,
-			Version:         lockPackage.Version,
-			Commit:          lockPackage.Source.Commit,
-			BlockLocation:   blockLocation,
-			NameLocation:    nameLocation,
-			VersionLocation: versionLocation,
-			Ecosystem:       PoetryEcosystem,
-			CompareAs:       PoetryEcosystem,
+			Name:    lockPackage.Name,
+			Version: lockPackage.Version,
+			Commit:  lockPackage.Source.Commit,
+			LockfileLocations: Locations{
+				Block:   blockLocation,
+				Name:    nameLocation,
+				Version: versionLocation,
+			},
+			Ecosystem: PoetryEcosystem,
+			CompareAs: PoetryEcosystem,
 		}
 
 		if lockPackage.Optional {

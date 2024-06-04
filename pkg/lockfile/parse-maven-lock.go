@@ -27,7 +27,7 @@ type MavenLockDependency struct {
 	ArtifactID string   `xml:"artifactId"`
 	Version    string   `xml:"version"`
 	Scope      string   `xml:"scope"`
-	SourceFile string
+	Filename   string
 	models.FilePosition
 }
 
@@ -110,7 +110,7 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 				"Failed to resolve a property. fieldToResolve \"%s\" could not be found for \"%s\" (%s)\n",
 				string(bytes),
 				lockfile.GroupID+":"+lockfile.ArtifactID,
-				mld.SourceFile,
+				mld.Filename,
 			)
 
 			return []byte("")
@@ -275,8 +275,8 @@ func (e MavenLockExtractor) mergeLockfiles(childLockfile *MavenLockFile, parentL
 func (e MavenLockExtractor) enrichDependencies(f DepFile, dependencies []MavenLockDependency) MavenLockDependencyHolder {
 	result := make([]MavenLockDependency, len(dependencies))
 	for index, dependency := range dependencies {
-		if len(dependency.SourceFile) == 0 {
-			dependency.SourceFile = f.Path()
+		if len(dependency.Filename) == 0 {
+			dependency.Filename = f.Path()
 		}
 		result[index] = dependency
 	}
@@ -386,32 +386,34 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		blockLocation := models.FilePosition{
 			Line:     lockPackage.Line,
 			Column:   lockPackage.Column,
-			Filename: lockPackage.SourceFile,
+			Filename: lockPackage.Filename,
 		}
-		block := parsedLockfile.Lines[lockPackage.SourceFile][lockPackage.Line.Start-1 : lockPackage.Line.End]
+		block := parsedLockfile.Lines[lockPackage.Filename][lockPackage.Line.Start-1 : lockPackage.Line.End]
 
 		// A position is null after resolving the value in case the value is directly defined in the block
 		if artifactPosition == nil {
 			openTag, closeTag := fileposition.QuoteMetaDelimiters("<artifactId>", "</artifactId>")
 			artifactPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
-			artifactPosition.Filename = lockPackage.SourceFile
+			artifactPosition.Filename = lockPackage.Filename
 		}
 		if versionPosition == nil {
 			openTag, closeTag := fileposition.QuoteMetaDelimiters("<version>", "</version>")
 			versionPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
 			if versionPosition != nil {
-				versionPosition.Filename = lockPackage.SourceFile
+				versionPosition.Filename = lockPackage.Filename
 			}
 		}
 
 		pkgDetails := PackageDetails{
-			Name:            finalName,
-			Version:         resolvedVersion,
-			Ecosystem:       MavenEcosystem,
-			CompareAs:       MavenEcosystem,
-			BlockLocation:   blockLocation,
-			NameLocation:    artifactPosition,
-			VersionLocation: versionPosition,
+			Name:      finalName,
+			Version:   resolvedVersion,
+			Ecosystem: MavenEcosystem,
+			CompareAs: MavenEcosystem,
+			LockfileLocations: Locations{
+				Block:   blockLocation,
+				Name:    artifactPosition,
+				Version: versionPosition,
+			},
 		}
 		if strings.TrimSpace(lockPackage.Scope) != "" {
 			pkgDetails.DepGroups = append(pkgDetails.DepGroups, lockPackage.Scope)
@@ -429,7 +431,7 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			continue
 		}
 
-		block := parsedLockfile.Lines[lockPackage.SourceFile][lockPackage.Line.Start-1 : lockPackage.Line.End]
+		block := parsedLockfile.Lines[lockPackage.Filename][lockPackage.Line.Start-1 : lockPackage.Line.End]
 
 		if pkgDetails.IsVersionEmpty() {
 			resolvedVersion, versionPosition := lockPackage.ResolveVersion(*parsedLockfile)
@@ -438,11 +440,11 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			if versionPosition == nil {
 				openTag, closeTag := fileposition.QuoteMetaDelimiters("<version>", "</version>")
 				versionPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
-				versionPosition.Filename = lockPackage.SourceFile
+				versionPosition.Filename = lockPackage.Filename
 			}
 
 			pkgDetails.Version = resolvedVersion
-			pkgDetails.VersionLocation = versionPosition
+			pkgDetails.LockfileLocations.Version = versionPosition
 		}
 		if strings.TrimSpace(lockPackage.Scope) != "" {
 			pkgDetails.DepGroups = append(pkgDetails.DepGroups, lockPackage.Scope)

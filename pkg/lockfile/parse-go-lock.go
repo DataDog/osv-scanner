@@ -100,13 +100,15 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 		blockLocation, nameLocation, versionLocation := extractLocations(block, start, end, f.Path(), name, version)
 		packages[require.Mod.Path+"@"+require.Mod.Version] = PackageDetails{
-			Name:            name,
-			Version:         version,
-			Ecosystem:       GoEcosystem,
-			CompareAs:       GoEcosystem,
-			BlockLocation:   blockLocation,
-			NameLocation:    nameLocation,
-			VersionLocation: versionLocation,
+			Name:      name,
+			Version:   version,
+			Ecosystem: GoEcosystem,
+			CompareAs: GoEcosystem,
+			LockfileLocations: Locations{
+				Block:   blockLocation,
+				Name:    nameLocation,
+				Version: versionLocation,
+			},
 		}
 	}
 
@@ -140,13 +142,15 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 			blockLocation, nameLocation, versionLocation := extractLocations(block, start, end, f.Path(), name, version)
 			packages[replacement] = PackageDetails{
-				Name:            name,
-				Version:         version,
-				Ecosystem:       GoEcosystem,
-				CompareAs:       GoEcosystem,
-				BlockLocation:   blockLocation,
-				VersionLocation: versionLocation,
-				NameLocation:    nameLocation,
+				Name:      name,
+				Version:   version,
+				Ecosystem: GoEcosystem,
+				CompareAs: GoEcosystem,
+				LockfileLocations: Locations{
+					Block:   blockLocation,
+					Version: versionLocation,
+					Name:    nameLocation,
+				},
 			}
 		}
 	}
@@ -157,8 +161,10 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			Version:   parsedLockfile.Go.Version,
 			Ecosystem: GoEcosystem,
 			CompareAs: GoEcosystem,
-			BlockLocation: models.FilePosition{
-				Filename: f.Path(),
+			LockfileLocations: Locations{
+				Block: models.FilePosition{
+					Filename: f.Path(),
+				},
 			},
 		}
 	}

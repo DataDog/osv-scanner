@@ -3,10 +3,9 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 	"strings"
-
-	"github.com/google/osv-scanner/pkg/models"
 )
 
 const (
@@ -35,10 +34,12 @@ func parseToGradlePackageDetail(line string, lineNumber int, path string) (Packa
 		Version:   version,
 		Ecosystem: MavenEcosystem,
 		CompareAs: MavenEcosystem,
-		BlockLocation: models.FilePosition{
-			Line:     models.Position{Start: lineNumber, End: lineNumber},
-			Column:   models.Position{Start: 1, End: len(line) + 1},
-			Filename: path,
+		LockfileLocations: Locations{
+			Block: models.FilePosition{
+				Line:     models.Position{Start: lineNumber, End: lineNumber},
+				Column:   models.Position{Start: 1, End: len(line) + 1},
+				Filename: path,
+			},
 		},
 	}, nil
 }
