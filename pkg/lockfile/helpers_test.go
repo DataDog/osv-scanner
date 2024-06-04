@@ -3,11 +3,9 @@ package lockfile_test
 import (
 	"errors"
 	"fmt"
+	"reflect"
 	"strings"
 	"testing"
-
-	"github.com/google/go-cmp/cmp"
-	"github.com/google/go-cmp/cmp/cmpopts"
 
 	"github.com/google/osv-scanner/internal/output"
 	"github.com/google/osv-scanner/pkg/lockfile"
@@ -53,15 +51,11 @@ func packageToString(pkg lockfile.PackageDetails) string {
 	return fmt.Sprintf("%s@%s (%s, %s, %s)", pkg.Name, pkg.Version, pkg.Ecosystem, commit, groups)
 }
 
-func hasPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.PackageDetails, ignoreLocations bool) bool {
+func hasPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.PackageDetails) bool {
 	t.Helper()
 
 	for _, details := range packages {
-		var ignore []string
-		if ignoreLocations {
-			ignore = []string{"BlockLocation", "NameLocation", "VersionLocation"}
-		}
-		if cmp.Equal(details, pkg, cmpopts.IgnoreFields(lockfile.PackageDetails{}, ignore...)) {
+		if reflect.DeepEqual(details, pkg) {
 			return true
 		}
 	}
@@ -69,10 +63,10 @@ func hasPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.P
 	return false
 }
 
-func innerExpectPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.PackageDetails, ignoreLocations bool) {
+func expectPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.PackageDetails) {
 	t.Helper()
 
-	if !hasPackage(t, packages, pkg, ignoreLocations) {
+	if !hasPackage(t, packages, pkg) {
 		t.Errorf(
 			"Expected packages to include %s@%s (%s, %s), but it did not",
 			pkg.Name,
@@ -83,18 +77,12 @@ func innerExpectPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lo
 	}
 }
 
-func expectPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.PackageDetails) {
-	t.Helper()
-
-	innerExpectPackage(t, packages, pkg, false)
-}
-
-func findMissingPackages(t *testing.T, actualPackages []lockfile.PackageDetails, expectedPackages []lockfile.PackageDetails, ignoreLocations bool) []lockfile.PackageDetails {
+func findMissingPackages(t *testing.T, actualPackages []lockfile.PackageDetails, expectedPackages []lockfile.PackageDetails) []lockfile.PackageDetails {
 	t.Helper()
 	var missingPackages []lockfile.PackageDetails
 
 	for _, pkg := range actualPackages {
-		if !hasPackage(t, expectedPackages, pkg, ignoreLocations) {
+		if !hasPackage(t, expectedPackages, pkg) {
 			missingPackages = append(missingPackages, pkg)
 		}
 	}
@@ -102,7 +90,7 @@ func findMissingPackages(t *testing.T, actualPackages []lockfile.PackageDetails,
 	return missingPackages
 }
 
-func innerExpectPackages(t *testing.T, actualPackages []lockfile.PackageDetails, expectedPackages []lockfile.PackageDetails, ignoreLocations bool) {
+func expectPackages(t *testing.T, actualPackages []lockfile.PackageDetails, expectedPackages []lockfile.PackageDetails) {
 	t.Helper()
 
 	if len(expectedPackages) != len(actualPackages) {
@@ -114,8 +102,8 @@ func innerExpectPackages(t *testing.T, actualPackages []lockfile.PackageDetails,
 		)
 	}
 
-	missingActualPackages := findMissingPackages(t, actualPackages, expectedPackages, ignoreLocations)
-	missingExpectedPackages := findMissingPackages(t, expectedPackages, actualPackages, ignoreLocations)
+	missingActualPackages := findMissingPackages(t, actualPackages, expectedPackages)
+	missingExpectedPackages := findMissingPackages(t, expectedPackages, actualPackages)
 
 	if len(missingActualPackages) != 0 {
 		for _, unexpectedPackage := range missingActualPackages {
@@ -128,16 +116,4 @@ func innerExpectPackages(t *testing.T, actualPackages []lockfile.PackageDetails,
 			t.Errorf("Did not find %s", packageToString(unexpectedPackage))
 		}
 	}
-}
-
-func expectPackages(t *testing.T, actualPackages []lockfile.PackageDetails, expectedPackages []lockfile.PackageDetails) {
-	t.Helper()
-
-	innerExpectPackages(t, actualPackages, expectedPackages, false)
-}
-
-func expectPackagesWithoutLocations(t *testing.T, actualPackages []lockfile.PackageDetails, expectedPackages []lockfile.PackageDetails) {
-	t.Helper()
-
-	innerExpectPackages(t, actualPackages, expectedPackages, true)
 }
