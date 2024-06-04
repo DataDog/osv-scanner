@@ -72,20 +72,22 @@ func TestPackageJSONMatcher_Match_OnePackage(t *testing.T) {
 		{
 			Name:           "lodash",
 			TargetVersions: []string{"^4.0.0"},
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 5, End: 23},
-				Filename: sourceFile.Path(),
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 6, End: 12},
-				Filename: sourceFile.Path(),
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 16, End: 22},
-				Filename: sourceFile.Path(),
+			SourcefileLocations: &lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 5, End: 23},
+					Filename: sourceFile.Path(),
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 6, End: 12},
+					Filename: sourceFile.Path(),
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 16, End: 22},
+					Filename: sourceFile.Path(),
+				},
 			},
 		},
 	})
@@ -134,39 +136,43 @@ func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 		{
 			Name:           "debug",
 			TargetVersions: []string{"^0.7", "~0.7.2"},
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 5, End: 20},
-				Filename: sourceFile.Path(),
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 6, End: 11},
-				Filename: sourceFile.Path(),
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
-				Column:   models.Position{Start: 15, End: 19},
-				Filename: sourceFile.Path(),
+			SourcefileLocations: &lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 5, End: 20},
+					Filename: sourceFile.Path(),
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 6, End: 11},
+					Filename: sourceFile.Path(),
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 5, End: 5},
+					Column:   models.Position{Start: 15, End: 19},
+					Filename: sourceFile.Path(),
+				},
 			},
 		},
 		{
 			Name:           "jear",
 			TargetVersions: []string{"^0.1.4"},
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 5, End: 21},
-				Filename: sourceFile.Path(),
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 6, End: 10},
-				Filename: sourceFile.Path(),
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 4, End: 4},
-				Column:   models.Position{Start: 14, End: 20},
-				Filename: sourceFile.Path(),
+			SourcefileLocations: &lockfile.Locations{
+				Block: models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 5, End: 21},
+					Filename: sourceFile.Path(),
+				},
+				Name: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 6, End: 10},
+					Filename: sourceFile.Path(),
+				},
+				Version: &models.FilePosition{
+					Line:     models.Position{Start: 4, End: 4},
+					Column:   models.Position{Start: 14, End: 20},
+					Filename: sourceFile.Path(),
+				},
 			},
 		},
 		{

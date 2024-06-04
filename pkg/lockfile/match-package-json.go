@@ -30,10 +30,12 @@ func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails)
 				// TODO: what to do if version is not in the same line as the name?
 				for _, targetVersion := range pkg.TargetVersions {
 					if strings.Contains(line, targetVersion) {
+						var locations Locations
+
 						startColumn := fileposition.GetFirstNonEmptyCharacterIndexInLine(line)
 						endColumn := fileposition.GetLastNonEmptyCharacterIndexInLine(strings.TrimSuffix(line, ","))
 
-						packages[key].BlockLocation = models.FilePosition{
+						locations.Block = models.FilePosition{
 							Line:     models.Position{Start: lineNumber, End: lineNumber},
 							Column:   models.Position{Start: startColumn, End: endColumn},
 							Filename: sourcefile.Path(),
@@ -42,15 +44,17 @@ func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails)
 						nameLocation := fileposition.ExtractDelimitedStringPositionInBlock([]string{line}, pkg.Name, lineNumber, "\"", "\"")
 						if nameLocation != nil {
 							nameLocation.Filename = sourcefile.Path()
-							packages[key].NameLocation = nameLocation
+							locations.Name = nameLocation
 						}
 
 						versionRegexp := fmt.Sprintf(".*%s.*", cachedregexp.QuoteMeta(targetVersion))
 						versionLocation := fileposition.ExtractDelimitedRegexpPositionInBlock([]string{line}, versionRegexp, lineNumber, ":\\s*\"", "\",?")
 						if versionLocation != nil {
 							versionLocation.Filename = sourcefile.Path()
-							packages[key].VersionLocation = versionLocation
+							locations.Version = versionLocation
 						}
+
+						packages[key].SourcefileLocations = &locations
 					}
 				}
 			}
