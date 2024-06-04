@@ -25,16 +25,18 @@
             "name": "remove_dir_all",
             "version": "0.5.3",
             "ecosystem": "crates.io",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -187,16 +189,18 @@
             "name": "time",
             "version": "0.1.45",
             "ecosystem": "crates.io",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -455,16 +459,18 @@
             "name": "golang.org/x/net",
             "version": "0.1.0",
             "ecosystem": "Go",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -962,16 +968,18 @@
             "name": "ascii",
             "version": "0.8.7",
             "ecosystem": "crates.io",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -1119,16 +1127,18 @@
             "name": "remove_dir_all",
             "version": "0.5.3",
             "ecosystem": "crates.io",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -1281,16 +1291,18 @@
             "name": "time",
             "version": "0.1.45",
             "ecosystem": "crates.io",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -1562,16 +1574,18 @@
             "name": "chromium",
             "version": "73.0.3683.75-1",
             "ecosystem": "Debian:10",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -1679,16 +1693,18 @@
             "name": "golang.org/x/net",
             "version": "0.1.0",
             "ecosystem": "Go",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -1907,16 +1923,18 @@
             "name": "ascii",
             "version": "0.8.7",
             "ecosystem": "crates.io",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [
@@ -1996,16 +2014,18 @@
             "name": "time",
             "version": "0.1.45",
             "ecosystem": "crates.io",
-            "blockLocation": {
-              "line": {
-                "start": 0,
-                "end": 0
-              },
-              "column": {
-                "start": 0,
-                "end": 0
-              },
-              "file_name": ""
+            "lockfileLocations": {
+              "block": {
+                "line": {
+                  "start": 0,
+                  "end": 0
+                },
+                "column": {
+                  "start": 0,
+                  "end": 0
+                },
+                "file_name": ""
+              }
             }
           },
           "vulnerabilities": [

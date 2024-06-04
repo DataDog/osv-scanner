@@ -24,10 +24,29 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Name:      "foo.bar:the-first-package",
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
-						BlockLocation: models.FilePosition{
-							Line:     models.Position{Start: 1, End: 2},
-							Column:   models.Position{Start: 10, End: 21},
-							Filename: "/dir/lockfile.xml",
+						LockfileLocations: models.FileLocations{
+							Block: models.FilePosition{
+								Line:     models.Position{Start: 1, End: 2},
+								Column:   models.Position{Start: 10, End: 21},
+								Filename: "/dir/lockfile.xml",
+							},
+							Name: &models.FilePosition{
+								Line:     models.Position{Start: 3, End: 3},
+								Column:   models.Position{Start: 5, End: 14},
+								Filename: "/dir/nested/other-lockfile.xml",
+							},
+						},
+						SourcefileLocations: &models.FileLocations{
+							Block: models.FilePosition{
+								Line:     models.Position{Start: 2, End: 2},
+								Column:   models.Position{Start: 15, End: 35},
+								Filename: "/dir/sourcefile",
+							},
+							Name: &models.FilePosition{
+								Line:     models.Position{Start: 2, End: 2},
+								Column:   models.Position{Start: 16, End: 24},
+								Filename: "/dir/sourcefile",
+							},
 						},
 					},
 				},
@@ -36,10 +55,12 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Name:      "foo.bar:the-first-package",
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
-						BlockLocation: models.FilePosition{
-							Line:     models.Position{Start: 1, End: 2},
-							Column:   models.Position{Start: 10, End: 21},
-							Filename: "/dir/lockfile.xml",
+						LockfileLocations: models.FileLocations{
+							Block: models.FilePosition{
+								Line:     models.Position{Start: 1, End: 2},
+								Column:   models.Position{Start: 10, End: 21},
+								Filename: "/dir/lockfile.xml",
+							},
 						},
 					},
 				},
@@ -48,10 +69,12 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Name:      "foo.bar:the-first-package",
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
-						BlockLocation: models.FilePosition{
-							Line:     models.Position{Start: 1, End: 2},
-							Column:   models.Position{Start: 10, End: 21},
-							Filename: "/dir/lockfile.xml",
+						LockfileLocations: models.FileLocations{
+							Block: models.FilePosition{
+								Line:     models.Position{Start: 1, End: 2},
+								Column:   models.Position{Start: 10, End: 21},
+								Filename: "/dir/lockfile.xml",
+							},
 						},
 					},
 				},
@@ -60,10 +83,12 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Name:      "foo.bar:package-2",
 						Ecosystem: string(lockfile.MavenEcosystem),
 						Version:   "1.0.0",
-						BlockLocation: models.FilePosition{
-							Line:     models.Position{Start: 11, End: 22},
-							Column:   models.Position{Start: 10, End: 21},
-							Filename: "/dir/lockfile.xml",
+						LockfileLocations: models.FileLocations{
+							Block: models.FilePosition{
+								Line:     models.Position{Start: 11, End: 22},
+								Column:   models.Position{Start: 10, End: 21},
+								Filename: "/dir/lockfile.xml",
+							},
 						},
 					},
 				},
@@ -81,10 +106,12 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Name:      "foo.bar:the-first-package",
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
-						BlockLocation: models.FilePosition{
-							Line:     models.Position{Start: 1, End: 2},
-							Column:   models.Position{Start: 10, End: 21},
-							Filename: "/dir2/lockfile.json",
+						LockfileLocations: models.FileLocations{
+							Block: models.FilePosition{
+								Line:     models.Position{Start: 1, End: 2},
+								Column:   models.Position{Start: 10, End: 21},
+								Filename: "/dir2/lockfile.json",
+							},
 						},
 					},
 				},
@@ -114,6 +141,29 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						LineEnd:     2,
 						ColumnStart: 10,
 						ColumnEnd:   21,
+					},
+					Name: &models.PackageLocation{
+						Filename:    "/dir/nested/other-lockfile.xml",
+						LineStart:   3,
+						LineEnd:     3,
+						ColumnStart: 5,
+						ColumnEnd:   14,
+					},
+					Sourcefile: &models.SourcefilePackageLocations{
+						Block: models.PackageLocation{
+							Filename:    "/dir/sourcefile",
+							LineStart:   2,
+							LineEnd:     2,
+							ColumnStart: 15,
+							ColumnEnd:   35,
+						},
+						Name: &models.PackageLocation{
+							Filename:    "/dir/sourcefile",
+							LineStart:   2,
+							LineEnd:     2,
+							ColumnStart: 16,
+							ColumnEnd:   24,
+						},
 					},
 				},
 				{

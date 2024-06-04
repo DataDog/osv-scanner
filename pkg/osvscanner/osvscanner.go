@@ -400,9 +400,8 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 				Path: path,
 				Type: "lockfile",
 			},
-			BlockLocation:   pkgDetail.BlockLocation,
-			VersionLocation: pkgDetail.VersionLocation,
-			NameLocation:    pkgDetail.NameLocation,
+			LockfileLocations:   pkgDetail.LockfileLocations,
+			SourcefileLocations: pkgDetail.SourcefileLocations,
 		}
 	}
 
@@ -734,16 +733,15 @@ func parseLockfilePath(lockfileElem string) (string, string) {
 }
 
 type scannedPackage struct {
-	PURL            string
-	Name            string
-	Ecosystem       lockfile.Ecosystem
-	Commit          string
-	Version         string
-	Source          models.SourceInfo
-	DepGroups       []string
-	BlockLocation   models.FilePosition
-	VersionLocation *models.FilePosition
-	NameLocation    *models.FilePosition
+	PURL                string
+	Name                string
+	Ecosystem           lockfile.Ecosystem
+	Commit              string
+	Version             string
+	Source              models.SourceInfo
+	DepGroups           []string
+	LockfileLocations   lockfile.Locations
+	SourcefileLocations *lockfile.Locations
 }
 
 func initializeEnabledParsers(enabledParsers []string) map[string]bool {

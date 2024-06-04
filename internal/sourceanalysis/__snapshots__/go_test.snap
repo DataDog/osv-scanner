@@ -6,16 +6,18 @@
       "name": "github.com/gogo/protobuf",
       "version": "1.3.1",
       "ecosystem": "Go",
-      "blockLocation": {
-        "line": {
-          "start": 0,
-          "end": 0
-        },
-        "column": {
-          "start": 0,
-          "end": 0
-        },
-        "file_name": ""
+      "lockfileLocations": {
+        "block": {
+          "line": {
+            "start": 0,
+            "end": 0
+          },
+          "column": {
+            "start": 0,
+            "end": 0
+          },
+          "file_name": ""
+        }
       }
     },
     "vulnerabilities": [
@@ -183,16 +185,18 @@
       "name": "github.com/ipfs/go-bitfield",
       "version": "1.0.0",
       "ecosystem": "Go",
-      "blockLocation": {
-        "line": {
-          "start": 0,
-          "end": 0
-        },
-        "column": {
-          "start": 0,
-          "end": 0
-        },
-        "file_name": ""
+      "lockfileLocations": {
+        "block": {
+          "line": {
+            "start": 0,
+            "end": 0
+          },
+          "column": {
+            "start": 0,
+            "end": 0
+          },
+          "file_name": ""
+        }
       }
     },
     "vulnerabilities": [
@@ -347,16 +351,18 @@
       "name": "golang.org/x/image",
       "version": "0.4.0",
       "ecosystem": "Go",
-      "blockLocation": {
-        "line": {
-          "start": 0,
-          "end": 0
-        },
-        "column": {
-          "start": 0,
-          "end": 0
-        },
-        "file_name": ""
+      "lockfileLocations": {
+        "block": {
+          "line": {
+            "start": 0,
+            "end": 0
+          },
+          "column": {
+            "start": 0,
+            "end": 0
+          },
+          "file_name": ""
+        }
       }
     },
     "vulnerabilities": [
@@ -517,16 +523,18 @@
       "name": "github.com/gogo/protobuf",
       "version": "1.3.1",
       "ecosystem": "Go",
-      "blockLocation": {
-        "line": {
-          "start": 0,
-          "end": 0
-        },
-        "column": {
-          "start": 0,
-          "end": 0
-        },
-        "file_name": ""
+      "lockfileLocations": {
+        "block": {
+          "line": {
+            "start": 0,
+            "end": 0
+          },
+          "column": {
+            "start": 0,
+            "end": 0
+          },
+          "file_name": ""
+        }
       }
     },
     "vulnerabilities": [
@@ -678,16 +686,18 @@
       "name": "github.com/ipfs/go-bitfield",
       "version": "1.0.0",
       "ecosystem": "Go",
-      "blockLocation": {
-        "line": {
-          "start": 0,
-          "end": 0
-        },
-        "column": {
-          "start": 0,
-          "end": 0
-        },
-        "file_name": ""
+      "lockfileLocations": {
+        "block": {
+          "line": {
+            "start": 0,
+            "end": 0
+          },
+          "column": {
+            "start": 0,
+            "end": 0
+          },
+          "file_name": ""
+        }
       }
     },
     "vulnerabilities": [
@@ -826,16 +836,18 @@
       "name": "golang.org/x/image",
       "version": "0.4.0",
       "ecosystem": "Go",
-      "blockLocation": {
-        "line": {
-          "start": 0,
-          "end": 0
-        },
-        "column": {
-          "start": 0,
-          "end": 0
-        },
-        "file_name": ""
+      "lockfileLocations": {
+        "block": {
+          "line": {
+            "start": 0,
+            "end": 0
+          },
+          "column": {
+            "start": 0,
+            "end": 0
+          },
+          "file_name": ""
+        }
       }
     },
     "vulnerabilities": [
