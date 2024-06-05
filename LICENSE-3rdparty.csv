@@ -63,11 +63,6 @@ core,github.com/charmbracelet/bubbletea,MIT,"Copyright (c) 2020-2023 Charmbracel
 core,github.com/charmbracelet/glamour,MIT,"Copyright (c) 2019-2023 Charmbracelet, Inc"
 core,github.com/charmbracelet/glamour/ansi,MIT,"Copyright (c) 2019-2023 Charmbracelet, Inc"
 core,github.com/charmbracelet/lipgloss,MIT,"Copyright (c) 2021-2023 Charmbracelet, Inc"
-core,github.com/charmbracelet/x/ansi,MIT,"Copyright (c) 2023 Charmbracelet, Inc"
-core,github.com/charmbracelet/x/ansi/parser,MIT,"Copyright (c) 2023 Charmbracelet, Inc"
-core,github.com/charmbracelet/x/input,MIT,"Copyright (c) 2023 Charmbracelet, Inc"
-core,github.com/charmbracelet/x/term,MIT,"Copyright (c) 2023 Charmbracelet, Inc"
-core,github.com/charmbracelet/x/windows,MIT,"Copyright (c) 2023 Charmbracelet, Inc"
 core,github.com/cloudflare/circl/dh/x25519,BSD-3-Clause,Copyright (c) 2009 The Go Authors. All rights reserved | Copyright (c) 2019 Cloudflare. All rights reserved
 core,github.com/cloudflare/circl/dh/x448,BSD-3-Clause,Copyright (c) 2009 The Go Authors. All rights reserved | Copyright (c) 2019 Cloudflare. All rights reserved
 core,github.com/cloudflare/circl/ecc/goldilocks,BSD-3-Clause,Copyright (c) 2009 The Go Authors. All rights reserved | Copyright (c) 2019 Cloudflare. All rights reserved
@@ -80,6 +75,7 @@ core,github.com/cloudflare/circl/math/mlsbset,BSD-3-Clause,Copyright (c) 2009 Th
 core,github.com/cloudflare/circl/sign,BSD-3-Clause,Copyright (c) 2009 The Go Authors. All rights reserved | Copyright (c) 2019 Cloudflare. All rights reserved
 core,github.com/cloudflare/circl/sign/ed25519,BSD-3-Clause,Copyright (c) 2009 The Go Authors. All rights reserved | Copyright (c) 2019 Cloudflare. All rights reserved
 core,github.com/cloudflare/circl/sign/ed448,BSD-3-Clause,Copyright (c) 2009 The Go Authors. All rights reserved | Copyright (c) 2019 Cloudflare. All rights reserved
+core,github.com/containerd/console,Apache-2.0,"Copyright 2012-2015 Docker, Inc."
 core,github.com/containerd/stargz-snapshotter/estargz,Apache-2.0,"Copyright 2012-2015 Docker, Inc."
 core,github.com/containerd/stargz-snapshotter/estargz/errorutil,Apache-2.0,"Copyright 2012-2015 Docker, Inc."
 core,github.com/cpuguy83/go-md2man/v2/md2man,MIT,Copyright (c) 2014 Brian Goff
@@ -94,7 +90,6 @@ core,github.com/emirpasic/gods/lists/arraylist,BSD-2-Clause,"Copyright (c) 2015,
 core,github.com/emirpasic/gods/trees,BSD-2-Clause,"Copyright (c) 2015, Emir Pasic | Copyright (c) 2017 Benjamin Scher Purcell <benjapurcell@gmail.com>"
 core,github.com/emirpasic/gods/trees/binaryheap,BSD-2-Clause,"Copyright (c) 2015, Emir Pasic | Copyright (c) 2017 Benjamin Scher Purcell <benjapurcell@gmail.com>"
 core,github.com/emirpasic/gods/utils,BSD-2-Clause,"Copyright (c) 2015, Emir Pasic | Copyright (c) 2017 Benjamin Scher Purcell <benjapurcell@gmail.com>"
-core,github.com/erikgeiser/coninput,MIT,Copyright (c) 2021 Erik G
 core,github.com/gkampitakis/ciinfo,MIT,Copyright (c) 2021 Georgios Kampitakis
 core,github.com/gkampitakis/go-diff/diffmatchpatch,MIT,Copyright (c) 2012-2016 The go-diff Authors. All rights reserved | Danny Yoo <dannyyoo@google.com> | James Kolb <jkolb@google.com> | Jonathan Amsterdam <jba@google.com> | Markus Zimmermann <markus.zimmermann@nethead.at> <markus.zimmermann@symflower.com> <zimmski@gmail.com> | Matt Kovars <akaskik@gmail.com> | Osman Masood <oamasood@gmail.com> | Robert Carlsen <rwcarlsen@gmail.com> | Rory Flynn <roryflynn@users.noreply.github.com> | Sergi Mansilla <sergi.mansilla@gmail.com> | Shatrugna Sadhu <ssadhu@apcera.com> | Shawn Smith <shawnpsmith@gmail.com> | Stas Maksimov <maksimov@gmail.com> | Tor Arvid Lund <torarvid@gmail.com> | Zac Bergquist <zbergquist99@gmail.com> | Örjan Persson <orjan@spotify.com>
 core,github.com/gkampitakis/go-snaps/internal/colors,MIT,Copyright (c) 2021 Georgios Kampitakis
@@ -201,6 +196,7 @@ core,github.com/muesli/reflow/indent,MIT,Copyright (c) 2019 Christian Muehlhaeus
 core,github.com/muesli/reflow/padding,MIT,Copyright (c) 2019 Christian Muehlhaeuser
 core,github.com/muesli/reflow/truncate,MIT,Copyright (c) 2019 Christian Muehlhaeuser
 core,github.com/muesli/reflow/wordwrap,MIT,Copyright (c) 2019 Christian Muehlhaeuser
+core,github.com/muesli/reflow/wrap,MIT,Copyright (c) 2019 Christian Muehlhaeuser
 core,github.com/muesli/termenv,MIT,Copyright (c) 2019 Christian Muehlhaeuser
 core,github.com/olekukonko/tablewriter,MIT,Copyright (C) 2014 by Oleku Konko
 core,github.com/opencontainers/go-digest,Apache-2.0,"Copyright 2016 Docker, Inc | Copyright 2019, 2020 OCI Contributors | Copyright © 2016 Docker, Inc | Copyright © 2019, 2020 OCI Contributors"
@@ -229,7 +225,6 @@ core,github.com/spdx/gordf/rdfwriter,MIT,Copyright (c) 2020 SPDX
 core,github.com/spdx/gordf/uri,MIT,Copyright (c) 2020 SPDX
 core,github.com/spdx/tools-golang/convert,Apache-2.0,Copyright (c) 2018 The Authors
 core,github.com/spdx/tools-golang/json,Apache-2.0,Copyright (c) 2018 The Authors
-core,github.com/spdx/tools-golang/json/marshal,Apache-2.0,Copyright (c) 2018 The Authors
 core,github.com/spdx/tools-golang/rdf,Apache-2.0,Copyright (c) 2018 The Authors
 core,github.com/spdx/tools-golang/spdx,Apache-2.0,Copyright (c) 2018 The Authors
 core,github.com/spdx/tools-golang/spdx/common,Apache-2.0,Copyright (c) 2018 The Authors
@@ -256,7 +251,6 @@ core,github.com/tidwall/sjson,MIT,Copyright (c) 2016 Josh Baker
 core,github.com/urfave/cli/v2,MIT,Copyright (c) 2022 urfave/cli maintainers
 core,github.com/vbatts/tar-split/archive/tar,BSD-3-Clause,"Copyright (c) 2015 Vincent Batts, Raleigh, NC, USA"
 core,github.com/xanzy/ssh-agent,Apache-2.0,"Copyright (c) 2014 David Mzareulyan | Copyright 2015, Sander van Harmelen"
-core,github.com/xo/terminfo,MIT,Copyright (c) 2016 Anmol Sethi
 core,github.com/xrash/smetrics,MIT,Copyright (C) 2016 Felipe da Cunha Gonçalves
 core,github.com/yuin/goldmark,MIT,Copyright (c) 2019 Yusuke Inuzuka
 core,github.com/yuin/goldmark-emoji,MIT,Copyright (c) 2020 Yusuke Inuzuka
