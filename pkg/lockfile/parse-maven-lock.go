@@ -21,8 +21,6 @@ import (
 	"github.com/google/osv-scanner/internal/cachedregexp"
 )
 
-const maxParentDepth = 10
-
 type MavenLockDependency struct {
 	XMLName    xml.Name `xml:"dependency"`
 	GroupID    string   `xml:"groupId"`
@@ -86,8 +84,10 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 			if strings.HasSuffix(propName, "version") {
 				projectPropertySourceFile = lockfile.ProjectVersionSourceFile
 			}
-			position = fileposition.ExtractRegexpPositionInBlock(lockfile.Lines[projectPropertySourceFile], property, 1)
-			position.Filename = projectPropertySourceFile
+			position = fileposition.ExtractStringPositionInBlock(lockfile.Lines[projectPropertySourceFile], property, 1)
+			if position != nil {
+				position.Filename = projectPropertySourceFile
+			}
 		} else {
 			lockProperty, ok = lockfile.Properties.m[propName]
 			if ok {
@@ -97,7 +97,8 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 					property, position = mld.resolvePropertiesValue(lockfile, property)
 				} else {
 					// We should locate the property in its source file
-					position = fileposition.ExtractDelimitedRegexpPositionInBlock(lockfile.Lines[lockProperty.SourceFile], "(.*)", 1, propOpenTag, propCloseTag)
+					propOpenTag, propCloseTag = fileposition.QuoteMetaDelimiters(propOpenTag, propCloseTag)
+					position = fileposition.ExtractDelimitedRegexpPositionInBlock(lockfile.Lines[lockProperty.SourceFile], ".*", 1, propOpenTag, propCloseTag)
 					position.Filename = lockProperty.SourceFile
 				}
 			}
@@ -131,7 +132,7 @@ func (mld MavenLockDependency) ResolveVersion(lockfile MavenLockFile) (string, *
 	results := versionRequirementReg.FindStringSubmatch(version)
 
 	if results == nil || results[1] == "" {
-		return "0", nil
+		return "", nil
 	}
 
 	return results[1], position
@@ -294,11 +295,9 @@ func (e MavenLockExtractor) enrichProperties(f DepFile, properties map[string]Ma
 	return MavenLockProperties{m: properties}
 }
 
-func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int) (*MavenLockFile, error) {
+func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int, visitedPath map[string]bool) (*MavenLockFile, error) {
 	var parsedLockfile *MavenLockFile
-	if depth >= maxParentDepth {
-		return nil, fmt.Errorf("maven file decoding reached the max depth (%d/%d), check for a circular dependency", depth, maxParentDepth)
-	}
+
 	// Decoding the original lockfile and enrich its dependencies
 	b, err := io.ReadAll(f)
 	if err != nil {
@@ -344,11 +343,19 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int) (*MavenLockFil
 		_, _ = fmt.Fprintf(os.Stderr, "Maven lockfile parser couldn't reach the parent because it is not locally defined\n")
 		return parsedLockfile, nil
 	}
+
+	if ok := visitedPath[parentPath]; ok {
+		// Parent has already been visited, lets stop there
+		fmt.Fprintf(os.Stdout, "Already visited parent path, stopping there to avoid a circular dependency %s\n", parentPath)
+		return parsedLockfile, nil
+	}
+	visitedPath[parentPath] = true
+
 	parentFile, err := OpenLocalDepFile(parentPath)
 	if err != nil {
 		return nil, err
 	}
-	parentLockfile, parentErr := e.decodeMavenFile(parentFile, depth+1)
+	parentLockfile, parentErr := e.decodeMavenFile(parentFile, depth+1, visitedPath)
 	if parentErr != nil {
 		return nil, parentErr
 	}
@@ -361,7 +368,9 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int) (*MavenLockFil
 }
 
 func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
-	parsedLockfile, err := e.decodeMavenFile(f, 0)
+	visitedPath := make(map[string]bool)
+	visitedPath[f.Path()] = true
+	parsedLockfile, err := e.decodeMavenFile(f, 0, visitedPath)
 	if err != nil {
 		return []PackageDetails{}, fmt.Errorf("could not extract from %s: %w", f.Path(), err)
 	}
@@ -383,11 +392,13 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 		// A position is null after resolving the value in case the value is directly defined in the block
 		if artifactPosition == nil {
-			artifactPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, "(.*)", lockPackage.Line.Start, "<artifactId>", "</artifactId>")
+			openTag, closeTag := fileposition.QuoteMetaDelimiters("<artifactId>", "</artifactId>")
+			artifactPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
 			artifactPosition.Filename = lockPackage.SourceFile
 		}
 		if versionPosition == nil {
-			versionPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, "(.*)", lockPackage.Line.Start, "<version>", "</version>")
+			openTag, closeTag := fileposition.QuoteMetaDelimiters("<version>", "</version>")
+			versionPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
 			if versionPosition != nil {
 				versionPosition.Filename = lockPackage.SourceFile
 			}
@@ -425,7 +436,8 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 			// A position is null after resolving the value in case the value is directly defined in the block
 			if versionPosition == nil {
-				versionPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, "(.*)", lockPackage.Line.Start, "<version>", "</version>")
+				openTag, closeTag := fileposition.QuoteMetaDelimiters("<version>", "</version>")
+				versionPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
 				versionPosition.Filename = lockPackage.SourceFile
 			}
 
@@ -438,7 +450,7 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		details[finalName] = pkgDetails
 	}
 
-	return pkgDetailsMapToSlice(details), nil
+	return maps.Values(details), nil
 }
 
 var _ Extractor = MavenLockExtractor{}

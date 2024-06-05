@@ -10,6 +10,7 @@ import (
 	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/google/osv-scanner/internal/cachedregexp"
+	"golang.org/x/exp/maps"
 )
 
 const PipEcosystem Ecosystem = "PyPI"
@@ -25,7 +26,7 @@ func parseLine(path string, line string, lineNumber int, lineOffset int, columnS
 	var constraint string
 	name := line
 
-	version := "0.0.0"
+	version := ""
 
 	if strings.Contains(line, "==") {
 		constraint = "=="
@@ -141,7 +142,7 @@ func extractVersionFromWheelURL(wheelURL string) string {
 	parts := strings.Split(filename, "-")
 
 	if len(parts) < 2 {
-		return "0.0.0"
+		return ""
 	}
 
 	return parts[1]
@@ -257,7 +258,7 @@ func parseRequirementsTxt(f DepFile, requiredAlready map[string]struct{}) ([]Pac
 		return []PackageDetails{}, fmt.Errorf("error while scanning %s: %w", f.Path(), err)
 	}
 
-	return pkgDetailsMapToSlice(packages), nil
+	return maps.Values(packages), nil
 }
 
 var _ Extractor = RequirementsTxtExtractor{}

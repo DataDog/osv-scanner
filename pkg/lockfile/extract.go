@@ -3,30 +3,31 @@ package lockfile
 import (
 	"errors"
 	"fmt"
+	"os"
 	"sort"
 	"strings"
 )
 
-var extractors = map[string]Extractor{}
+var lockfileExtractors = map[string]Extractor{}
 
 func registerExtractor(name string, extractor Extractor) {
-	if _, ok := extractors[name]; ok {
-		panic(fmt.Sprintf("an extractor is already registered as %s", name))
+	if _, ok := lockfileExtractors[name]; ok {
+		panic("an extractor is already registered as " + name)
 	}
 
-	extractors[name] = extractor
+	lockfileExtractors[name] = extractor
 }
 
 func FindExtractor(path, extractAs string, enabledParsers map[string]bool) (Extractor, string) {
 	if extractAs != "" {
 		if enabledParsers[extractAs] {
-			return extractors[extractAs], extractAs
+			return lockfileExtractors[extractAs], extractAs
 		}
 
 		return nil, ""
 	}
 
-	for name, extractor := range extractors {
+	for name, extractor := range lockfileExtractors {
 		isEnabled := enabledParsers[name]
 		if isEnabled && extractor.ShouldExtract(path) {
 			return extractor, name
@@ -37,9 +38,9 @@ func FindExtractor(path, extractAs string, enabledParsers map[string]bool) (Extr
 }
 
 func ListExtractors() []string {
-	es := make([]string, 0, len(extractors))
+	es := make([]string, 0, len(lockfileExtractors))
 
-	for s := range extractors {
+	for s := range lockfileExtractors {
 		es = append(es, s)
 	}
 
@@ -65,8 +66,18 @@ func ExtractDeps(f DepFile, extractAs string, enabledParsers map[string]bool) (L
 
 	packages, err := extractor.Extract(f)
 
-	if err != nil && extractAs != "" {
+	if err != nil && extractedAs != "" {
 		err = fmt.Errorf("(extracting as %s) %w", extractedAs, err)
+	}
+
+	// Match extracted packages with source file to enrich their details
+	if e, ok := extractor.(ExtractorWithMatcher); ok {
+		if matcher := e.GetMatcher(); matcher != nil {
+			matchError := matchWithFile(f, packages, matcher)
+			if matchError != nil {
+				_, _ = fmt.Fprintf(os.Stderr, "there was an error matching the source file: %s", matchError.Error())
+			}
+		}
 	}
 
 	sort.Slice(packages, func(i, j int) bool {

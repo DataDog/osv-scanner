@@ -25,7 +25,7 @@ func TestParseNpmLock_v1_InvalidJson(t *testing.T) {
 
 	packages, err := lockfile.ParseNpmLock("fixtures/npm/not-json.txt")
 
-	expectErrContaining(t, err, "could not decode json from")
+	expectErrContaining(t, err, "could not extract from")
 	expectPackages(t, packages, []lockfile.PackageDetails{})
 }
 
@@ -270,7 +270,7 @@ func TestParseNpmLock_v1_NestedDependenciesDup(t *testing.T) {
 		Name:    "supports-color",
 		Version: "6.1.0",
 		BlockLocation: models.FilePosition{
-			Line:     models.Position{Start: 21, End: 28},
+			Line:     models.Position{Start: 749, End: 756},
 			Column:   models.Position{Start: 9, End: 10},
 			Filename: path,
 		},
@@ -294,7 +294,7 @@ func TestParseNpmLock_v1_NestedDependenciesDup(t *testing.T) {
 		Name:    "supports-color",
 		Version: "2.0.0",
 		BlockLocation: models.FilePosition{
-			Line:     models.Position{Start: 64, End: 68},
+			Line:     models.Position{Start: 186, End: 190},
 			Column:   models.Position{Start: 9, End: 10},
 			Filename: path,
 		},
@@ -536,7 +536,7 @@ func TestParseNpmLock_v1_Files(t *testing.T) {
 		},
 		{
 			Name:    "other_package",
-			Version: "0.0.0",
+			Version: "",
 			BlockLocation: models.FilePosition{
 				Line:     models.Position{Start: 10, End: 15},
 				Column:   models.Position{Start: 5, End: 6},
