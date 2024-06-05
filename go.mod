@@ -1,8 +1,6 @@
 module github.com/google/osv-scanner
 
-go 1.21.1
-
-toolchain go1.21.10
+go 1.21.10
 
 require (
 	deps.dev/api/v3 v3.0.0-20240516073147-b352d7eeeae6
@@ -44,12 +42,6 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
-require (
-	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
-	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
-)
-
 // replacing libraries
 replace (
 	github.com/BurntSushi/toml => github.com/BurntSushi/toml v1.3.2
@@ -68,8 +60,13 @@ replace (
 	golang.org/x/mod => golang.org/x/mod v0.17.0
 	golang.org/x/sync => golang.org/x/sync v0.7.0
 	golang.org/x/term => golang.org/x/term v0.20.0
-	golang.org/x/vuln => golang.org/x/vuln v1.0.1
 	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0
+)
+
+require (
+	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
+	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
+	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 )
 
 require (
