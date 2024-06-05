@@ -1,6 +1,8 @@
 module github.com/google/osv-scanner
 
-go 1.21.10
+go 1.21.1
+
+toolchain go1.21.10
 
 require (
 	deps.dev/api/v3 v3.0.0-20240516073147-b352d7eeeae6
@@ -43,8 +45,31 @@ require (
 )
 
 require (
+	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
+)
+
+// replacing libraries
+replace (
+	github.com/BurntSushi/toml => github.com/BurntSushi/toml v1.3.2
+	github.com/charmbracelet/bubbles => github.com/charmbracelet/bubbles v0.17.2-0.20240108170749-ec883029c8e6
+	github.com/charmbracelet/bubbletea => github.com/charmbracelet/bubbletea v0.25.0
+	github.com/charmbracelet/lipgloss => github.com/charmbracelet/lipgloss v0.9.1
+	github.com/go-git/go-git/v5 => github.com/go-git/go-git/v5 v5.11.0
+	github.com/ianlancetaylor/demangle => github.com/ianlancetaylor/demangle v0.0.0-20231023195312-e2daf7ba7156
+	github.com/jedib0t/go-pretty/v6 => github.com/jedib0t/go-pretty/v6 v6.4.6
+	github.com/owenrumney/go-sarif/v2 => github.com/owenrumney/go-sarif/v2 v2.3.0
+	github.com/package-url/packageurl-go => github.com/package-url/packageurl-go v0.1.1
+	github.com/spdx/tools-golang => github.com/spdx/tools-golang v0.5.3
+	github.com/tidwall/gjson => github.com/tidwall/gjson v1.17.0
+	github.com/urfave/cli/v2 => github.com/urfave/cli/v2 v2.25.7
+	golang.org/x/exp => golang.org/x/exp v0.0.0-20240325151524-a685a6edb6d8
+	golang.org/x/mod => golang.org/x/mod v0.17.0
+	golang.org/x/sync => golang.org/x/sync v0.7.0
+	golang.org/x/term => golang.org/x/term v0.20.0
+	golang.org/x/vuln => golang.org/x/vuln v1.0.1
+	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0
 )
 
 require (
@@ -56,10 +81,6 @@ require (
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
-	github.com/charmbracelet/x/ansi v0.1.1 // indirect
-	github.com/charmbracelet/x/input v0.1.0 // indirect
-	github.com/charmbracelet/x/term v0.1.1 // indirect
-	github.com/charmbracelet/x/windows v0.1.0 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
 	github.com/containerd/stargz-snapshotter/estargz v0.15.1 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.4 // indirect
@@ -70,7 +91,6 @@ require (
 	github.com/docker/docker v25.0.5+incompatible // indirect
 	github.com/docker/docker-credential-helpers v0.8.1 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
-	github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f // indirect
 	github.com/gkampitakis/ciinfo v0.3.0 // indirect
 	github.com/gkampitakis/go-diff v1.3.2 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
@@ -106,7 +126,6 @@ require (
 	github.com/vbatts/tar-split v0.11.5 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
-	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 // indirect
 	github.com/yuin/goldmark v1.7.0 // indirect
 	github.com/yuin/goldmark-emoji v1.0.2 // indirect
@@ -116,6 +135,6 @@ require (
 	golang.org/x/text v0.15.0
 	golang.org/x/tools v0.21.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240318140521-94a12d6c2237 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240318140521-94a12d6c2237 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240325203815-454cdb8f5daa // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
