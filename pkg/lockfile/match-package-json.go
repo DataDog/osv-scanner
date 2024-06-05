@@ -13,7 +13,13 @@ import (
 type PackageJSONMatcher struct{}
 
 func (m PackageJSONMatcher) GetSourceFile(lockfile DepFile) (DepFile, error) {
-	return lockfile.Open("package.json")
+	fileName := "package.json"
+	sourcefile, err := lockfile.Open(fileName)
+	if err != nil {
+		// For node_modules .package-lock.json
+		sourcefile, err = lockfile.Open("../" + fileName)
+	}
+	return sourcefile, err
 }
 
 func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails) error {
