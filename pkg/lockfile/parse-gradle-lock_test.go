@@ -1,6 +1,10 @@
 package lockfile_test
 
 import (
+	"bytes"
+	"errors"
+	"github.com/stretchr/testify/assert"
+	"io"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -140,6 +144,54 @@ func TestParseGradleLock_OnePackage(t *testing.T) {
 			CompareAs: lockfile.MavenEcosystem,
 		},
 	})
+}
+
+//nolint:paralleltest
+func TestParseGradleLock_OnePackage_MatcherFailed(t *testing.T) {
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	stderr := os.Stderr
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+	os.Stderr = w
+
+	// Mock buildGradleMatcher to fail
+	matcherError := errors.New("buildGradleMatcher failed")
+	lockfile.GradleExtractor.Matcher = FailingMatcher{Error: matcherError}
+
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/gradle-lockfile/one-pkg"))
+	packages, err := lockfile.ParseGradleLock(path)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	// Capture stderr
+	_ = w.Close()
+	os.Stderr = stderr
+	var buffer bytes.Buffer
+	_, err = io.Copy(&buffer, r)
+	if err != nil {
+		t.Errorf("failed to copy stderr output: %v", err)
+	}
+	_ = r.Close()
+
+	assert.Contains(t, buffer.String(), matcherError.Error())
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+		{
+			Name:      "org.springframework.security:spring-security-crypto",
+			Version:   "5.7.3",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+		},
+	})
+
+	// Reset buildGradleMatcher mock
+	MockAllMatchers()
 }
 
 func TestParseGradleLock_MultiplePackage(t *testing.T) {
