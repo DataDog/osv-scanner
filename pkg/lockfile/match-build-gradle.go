@@ -1,10 +1,11 @@
 package lockfile
 
 import (
-	"github.com/google/osv-scanner/internal/utility/fileposition"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"strings"
+
+	"github.com/google/osv-scanner/internal/utility/fileposition"
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 type BuildGradleMatcher struct{}
@@ -68,13 +69,6 @@ func (m BuildGradleMatcher) Match(sourcefile DepFile, packages []PackageDetails)
 						versionLocation.Filename = sourcefile.Path()
 						packages[key].VersionLocation = versionLocation
 					}
-
-					// If the dep is using version range, it won't include the exact resolved version
-					// It could also happen if there are multiple versions conflicting and the transitive one has a higher version
-				} else {
-					// TODO: how to resolve version ranges
-					// A) Only one pkg with this group+artifact -> We know it was resolved from this line
-					// B) Multiple pkgs with this group+artifcat -> TODO: How to be sure of the one that was resolved from this line
 				}
 			}
 		}

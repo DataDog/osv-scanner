@@ -57,7 +57,6 @@ func (e GradleLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	scanner := bufio.NewScanner(f)
 
 	for scanner.Scan() {
-
 		lockLine := strings.TrimSpace(scanner.Text())
 		if !isGradleLockFileDepLine(lockLine) {
 			continue

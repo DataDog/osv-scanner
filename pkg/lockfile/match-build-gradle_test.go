@@ -1,13 +1,14 @@
 package lockfile_test
 
 import (
-	"github.com/google/osv-scanner/pkg/lockfile"
-	"github.com/google/osv-scanner/pkg/models"
-	"github.com/stretchr/testify/assert"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/google/osv-scanner/pkg/models"
+	"github.com/stretchr/testify/assert"
 )
 
 var buildGradleMatcher = lockfile.BuildGradleMatcher{}
