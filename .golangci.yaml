@@ -85,6 +85,3 @@ issues:
     - path: main.go
       linters:
         - gochecknoglobals
-    - path: go.mod
-      linters:
-        - gomoddirectives

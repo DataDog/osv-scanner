@@ -7,60 +7,39 @@ require (
 	deps.dev/util/maven v0.0.0-20240516073147-b352d7eeeae6
 	deps.dev/util/resolve v0.0.0-20240516073147-b352d7eeeae6
 	deps.dev/util/semver v0.0.0-20240516073147-b352d7eeeae6
-	github.com/BurntSushi/toml v1.4.0
+	github.com/BurntSushi/toml v1.3.2
 	github.com/CycloneDX/cyclonedx-go v0.8.0
-	github.com/charmbracelet/bubbles v0.18.0
-	github.com/charmbracelet/bubbletea v0.26.3
+	github.com/charmbracelet/bubbles v0.17.2-0.20240108170749-ec883029c8e6
+	github.com/charmbracelet/bubbletea v0.25.0
 	github.com/charmbracelet/glamour v0.7.0
-	github.com/charmbracelet/lipgloss v0.11.0
+	github.com/charmbracelet/lipgloss v0.9.1
 	github.com/dghubble/trie v0.1.0
 	github.com/gkampitakis/go-snaps v0.5.4
 	github.com/go-git/go-billy/v5 v5.5.0
-	github.com/go-git/go-git/v5 v5.12.0
+	github.com/go-git/go-git/v5 v5.11.0
 	github.com/google/go-cmp v0.6.0
 	github.com/google/go-containerregistry v0.19.1
-	github.com/ianlancetaylor/demangle v0.0.0-20240312041847-bd984b5ce465
-	github.com/jedib0t/go-pretty/v6 v6.5.9
+	github.com/ianlancetaylor/demangle v0.0.0-20231023195312-e2daf7ba7156
+	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/muesli/reflow v0.3.0
-	github.com/owenrumney/go-sarif/v2 v2.3.1
-	github.com/package-url/packageurl-go v0.1.3
+	github.com/owenrumney/go-sarif/v2 v2.3.0
+	github.com/package-url/packageurl-go v0.1.1
 	github.com/pandatix/go-cvss v0.6.2
-	github.com/spdx/tools-golang v0.5.4
+	github.com/spdx/tools-golang v0.5.3
 	github.com/stretchr/testify v1.9.0
-	github.com/tidwall/gjson v1.17.1
+	github.com/tidwall/gjson v1.17.0
 	github.com/tidwall/pretty v1.2.1
 	github.com/tidwall/sjson v1.2.5
-	github.com/urfave/cli/v2 v2.27.2
-	golang.org/x/exp v0.0.0-20240525044651-4c93da0ed11d
+	github.com/urfave/cli/v2 v2.25.7
+	golang.org/x/exp v0.0.0-20240325151524-a685a6edb6d8
 	golang.org/x/mod v0.17.0
 	golang.org/x/sync v0.7.0
 	golang.org/x/term v0.20.0
 	golang.org/x/vuln v1.0.4
 	google.golang.org/grpc v1.64.0
-	google.golang.org/protobuf v1.34.1
+	google.golang.org/protobuf v1.33.0
 	gopkg.in/ini.v1 v1.67.0
 	gopkg.in/yaml.v3 v3.0.1
-)
-
-// replacing libraries
-replace (
-	github.com/BurntSushi/toml => github.com/BurntSushi/toml v1.3.2
-	github.com/charmbracelet/bubbles => github.com/charmbracelet/bubbles v0.17.2-0.20240108170749-ec883029c8e6
-	github.com/charmbracelet/bubbletea => github.com/charmbracelet/bubbletea v0.25.0
-	github.com/charmbracelet/lipgloss => github.com/charmbracelet/lipgloss v0.9.1
-	github.com/go-git/go-git/v5 => github.com/go-git/go-git/v5 v5.11.0
-	github.com/ianlancetaylor/demangle => github.com/ianlancetaylor/demangle v0.0.0-20231023195312-e2daf7ba7156
-	github.com/jedib0t/go-pretty/v6 => github.com/jedib0t/go-pretty/v6 v6.4.6
-	github.com/owenrumney/go-sarif/v2 => github.com/owenrumney/go-sarif/v2 v2.3.0
-	github.com/package-url/packageurl-go => github.com/package-url/packageurl-go v0.1.1
-	github.com/spdx/tools-golang => github.com/spdx/tools-golang v0.5.3
-	github.com/tidwall/gjson => github.com/tidwall/gjson v1.17.0
-	github.com/urfave/cli/v2 => github.com/urfave/cli/v2 v2.25.7
-	golang.org/x/exp => golang.org/x/exp v0.0.0-20240325151524-a685a6edb6d8
-	golang.org/x/mod => golang.org/x/mod v0.17.0
-	golang.org/x/sync => golang.org/x/sync v0.7.0
-	golang.org/x/term => golang.org/x/term v0.20.0
-	google.golang.org/protobuf => google.golang.org/protobuf v1.33.0
 )
 
 require (
