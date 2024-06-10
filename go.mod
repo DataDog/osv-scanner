@@ -2,6 +2,13 @@ module github.com/google/osv-scanner
 
 go 1.21.10
 
+replace (
+	golang.org/x/crypto => golang.org/x/crypto v0.21.0
+	golang.org/x/net => golang.org/x/net v0.23.0
+	golang.org/x/sys => golang.org/x/sys v0.18.0
+	golang.org/x/term => golang.org/x/term v0.18.0
+)
+
 require (
 	deps.dev/api/v3 v3.0.0-20240516073147-b352d7eeeae6
 	deps.dev/util/maven v0.0.0-20240516073147-b352d7eeeae6
