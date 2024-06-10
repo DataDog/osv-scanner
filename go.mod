@@ -3,7 +3,7 @@ module github.com/google/osv-scanner
 go 1.21
 
 require (
-	deps.dev/api/v3alpha v0.0.0-20240516073147-b352d7eeeae6
+	deps.dev/api/v3alpha v0.0.0-20240109042716-00b51ef52ece
 	github.com/BurntSushi/toml v1.3.2
 	github.com/CycloneDX/cyclonedx-go v0.8.0
 	github.com/dghubble/trie v0.1.0
@@ -52,6 +52,7 @@ require (
 	github.com/gkampitakis/go-diff v1.3.2 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
+	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/klauspost/compress v1.17.2 // indirect
@@ -77,11 +78,10 @@ require (
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
-	golang.org/x/crypto v0.22.0 // indirect
-	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/crypto v0.21.0 // indirect
+	golang.org/x/net v0.23.0 // indirect
 	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/tools v0.19.0 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20240401170217-c3f982113cda // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240401170217-c3f982113cda // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
