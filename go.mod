@@ -1,8 +1,13 @@
-module github.com/DataDog/osv-scanner
-
-replace github.com/google/osv-scanner => ./
+module github.com/google/osv-scanner
 
 go 1.21.10
+
+replace (
+	golang.org/x/crypto => golang.org/x/crypto v0.21.0
+	golang.org/x/net => golang.org/x/net v0.23.0
+	golang.org/x/sys => golang.org/x/sys v0.18.0
+	golang.org/x/term => golang.org/x/term v0.18.0
+)
 
 require (
 	deps.dev/api/v3 v3.0.0-20240516073147-b352d7eeeae6
@@ -21,7 +26,6 @@ require (
 	github.com/go-git/go-git/v5 v5.11.0
 	github.com/google/go-cmp v0.6.0
 	github.com/google/go-containerregistry v0.15.2
-	github.com/google/osv-scanner v0.0.0-00010101000000-000000000000
 	github.com/ianlancetaylor/demangle v0.0.0-20231023195312-e2daf7ba7156
 	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/muesli/reflow v0.3.0
@@ -66,6 +70,9 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.3 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
 	github.com/dlclark/regexp2 v1.8.1 // indirect
+	github.com/docker/cli v24.0.7+incompatible // indirect
+	github.com/docker/docker v24.0.7+incompatible // indirect
+	github.com/docker/docker-credential-helpers v0.8.1 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/gkampitakis/ciinfo v0.3.0 // indirect
 	github.com/gkampitakis/go-diff v1.3.2 // indirect
@@ -95,11 +102,13 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/sahilm/fuzzy v0.1.1 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect
+	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/skeema/knownhosts v1.2.1 // indirect
 	github.com/spdx/gordf v0.0.0-20221230105357-b735bd5aac89 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/vbatts/tar-split v0.11.3 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
+	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	github.com/yuin/goldmark v1.4.13 // indirect
 	github.com/yuin/goldmark-emoji v1.0.2 // indirect
