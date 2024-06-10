@@ -28,7 +28,7 @@ import (
 	"github.com/google/osv-scanner/pkg/osv"
 	"github.com/google/osv-scanner/pkg/reporter"
 
-	depsdevpb "deps.dev/api/v3"
+	depsdevpb "deps.dev/api/v3alpha"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing/format/gitignore"
 )
