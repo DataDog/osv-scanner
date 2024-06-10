@@ -23,7 +23,7 @@ func applyWindowsReplacements(content string, replacements map[string]string) st
 
 // CleanSnapshots ensures that snapshots are relevant and sorted for consistency
 func CleanSnapshots(m *testing.M) {
-	snaps.Clean(m, snaps.CleanOpts{Sort: true})
+	snaps.Clean(m)
 }
 
 // Skip is equivalent to t.Log followed by t.SkipNow, but allows tracking of
