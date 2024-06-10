@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	pb "deps.dev/api/v3"
+	pb "deps.dev/api/v3alpha"
 	"github.com/google/osv-scanner/pkg/osv"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	depsdevpb "deps.dev/api/v3"
+	depsdevpb "deps.dev/api/v3alpha"
 	"deps.dev/util/maven"
 	"deps.dev/util/semver"
 	"github.com/google/osv-scanner/pkg/lockfile"

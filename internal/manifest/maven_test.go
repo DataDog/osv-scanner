@@ -6,7 +6,7 @@ import (
 	"io/fs"
 	"testing"
 
-	depsdevpb "deps.dev/api/v3"
+	depsdevpb "deps.dev/api/v3alpha"
 	"github.com/google/osv-scanner/internal/manifest"
 	"github.com/google/osv-scanner/pkg/lockfile"
 	"google.golang.org/grpc"
