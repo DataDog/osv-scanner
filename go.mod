@@ -1,9 +1,9 @@
 module github.com/google/osv-scanner
 
-go 1.21.1
+go 1.21.10
 
 require (
-	deps.dev/api/v3alpha v0.0.0-20240109042716-00b51ef52ece
+	deps.dev/api/v3 v3.0.0-20240516073147-b352d7eeeae6
 	deps.dev/util/maven v0.0.0-20240516073147-b352d7eeeae6
 	deps.dev/util/resolve v0.0.0-20240516073147-b352d7eeeae6
 	deps.dev/util/semver v0.0.0-20240516073147-b352d7eeeae6
@@ -52,7 +52,6 @@ require (
 
 require (
 	dario.cat/mergo v1.0.0 // indirect
-	deps.dev/api/v3 v3.0.0-20240311054650-e1e6a3d70fb7 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v1.1.0-alpha.0 // indirect
 	github.com/anchore/go-struct-converter v0.0.0-20230627203149-c72ef8859ca9 // indirect
@@ -72,7 +71,6 @@ require (
 	github.com/gkampitakis/go-diff v1.3.2 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/gorilla/css v1.0.1 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
