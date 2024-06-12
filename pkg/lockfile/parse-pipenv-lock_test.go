@@ -1,10 +1,15 @@
 package lockfile_test
 
 import (
+	"bytes"
+	"errors"
+	"io"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/google/osv-scanner/pkg/lockfile"
 )
@@ -112,6 +117,54 @@ func TestParsePipenvLock_OnePackage(t *testing.T) {
 			CompareAs: lockfile.PipenvEcosystem,
 		},
 	})
+}
+
+//nolint:paralleltest
+func TestParsePipenvLock_OnePackage_MatcherFailed(t *testing.T) {
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	stderr := os.Stderr
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+	os.Stderr = w
+
+	// Mock pipfileMatcher to fail
+	matcherError := errors.New("pipfileMatcher failed")
+	lockfile.PipenvExtractor.Matcher = FailingMatcher{Error: matcherError}
+
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/pipenv/one-package.json"))
+	packages, err := lockfile.ParsePipenvLock(path)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	// Capture stderr
+	_ = w.Close()
+	os.Stderr = stderr
+	var buffer bytes.Buffer
+	_, err = io.Copy(&buffer, r)
+	if err != nil {
+		t.Errorf("failed to copy stderr output: %v", err)
+	}
+	_ = r.Close()
+
+	assert.Contains(t, buffer.String(), matcherError.Error())
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:      "markupsafe",
+			Version:   "2.1.1",
+			Ecosystem: lockfile.PipenvEcosystem,
+			CompareAs: lockfile.PipenvEcosystem,
+		},
+	})
+
+	// Reset pipfileMatcher mock
+	MockAllMatchers()
 }
 
 func TestParsePipenvLock_OnePackageDev(t *testing.T) {
