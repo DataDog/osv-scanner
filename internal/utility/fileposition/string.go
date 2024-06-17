@@ -1,7 +1,7 @@
 package fileposition
 
 import (
-	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/google/osv-scanner/internal/cachedregexp"
@@ -55,14 +55,14 @@ func QuoteMetaDelimiters(prefix string, suffix string) (string, string) {
 }
 
 func ExtractDelimitedRegexpPositionInBlock(block []string, str string, blockStartLine int, prefix string, suffix string) *models.FilePosition {
-	group := fmt.Sprintf("(%s)", str)
+	term := "(?P<term>" + str + ")"
 	// Prefix & Suffix could be regexp
-	regex := cachedregexp.MustCompile(prefix + group + suffix)
+	regex := cachedregexp.MustCompile(prefix + term + suffix)
 	for i, line := range block {
 		matches := regex.FindStringSubmatch(line)
 		if len(matches) > 0 {
 			// Replace regexp with captured value
-			str = matches[1]
+			str = matches[slices.Index(regex.SubexpNames(), "term")]
 
 			return extractPositionFromLine(blockStartLine+i, line, str)
 		}
