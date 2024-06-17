@@ -179,3 +179,162 @@ func TestPackageJSONMatcher_Match_TransitiveDependencies(t *testing.T) {
 		},
 	})
 }
+
+func TestPackageJSONMatcher_Match_NameConflict(t *testing.T) {
+	t.Parallel()
+
+	sourceFile, err := lockfile.OpenLocalDepFile("fixtures/package-json/name-conflict/package.json")
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	packages := []lockfile.PackageDetails{
+		{
+			Name:           "aws-sdk-client-mock",
+			TargetVersions: []string{"^2.1.1"},
+		},
+		{
+			Name:           "aws-sdk-client-mock-jest",
+			TargetVersions: []string{"^2.1.1"},
+		},
+	}
+	err = packageJSONMatcher.Match(sourceFile, packages)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:           "aws-sdk-client-mock",
+			TargetVersions: []string{"^2.1.1"},
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 5, End: 36},
+				Filename: sourceFile.Path(),
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 6, End: 25},
+				Filename: sourceFile.Path(),
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 29, End: 35},
+				Filename: sourceFile.Path(),
+			},
+		},
+		{
+			Name:           "aws-sdk-client-mock-jest",
+			TargetVersions: []string{"^2.1.1"},
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 5, End: 41},
+				Filename: sourceFile.Path(),
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 6, End: 30},
+				Filename: sourceFile.Path(),
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 34, End: 40},
+				Filename: sourceFile.Path(),
+			},
+		},
+	})
+}
+
+func TestPackageJSONMatcher_Match_Resolutions(t *testing.T) {
+	t.Parallel()
+
+	sourceFile, err := lockfile.OpenLocalDepFile("fixtures/package-json/resolutions/package.json")
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	packages := []lockfile.PackageDetails{
+		{
+			Name:           "fast-xml-parser",
+			Version:        "4.2.5",
+			TargetVersions: []string{"4.2.5"},
+		},
+		{
+			Name:           "fast-xml-parser",
+			Version:        "4.4.0",
+			TargetVersions: []string{"^4.2.5"},
+		},
+		{
+			Name:           "@aws-sdk/core",
+			Version:        "3.535.0",
+			TargetVersions: []string{"^3.535.0"},
+		},
+	}
+	err = packageJSONMatcher.Match(sourceFile, packages)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:           "fast-xml-parser",
+			Version:        "4.2.5",
+			TargetVersions: []string{"4.2.5"},
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 5, End: 41},
+				Filename: sourceFile.Path(),
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 6, End: 31},
+				Filename: sourceFile.Path(),
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 4, End: 4},
+				Column:   models.Position{Start: 35, End: 40},
+				Filename: sourceFile.Path(),
+			},
+		},
+		{
+			Name:           "fast-xml-parser",
+			Version:        "4.4.0",
+			TargetVersions: []string{"^4.2.5"},
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 7, End: 7},
+				Column:   models.Position{Start: 5, End: 32},
+				Filename: sourceFile.Path(),
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 7, End: 7},
+				Column:   models.Position{Start: 6, End: 21},
+				Filename: sourceFile.Path(),
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 7, End: 7},
+				Column:   models.Position{Start: 25, End: 31},
+				Filename: sourceFile.Path(),
+			},
+		},
+		{
+			Name:           "@aws-sdk/core",
+			Version:        "3.535.0",
+			TargetVersions: []string{"^3.535.0"},
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 8, End: 8},
+				Column:   models.Position{Start: 5, End: 32},
+				Filename: sourceFile.Path(),
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 8, End: 8},
+				Column:   models.Position{Start: 6, End: 19},
+				Filename: sourceFile.Path(),
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 8, End: 8},
+				Column:   models.Position{Start: 23, End: 31},
+				Filename: sourceFile.Path(),
+			},
+		},
+	})
+}
