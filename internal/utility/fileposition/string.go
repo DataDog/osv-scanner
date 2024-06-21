@@ -55,13 +55,15 @@ func QuoteMetaDelimiters(prefix string, suffix string) (string, string) {
 }
 
 func ExtractDelimitedRegexpPositionInBlock(block []string, str string, blockStartLine int, prefix string, suffix string) *models.FilePosition {
+	// We name the group we are looking for in order to identify it after in the matches
+	// This is required due to the fact that prefix and suffix could also be regex and contain other groups
 	term := "(?P<term>" + str + ")"
-	// Prefix & Suffix could be regexp
 	regex := cachedregexp.MustCompile(prefix + term + suffix)
 	for i, line := range block {
 		matches := regex.FindStringSubmatch(line)
 		if len(matches) > 0 {
 			// Replace regexp with captured value
+			// We use the named group to identify the captured value
 			str = matches[slices.Index(regex.SubexpNames(), "term")]
 
 			return extractPositionFromLine(blockStartLine+i, line, str)
