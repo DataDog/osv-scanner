@@ -3,11 +3,12 @@ package testutility
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/google/osv-scanner/internal/cachedregexp"
 )
 
 // Attempts to normalize any file paths in the given `output` so that they can
