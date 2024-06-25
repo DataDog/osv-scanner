@@ -12,6 +12,7 @@ import (
 func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.PackageDetails, artifacts []models.ScannedArtifact) *cyclonedx.BOM {
 	bom := cyclonedx.NewBOM()
 	components := make([]cyclonedx.Component, 0)
+	dependencies := make([]cyclonedx.Dependency, 0)
 	bom.JSONSchema = cycloneDx15Schema
 	bom.SpecVersion = cyclonedx.SpecVersion1_5
 
@@ -47,13 +48,10 @@ func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.Package
 		component := cyclonedx.Component{}
 		occurrences := make([]cyclonedx.EvidenceOccurrence, 1)
 		component.Name = artifact.Name
-		component.BOMRef = artifact.Filename
-		component.Type = componentTypeFile
+		component.Version = artifact.Version
+		component.BOMRef = artifact.Name + "@" + artifact.Version
+		component.Type = componentTypeApplication
 		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
-
-		if artifact.Version != "" {
-			component.Version = artifact.Version
-		}
 
 		jsonLocation, err := json.Marshal(artifact.FilePosition)
 		if err != nil {
@@ -65,8 +63,20 @@ func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.Package
 		}
 		occurrences[0] = occurrence
 		components = append(components, component)
+
+		// Computing parent dependency
+		if artifact.DependsOn != (models.ArtifactDetail{}) {
+			dependency := cyclonedx.Dependency{
+				Ref: component.BOMRef,
+				Dependencies: &[]string{
+					artifact.DependsOn.Name + "@" + artifact.DependsOn.Version,
+				},
+			}
+			dependencies = append(dependencies, dependency)
+		}
 	}
 	bom.Components = &components
+	bom.Dependencies = &dependencies
 
 	return bom
 }

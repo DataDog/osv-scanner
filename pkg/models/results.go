@@ -13,10 +13,15 @@ type VulnerabilityResults struct {
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
 }
 
-type ScannedArtifact struct {
+type ArtifactDetail struct {
 	Name    string
 	Version string
+}
+
+type ScannedArtifact struct {
+	ArtifactDetail
 	FilePosition
+	DependsOn ArtifactDetail
 }
 
 // ExperimentalAnalysisConfig is an experimental type intended to contain the

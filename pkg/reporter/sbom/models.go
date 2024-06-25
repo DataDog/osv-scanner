@@ -28,6 +28,6 @@ const (
 )
 
 const (
-	componentTypeLibrary = "library"
-	componentTypeFile    = "file"
+	componentTypeLibrary     = "library"
+	componentTypeApplication = "application"
 )

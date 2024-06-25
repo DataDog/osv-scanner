@@ -58,6 +58,7 @@ func (r *CycloneDXReporter) PrintResult(vulnerabilityResults *models.Vulnerabili
 	bomCreator := sbom.SpecVersionToBomCreator[r.version]
 	bom := bomCreator(r.stderr, vulnerabilityResults.ResultsByPURL, vulnerabilityResults.Artifacts)
 	encoder := cyclonedx.NewBOMEncoder(r.stdout, cyclonedx.BOMFileFormatJSON)
+	encoder.SetPretty(true)
 
 	return encoder.Encode(bom)
 }
