@@ -3,6 +3,7 @@ package lockfile
 import (
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"os"
 	"path/filepath"
@@ -48,6 +49,10 @@ type WithMatcher struct {
 type ExtractorWithMatcher interface {
 	Extractor
 	GetMatcher() Matcher
+}
+
+type ArtifactExtractor interface {
+	GetArtifact(f DepFile) (*models.ScannedArtifact, error)
 }
 
 func (e WithMatcher) GetMatcher() Matcher {

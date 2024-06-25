@@ -78,9 +78,9 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 		// If the fieldToResolve is the internal version fieldToResolve, then lets use the one declared
 		if strings.HasPrefix(propName, "project.") {
 			property, ok = projectProperties[propName]
-			// The property is located in the main source file...
+			// The property is located in the main source File...
 			projectPropertySourceFile := lockfile.MainSourceFile
-			// Except if it is the version -> It could be located in some parent file
+			// Except if it is the version -> It could be located in some parent File
 			if strings.HasSuffix(propName, "version") {
 				projectPropertySourceFile = lockfile.ProjectVersionSourceFile
 			}
@@ -96,7 +96,7 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 					// Property uses other properties
 					property, position = mld.resolvePropertiesValue(lockfile, property)
 				} else {
-					// We should locate the property in its source file
+					// We should locate the property in its source File
 					propOpenTag, propCloseTag = fileposition.QuoteMetaDelimiters(propOpenTag, propCloseTag)
 					position = fileposition.ExtractDelimitedRegexpPositionInBlock(lockfile.Lines[lockProperty.SourceFile], ".*", 1, propOpenTag, propCloseTag)
 					if position != nil {
@@ -235,7 +235,9 @@ DecodingLoop:
 	return nil
 }
 
-type MavenLockExtractor struct{}
+type MavenLockExtractor struct {
+	ArtifactExtractor
+}
 
 func (e MavenLockExtractor) ShouldExtract(path string) bool {
 	return filepath.Base(path) == "pom.xml"
@@ -251,7 +253,7 @@ func (e MavenLockExtractor) mergeLockfiles(childLockfile *MavenLockFile, parentL
 	parentLockfile.GroupID = childLockfile.GroupID
 	parentLockfile.ModelVersion = childLockfile.ModelVersion
 
-	// Merge lock file lines
+	// Merge lock File lines
 	maps.Copy(parentLockfile.Lines, childLockfile.Lines)
 
 	// If child lockfile overrides the project version, let's use it instead
@@ -260,7 +262,7 @@ func (e MavenLockExtractor) mergeLockfiles(childLockfile *MavenLockFile, parentL
 		parentLockfile.ProjectVersionSourceFile = childLockfile.ProjectVersionSourceFile
 	}
 
-	// Keep track of the main source file
+	// Keep track of the main source File
 	parentLockfile.MainSourceFile = childLockfile.MainSourceFile
 
 	// Child properties take precedence over parent defined ones
@@ -330,7 +332,7 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int, visitedPath ma
 		return parsedLockfile, nil
 	}
 
-	// If a parent is defined, use its relative path to find the file, then recurse to decode it properly and enrich its dependencies
+	// If a parent is defined, use its relative path to find the File, then recurse to decode it properly and enrich its dependencies
 	// If the relativePath is not defined, default to ../pom.xml
 	parentRelativePath := parsedLockfile.Parent.RelativePath
 	if len(parentRelativePath) == 0 {
@@ -455,6 +457,38 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	}
 
 	return maps.Values(details), nil
+}
+
+func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, error) {
+	visitedPath := make(map[string]bool)
+	visitedPath[f.Path()] = true
+	parsedLockfile, err := e.decodeMavenFile(f, 0, visitedPath)
+	if err != nil {
+		return nil, err
+	}
+
+	artifactName := parsedLockfile.GroupID + ":" + parsedLockfile.ArtifactID
+	lineCount := len(parsedLockfile.Lines[f.Path()])
+	columnCount := len(parsedLockfile.Lines[f.Path()][lineCount-1])
+	if columnCount == 0 && lineCount >= 2 {
+		// This means the last line is empty, we take the one just before
+		columnCount = len(parsedLockfile.Lines[f.Path()][lineCount-2])
+	}
+	return &models.ScannedArtifact{
+		Name:    artifactName,
+		Version: parsedLockfile.Version,
+		FilePosition: models.FilePosition{
+			Line: models.Position{
+				Start: 1,
+				End:   lineCount,
+			},
+			Column: models.Position{
+				Start: 1,
+				End:   columnCount,
+			},
+			Filename: f.Path(),
+		},
+	}, nil
 }
 
 var _ Extractor = MavenLockExtractor{}

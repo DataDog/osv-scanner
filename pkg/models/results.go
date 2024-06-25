@@ -7,8 +7,15 @@ import (
 
 // Combined vulnerabilities found for the scanned packages
 type VulnerabilityResults struct {
-	Results                    []PackageSource            `json:"results"`
+	Results                    []PackageSource           `json:"results"`
+	Artifacts                  []ScannedArtifact
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
+}
+
+type ScannedArtifact struct {
+	Name    string
+	Version string
+	FilePosition
 }
 
 // ExperimentalAnalysisConfig is an experimental type intended to contain the
