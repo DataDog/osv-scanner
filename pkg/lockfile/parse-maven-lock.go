@@ -34,6 +34,9 @@ type MavenLockDependency struct {
 type MavenLockParent struct {
 	XMLName      xml.Name `xml:"parent"`
 	RelativePath string   `xml:"relativePath"`
+	GroupId      string   `xml:"groupId"`
+	ArtifactId   string   `xml:"artifactId"`
+	Version      string   `xml:"version"`
 }
 
 type MavenLockDependencyHolder struct {
@@ -474,9 +477,16 @@ func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, err
 		// This means the last line is empty, we take the one just before
 		columnCount = len(parsedLockfile.Lines[f.Path()][lineCount-2])
 	}
+	parentArtifact := parsedLockfile.Parent.GroupId + ":" + parsedLockfile.Parent.ArtifactId
 	return &models.ScannedArtifact{
-		Name:    artifactName,
-		Version: parsedLockfile.Version,
+		ArtifactDetail: models.ArtifactDetail{
+			Name:    artifactName,
+			Version: parsedLockfile.Version,
+		},
+		DependsOn: models.ArtifactDetail{
+			Name:    parentArtifact,
+			Version: parsedLockfile.Parent.Version,
+		},
 		FilePosition: models.FilePosition{
 			Line: models.Position{
 				Start: 1,
