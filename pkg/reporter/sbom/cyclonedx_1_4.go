@@ -8,7 +8,7 @@ import (
 	"github.com/CycloneDX/cyclonedx-go"
 )
 
-func ToCycloneDX14Bom(_ io.Writer, uniquePackages map[string]models.PackageDetails) *cyclonedx.BOM {
+func ToCycloneDX14Bom(_ io.Writer, uniquePackages map[string]models.PackageDetails, artifacts []models.ScannedArtifact) *cyclonedx.BOM {
 	bom := cyclonedx.NewBOM()
 	components := make([]cyclonedx.Component, 0)
 	bom.JSONSchema = cycloneDx14Schema
@@ -19,7 +19,7 @@ func ToCycloneDX14Bom(_ io.Writer, uniquePackages map[string]models.PackageDetai
 		component.Name = packageDetail.Name
 		component.BOMRef = packageURL
 		component.PackageURL = packageURL
-		component.Type = componentType
+		component.Type = componentTypeLibrary
 
 		if packageDetail.Version != "" {
 			component.Version = packageDetail.Version

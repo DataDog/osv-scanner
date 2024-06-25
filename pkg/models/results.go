@@ -7,9 +7,16 @@ import (
 
 // Combined vulnerabilities found for the scanned packages
 type VulnerabilityResults struct {
-	Results                    []PackageSource            `json:"results"`
-	ResultsByPURL              map[string]PackageDetails  `json:"results_by_purl,omitempty"`
+	Results                    []PackageSource           `json:"results"`
+	ResultsByPURL              map[string]PackageDetails `json:"results_by_purl,omitempty"`
+	Artifacts                  []ScannedArtifact
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
+}
+
+type ScannedArtifact struct {
+	Name    string
+	Version string
+	FilePosition
 }
 
 // ExperimentalAnalysisConfig is an experimental type intended to contain the

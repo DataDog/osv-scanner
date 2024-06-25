@@ -3,6 +3,7 @@ package lockfile
 import (
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -77,9 +78,10 @@ func (ps Packages) Ecosystems() []Ecosystem {
 }
 
 type Lockfile struct {
-	FilePath string   `json:"filePath"`
-	ParsedAs string   `json:"parsedAs"`
-	Packages Packages `json:"packages"`
+	FilePath string                  `json:"filePath"`
+	ParsedAs string                  `json:"parsedAs"`
+	Packages Packages                `json:"packages"`
+	Artifact *models.ScannedArtifact `json:"artifact,omitempty"`
 }
 
 func (l Lockfile) String() string {
