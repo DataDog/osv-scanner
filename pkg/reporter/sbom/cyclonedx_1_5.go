@@ -65,7 +65,7 @@ func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.Package
 		components = append(components, component)
 
 		// Computing parent dependency
-		if artifact.DependsOn != (models.ArtifactDetail{}) {
+		if artifact.DependsOn != nil {
 			dependency := cyclonedx.Dependency{
 				Ref: component.BOMRef,
 				Dependencies: &[]string{
