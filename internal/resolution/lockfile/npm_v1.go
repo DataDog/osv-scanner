@@ -61,7 +61,7 @@ func (rw NpmLockfileIO) nodesFromDependencies(lockJSON lockfile.NpmLockfile, man
 	return &g, nodeModuleTree, err
 }
 
-func (rw NpmLockfileIO) computeDependenciesRecursive(g *resolve.Graph, parent *npmNodeModule, deps map[string]*lockfile.NpmLockDependency) error {
+func (rw NpmLockfileIO) computeDependenciesRecursive(g *resolve.Graph, parent *npmNodeModule, deps map[string]lockfile.NpmLockDependency) error {
 	for name, d := range deps {
 		actualName, version := manifest.SplitNPMAlias(d.Version)
 		nID := g.AddNode(resolve.VersionKey{

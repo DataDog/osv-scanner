@@ -111,6 +111,10 @@ func Command(stdout, stderr io.Writer, r *reporter.Reporter) *cli.Command {
 				Name:  "experimental-offline",
 				Usage: "checks for vulnerabilities using local databases that are already cached",
 			},
+			&cli.BoolFlag{
+				Name:  "experimental-download-offline-databases",
+				Usage: "downloads vulnerability databases for offline comparison",
+			},
 			&cli.StringFlag{
 				Name:   "experimental-local-db-path",
 				Usage:  "sets the path that local databases should be stored",
@@ -222,22 +226,22 @@ func action(context *cli.Context, stdout, stderr io.Writer) (reporter.Reporter, 
 	}
 
 	vulnResult, err := osvscanner.DoScan(osvscanner.ScannerActions{
-		LockfilePaths:          context.StringSlice("lockfile"),
-		SBOMPaths:              context.StringSlice("sbom"),
-		DockerContainerNames:   context.StringSlice("docker"),
-		Recursive:              context.Bool("recursive"),
-		SkipGit:                context.Bool("skip-git"),
-		NoIgnore:               context.Bool("no-ignore"),
-		ConfigOverridePath:     context.String("config"),
-		DirectoryPaths:         context.Args().Slice(),
-		CallAnalysisStates:     callAnalysisStates,
+		LockfilePaths:        context.StringSlice("lockfile"),
+		SBOMPaths:            context.StringSlice("sbom"),
+		DockerContainerNames: context.StringSlice("docker"),
+		Recursive:            context.Bool("recursive"),
+		SkipGit:              context.Bool("skip-git"),
+		NoIgnore:             context.Bool("no-ignore"),
+		ConfigOverridePath:   context.String("config"),
+		DirectoryPaths:       context.Args().Slice(),
+		CallAnalysisStates:   callAnalysisStates,
 		ConsiderScanPathAsRoot: context.Bool("consider-scan-path-as-root"),
 		PathRelativeToScanDir:  context.Bool("paths-relative-to-scan-dir"),
 		EnableParsers:          context.StringSlice("enable-parsers"),
 		ExperimentalScannerActions: osvscanner.ExperimentalScannerActions{
-			LocalDBPath:    context.String("experimental-local-db-path"),
-			CompareLocally: context.Bool("experimental-local-db"),
-			CompareOffline: context.Bool("experimental-offline"),
+			LocalDBPath:       context.String("experimental-local-db-path"),
+			DownloadDatabases: context.Bool("experimental-download-offline-databases"),
+			CompareOffline:    context.Bool("experimental-offline"),
 			// License summary mode causes all
 			// packages to appear in the json as
 			// every package has a license - even

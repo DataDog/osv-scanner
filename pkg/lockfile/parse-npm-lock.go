@@ -63,7 +63,7 @@ type NpmLockfile struct {
 	Version    int `json:"lockfileVersion"`
 	SourceFile string
 	// npm v1- lockfiles use "dependencies"
-	Dependencies map[string]*NpmLockDependency `json:"dependencies"`
+	Dependencies map[string]*NpmLockDependency `json:"dependencies,omitempty"`
 	// npm v2+ lockfiles use "packages"
 	Packages map[string]*NpmLockPackage `json:"packages,omitempty"`
 }

@@ -49,14 +49,14 @@ jobs:
       security-events: write # for uploading SARIF files
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
           # Do persist credentials, as we need it for the git checkout later
       - name: "Checkout target branch"
         run: git checkout $GITHUB_BASE_REF
       - name: "Run scanner on existing code"
-        uses: DataDog/osv-scanner/actions/scanner@staging
+        uses: google/osv-scanner/actions/scanner@main
         continue-on-error: true
         with:
           scan-args: |-
@@ -66,7 +66,7 @@ jobs:
       - name: "Checkout current branch"
         run: git checkout $GITHUB_SHA
       - name: "Run scanner on new code"
-        uses: DataDog/osv-scanner/actions/scanner@staging
+        uses: google/osv-scanner/actions/scanner@main
         with:
           scan-args: |-
             --format=json
@@ -74,7 +74,7 @@ jobs:
             ${{ inputs.scan-args }}
         continue-on-error: true
       - name: "Run osv-scanner-reporter"
-        uses: DataDog/osv-scanner/actions/reporter@staging
+        uses: google/osv-scanner/actions/reporter@main
         with:
           scan-args: |-
             --output=${{ inputs.results-file-name }}
@@ -108,6 +108,6 @@ jobs:
       # Upload the results to GitHub's code scanning dashboard.
       - name: "Upload to code-scanning"
         if: ${{ !cancelled() && inputs.upload-sarif == true }}
-        uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3.25.6
+        uses: github/codeql-action/upload-sarif@23acc5c183826b7a8a97bce3cecc52db901f8251 # v3.25.10
         with:
           sarif_file: ${{ inputs.results-file-name }}
