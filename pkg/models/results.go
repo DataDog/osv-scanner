@@ -20,7 +20,7 @@ type ArtifactDetail struct {
 type ScannedArtifact struct {
 	ArtifactDetail
 	FilePosition
-	DependsOn ArtifactDetail
+	DependsOn *ArtifactDetail
 }
 
 // ExperimentalAnalysisConfig is an experimental type intended to contain the

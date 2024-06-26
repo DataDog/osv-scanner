@@ -251,10 +251,25 @@ func (e MavenLockExtractor) ShouldExtract(path string) bool {
 ** It copies all information originating from the child in it, overriding any common properties/dependencies
 **/
 func (e MavenLockExtractor) mergeLockfiles(childLockfile *MavenLockFile, parentLockfile *MavenLockFile) *MavenLockFile {
-	parentLockfile.Parent = childLockfile.Parent
-	parentLockfile.ArtifactID = childLockfile.ArtifactID
-	parentLockfile.GroupID = childLockfile.GroupID
-	parentLockfile.ModelVersion = childLockfile.ModelVersion
+	// We set the parent back to the definition inherited from the child
+	// As the child have no restriction on putting valid information outside of the relative path, we keep the artifact / group id set by the parent
+	parentLockfile.Parent = MavenLockParent{
+		XMLName:      childLockfile.Parent.XMLName,
+		RelativePath: childLockfile.Parent.RelativePath,
+		GroupId:      parentLockfile.GroupID,
+		ArtifactId:   parentLockfile.ArtifactID,
+		Version:      parentLockfile.Version,
+	}
+	// The following fields are not mandatory, in case they are not defined in the child, the one from the parent should be kept
+	if len(childLockfile.ArtifactID) > 0 {
+		parentLockfile.ArtifactID = childLockfile.ArtifactID
+	}
+	if len(childLockfile.GroupID) > 0 {
+		parentLockfile.GroupID = childLockfile.GroupID
+	}
+	if len(childLockfile.ModelVersion) > 0 {
+		parentLockfile.ModelVersion = childLockfile.ModelVersion
+	}
 
 	// Merge lock File lines
 	maps.Copy(parentLockfile.Lines, childLockfile.Lines)
@@ -477,15 +492,11 @@ func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, err
 		// This means the last line is empty, we take the one just before
 		columnCount = len(parsedLockfile.Lines[f.Path()][lineCount-2])
 	}
-	parentArtifact := parsedLockfile.Parent.GroupId + ":" + parsedLockfile.Parent.ArtifactId
-	return &models.ScannedArtifact{
+
+	artifact := models.ScannedArtifact{
 		ArtifactDetail: models.ArtifactDetail{
 			Name:    artifactName,
 			Version: parsedLockfile.Version,
-		},
-		DependsOn: models.ArtifactDetail{
-			Name:    parentArtifact,
-			Version: parsedLockfile.Parent.Version,
 		},
 		FilePosition: models.FilePosition{
 			Line: models.Position{
@@ -498,7 +509,17 @@ func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, err
 			},
 			Filename: f.Path(),
 		},
-	}, nil
+	}
+
+	if parsedLockfile.Parent != (MavenLockParent{}) {
+		parentArtifact := parsedLockfile.Parent.GroupId + ":" + parsedLockfile.Parent.ArtifactId
+		artifact.DependsOn = &models.ArtifactDetail{
+			Name:    parentArtifact,
+			Version: parsedLockfile.Parent.Version,
+		}
+	}
+
+	return &artifact, nil
 }
 
 var _ Extractor = MavenLockExtractor{}
