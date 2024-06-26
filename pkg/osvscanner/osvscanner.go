@@ -167,7 +167,7 @@ func scanDir(r reporter.Reporter, dir string, skipGit bool, recursive bool, useG
 
 		if !info.IsDir() {
 			if extractor, _ := lockfile.FindExtractor(path, "", enabledParsers); extractor != nil {
-				pkgs, err := scanLockfile(r, path, "", enabledParsers, compareOffline)
+				pkgs, err := scanLockfile(r, path, "", enabledParsers)
 				if err != nil {
 					r.Warnf("Attempted to scan lockfile but failed: %s (%v)\n", path, err.Error())
 				}
@@ -348,7 +348,7 @@ func scanImage(r reporter.Reporter, path string) ([]scannedPackage, error) {
 
 // scanLockfile will load, identify, and parse the lockfile path passed in, and add the dependencies specified
 // within to `query`
-func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParsers map[string]bool, compareOffline bool) ([]scannedPackage, error) {
+func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParsers map[string]bool) ([]scannedPackage, error) {
 	var err error
 	var parsedLockfile lockfile.Lockfile
 
@@ -411,7 +411,7 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 }
 
 // TODO : This seems to be the new way in osv-scanner of extracting maven deps, we need to take a look at it
-//func extractMavenDeps(f lockfile.DepFile) (lockfile.Lockfile, error) {
+// func extractMavenDeps(f lockfile.DepFile) (lockfile.Lockfile, error) {
 //	depClient, err := client.NewDepsDevClient(depsdev.DepsdevAPI)
 //	if err != nil {
 //		return lockfile.Lockfile{}, err
@@ -439,7 +439,7 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 //		ParsedAs: "pom.xml",
 //		Packages: packages,
 //	}, err
-//}
+// }
 
 // scanSBOMFile will load, identify, and parse the SBOM path passed in, and add the dependencies specified
 // within to `query`
@@ -871,7 +871,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 			r.Errorf("Failed to resolved path with error %s\n", err)
 			return models.VulnerabilityResults{}, err
 		}
-		pkgs, err := scanLockfile(r, lockfilePath, parseAs, enabledParsers, actions.CompareOffline)
+		pkgs, err := scanLockfile(r, lockfilePath, parseAs, enabledParsers)
 		if err != nil {
 			return models.VulnerabilityResults{}, err
 		}
