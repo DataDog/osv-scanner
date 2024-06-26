@@ -24,7 +24,18 @@
           "package": {
             "name": "remove_dir_all",
             "version": "0.5.3",
-            "ecosystem": "crates.io"
+            "ecosystem": "crates.io",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -175,7 +186,18 @@
           "package": {
             "name": "time",
             "version": "0.1.45",
-            "ecosystem": "crates.io"
+            "ecosystem": "crates.io",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -432,7 +454,18 @@
           "package": {
             "name": "golang.org/x/net",
             "version": "0.1.0",
-            "ecosystem": "Go"
+            "ecosystem": "Go",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -928,7 +961,18 @@
           "package": {
             "name": "ascii",
             "version": "0.8.7",
-            "ecosystem": "crates.io"
+            "ecosystem": "crates.io",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1074,7 +1118,18 @@
           "package": {
             "name": "remove_dir_all",
             "version": "0.5.3",
-            "ecosystem": "crates.io"
+            "ecosystem": "crates.io",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1225,7 +1280,18 @@
           "package": {
             "name": "time",
             "version": "0.1.45",
-            "ecosystem": "crates.io"
+            "ecosystem": "crates.io",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1495,7 +1561,18 @@
           "package": {
             "name": "chromium",
             "version": "73.0.3683.75-1",
-            "ecosystem": "Debian:10"
+            "ecosystem": "Debian:10",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1601,7 +1678,18 @@
           "package": {
             "name": "golang.org/x/net",
             "version": "0.1.0",
-            "ecosystem": "Go"
+            "ecosystem": "Go",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1818,7 +1906,18 @@
           "package": {
             "name": "ascii",
             "version": "0.8.7",
-            "ecosystem": "crates.io"
+            "ecosystem": "crates.io",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1896,7 +1995,18 @@
           "package": {
             "name": "time",
             "version": "0.1.45",
-            "ecosystem": "crates.io"
+            "ecosystem": "crates.io",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {

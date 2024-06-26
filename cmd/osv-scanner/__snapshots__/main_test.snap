@@ -77,7 +77,7 @@ Scanned <rootdir>/fixtures/locks-many/package-lock.json file and found 1 package
 ---
 
 [TestRun/#06 - 2]
-unsupported output format "unknown" - must be one of: table, json, markdown, sarif, gh-annotations
+unsupported output format "unknown" - must be one of: table, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5
 
 ---
 
@@ -278,12 +278,13 @@ No issues found
 [TestRun/all_supported_lockfiles_in_the_directory_should_be_checked - 1]
 Scanning dir ./fixtures/locks-many-with-invalid
 Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
+Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock ((extracting as composer.lock) could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
 Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
+No issues found
 
 ---
 
 [TestRun/all_supported_lockfiles_in_the_directory_should_be_checked - 2]
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
 
 ---
 
@@ -693,7 +694,40 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
           "package": {
             "name": "babel",
             "version": "6.23.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 5,
+                "end": 23
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 15,
+                "end": 22
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 6,
+                "end": 11
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "MIT"
@@ -703,7 +737,40 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 5,
+                "end": 30
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 23,
+                "end": 29
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 6,
+                "end": 19
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -713,7 +780,40 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
           "package": {
             "name": "ms",
             "version": "2.1.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 5,
+                "end": 19
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 12,
+                "end": 18
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 6,
+                "end": 8
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "MIT"
@@ -722,6 +822,98 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/babel@6.23.0": {
+      "Name": "babel",
+      "Version": "6.23.0",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 5,
+            "column_end": 23
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 6,
+            "column_end": 11
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 15,
+            "column_end": 22
+          }
+        }
+      ]
+    },
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 5,
+            "column_end": 30
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 6,
+            "column_end": 19
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 23,
+            "column_end": 29
+          }
+        }
+      ]
+    },
+    "pkg:npm/ms@2.1.3": {
+      "Name": "ms",
+      "Version": "2.1.3",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 5,
+            "column_end": 19
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 6,
+            "column_end": 8
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 12,
+            "column_end": 18
+          }
+        }
+      ]
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": true,
@@ -751,7 +943,40 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "babel",
             "version": "6.23.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 5,
+                "end": 23
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 15,
+                "end": 22
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 6,
+                "end": 11
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "MIT"
@@ -761,7 +986,40 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 5,
+                "end": 30
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 23,
+                "end": 29
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 6,
+                "end": 19
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -771,7 +1029,40 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "ms",
             "version": "2.1.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 5,
+                "end": 19
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 12,
+                "end": 18
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 6,
+                "end": 8
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "MIT"
@@ -780,6 +1071,98 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/babel@6.23.0": {
+      "Name": "babel",
+      "Version": "6.23.0",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 5,
+            "column_end": 23
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 6,
+            "column_end": 11
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 15,
+            "column_end": 22
+          }
+        }
+      ]
+    },
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 5,
+            "column_end": 30
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 6,
+            "column_end": 19
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 23,
+            "column_end": 29
+          }
+        }
+      ]
+    },
+    "pkg:npm/ms@2.1.3": {
+      "Name": "ms",
+      "Version": "2.1.3",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 5,
+            "column_end": 19
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 6,
+            "column_end": 8
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 12,
+            "column_end": 18
+          }
+        }
+      ]
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": false,
@@ -858,7 +1241,40 @@ Filtered 1 vulnerability from output
           "package": {
             "name": "babel",
             "version": "6.23.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 5,
+                "end": 23
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 15,
+                "end": 22
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 3,
+                "end": 3
+              },
+              "column": {
+                "start": 6,
+                "end": 11
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "MIT"
@@ -868,7 +1284,40 @@ Filtered 1 vulnerability from output
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 5,
+                "end": 30
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 23,
+                "end": 29
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 6,
+                "end": 19
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -881,7 +1330,40 @@ Filtered 1 vulnerability from output
           "package": {
             "name": "ms",
             "version": "2.1.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 5,
+                "end": 19
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 12,
+                "end": 18
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 5,
+                "end": 5
+              },
+              "column": {
+                "start": 6,
+                "end": 8
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "MIT"
@@ -890,6 +1372,98 @@ Filtered 1 vulnerability from output
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/babel@6.23.0": {
+      "Name": "babel",
+      "Version": "6.23.0",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 5,
+            "column_end": 23
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 6,
+            "column_end": 11
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 3,
+            "line_end": 3,
+            "column_start": 15,
+            "column_end": 22
+          }
+        }
+      ]
+    },
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 5,
+            "column_end": 30
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 6,
+            "column_end": 19
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 23,
+            "column_end": 29
+          }
+        }
+      ]
+    },
+    "pkg:npm/ms@2.1.3": {
+      "Name": "ms",
+      "Version": "2.1.3",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 5,
+            "column_end": 19
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 6,
+            "column_end": 8
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 5,
+            "line_end": 5,
+            "column_start": 12,
+            "column_end": 18
+          }
+        }
+      ]
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": false,
@@ -921,7 +1495,40 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 5,
+                "end": 30
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "versionLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 23,
+                "end": 29
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            },
+            "nameLocation": {
+              "line": {
+                "start": 4,
+                "end": 4
+              },
+              "column": {
+                "start": 6,
+                "end": 19
+              },
+              "file_name": "<rootdir>/fixtures/locks-licenses/package.json"
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -933,6 +1540,38 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": [
+        {
+          "block": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 5,
+            "column_end": 30
+          },
+          "name": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 6,
+            "column_end": 19
+          },
+          "version": {
+            "file_name": "<rootdir>/fixtures/locks-licenses/package.json",
+            "line_start": 4,
+            "line_end": 4,
+            "column_start": 23,
+            "column_end": 29
+          }
+        }
+      ]
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": false,
@@ -1283,28 +1922,30 @@ No issues found
 [TestRun_LocalDatabases/#04 - 1]
 Scanning dir ./fixtures/locks-many-with-invalid
 Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
+Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock ((extracting as composer.lock) could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
 Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
 Loaded RubyGems local db from <tempdir>/osv-scanner/RubyGems/all.zip
 Loaded npm local db from <tempdir>/osv-scanner/npm/all.zip
+No issues found
 
 ---
 
 [TestRun_LocalDatabases/#04 - 2]
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
 
 ---
 
 [TestRun_LocalDatabases/#04 - 3]
 Scanning dir ./fixtures/locks-many-with-invalid
 Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
+Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock ((extracting as composer.lock) could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
 Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
 Loaded RubyGems local db from <tempdir>/osv-scanner/RubyGems/all.zip
 Loaded npm local db from <tempdir>/osv-scanner/npm/all.zip
+No issues found
 
 ---
 
 [TestRun_LocalDatabases/#04 - 4]
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
 
 ---
 
@@ -1706,15 +2347,8 @@ No issues found
 ---
 
 [TestRun_MavenTransitive/scans_transitive_dependencies_by_specifying_pom.xml - 1]
-Scanned <rootdir>/fixtures/maven-transitive/abc.xml file as a pom.xml and found 3 packages
-+-------------------------------------+------+-----------+-------------------------------------+---------+-----------------------------------+
-| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE                             | VERSION | SOURCE                            |
-+-------------------------------------+------+-----------+-------------------------------------+---------+-----------------------------------+
-| https://osv.dev/GHSA-7rjr-3q55-vv33 | 9.0  | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/abc.xml |
-| https://osv.dev/GHSA-8489-44mv-ggj8 | 6.6  | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/abc.xml |
-| https://osv.dev/GHSA-jfh8-c2jp-5v3q | 10.0 | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/abc.xml |
-| https://osv.dev/GHSA-p6xc-xr62-6r2g | 8.6  | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/abc.xml |
-+-------------------------------------+------+-----------+-------------------------------------+---------+-----------------------------------+
+Scanned <rootdir>/fixtures/maven-transitive/abc.xml file as a pom.xml and found 1 package
+No issues found
 
 ---
 
@@ -1724,15 +2358,8 @@ Scanned <rootdir>/fixtures/maven-transitive/abc.xml file as a pom.xml and found 
 
 [TestRun_MavenTransitive/scans_transitive_dependencies_for_pom.xml_by_default - 1]
 Scanning dir ./fixtures/maven-transitive/pom.xml
-Scanned <rootdir>/fixtures/maven-transitive/pom.xml file and found 3 packages
-+-------------------------------------+------+-----------+-------------------------------------+---------+-----------------------------------+
-| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE                             | VERSION | SOURCE                            |
-+-------------------------------------+------+-----------+-------------------------------------+---------+-----------------------------------+
-| https://osv.dev/GHSA-7rjr-3q55-vv33 | 9.0  | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/pom.xml |
-| https://osv.dev/GHSA-8489-44mv-ggj8 | 6.6  | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/pom.xml |
-| https://osv.dev/GHSA-jfh8-c2jp-5v3q | 10.0 | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/pom.xml |
-| https://osv.dev/GHSA-p6xc-xr62-6r2g | 8.6  | Maven     | org.apache.logging.log4j:log4j-core | 2.14.1  | fixtures/maven-transitive/pom.xml |
-+-------------------------------------+------+-----------+-------------------------------------+---------+-----------------------------------+
+Scanned <rootdir>/fixtures/maven-transitive/pom.xml file and found 1 package
+No issues found
 
 ---
 

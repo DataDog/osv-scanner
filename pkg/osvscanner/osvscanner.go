@@ -10,7 +10,6 @@ import (
 	"os/exec"
 	"path"
 	"path/filepath"
-	"sort"
 	"strings"
 
 	"github.com/google/osv-scanner/internal/utility/fileposition"
@@ -18,10 +17,7 @@ import (
 	"github.com/google/osv-scanner/internal/customgitignore"
 	"github.com/google/osv-scanner/internal/image"
 	"github.com/google/osv-scanner/internal/local"
-	"github.com/google/osv-scanner/internal/manifest"
 	"github.com/google/osv-scanner/internal/output"
-	"github.com/google/osv-scanner/internal/resolution/client"
-	"github.com/google/osv-scanner/internal/resolution/datasource"
 	"github.com/google/osv-scanner/internal/sbom"
 	"github.com/google/osv-scanner/internal/semantic"
 	"github.com/google/osv-scanner/internal/version"
@@ -171,7 +167,7 @@ func scanDir(r reporter.Reporter, dir string, skipGit bool, recursive bool, useG
 
 		if !info.IsDir() {
 			if extractor, _ := lockfile.FindExtractor(path, "", enabledParsers); extractor != nil {
-				pkgs, err := scanLockfile(r, path, "", compareOffline, enabledParsers)
+				pkgs, err := scanLockfile(r, path, "", enabledParsers, compareOffline)
 				if err != nil {
 					r.Warnf("Attempted to scan lockfile but failed: %s (%v)\n", path, err.Error())
 				}
@@ -370,11 +366,8 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 		case "osv-scanner":
 			parsedLockfile, err = lockfile.FromOSVScannerResults(path)
 		default:
-			if !compareOffline && (parseAs == "pom.xml" || filepath.Base(path) == "pom.xml") {
-				parsedLockfile, err = extractMavenDeps(f)
-			} else {
-				parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
-			}
+			// TODO : Migrate to the new osv-scanner way which uses a new extractor (need to look at it first)
+			parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
 		}
 	}
 
@@ -417,35 +410,36 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 	return packages, nil
 }
 
-func extractMavenDeps(f lockfile.DepFile) (lockfile.Lockfile, error) {
-	depClient, err := client.NewDepsDevClient(depsdev.DepsdevAPI)
-	if err != nil {
-		return lockfile.Lockfile{}, err
-	}
-	extractor := manifest.MavenResolverExtractor{
-		DependencyClient:       depClient,
-		MavenRegistryAPIClient: *datasource.NewMavenRegistryAPIClient(datasource.MavenCentral),
-	}
-	packages, err := extractor.Extract(f)
-	if err != nil {
-		err = fmt.Errorf("failed extracting %s: %w", f.Path(), err)
-	}
-
-	// Sort packages for testing convenience.
-	sort.Slice(packages, func(i, j int) bool {
-		if packages[i].Name == packages[j].Name {
-			return packages[i].Version < packages[j].Version
-		}
-
-		return packages[i].Name < packages[j].Name
-	})
-
-	return lockfile.Lockfile{
-		FilePath: f.Path(),
-		ParsedAs: "pom.xml",
-		Packages: packages,
-	}, err
-}
+// TODO : This seems to be the new way in osv-scanner of extracting maven deps, we need to take a look at it
+//func extractMavenDeps(f lockfile.DepFile) (lockfile.Lockfile, error) {
+//	depClient, err := client.NewDepsDevClient(depsdev.DepsdevAPI)
+//	if err != nil {
+//		return lockfile.Lockfile{}, err
+//	}
+//	extractor := manifest.MavenResolverExtractor{
+//		DependencyClient:       depClient,
+//		MavenRegistryAPIClient: *datasource.NewMavenRegistryAPIClient(datasource.MavenCentral),
+//	}
+//	packages, err := extractor.Extract(f)
+//	if err != nil {
+//		err = fmt.Errorf("failed extracting %s: %w", f.Path(), err)
+//	}
+//
+//	// Sort packages for testing convenience.
+//	sort.Slice(packages, func(i, j int) bool {
+//		if packages[i].Name == packages[j].Name {
+//			return packages[i].Version < packages[j].Version
+//		}
+//
+//		return packages[i].Name < packages[j].Name
+//	})
+//
+//	return lockfile.Lockfile{
+//		FilePath: f.Path(),
+//		ParsedAs: "pom.xml",
+//		Packages: packages,
+//	}, err
+//}
 
 // scanSBOMFile will load, identify, and parse the SBOM path passed in, and add the dependencies specified
 // within to `query`
