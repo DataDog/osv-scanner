@@ -1,22 +1,21 @@
 package lockfile_test
 
 import (
-	"os"
-	"testing"
-
 	"github.com/google/osv-scanner/pkg/lockfile"
 )
 
-func TestMain(m *testing.M) {
-	MockAllMatchers()
-	os.Exit(m.Run())
-}
-
 func MockAllMatchers() {
-	// TODO: Mock extractors with matcher to use SuccessfulMatcher by default in all tests
+	// package.json
 	lockfile.YarnExtractor.Matcher = SuccessfulMatcher{}
 	lockfile.PnpmExtractor.Matcher = SuccessfulMatcher{}
 	lockfile.NpmExtractor.Matcher = SuccessfulMatcher{}
+	// build.gradle
+	lockfile.GradleExtractor.Matcher = SuccessfulMatcher{}
+	lockfile.GradleVerificationExtractor.Matcher = SuccessfulMatcher{}
+	// Pipfile (pipenv)
+	lockfile.PipenvExtractor.Matcher = SuccessfulMatcher{}
+	// pyproject.toml (poetry)
+	lockfile.PoetryExtractor.Matcher = SuccessfulMatcher{}
 }
 
 type SuccessfulMatcher struct{}
