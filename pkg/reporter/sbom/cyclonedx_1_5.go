@@ -1,6 +1,7 @@
 package sbom
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -8,9 +9,10 @@ import (
 	"github.com/google/osv-scanner/pkg/models"
 )
 
-func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.PackageDetails) *cyclonedx.BOM {
+func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.PackageDetails, artifacts []models.ScannedArtifact) *cyclonedx.BOM {
 	bom := cyclonedx.NewBOM()
 	components := make([]cyclonedx.Component, 0)
+	dependencies := make([]cyclonedx.Dependency, 0)
 	bom.JSONSchema = cycloneDx15Schema
 	bom.SpecVersion = cyclonedx.SpecVersion1_5
 
@@ -20,7 +22,7 @@ func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.Package
 		component.Name = packageDetail.Name
 		component.BOMRef = packageURL
 		component.PackageURL = packageURL
-		component.Type = componentType
+		component.Type = componentTypeLibrary
 		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
 
 		if packageDetail.Version != "" {
@@ -41,7 +43,40 @@ func ToCycloneDX15Bom(stderr io.Writer, uniquePackages map[string]models.Package
 		}
 		components = append(components, component)
 	}
+
+	for _, artifact := range artifacts {
+		component := cyclonedx.Component{}
+		occurrences := make([]cyclonedx.EvidenceOccurrence, 1)
+		component.Name = artifact.Name
+		component.Version = artifact.Version
+		component.BOMRef = artifact.Name + "@" + artifact.Version
+		component.Type = componentTypeApplication
+		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
+
+		jsonLocation, err := json.Marshal(artifact.FilePosition)
+		if err != nil {
+			_, _ = fmt.Fprintf(stderr, "An error occurred when creating the jsonLocation structure : %v", err.Error())
+			continue
+		}
+		occurrence := cyclonedx.EvidenceOccurrence{
+			Location: string(jsonLocation),
+		}
+		occurrences[0] = occurrence
+		components = append(components, component)
+
+		// Computing parent dependency
+		if artifact.DependsOn != nil {
+			dependency := cyclonedx.Dependency{
+				Ref: component.BOMRef,
+				Dependencies: &[]string{
+					artifact.DependsOn.Name + "@" + artifact.DependsOn.Version,
+				},
+			}
+			dependencies = append(dependencies, dependency)
+		}
+	}
 	bom.Components = &components
+	bom.Dependencies = &dependencies
 
 	return bom
 }

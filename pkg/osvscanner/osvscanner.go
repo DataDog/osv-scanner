@@ -110,7 +110,7 @@ const (
 //   - Any lockfiles with scanLockfile
 //   - Any SBOM files with scanSBOMFile
 //   - Any git repositories with scanGit
-func scanDir(r reporter.Reporter, dir string, skipGit bool, recursive bool, useGitIgnore bool, compareOffline bool, enabledParsers map[string]bool) ([]scannedPackage, error) {
+func scanDir(r reporter.Reporter, dir string, skipGit bool, recursive bool, useGitIgnore bool, compareOffline bool, enabledParsers map[string]bool) ([]scannedPackage, []models.ScannedArtifact, error) {
 	var ignoreMatcher *gitIgnoreMatcher
 	if useGitIgnore {
 		var err error
@@ -124,8 +124,9 @@ func scanDir(r reporter.Reporter, dir string, skipGit bool, recursive bool, useG
 	root := true
 
 	var scannedPackages []scannedPackage
+	var scannedArtifacts []models.ScannedArtifact
 
-	return scannedPackages, filepath.WalkDir(dir, func(path string, info os.DirEntry, err error) error {
+	return scannedPackages, scannedArtifacts, filepath.WalkDir(dir, func(path string, info os.DirEntry, err error) error {
 		if err != nil {
 			r.Infof("Failed to walk %s: %v\n", path, err)
 			return err
@@ -167,11 +168,15 @@ func scanDir(r reporter.Reporter, dir string, skipGit bool, recursive bool, useG
 
 		if !info.IsDir() {
 			if extractor, _ := lockfile.FindExtractor(path, "", enabledParsers); extractor != nil {
-				pkgs, err := scanLockfile(r, path, "", enabledParsers)
+				pkgs, artifact, err := scanLockfile(r, path, "", enabledParsers)
 				if err != nil {
 					r.Warnf("Attempted to scan lockfile but failed: %s (%v)\n", path, err.Error())
 				}
 				scannedPackages = append(scannedPackages, pkgs...)
+				if artifact != nil {
+					scannedArtifacts = append(scannedArtifacts, *artifact)
+				}
+
 			}
 			// No need to check for error
 			// If scan fails, it means it isn't a valid SBOM file,
@@ -348,7 +353,7 @@ func scanImage(r reporter.Reporter, path string) ([]scannedPackage, error) {
 
 // scanLockfile will load, identify, and parse the lockfile path passed in, and add the dependencies specified
 // within to `query`
-func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParsers map[string]bool) ([]scannedPackage, error) {
+func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParsers map[string]bool) ([]scannedPackage, *models.ScannedArtifact, error) {
 	var err error
 	var parsedLockfile lockfile.Lockfile
 
@@ -371,7 +376,7 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 	}
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	parsedAsComment := ""
@@ -406,7 +411,7 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 		}
 	}
 
-	return packages, nil
+	return packages, parsedLockfile.Artifact, nil
 }
 
 // scanSBOMFile will load, identify, and parse the SBOM path passed in, and add the dependencies specified
@@ -790,6 +795,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 
 	//nolint:prealloc // Not sure how many there will be in advance.
 	var scannedPackages []scannedPackage
+	var scannedArtifacts []models.ScannedArtifact
 
 	if actions.Debug {
 		os.Setenv("debug", "true")
@@ -826,11 +832,15 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 			r.Errorf("Failed to resolved path with error %s\n", err)
 			return models.VulnerabilityResults{}, err
 		}
-		pkgs, err := scanLockfile(r, lockfilePath, parseAs, enabledParsers)
+		pkgs, artifact, err := scanLockfile(r, lockfilePath, parseAs, enabledParsers)
 		if err != nil {
 			return models.VulnerabilityResults{}, err
 		}
 		scannedPackages = append(scannedPackages, pkgs...)
+		if artifact != nil {
+			scannedArtifacts = append(scannedArtifacts, *artifact)
+		}
+
 	}
 
 	for _, sbomElem := range actions.SBOMPaths {
@@ -851,7 +861,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 
 	for _, dir := range actions.DirectoryPaths {
 		r.Infof("Scanning dir %s\n", dir)
-		pkgs, err := scanDir(r, dir, actions.SkipGit, actions.Recursive, !actions.NoIgnore, actions.CompareOffline, enabledParsers)
+		pkgs, artifacts, err := scanDir(r, dir, actions.SkipGit, actions.Recursive, !actions.NoIgnore, actions.CompareOffline, enabledParsers)
 		if err != nil {
 			return models.VulnerabilityResults{}, err
 		}
@@ -860,12 +870,15 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 				pkgs[index].Source.ScanPath = dir
 				pkgs[index].Source.Path = fileposition.RemoveHostPath(dir, pkg.Source.Path, actions.ConsiderScanPathAsRoot, actions.PathRelativeToScanDir)
 			}
-
+			for index, artifact := range artifacts {
+				artifacts[index].Filename = fileposition.RemoveHostPath(dir, artifact.Filename, actions.ConsiderScanPathAsRoot, actions.PathRelativeToScanDir)
+			}
 			if err != nil {
 				return models.VulnerabilityResults{}, err
 			}
 		}
 		scannedPackages = append(scannedPackages, pkgs...)
+		scannedArtifacts = append(scannedArtifacts, artifacts...)
 	}
 
 	if len(scannedPackages) == 0 {
@@ -881,7 +894,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 	overrideGoVersion(r, filteredScannedPackages, &configManager)
 
 	if actions.OnlyPackages {
-		vulnerabilityResults := groupBySource(r, scannedPackages, actions)
+		vulnerabilityResults := groupBySource(r, scannedPackages, scannedArtifacts, actions)
 
 		return vulnerabilityResults, nil
 	}
@@ -898,7 +911,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 			return models.VulnerabilityResults{}, err
 		}
 	}
-	results := buildVulnerabilityResults(r, filteredScannedPackages, vulnsResp, licensesResp, actions)
+	results := buildVulnerabilityResults(r, filteredScannedPackages, scannedArtifacts, vulnsResp, licensesResp, actions)
 
 	filtered := filterResults(r, &results, &configManager, actions.ShowAllPackages)
 	if filtered > 0 {

@@ -56,8 +56,9 @@ func (r *CycloneDXReporter) HasErrored() bool {
 
 func (r *CycloneDXReporter) PrintResult(vulnerabilityResults *models.VulnerabilityResults) error {
 	bomCreator := sbom.SpecVersionToBomCreator[r.version]
-	bom := bomCreator(r.stderr, vulnerabilityResults.ResultsByPURL)
+	bom := bomCreator(r.stderr, vulnerabilityResults.ResultsByPURL, vulnerabilityResults.Artifacts)
 	encoder := cyclonedx.NewBOMEncoder(r.stdout, cyclonedx.BOMFileFormatJSON)
+	encoder.SetPretty(true)
 
 	return encoder.Encode(bom)
 }

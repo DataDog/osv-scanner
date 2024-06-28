@@ -88,9 +88,22 @@ func ExtractDeps(f DepFile, extractAs string, enabledParsers map[string]bool) (L
 		return packages[i].Name < packages[j].Name
 	})
 
-	return Lockfile{
+	parsedLockfile := Lockfile{
 		FilePath: f.Path(),
 		ParsedAs: extractedAs,
 		Packages: packages,
-	}, err
+	}
+
+	depFile, err := OpenLocalDepFile(f.Path())
+	if err != nil {
+		return parsedLockfile, err
+	}
+	if e, ok := extractor.(ArtifactExtractor); ok {
+		artifact, err := e.GetArtifact(depFile)
+		if err == nil {
+			parsedLockfile.Artifact = artifact
+		}
+	}
+
+	return parsedLockfile, err
 }
