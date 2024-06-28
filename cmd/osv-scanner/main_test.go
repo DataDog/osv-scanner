@@ -692,6 +692,29 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
 }
 
+func TestRun_WithEmptyCycloneDX15(t *testing.T) {
+	t.Parallel()
+	args := []string{
+		"",
+		"-r",
+		"--experimental-only-packages",
+		"--format=cyclonedx-1-5",
+		"--consider-scan-path-as-root",
+		"./fixtures/locks-empty",
+	}
+	stdoutBuffer := &bytes.Buffer{}
+	stderrBuffer := &bytes.Buffer{}
+
+	ec := run(args, stdoutBuffer, stderrBuffer)
+
+	if ec != 0 {
+		require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
+	}
+
+	testutility.NewSnapshot().MatchText(t, stdoutBuffer.String())
+	testutility.NewSnapshot().MatchText(t, stderrBuffer.String())
+}
+
 func TestRun_WithExplicitParsers(t *testing.T) {
 	t.Parallel()
 	args := []string{
