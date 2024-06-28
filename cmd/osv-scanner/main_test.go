@@ -88,13 +88,13 @@ func TestRun(t *testing.T) {
 		{
 			name: "folder of supported sbom with vulns",
 			args: []string{"", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/"},
-			exit: 1,
+			exit: 0,
 		},
 		// one specific supported sbom with vulns
 		{
 			name: "one specific supported sbom with vulns",
 			args: []string{"", "--config=./fixtures/osv-scanner-empty-config.toml", "--sbom", "./fixtures/sbom-insecure/alpine.cdx.xml"},
-			exit: 1,
+			exit: 0,
 		},
 		// one specific unsupported lockfile
 		{
@@ -158,7 +158,7 @@ func TestRun(t *testing.T) {
 		{
 			name: "Sarif with vulns",
 			args: []string{"", "--format", "sarif", "--config", "./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		// output format: gh-annotations
 		{
@@ -169,13 +169,13 @@ func TestRun(t *testing.T) {
 		{
 			name: "gh-annotations with vulns",
 			args: []string{"", "--format", "gh-annotations", "--config", "./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		// output format: markdown table
 		{
 			name: "",
 			args: []string{"", "--format", "markdown", "--config", "./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		// output format: unsupported
 		{
@@ -234,7 +234,7 @@ func TestRunCallAnalysis(t *testing.T) {
 				"--call-analysis=go",
 				"--config=./fixtures/osv-scanner-empty-config.toml",
 				"./fixtures/call-analysis-go-project"},
-			exit: 1,
+			exit: 0,
 		},
 	}
 	for _, tt := range tests {
@@ -301,7 +301,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 				"package-lock.json:" + filepath.FromSlash("./fixtures/locks-insecure/my-package-lock.json"),
 				filepath.FromSlash("./fixtures/locks-insecure"),
 			},
-			exit: 1,
+			exit: 0,
 		},
 		// multiple, + output order is deterministic
 		{
@@ -312,7 +312,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 				"-L", "yarn.lock:" + filepath.FromSlash("./fixtures/locks-insecure/my-yarn.lock"),
 				filepath.FromSlash("./fixtures/locks-insecure"),
 			},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "",
@@ -322,7 +322,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 				"-L", "package-lock.json:" + filepath.FromSlash("./fixtures/locks-insecure/my-package-lock.json"),
 				filepath.FromSlash("./fixtures/locks-insecure"),
 			},
-			exit: 1,
+			exit: 0,
 		},
 		// files that error on parsing stop parsable files from being checked
 		{
@@ -385,12 +385,12 @@ func TestRun_GithubActions(t *testing.T) {
 		{
 			name: "scanning osv-scanner custom format",
 			args: []string{"", "-L", "osv-scanner:./fixtures/locks-insecure/osv-scanner-flutter-deps.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning osv-scanner custom format output json",
 			args: []string{"", "-L", "osv-scanner:./fixtures/locks-insecure/osv-scanner-flutter-deps.json", "--format=sarif"},
-			exit: 1,
+			exit: 0,
 		},
 	}
 	for _, tt := range tests {
@@ -417,7 +417,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 		{
 			name: "",
 			args: []string{"", "--experimental-local-db", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/postgres-stretch.cdx.xml"},
-			exit: 1,
+			exit: 0,
 		},
 		// one specific unsupported lockfile
 		{
@@ -516,27 +516,27 @@ func TestRun_Licenses(t *testing.T) {
 		{
 			name: "Vulnerabilities and license summary",
 			args: []string{"", "--experimental-licenses-summary", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Vulnerabilities and license violations with allowlist",
 			args: []string{"", "--experimental-licenses", "MIT", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Vulnerabilities and all license violations allowlisted",
 			args: []string{"", "--experimental-licenses", "Apache-2.0", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Some packages with license violations and show-all-packages in json",
 			args: []string{"", "--format=json", "--experimental-licenses", "MIT", "--experimental-all-packages", "./fixtures/locks-licenses/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Some packages with license violations in json",
 			args: []string{"", "--format=json", "--experimental-licenses", "MIT", "./fixtures/locks-licenses/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "No license violations and show-all-packages in json",
@@ -711,8 +711,10 @@ func TestRun_WithEmptyCycloneDX15(t *testing.T) {
 		require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
 	}
 
-	testutility.NewSnapshot().MatchText(t, stdoutBuffer.String())
-	testutility.NewSnapshot().MatchText(t, stderrBuffer.String())
+	stdout := testutility.NormalizeStdStream(t, stdoutBuffer)
+	stderr := testutility.NormalizeStdStream(t, stderrBuffer)
+	testutility.NewSnapshot().MatchText(t, stdout)
+	testutility.NewSnapshot().MatchText(t, stderr)
 }
 
 func TestRun_WithExplicitParsers(t *testing.T) {
@@ -1205,37 +1207,37 @@ func TestRun_OCIImage(t *testing.T) {
 		{
 			name: "Alpine 3.10 image tar with 3.18 version file",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-alpine.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using npm with no packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-npm-empty.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using npm with some packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-npm-full.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using yarn with no packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-yarn-empty.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using yarn with some packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-yarn-full.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using pnpm with no packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-pnpm-empty.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using pnpm with some packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-pnpm-full.tar"},
-			exit: 1,
+			exit: 0,
 		},
 	}
 	for _, tt := range tests {

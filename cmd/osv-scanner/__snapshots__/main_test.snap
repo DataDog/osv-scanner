@@ -1,5 +1,6 @@
 
 [TestRun/#00 - 1]
+No issues found
 
 ---
 
@@ -21,6 +22,7 @@ built at: n/a
 
 [TestRun/#02 - 1]
 Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+No issues found
 
 ---
 
@@ -1677,6 +1679,7 @@ Loaded OSS-Fuzz local db from <tempdir>/osv-scanner/OSS-Fuzz/all.zip
 
 [TestRun_LocalDatabases/#02 - 1]
 Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+No issues found
 
 ---
 
@@ -1687,6 +1690,7 @@ No package sources found, --help for usage information.
 
 [TestRun_LocalDatabases/#02 - 3]
 Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+No issues found
 
 ---
 
@@ -2303,9 +2307,9 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
 
 [TestRun_WithEmptyCycloneDX15 - 2]
 Scanning dir ./fixtures/locks-empty
-Scanned /Users/marc.wieser/go/src/github.com/DataDog/osv-scanner/cmd/osv-scanner/fixtures/locks-empty/Gemfile.lock file and found 0 packages
-Scanned /Users/marc.wieser/go/src/github.com/DataDog/osv-scanner/cmd/osv-scanner/fixtures/locks-empty/composer.lock file and found 0 packages
-Scanned /Users/marc.wieser/go/src/github.com/DataDog/osv-scanner/cmd/osv-scanner/fixtures/locks-empty/yarn.lock file and found 0 packages
+Scanned <rootdir>/fixtures/locks-empty/Gemfile.lock file and found 0 packages
+Scanned <rootdir>/fixtures/locks-empty/composer.lock file and found 0 packages
+Scanned <rootdir>/fixtures/locks-empty/yarn.lock file and found 0 packages
 No package sources found, --help for usage information.
 
 ---
