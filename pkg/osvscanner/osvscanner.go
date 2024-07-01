@@ -53,8 +53,8 @@ type ScannerActions struct {
 }
 
 type ExperimentalScannerActions struct {
-	CompareLocally        bool
 	CompareOffline        bool
+	DownloadDatabases     bool
 	ShowAllPackages       bool
 	ScanLicensesSummary   bool
 	OnlyPackages          bool
@@ -366,6 +366,7 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 		case "osv-scanner":
 			parsedLockfile, err = lockfile.FromOSVScannerResults(path)
 		default:
+			// TODO : Migrate to the new osv-scanner way which uses a new extractor (need to look at it first)
 			parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
 		}
 	}
@@ -408,6 +409,37 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 
 	return packages, nil
 }
+
+// TODO : This seems to be the new way in osv-scanner of extracting maven deps, we need to take a look at it
+// func extractMavenDeps(f lockfile.DepFile) (lockfile.Lockfile, error) {
+//	depClient, err := client.NewDepsDevClient(depsdev.DepsdevAPI)
+//	if err != nil {
+//		return lockfile.Lockfile{}, err
+//	}
+//	extractor := manifest.MavenResolverExtractor{
+//		DependencyClient:       depClient,
+//		MavenRegistryAPIClient: *datasource.NewMavenRegistryAPIClient(datasource.MavenCentral),
+//	}
+//	packages, err := extractor.Extract(f)
+//	if err != nil {
+//		err = fmt.Errorf("failed extracting %s: %w", f.Path(), err)
+//	}
+//
+//	// Sort packages for testing convenience.
+//	sort.Slice(packages, func(i, j int) bool {
+//		if packages[i].Name == packages[j].Name {
+//			return packages[i].Version < packages[j].Version
+//		}
+//
+//		return packages[i].Name < packages[j].Name
+//	})
+//
+//	return lockfile.Lockfile{
+//		FilePath: f.Path(),
+//		ParsedAs: "pom.xml",
+//		Packages: packages,
+//	}, err
+// }
 
 // scanSBOMFile will load, identify, and parse the SBOM path passed in, and add the dependencies specified
 // within to `query`
@@ -625,12 +657,13 @@ func scanDebianDocker(r reporter.Reporter, dockerImageName string) ([]scannedPac
 // Filters results according to config, preserving order. Returns total number of vulnerabilities removed.
 func filterResults(r reporter.Reporter, results *models.VulnerabilityResults, configManager *config.ConfigManager, allPackages bool) int {
 	removedCount := 0
+	unimportantCount := 0
 	newResults := []models.PackageSource{} // Want 0 vulnerabilities to show in JSON as an empty list, not null.
 	for _, pkgSrc := range results.Results {
 		configToUse := configManager.Get(r, pkgSrc.Source.Path)
 		var newPackages []models.PackageVulns
 		for _, pkgVulns := range pkgSrc.Packages {
-			newVulns := filterPackageVulns(r, pkgVulns, configToUse)
+			newVulns := filterPackageVulns(r, pkgVulns, configToUse, &unimportantCount)
 			removedCount += len(pkgVulns.Vulnerabilities) - len(newVulns.Vulnerabilities)
 			if allPackages || len(newVulns.Vulnerabilities) > 0 || len(pkgVulns.LicenseViolations) > 0 {
 				newPackages = append(newPackages, newVulns)
@@ -644,11 +677,28 @@ func filterResults(r reporter.Reporter, results *models.VulnerabilityResults, co
 	}
 	results.Results = newResults
 
+	if unimportantCount > 0 {
+		r.Infof("%d unimportant vulnerabilities have been filtered out.\n", unimportantCount)
+	}
+
 	return removedCount
 }
 
 // Filters package-grouped vulnerabilities according to config, preserving ordering. Returns filtered package vulnerabilities.
-func filterPackageVulns(r reporter.Reporter, pkgVulns models.PackageVulns, configToUse config.Config) models.PackageVulns {
+func filterPackageVulns(r reporter.Reporter, pkgVulns models.PackageVulns, configToUse config.Config, unimportantCount *int) models.PackageVulns {
+	if ignore, ignoreLine := configToUse.ShouldIgnorePackageVersion(pkgVulns.Package.Name, pkgVulns.Package.Version, pkgVulns.Package.Ecosystem); ignore {
+		pkgString := fmt.Sprintf("%s/%s/%s", pkgVulns.Package.Ecosystem, pkgVulns.Package.Name, pkgVulns.Package.Version)
+		switch len(pkgVulns.Vulnerabilities) {
+		case 1:
+			r.Infof("1 vulnerability for the package %s has been filtered out because: %s\n", pkgString, ignoreLine.Reason)
+		default:
+			r.Infof("%d vulnerabilities for the package %s have been filtered out because: %s\n", len(pkgVulns.Vulnerabilities), pkgString, ignoreLine.Reason)
+		}
+		pkgVulns.Groups = nil
+		pkgVulns.Vulnerabilities = nil
+
+		return pkgVulns
+	}
 	ignoredVulns := map[string]struct{}{}
 	// Iterate over groups first to remove all aliases of ignored vulnerabilities.
 	var newGroups []models.GroupInfo
@@ -680,11 +730,10 @@ func filterPackageVulns(r reporter.Reporter, pkgVulns models.PackageVulns, confi
 
 	var newVulns []models.Vulnerability
 	if len(newGroups) > 0 { // If there are no groups left then there would be no vulnerabilities.
-		unimportantCount := 0
 		for _, vuln := range pkgVulns.Vulnerabilities {
 			if isUnimportant(pkgVulns.Package.Ecosystem, vuln.Affected) {
-				unimportantCount++
-				r.Verbosef("%s has been filtered out due to its unimportance.", vuln.ID)
+				*unimportantCount++
+				r.Verbosef("%s has been filtered out due to its unimportance.\n", vuln.ID)
 
 				continue
 			}
@@ -692,10 +741,6 @@ func filterPackageVulns(r reporter.Reporter, pkgVulns models.PackageVulns, confi
 			if _, filtered := ignoredVulns[vuln.ID]; !filtered {
 				newVulns = append(newVulns, vuln)
 			}
-		}
-
-		if unimportantCount > 0 {
-			r.Infof("%d unimportant vulnerabilities have been filtered out.", unimportantCount)
 		}
 	}
 
@@ -772,15 +817,15 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 	}
 
 	if actions.CompareOffline {
-		actions.CompareLocally = true
-	}
-
-	if actions.CompareLocally {
 		actions.SkipGit = true
 
 		if len(actions.ScanLicensesAllowlist) > 0 || actions.ScanLicensesSummary {
 			return models.VulnerabilityResults{}, errors.New("cannot retrieve licenses locally")
 		}
+	}
+
+	if !actions.CompareOffline && actions.DownloadDatabases {
+		return models.VulnerabilityResults{}, errors.New("databases can only be downloaded when running in offline mode")
 	}
 
 	configManager := config.ConfigManager{
@@ -886,7 +931,9 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		return vulnerabilityResults, nil
 	}
 
-	vulnsResp, err := makeRequest(r, filteredScannedPackages, actions.CompareLocally, actions.CompareOffline, actions.LocalDBPath)
+	overrideGoVersion(r, filteredScannedPackages, &configManager)
+
+	vulnsResp, err := makeRequest(r, filteredScannedPackages, actions.CompareOffline, actions.DownloadDatabases, actions.LocalDBPath)
 	if err != nil {
 		return models.VulnerabilityResults{}, err
 	}
@@ -898,7 +945,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 			return models.VulnerabilityResults{}, err
 		}
 	}
-	results := buildVulnerabilityResults(r, filteredScannedPackages, vulnsResp, licensesResp, actions)
+	results := buildVulnerabilityResults(r, filteredScannedPackages, vulnsResp, licensesResp, actions, &configManager)
 
 	filtered := filterResults(r, &results, &configManager, actions.ShowAllPackages)
 	if filtered > 0 {
@@ -933,9 +980,9 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		if (!vuln || onlyUncalledVuln) && !licenseViolation {
 			// There is no error.
 			return results, nil
-		} else {
-			return results, VulnerabilitiesFoundErr
 		}
+
+		return results, VulnerabilitiesFoundErr
 	}
 
 	return results, nil
@@ -989,8 +1036,8 @@ func patchPackageForRequest(pkg scannedPackage) scannedPackage {
 func makeRequest(
 	r reporter.Reporter,
 	packages []scannedPackage,
-	compareLocally bool,
 	compareOffline bool,
+	downloadDBs bool,
 	localDBPath string) (*osv.HydratedBatchedResponse, error) {
 	// Make OSV queries from the packages.
 	var query osv.BatchedQuery
@@ -1013,8 +1060,9 @@ func makeRequest(
 		}
 	}
 
-	if compareLocally {
-		hydratedResp, err := local.MakeRequest(r, query, compareOffline, localDBPath)
+	if compareOffline {
+		// Downloading databases requires network access.
+		hydratedResp, err := local.MakeRequest(r, query, !downloadDBs, localDBPath)
 		if err != nil {
 			return &osv.HydratedBatchedResponse{}, fmt.Errorf("local comparison failed %w", err)
 		}

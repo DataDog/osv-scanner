@@ -252,7 +252,7 @@ func TestParseMavenLock_WithDependencyManagement(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "io.netty:netty-all",
 			Version:   "4.1.42.Final",
@@ -1052,7 +1052,13 @@ func TestParseMavenLock_WithScope(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
+		{
+			Name:      "abc:xyz",
+			Version:   "1.2.3",
+			Ecosystem: lockfile.MavenEcosystem,
+			CompareAs: lockfile.MavenEcosystem,
+		},
 		{
 			Name:      "junit:junit",
 			Version:   "4.12",

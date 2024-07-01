@@ -7,6 +7,7 @@ core,deps.dev/util/resolve/dep,Apache-2.0,Copyright (c) 2023 Google
 core,deps.dev/util/resolve/internal/attr,Apache-2.0,Copyright (c) 2023 Google
 core,deps.dev/util/resolve/internal/deptest,Apache-2.0,Copyright (c) 2023 Google
 core,deps.dev/util/resolve/internal/versiontest,Apache-2.0,Copyright (c) 2023 Google
+core,deps.dev/util/resolve/maven,Apache-2.0,Copyright (c) 2023 Google
 core,deps.dev/util/resolve/npm,Apache-2.0,Copyright (c) 2023 Google
 core,deps.dev/util/resolve/schema,Apache-2.0,Copyright (c) 2023 Google
 core,deps.dev/util/resolve/version,Apache-2.0,Copyright (c) 2023 Google
