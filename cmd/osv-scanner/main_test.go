@@ -19,7 +19,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/internal/testutility"
 	"github.com/urfave/cli/v2"
 )
@@ -41,95 +40,6 @@ type encodingTestCase struct {
 	encoding string
 }
 
-// Attempts to normalize any file paths in the given `output` so that they can
-// be compared reliably regardless of the file path separator being used.
-//
-// Namely, escaped forward slashes are replaced with backslashes.
-func normalizeFilePaths(t *testing.T, output string) string {
-	t.Helper()
-
-	return strings.ReplaceAll(strings.ReplaceAll(output, "\\\\", "/"), "\\", "/")
-}
-
-// normalizeRootDirectory attempts to replace references to the current working
-// directory with "<rootdir>", in order to reduce the noise of the cmp diff
-func normalizeRootDirectory(t *testing.T, str string) string {
-	t.Helper()
-
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.Errorf("could not get cwd (%v) - results and diff might be inaccurate!", err)
-	}
-
-	cwd = normalizeFilePaths(t, cwd)
-
-	// file uris with Windows end up with three slashes, so we normalize that too
-	str = strings.ReplaceAll(str, "file:///"+cwd, "file://<rootdir>")
-
-	return strings.ReplaceAll(str, cwd, "<rootdir>")
-}
-
-// normalizeUserCacheDirectory attempts to replace references to the current working
-// directory with "<tempdir>", in order to reduce the noise of the cmp diff
-func normalizeUserCacheDirectory(t *testing.T, str string) string {
-	t.Helper()
-
-	cacheDir, err := os.UserCacheDir()
-	if err != nil {
-		t.Errorf("could not get user cache (%v) - results and diff might be inaccurate!", err)
-	}
-
-	cacheDir = normalizeFilePaths(t, cacheDir)
-
-	// file uris with Windows end up with three slashes, so we normalize that too
-	str = strings.ReplaceAll(str, "file:///"+cacheDir, "file://<tempdir>")
-
-	return strings.ReplaceAll(str, cacheDir, "<tempdir>")
-}
-
-// normalizeTempDirectory attempts to replace references to the temp directory
-// with "<tempdir>", to ensure tests pass across different OSs
-func normalizeTempDirectory(t *testing.T, str string) string {
-	t.Helper()
-
-	//nolint:gocritic // ensure that the directory doesn't end with a trailing slash
-	tempDir := normalizeFilePaths(t, filepath.Join(os.TempDir()))
-	re := cachedregexp.MustCompile(tempDir + `/osv-scanner-test-\d+`)
-
-	return re.ReplaceAllString(str, "<tempdir>")
-}
-
-// normalizeErrors attempts to replace error messages on alternative OSs with their
-// known linux equivalents, to ensure tests pass across different OSs
-func normalizeErrors(t *testing.T, str string) string {
-	t.Helper()
-
-	str = strings.ReplaceAll(str, "The filename, directory name, or volume label syntax is incorrect.", "no such file or directory")
-	str = strings.ReplaceAll(str, "The system cannot find the path specified.", "no such file or directory")
-	str = strings.ReplaceAll(str, "The system cannot find the file specified.", "no such file or directory")
-
-	return str
-}
-
-// normalizeStdStream applies a series of normalizes to the buffer from a std stream like stdout and stderr
-func normalizeStdStream(t *testing.T, std *bytes.Buffer) string {
-	t.Helper()
-
-	str := std.String()
-
-	for _, normalizer := range []func(t *testing.T, str string) string{
-		normalizeFilePaths,
-		normalizeRootDirectory,
-		normalizeTempDirectory,
-		normalizeUserCacheDirectory,
-		normalizeErrors,
-	} {
-		str = normalizer(t, str)
-	}
-
-	return str
-}
-
 func runCli(t *testing.T, tc cliTestCase) (string, string) {
 	t.Helper()
 
@@ -142,7 +52,7 @@ func runCli(t *testing.T, tc cliTestCase) (string, string) {
 		t.Errorf("cli exited with code %d, not %d", ec, tc.exit)
 	}
 
-	return normalizeStdStream(t, stdout), normalizeStdStream(t, stderr)
+	return testutility.NormalizeStdStream(t, stdout), testutility.NormalizeStdStream(t, stderr)
 }
 
 func testCli(t *testing.T, tc cliTestCase) {
@@ -178,13 +88,13 @@ func TestRun(t *testing.T) {
 		{
 			name: "folder of supported sbom with vulns",
 			args: []string{"", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/"},
-			exit: 1,
+			exit: 0,
 		},
 		// one specific supported sbom with vulns
 		{
 			name: "one specific supported sbom with vulns",
 			args: []string{"", "--config=./fixtures/osv-scanner-empty-config.toml", "--sbom", "./fixtures/sbom-insecure/alpine.cdx.xml"},
-			exit: 1,
+			exit: 0,
 		},
 		// one specific unsupported lockfile
 		{
@@ -248,7 +158,7 @@ func TestRun(t *testing.T) {
 		{
 			name: "Sarif with vulns",
 			args: []string{"", "--format", "sarif", "--config", "./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		// output format: gh-annotations
 		{
@@ -259,13 +169,13 @@ func TestRun(t *testing.T) {
 		{
 			name: "gh-annotations with vulns",
 			args: []string{"", "--format", "gh-annotations", "--config", "./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		// output format: markdown table
 		{
 			name: "",
 			args: []string{"", "--format", "markdown", "--config", "./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		// output format: unsupported
 		{
@@ -297,12 +207,12 @@ func TestRun(t *testing.T) {
 		{
 			name: "PURL SBOM case sensitivity (api)",
 			args: []string{"", "--format", "table", "./fixtures/sbom-insecure/alpine.cdx.xml"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "PURL SBOM case sensitivity (local)",
 			args: []string{"", "--experimental-offline", "--experimental-download-offline-databases", "--format", "table", "./fixtures/sbom-insecure/alpine.cdx.xml"},
-			exit: 1,
+			exit: 0,
 		},
 		// Go project with an overridden go version
 		{
@@ -334,7 +244,7 @@ func TestRunCallAnalysis(t *testing.T) {
 				"--call-analysis=go",
 				"--config=./fixtures/osv-scanner-empty-config.toml",
 				"./fixtures/call-analysis-go-project"},
-			exit: 1,
+			exit: 0,
 		},
 	}
 	for _, tt := range tests {
@@ -401,7 +311,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 				"package-lock.json:" + filepath.FromSlash("./fixtures/locks-insecure/my-package-lock.json"),
 				filepath.FromSlash("./fixtures/locks-insecure"),
 			},
-			exit: 1,
+			exit: 0,
 		},
 		// multiple, + output order is deterministic
 		{
@@ -412,7 +322,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 				"-L", "yarn.lock:" + filepath.FromSlash("./fixtures/locks-insecure/my-yarn.lock"),
 				filepath.FromSlash("./fixtures/locks-insecure"),
 			},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "",
@@ -422,7 +332,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 				"-L", "package-lock.json:" + filepath.FromSlash("./fixtures/locks-insecure/my-package-lock.json"),
 				filepath.FromSlash("./fixtures/locks-insecure"),
 			},
-			exit: 1,
+			exit: 0,
 		},
 		// files that error on parsing stop parsable files from being checked
 		{
@@ -485,12 +395,12 @@ func TestRun_GithubActions(t *testing.T) {
 		{
 			name: "scanning osv-scanner custom format",
 			args: []string{"", "-L", "osv-scanner:./fixtures/locks-insecure/osv-scanner-flutter-deps.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning osv-scanner custom format output json",
 			args: []string{"", "-L", "osv-scanner:./fixtures/locks-insecure/osv-scanner-flutter-deps.json", "--format=sarif"},
-			exit: 1,
+			exit: 0,
 		},
 	}
 	for _, tt := range tests {
@@ -517,7 +427,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 		{
 			name: "",
 			args: []string{"", "--experimental-offline", "--experimental-download-offline-databases", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/postgres-stretch.cdx.xml"},
-			exit: 1,
+			exit: 0,
 		},
 		// one specific unsupported lockfile
 		{
@@ -622,27 +532,27 @@ func TestRun_Licenses(t *testing.T) {
 		{
 			name: "Vulnerabilities and license summary",
 			args: []string{"", "--experimental-licenses-summary", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Vulnerabilities and license violations with allowlist",
 			args: []string{"", "--experimental-licenses", "MIT", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Vulnerabilities and all license violations allowlisted",
 			args: []string{"", "--experimental-licenses", "Apache-2.0", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/locks-many/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Some packages with license violations and show-all-packages in json",
 			args: []string{"", "--format=json", "--experimental-licenses", "MIT", "--experimental-all-packages", "./fixtures/locks-licenses/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "Some packages with license violations in json",
 			args: []string{"", "--format=json", "--experimental-licenses", "MIT", "./fixtures/locks-licenses/package-lock.json"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "No license violations and show-all-packages in json",
@@ -796,6 +706,31 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 		},
 	}
 	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
+}
+
+func TestRun_WithEmptyCycloneDX15(t *testing.T) {
+	t.Parallel()
+	args := []string{
+		"",
+		"-r",
+		"--experimental-only-packages",
+		"--format=cyclonedx-1-5",
+		"--consider-scan-path-as-root",
+		"./fixtures/locks-empty",
+	}
+	stdoutBuffer := &bytes.Buffer{}
+	stderrBuffer := &bytes.Buffer{}
+
+	ec := run(args, stdoutBuffer, stderrBuffer)
+
+	if ec != 0 {
+		require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
+	}
+
+	stdout := testutility.NormalizeStdStream(t, stdoutBuffer)
+	stderr := testutility.NormalizeStdStream(t, stderrBuffer)
+	testutility.NewSnapshot().MatchText(t, stdout)
+	testutility.NewSnapshot().MatchText(t, stderr)
 }
 
 func TestRun_WithExplicitParsers(t *testing.T) {
@@ -1288,37 +1223,37 @@ func TestRun_OCIImage(t *testing.T) {
 		{
 			name: "Alpine 3.10 image tar with 3.18 version file",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-alpine.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using npm with no packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-npm-empty.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using npm with some packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-npm-full.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using yarn with no packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-yarn-empty.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using yarn with some packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-yarn-full.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using pnpm with no packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-pnpm-empty.tar"},
-			exit: 1,
+			exit: 0,
 		},
 		{
 			name: "scanning node_modules using pnpm with some packages",
 			args: []string{"", "--experimental-oci-image", "../../internal/image/fixtures/test-node_modules-pnpm-full.tar"},
-			exit: 1,
+			exit: 0,
 		},
 	}
 	for _, tt := range tests {
@@ -1431,8 +1366,8 @@ func TestRun_InsertDefaultCommand(t *testing.T) {
 				"Args (Got):  %s\n"+
 				"Args (Want): %s\n", argsActual, tt.wantArgs)
 		}
-		testutility.NewSnapshot().MatchText(t, normalizeStdStream(t, stdout))
-		testutility.NewSnapshot().MatchText(t, normalizeStdStream(t, stderr))
+		testutility.NewSnapshot().MatchText(t, testutility.NormalizeStdStream(t, stdout))
+		testutility.NewSnapshot().MatchText(t, testutility.NormalizeStdStream(t, stderr))
 	}
 }
 

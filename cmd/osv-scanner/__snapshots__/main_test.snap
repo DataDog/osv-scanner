@@ -1,5 +1,6 @@
 
 [TestRun/#00 - 1]
+No issues found
 
 ---
 
@@ -21,6 +22,7 @@ built at: n/a
 
 [TestRun/#02 - 1]
 Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+No issues found
 
 ---
 
@@ -305,6 +307,7 @@ Scanned <rootdir>/fixtures/sbom-insecure/postgres-stretch.cdx.xml as CycloneDX S
 | https://osv.dev/GHSA-m8cg-xc2p-r3fc | 2.5  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 | https://osv.dev/GHSA-vpvm-3wq2-2wvm | 7.0  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 | https://osv.dev/GHSA-xr7r-f8xq-vfvv | 8.6  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
+| https://osv.dev/GO-2024-2491        |      |           |                                |                                    |                                                 |
 | https://osv.dev/GHSA-p782-xgp4-8hr8 | 5.3  | Go        | golang.org/x/sys               | v0.0.0-20210817142637-7d9622a276b7 | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
 | https://osv.dev/GO-2022-0493        |      |           |                                |                                    |                                                 |
 | https://osv.dev/DLA-3012-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
@@ -1858,6 +1861,7 @@ Filtered 15 vulnerabilities from output
 
 [TestRun_LocalDatabases/#02 - 1]
 Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+No issues found
 
 ---
 
@@ -1868,6 +1872,7 @@ No package sources found, --help for usage information.
 
 [TestRun_LocalDatabases/#02 - 3]
 Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+No issues found
 
 ---
 
@@ -2492,5 +2497,19 @@ No issues found
 
 [TestRun_SubCommands/with_scan_subcommand - 2]
 Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the filesystem. `scan` is assumed to be a subcommand here. If you intended for `scan` to be an argument to `scan`, you must specify `scan scan` in your command line.
+
+---
+
+[TestRun_WithEmptyCycloneDX15 - 1]
+{"$schema":"http://cyclonedx.org/schema/bom-1.5.schema.json","bomFormat":"CycloneDX","specVersion":"1.5","version":1,"components":[]}
+
+---
+
+[TestRun_WithEmptyCycloneDX15 - 2]
+Scanning dir ./fixtures/locks-empty
+Scanned <rootdir>/fixtures/locks-empty/Gemfile.lock file and found 0 packages
+Scanned <rootdir>/fixtures/locks-empty/composer.lock file and found 0 packages
+Scanned <rootdir>/fixtures/locks-empty/yarn.lock file and found 0 packages
+No package sources found, --help for usage information.
 
 ---
