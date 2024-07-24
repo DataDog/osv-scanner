@@ -7,6 +7,8 @@ import (
 
 type ParameterExtractor func(packageInfo models.PackageInfo) (namespace string, name string, ok bool)
 
+const typePub = "pub"
+
 var ecosystemToPURLMapper = map[models.Ecosystem]string{
 	models.EcosystemMaven:       packageurl.TypeMaven,
 	models.EcosystemGo:          packageurl.TypeGolang,
@@ -17,7 +19,7 @@ var ecosystemToPURLMapper = map[models.Ecosystem]string{
 	models.EcosystemNPM:         packageurl.TypeNPM,
 	models.EcosystemConanCenter: packageurl.TypeConan,
 	models.EcosystemCratesIO:    packageurl.TypeCargo,
-	models.EcosystemPub:         packageurl.TypePub,
+	models.EcosystemPub:         typePub,
 	models.EcosystemHex:         packageurl.TypeHex,
 	models.EcosystemCRAN:        packageurl.TypeCran,
 }
