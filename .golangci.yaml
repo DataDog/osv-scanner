@@ -24,6 +24,7 @@ linters:
     - nonamedreturns   # disagree with, for now (another-rex)
     - goconst          # not everything should be a constant
     - musttag
+    - nilnil
   presets:
     - bugs
     - comment
