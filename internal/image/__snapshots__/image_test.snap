@@ -81,7 +81,7 @@
         {
           "name": "ca-certificates-cacert",
           "version": "20191127-r2",
-          "commit": "f24637bad53762e9a2f847dd2e67bb91b1a615c2",
+          "commit": "9677580919b73ca6eff94d3d31b9a846b4e40612",
           "ecosystem": "Alpine:v3.18",
           "compareAs": "Alpine",
           "blockLocation": {
