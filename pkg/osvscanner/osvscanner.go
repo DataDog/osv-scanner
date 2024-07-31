@@ -10,7 +10,6 @@ import (
 	"os/exec"
 	"path"
 	"path/filepath"
-	"sort"
 	"strings"
 
 	"github.com/google/osv-scanner/internal/customgitignore"
@@ -18,10 +17,7 @@ import (
 	"github.com/google/osv-scanner/internal/utility/fileposition"
 
 	"github.com/google/osv-scanner/internal/local"
-	"github.com/google/osv-scanner/internal/manifest"
 	"github.com/google/osv-scanner/internal/output"
-	"github.com/google/osv-scanner/internal/resolution/client"
-	"github.com/google/osv-scanner/internal/resolution/datasource"
 	"github.com/google/osv-scanner/internal/sbom"
 	"github.com/google/osv-scanner/internal/semantic"
 	"github.com/google/osv-scanner/internal/version"
@@ -352,7 +348,7 @@ func scanImage(r reporter.Reporter, path string) ([]scannedPackage, error) {
 
 // scanLockfile will load, identify, and parse the lockfile path passed in, and add the dependencies specified
 // within to `query`
-func scanLockfile(r reporter.Reporter, path string, parseAs string, compareOffline bool, enabledParsers map[string]bool) ([]scannedPackage, error) {
+func scanLockfile(r reporter.Reporter, path string, parseAs string, _ bool, enabledParsers map[string]bool) ([]scannedPackage, error) {
 	var err error
 	var parsedLockfile lockfile.Lockfile
 
@@ -372,11 +368,11 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, compareOffli
 		default:
 			parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
 			// We are disabling this as we don't want to go through deps.dev to detect packages
-			//if !compareOffline && (parseAs == "pom.xml" || filepath.Base(path) == "pom.xml") {
+			// if !compareOffline && (parseAs == "pom.xml" || filepath.Base(path) == "pom.xml") {
 			//	parsedLockfile, err = extractMavenDeps(f)
-			//} else {
+			// } else {
 			//	parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
-			//}
+			// }
 		}
 	}
 
@@ -419,35 +415,35 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, compareOffli
 	return packages, nil
 }
 
-func extractMavenDeps(f lockfile.DepFile) (lockfile.Lockfile, error) {
-	depClient, err := client.NewDepsDevClient(depsdev.DepsdevAPI)
-	if err != nil {
-		return lockfile.Lockfile{}, err
-	}
-	extractor := manifest.MavenResolverExtractor{
-		DependencyClient:       depClient,
-		MavenRegistryAPIClient: *datasource.NewMavenRegistryAPIClient(datasource.MavenCentral),
-	}
-	packages, err := extractor.Extract(f)
-	if err != nil {
-		err = fmt.Errorf("failed extracting %s: %w", f.Path(), err)
-	}
-
-	// Sort packages for testing convenience.
-	sort.Slice(packages, func(i, j int) bool {
-		if packages[i].Name == packages[j].Name {
-			return packages[i].Version < packages[j].Version
-		}
-
-		return packages[i].Name < packages[j].Name
-	})
-
-	return lockfile.Lockfile{
-		FilePath: f.Path(),
-		ParsedAs: "pom.xml",
-		Packages: packages,
-	}, err
-}
+// func extractMavenDeps(f lockfile.DepFile) (lockfile.Lockfile, error) {
+//	depClient, err := client.NewDepsDevClient(depsdev.DepsdevAPI)
+//	if err != nil {
+//		return lockfile.Lockfile{}, err
+//	}
+//	extractor := manifest.MavenResolverExtractor{
+//		DependencyClient:       depClient,
+//		MavenRegistryAPIClient: *datasource.NewMavenRegistryAPIClient(datasource.MavenCentral),
+//	}
+//	packages, err := extractor.Extract(f)
+//	if err != nil {
+//		err = fmt.Errorf("failed extracting %s: %w", f.Path(), err)
+//	}
+//
+//	// Sort packages for testing convenience.
+//	sort.Slice(packages, func(i, j int) bool {
+//		if packages[i].Name == packages[j].Name {
+//			return packages[i].Version < packages[j].Version
+//		}
+//
+//		return packages[i].Name < packages[j].Name
+//	})
+//
+//	return lockfile.Lockfile{
+//		FilePath: f.Path(),
+//		ParsedAs: "pom.xml",
+//		Packages: packages,
+//	}, err
+//}
 
 // scanSBOMFile will load, identify, and parse the SBOM path passed in, and add the dependencies specified
 // within to `query`

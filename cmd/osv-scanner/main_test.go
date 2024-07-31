@@ -959,7 +959,7 @@ func TestRun_InsertDefaultCommand(t *testing.T) {
 }
 
 // We disabled this feature to avoid any connections to deps.dev at this stage
-//func TestRun_MavenTransitive(t *testing.T) {
+// func TestRun_MavenTransitive(t *testing.T) {
 //	t.Parallel()
 //	tests := []cliTestCase{
 //		{
