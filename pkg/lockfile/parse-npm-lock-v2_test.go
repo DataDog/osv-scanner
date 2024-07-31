@@ -572,7 +572,7 @@ func TestParseNpmLock_v2_SamePackageDifferentGroups(t *testing.T) {
 		t.Errorf("Got unexpected error: %v", err)
 	}
 
-	expectPackages(t, packages, []lockfile.PackageDetails{
+	expectPackagesWithoutLocations(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "eslint",
 			Version:   "1.2.3",

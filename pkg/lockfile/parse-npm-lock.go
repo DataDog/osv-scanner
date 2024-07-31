@@ -277,31 +277,22 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[
 			targetVersions = []string{targetVersion}
 		}
 
-		_, exists := details[finalName+"@"+finalVersion]
-		if !exists && !detail.Link {
-			details[finalName+"@"+finalVersion] = PackageDetails{
+		if !detail.Link {
+			details.add(finalName+"@"+finalVersion, PackageDetails{
 				Name:           finalName,
 				Version:        detail.Version,
 				TargetVersions: targetVersions,
 				Ecosystem:      NpmEcosystem,
 				CompareAs:      NpmEcosystem,
+				Commit:         commit,
 				BlockLocation: models.FilePosition{
 					Line:     detail.Line,
 					Column:   detail.Column,
 					Filename: path,
 				},
-				Commit:    commit,
 				DepGroups: detail.depGroups(),
-			}
+			})
 		}
-		details.add(finalName+"@"+finalVersion, PackageDetails{
-			Name:      finalName,
-			Version:   detail.Version,
-			Ecosystem: NpmEcosystem,
-			CompareAs: NpmEcosystem,
-			Commit:    commit,
-			DepGroups: detail.depGroups(),
-		})
 	}
 
 	return details

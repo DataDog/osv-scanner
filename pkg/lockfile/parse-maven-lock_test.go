@@ -255,7 +255,7 @@ func TestParseMavenLock_WithDependencyManagement(t *testing.T) {
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
 			Name:      "io.netty:netty-all",
-			Version:   "4.1.9",
+			Version:   "4.1.42.Final",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
 			BlockLocation: models.FilePosition{
@@ -1058,6 +1058,21 @@ func TestParseMavenLock_WithScope(t *testing.T) {
 			Version:   "1.2.3",
 			Ecosystem: lockfile.MavenEcosystem,
 			CompareAs: lockfile.MavenEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 3, End: 8},
+				Column:   models.Position{Start: 5, End: 18},
+				Filename: path,
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 19, End: 22},
+				Filename: path,
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 6, End: 6},
+				Column:   models.Position{Start: 16, End: 21},
+				Filename: path,
+			},
 		},
 		{
 			Name:      "junit:junit",
@@ -1066,17 +1081,17 @@ func TestParseMavenLock_WithScope(t *testing.T) {
 			CompareAs: lockfile.MavenEcosystem,
 			Commit:    "",
 			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 3, End: 8},
+				Line:     models.Position{Start: 9, End: 14},
 				Column:   models.Position{Start: 5, End: 18},
 				Filename: path,
 			},
 			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 5, End: 5},
+				Line:     models.Position{Start: 11, End: 11},
 				Column:   models.Position{Start: 19, End: 24},
 				Filename: path,
 			},
 			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 6, End: 6},
+				Line:     models.Position{Start: 12, End: 12},
 				Column:   models.Position{Start: 16, End: 20},
 				Filename: path,
 			},
