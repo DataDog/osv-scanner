@@ -7,7 +7,7 @@ import (
 )
 
 func ToCycloneDX14Bom(uniquePackages map[string]models.PackageVulns) *cyclonedx.BOM {
-	bom := buildCycloneDXBom(uniquePackages)
+	bom := buildCycloneDXBom(uniquePackages, func(_ *cyclonedx.Component, _ models.PackageVulns) {})
 	bom.JSONSchema = cycloneDx14Schema
 	bom.SpecVersion = cyclonedx.SpecVersion1_4
 

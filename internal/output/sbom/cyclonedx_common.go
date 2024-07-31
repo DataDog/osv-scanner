@@ -9,7 +9,9 @@ import (
 	"github.com/google/osv-scanner/pkg/models"
 )
 
-func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns) *cyclonedx.BOM {
+type PackageProcessingHook = func(component *cyclonedx.Component, details models.PackageVulns)
+
+func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, pkgProcessingHook PackageProcessingHook) *cyclonedx.BOM {
 	bom := cyclonedx.NewBOM()
 	components := make([]cyclonedx.Component, 0)
 	bomVulnerabilities := make([]cyclonedx.Vulnerability, 0)
@@ -27,6 +29,7 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns) *cyclonedx
 		fillLicenses(&component, packageDetail)
 		addVulnerabilities(vulnerabilities, packageDetail)
 
+		pkgProcessingHook(&component, packageDetail)
 		components = append(components, component)
 	}
 

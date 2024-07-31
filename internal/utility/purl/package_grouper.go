@@ -26,6 +26,7 @@ func Group(packageSources []models.PackageSource) (map[string]models.PackageVuln
 			if packageExists {
 				// Entry already exists, we need to merge slices which are not expected to be the exact same
 				packageVulns.DepGroups = append(packageVulns.DepGroups, pkg.DepGroups...)
+				packageVulns.Locations = append(packageVulns.Locations, pkg.Locations...)
 
 				uniquePackages[packageURL.ToString()] = packageVulns
 			} else {
@@ -36,13 +37,13 @@ func Group(packageSources []models.PackageSource) (map[string]models.PackageVuln
 						Version:   pkg.Package.Version,
 						Ecosystem: pkg.Package.Ecosystem,
 					},
+					Locations:         slices.Clone(pkg.Locations),
 					DepGroups:         slices.Clone(pkg.DepGroups),
 					Vulnerabilities:   slices.Clone(pkg.Vulnerabilities),
 					Groups:            slices.Clone(pkg.Groups),
 					Licenses:          slices.Clone(pkg.Licenses),
 					LicenseViolations: slices.Clone(pkg.LicenseViolations),
 				}
-
 				uniquePackages[packageURL.ToString()] = newPackageVuln
 			}
 		}
