@@ -12,7 +12,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -30,7 +41,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -40,7 +62,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -58,7 +91,18 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -68,7 +112,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -102,7 +157,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -123,7 +189,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -136,7 +213,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -154,7 +242,18 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -164,7 +263,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -201,7 +311,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT",
@@ -223,7 +344,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "UNKNOWN"
@@ -236,7 +368,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -254,7 +397,18 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -264,7 +418,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -299,7 +464,18 @@
           "package": {
             "name": "author1/mine1",
             "version": "1.2.3",
-            "ecosystem": "Packagist"
+            "ecosystem": "Packagist",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -320,7 +496,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -333,7 +520,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -351,7 +549,18 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "NuGet"
+            "ecosystem": "NuGet",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -361,7 +570,18 @@
           "package": {
             "name": "author1/mine1",
             "version": "1.2.3",
-            "ecosystem": "Packagist"
+            "ecosystem": "Packagist",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev"
@@ -401,7 +621,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev",
@@ -426,7 +657,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev",
@@ -443,7 +685,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -461,7 +714,18 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -471,7 +735,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "build"
@@ -586,7 +861,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -620,7 +906,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         }
       ]
@@ -651,7 +948,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "UNKNOWN"
@@ -685,7 +993,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT",
@@ -724,7 +1043,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -761,7 +1091,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev"
@@ -801,7 +1142,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -822,7 +1174,18 @@
           "package": {
             "name": "mine2",
             "version": "5.9.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -856,7 +1219,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -904,7 +1278,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -941,7 +1326,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -959,7 +1355,18 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -972,7 +1379,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1036,7 +1454,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1079,7 +1508,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1111,7 +1551,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "ISC"
@@ -1129,7 +1580,18 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -1142,7 +1604,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1201,7 +1674,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1265,7 +1749,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1329,7 +1824,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1388,7 +1894,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1428,7 +1945,18 @@
           "package": {
             "name": "mine2",
             "version": "5.9.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -1465,7 +1993,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev",
@@ -1516,7 +2055,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.2",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1553,7 +2103,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev"
@@ -1585,7 +2146,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "build"
@@ -1657,7 +2229,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1704,7 +2287,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.2",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1741,7 +2335,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1770,7 +2375,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1839,7 +2455,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         }
       ]
@@ -1854,14 +2481,36 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         },
         {
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         }
       ]
@@ -1876,14 +2525,36 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         },
         {
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         }
       ]
@@ -1912,7 +2583,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1949,7 +2631,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -1978,7 +2671,18 @@
           "package": {
             "name": "mine3",
             "version": "0.4.1",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         }
       ]
@@ -1993,14 +2697,36 @@
           "package": {
             "name": "mine1",
             "version": "1.3.5",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         },
         {
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2051,7 +2777,18 @@
           "package": {
             "name": "author1/mine1",
             "version": "1.2.3",
-            "ecosystem": "Packagist"
+            "ecosystem": "Packagist",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2098,7 +2835,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.2",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2135,7 +2883,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "NuGet"
+            "ecosystem": "NuGet",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev"
@@ -2167,7 +2926,18 @@
           "package": {
             "name": "author3/mine3",
             "version": "0.4.1",
-            "ecosystem": "Packagist"
+            "ecosystem": "Packagist",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "build"
@@ -2239,7 +3009,18 @@
           "package": {
             "name": "author1/mine1",
             "version": "1.2.3",
-            "ecosystem": "Packagist"
+            "ecosystem": "Packagist",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2296,7 +3077,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.2",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2333,7 +3125,18 @@
           "package": {
             "name": "mine2",
             "version": "3.2.5",
-            "ecosystem": "NuGet"
+            "ecosystem": "NuGet",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev"
@@ -2365,7 +3168,18 @@
           "package": {
             "name": "author3/mine3",
             "version": "0.4.1",
-            "ecosystem": "Packagist"
+            "ecosystem": "Packagist",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "build"
@@ -2511,7 +3325,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         }
       ]
@@ -2540,7 +3365,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2619,7 +3455,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2675,7 +3522,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2731,7 +3589,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2782,7 +3651,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev"
@@ -2836,7 +3716,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2910,7 +3801,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -2979,7 +3881,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -3002,7 +3915,18 @@
           "package": {
             "name": "mine3",
             "version": "0.10.2-rc",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -3046,7 +3970,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -3083,7 +4018,18 @@
           "package": {
             "name": "mine2",
             "version": "5.9.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           }
         }
       ]
@@ -3112,7 +4058,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "vulnerabilities": [
             {
@@ -3149,7 +4106,18 @@
           "package": {
             "name": "mine1",
             "version": "1.2.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "dependency_groups": [
             "dev"

@@ -859,7 +859,18 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
           "package": {
             "name": "babel",
             "version": "6.23.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -869,7 +880,18 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -879,7 +901,18 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
           "package": {
             "name": "ms",
             "version": "2.1.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -888,6 +921,26 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/babel@6.23.0": {
+      "Name": "babel",
+      "Version": "6.23.0",
+      "Ecosystem": "npm",
+      "Locations": []
+    },
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": []
+    },
+    "pkg:npm/ms@2.1.3": {
+      "Name": "ms",
+      "Version": "2.1.3",
+      "Ecosystem": "npm",
+      "Locations": []
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": true,
@@ -917,7 +970,18 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "babel",
             "version": "6.23.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -927,7 +991,18 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -937,7 +1012,18 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "ms",
             "version": "2.1.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -946,6 +1032,26 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/babel@6.23.0": {
+      "Name": "babel",
+      "Version": "6.23.0",
+      "Ecosystem": "npm",
+      "Locations": []
+    },
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": []
+    },
+    "pkg:npm/ms@2.1.3": {
+      "Name": "ms",
+      "Version": "2.1.3",
+      "Ecosystem": "npm",
+      "Locations": []
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": false,
@@ -1024,7 +1130,18 @@ Filtered 1 vulnerability from output
           "package": {
             "name": "babel",
             "version": "6.23.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -1034,7 +1151,18 @@ Filtered 1 vulnerability from output
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -1047,7 +1175,18 @@ Filtered 1 vulnerability from output
           "package": {
             "name": "ms",
             "version": "2.1.3",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "MIT"
@@ -1056,6 +1195,26 @@ Filtered 1 vulnerability from output
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/babel@6.23.0": {
+      "Name": "babel",
+      "Version": "6.23.0",
+      "Ecosystem": "npm",
+      "Locations": []
+    },
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": []
+    },
+    "pkg:npm/ms@2.1.3": {
+      "Name": "ms",
+      "Version": "2.1.3",
+      "Ecosystem": "npm",
+      "Locations": []
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": false,
@@ -1087,7 +1246,18 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
           "package": {
             "name": "human-signals",
             "version": "5.0.0",
-            "ecosystem": "npm"
+            "ecosystem": "npm",
+            "blockLocation": {
+              "line": {
+                "start": 0,
+                "end": 0
+              },
+              "column": {
+                "start": 0,
+                "end": 0
+              },
+              "file_name": ""
+            }
           },
           "licenses": [
             "Apache-2.0"
@@ -1099,6 +1269,14 @@ Scanned <rootdir>/fixtures/locks-licenses/package-lock.json file and found 3 pac
       ]
     }
   ],
+  "results_by_purl": {
+    "pkg:npm/human-signals@5.0.0": {
+      "Name": "human-signals",
+      "Version": "5.0.0",
+      "Ecosystem": "npm",
+      "Locations": []
+    }
+  },
   "experimental_config": {
     "licenses": {
       "summary": false,
@@ -1197,190 +1375,206 @@ No issues found
 ---
 
 [TestRun_LocalDatabases/#01 - 1]
-Scanning dir ./fixtures/sbom-insecure/postgres-stretch.cdx.xml
-Scanned <rootdir>/fixtures/sbom-insecure/postgres-stretch.cdx.xml as CycloneDX SBOM and found 136 packages
-Loaded Debian local db from <tempdir>/osv-scanner/Debian/all.zip
-Loaded Go local db from <tempdir>/osv-scanner/Go/all.zip
-Loaded OSS-Fuzz local db from <tempdir>/osv-scanner/OSS-Fuzz/all.zip
-15 unimportant vulnerabilities have been filtered out.
-Filtered 15 vulnerabilities from output
-+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE                        | VERSION                            | SOURCE                                          |
-+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-| https://osv.dev/CVE-2011-3374       | 3.7  | Debian    | apt                            | 1.4.11                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4685-1          |      | Debian    | apt                            | 1.4.11                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4808-1          |      | Debian    | apt                            | 1.4.11                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2016-2781       | 6.5  | Debian    | coreutils                      | 8.26-3                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3482-1          |      | Debian    | debian-archive-keyring         | 2017.5+deb9u2                      | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3022-1          |      | Debian    | dpkg                           | 1.18.25                            | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5147-1          |      | Debian    | dpkg                           | 1.18.25                            | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4535-1          |      | Debian    | e2fsprogs                      | 1.43.4-2+deb9u2                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-f3fp-gc8g-vw66 | 5.9  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-g2j6-57v7-gm8c | 6.1  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-m8cg-xc2p-r3fc | 2.5  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-v95c-p5hm-xq8f | 6.0  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-vpvm-3wq2-2wvm | 7.0  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-xr7r-f8xq-vfvv | 8.6  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-p782-xgp4-8hr8 | 5.3  | Go        | golang.org/x/sys               | v0.0.0-20210817142637-7d9622a276b7 | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5122-1          |      | Debian    | gzip                           | 1.6-5+deb9u1                       | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3263-1          |      | Debian    | libtasn1-6                     | 4.10-1.1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2017-18258      | 6.5  | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2018-14404      | 7.5  | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3012-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3172-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3405-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5142-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5271-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5391-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2018-0732       | 7.5  | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2019-1543       | 7.4  | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2019-1551       | 5.3  | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3008-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3325-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3449-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3530-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4539-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4539-3          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4661-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4807-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4855-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4875-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4963-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5103-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5139-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5169-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5343-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5417-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5532-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3072-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3189-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3316-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3422-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3600-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3651-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3764-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5135-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3755-1          |      | Debian    | tar                            | 1.29b-1.1+deb9u1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3051-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3134-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3161-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3366-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3412-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3684-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3788-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3782-1          |      | Debian    | util-linux                     | 2.29.2-1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5055-1          |      | Debian    | util-linux                     | 2.29.2-1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5650-1          |      | Debian    | util-linux                     | 2.29.2-1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5123-1          |      | Debian    | xz-utils                       | 5.2.2-1.2+deb9u1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
+Incorrect Usage: flag provided but not defined: -experimental-local-db
+
+Did you mean "--experimental-local-db-path"?
+
+NAME:
+   osv-scanner scan - scans various mediums for dependencies and matches it against the OSV database
+
+USAGE:
+   osv-scanner scan command [command options] [directory1 directory2...]
+
+DESCRIPTION:
+   scans various mediums for dependencies and matches it against the OSV database
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+OPTIONS:
+   --docker value, -D value [ --docker value, -D value ]            scan docker image with this name. Warning: Only run this on a trusted container image, as it runs the container image to retrieve the package versions
+   --lockfile value, -L value [ --lockfile value, -L value ]        scan package lockfile on this path
+   --sbom value, -S value [ --sbom value, -S value ]                scan sbom file on this path
+   --config value                                                   set/override config file
+   --format value, -f value                                         sets the output format; value can be: table, vertical, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5 (default: "table")
+   --json                                                           sets output to json (deprecated, use --format json instead) (default: false)
+   --output value                                                   saves the result to the given file path
+   --skip-git                                                       skip scanning git repositories (default: false)
+   --recursive, -r                                                  check subdirectories (default: false)
+   --experimental-call-analysis                                     [Deprecated] attempt call analysis on code to detect only active vulnerabilities (default: false)
+   --no-ignore                                                      also scan files that would be ignored by .gitignore (default: false)
+   --call-analysis value [ --call-analysis value ]                  attempt call analysis on code to detect only active vulnerabilities
+   --no-call-analysis value [ --no-call-analysis value ]            disables call graph analysis
+   --verbosity value                                                specify the level of information that should be provided during runtime; value can be: error, warn, info, verbose (default: "info")
+   --experimental-offline                                           checks for vulnerabilities using local databases that are already cached (default: false)
+   --experimental-download-offline-databases                        downloads vulnerability databases for offline comparison (default: false)
+   --experimental-all-packages                                      when json output is selected, prints all packages (default: false)
+   --experimental-licenses-summary                                  report a license summary, implying the --experimental-all-packages flag (default: false)
+   --experimental-licenses value [ --experimental-licenses value ]  report on licenses based on an allowlist
+   --experimental-only-packages                                     only collects packages, does not scan for vulnerabilities (default: false)
+   --consider-scan-path-as-root                                     Transform package path root to be the scanning path, thus removing any information about the host (default: false)
+   --paths-relative-to-scan-dir                                     Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator) (default: false)
+   --enable-parsers value [ --enable-parsers value ]                Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: [Cargo.lock composer.lock conan.lock Gemfile.lock go.mod gradle.lockfile gradle/verification-metadata.xml mix.lock package-lock.json packages.lock.json pdm.lock Pipfile.lock pnpm-lock.yaml poetry.lock pom.xml pubspec.lock renv.lock requirements.txt yarn.lock])
+   --no-config                                                      Disable osv-scanner config and always use a default configuration (default: false)
+   --help, -h                                                       show help
 
 ---
 
 [TestRun_LocalDatabases/#01 - 2]
+flag provided but not defined: -experimental-local-db
 
 ---
 
 [TestRun_LocalDatabases/#01 - 3]
-Scanning dir ./fixtures/sbom-insecure/postgres-stretch.cdx.xml
-Scanned <rootdir>/fixtures/sbom-insecure/postgres-stretch.cdx.xml as CycloneDX SBOM and found 136 packages
-Loaded Debian local db from <tempdir>/osv-scanner/Debian/all.zip
-Loaded Go local db from <tempdir>/osv-scanner/Go/all.zip
-Loaded OSS-Fuzz local db from <tempdir>/osv-scanner/OSS-Fuzz/all.zip
-15 unimportant vulnerabilities have been filtered out.
-Filtered 15 vulnerabilities from output
-+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE                        | VERSION                            | SOURCE                                          |
-+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
-| https://osv.dev/CVE-2011-3374       | 3.7  | Debian    | apt                            | 1.4.11                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4685-1          |      | Debian    | apt                            | 1.4.11                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4808-1          |      | Debian    | apt                            | 1.4.11                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2016-2781       | 6.5  | Debian    | coreutils                      | 8.26-3                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3482-1          |      | Debian    | debian-archive-keyring         | 2017.5+deb9u2                      | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3022-1          |      | Debian    | dpkg                           | 1.18.25                            | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5147-1          |      | Debian    | dpkg                           | 1.18.25                            | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4535-1          |      | Debian    | e2fsprogs                      | 1.43.4-2+deb9u2                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-f3fp-gc8g-vw66 | 5.9  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-g2j6-57v7-gm8c | 6.1  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-m8cg-xc2p-r3fc | 2.5  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-v95c-p5hm-xq8f | 6.0  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-vpvm-3wq2-2wvm | 7.0  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-xr7r-f8xq-vfvv | 8.6  | Go        | github.com/opencontainers/runc | v1.0.1                             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/GHSA-p782-xgp4-8hr8 | 5.3  | Go        | golang.org/x/sys               | v0.0.0-20210817142637-7d9622a276b7 | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5122-1          |      | Debian    | gzip                           | 1.6-5+deb9u1                       | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3263-1          |      | Debian    | libtasn1-6                     | 4.10-1.1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2017-18258      | 6.5  | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2018-14404      | 7.5  | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3012-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3172-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3405-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5142-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5271-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5391-1          |      | Debian    | libxml2                        | 2.9.4+dfsg1-2.2+deb9u6             | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2018-0732       | 7.5  | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2019-1543       | 7.4  | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/CVE-2019-1551       | 5.3  | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3008-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3325-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3449-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3530-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4539-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4539-3          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4661-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4807-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4855-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4875-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-4963-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5103-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5139-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5169-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5343-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5417-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5532-1          |      | Debian    | openssl                        | 1.1.0l-1~deb9u5                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3072-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3189-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3316-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3422-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3600-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3651-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3764-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5135-1          |      | Debian    | postgresql-11                  | 11.15-1.pgdg90+1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3755-1          |      | Debian    | tar                            | 1.29b-1.1+deb9u1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3051-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3134-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3161-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3366-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3412-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3684-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3788-1          |      | Debian    | tzdata                         | 2021a-0+deb9u3                     | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DLA-3782-1          |      | Debian    | util-linux                     | 2.29.2-1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5055-1          |      | Debian    | util-linux                     | 2.29.2-1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5650-1          |      | Debian    | util-linux                     | 2.29.2-1+deb9u1                    | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-| https://osv.dev/DSA-5123-1          |      | Debian    | xz-utils                       | 5.2.2-1.2+deb9u1                   | fixtures/sbom-insecure/postgres-stretch.cdx.xml |
-+-------------------------------------+------+-----------+--------------------------------+------------------------------------+-------------------------------------------------+
+Incorrect Usage: flag provided but not defined: -experimental-local-db
+
+Did you mean "--experimental-local-db-path"?
+
+NAME:
+   osv-scanner scan - scans various mediums for dependencies and matches it against the OSV database
+
+USAGE:
+   osv-scanner scan command [command options] [directory1 directory2...]
+
+DESCRIPTION:
+   scans various mediums for dependencies and matches it against the OSV database
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+OPTIONS:
+   --docker value, -D value [ --docker value, -D value ]            scan docker image with this name. Warning: Only run this on a trusted container image, as it runs the container image to retrieve the package versions
+   --lockfile value, -L value [ --lockfile value, -L value ]        scan package lockfile on this path
+   --sbom value, -S value [ --sbom value, -S value ]                scan sbom file on this path
+   --config value                                                   set/override config file
+   --format value, -f value                                         sets the output format; value can be: table, vertical, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5 (default: "table")
+   --json                                                           sets output to json (deprecated, use --format json instead) (default: false)
+   --output value                                                   saves the result to the given file path
+   --skip-git                                                       skip scanning git repositories (default: false)
+   --recursive, -r                                                  check subdirectories (default: false)
+   --experimental-call-analysis                                     [Deprecated] attempt call analysis on code to detect only active vulnerabilities (default: false)
+   --no-ignore                                                      also scan files that would be ignored by .gitignore (default: false)
+   --call-analysis value [ --call-analysis value ]                  attempt call analysis on code to detect only active vulnerabilities
+   --no-call-analysis value [ --no-call-analysis value ]            disables call graph analysis
+   --verbosity value                                                specify the level of information that should be provided during runtime; value can be: error, warn, info, verbose (default: "info")
+   --experimental-offline                                           checks for vulnerabilities using local databases that are already cached (default: false)
+   --experimental-download-offline-databases                        downloads vulnerability databases for offline comparison (default: false)
+   --experimental-all-packages                                      when json output is selected, prints all packages (default: false)
+   --experimental-licenses-summary                                  report a license summary, implying the --experimental-all-packages flag (default: false)
+   --experimental-licenses value [ --experimental-licenses value ]  report on licenses based on an allowlist
+   --experimental-only-packages                                     only collects packages, does not scan for vulnerabilities (default: false)
+   --consider-scan-path-as-root                                     Transform package path root to be the scanning path, thus removing any information about the host (default: false)
+   --paths-relative-to-scan-dir                                     Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator) (default: false)
+   --enable-parsers value [ --enable-parsers value ]                Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: [Cargo.lock composer.lock conan.lock Gemfile.lock go.mod gradle.lockfile gradle/verification-metadata.xml mix.lock package-lock.json packages.lock.json pdm.lock Pipfile.lock pnpm-lock.yaml poetry.lock pom.xml pubspec.lock renv.lock requirements.txt yarn.lock])
+   --no-config                                                      Disable osv-scanner config and always use a default configuration (default: false)
+   --help, -h                                                       show help
 
 ---
 
 [TestRun_LocalDatabases/#01 - 4]
+flag provided but not defined: -experimental-local-db
 
 ---
 
 [TestRun_LocalDatabases/#02 - 1]
-Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+Incorrect Usage: flag provided but not defined: -experimental-local-db
+
+Did you mean "--experimental-local-db-path"?
+
+NAME:
+   osv-scanner scan - scans various mediums for dependencies and matches it against the OSV database
+
+USAGE:
+   osv-scanner scan command [command options] [directory1 directory2...]
+
+DESCRIPTION:
+   scans various mediums for dependencies and matches it against the OSV database
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+OPTIONS:
+   --docker value, -D value [ --docker value, -D value ]            scan docker image with this name. Warning: Only run this on a trusted container image, as it runs the container image to retrieve the package versions
+   --lockfile value, -L value [ --lockfile value, -L value ]        scan package lockfile on this path
+   --sbom value, -S value [ --sbom value, -S value ]                scan sbom file on this path
+   --config value                                                   set/override config file
+   --format value, -f value                                         sets the output format; value can be: table, vertical, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5 (default: "table")
+   --json                                                           sets output to json (deprecated, use --format json instead) (default: false)
+   --output value                                                   saves the result to the given file path
+   --skip-git                                                       skip scanning git repositories (default: false)
+   --recursive, -r                                                  check subdirectories (default: false)
+   --experimental-call-analysis                                     [Deprecated] attempt call analysis on code to detect only active vulnerabilities (default: false)
+   --no-ignore                                                      also scan files that would be ignored by .gitignore (default: false)
+   --call-analysis value [ --call-analysis value ]                  attempt call analysis on code to detect only active vulnerabilities
+   --no-call-analysis value [ --no-call-analysis value ]            disables call graph analysis
+   --verbosity value                                                specify the level of information that should be provided during runtime; value can be: error, warn, info, verbose (default: "info")
+   --experimental-offline                                           checks for vulnerabilities using local databases that are already cached (default: false)
+   --experimental-download-offline-databases                        downloads vulnerability databases for offline comparison (default: false)
+   --experimental-all-packages                                      when json output is selected, prints all packages (default: false)
+   --experimental-licenses-summary                                  report a license summary, implying the --experimental-all-packages flag (default: false)
+   --experimental-licenses value [ --experimental-licenses value ]  report on licenses based on an allowlist
+   --experimental-only-packages                                     only collects packages, does not scan for vulnerabilities (default: false)
+   --consider-scan-path-as-root                                     Transform package path root to be the scanning path, thus removing any information about the host (default: false)
+   --paths-relative-to-scan-dir                                     Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator) (default: false)
+   --enable-parsers value [ --enable-parsers value ]                Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: [Cargo.lock composer.lock conan.lock Gemfile.lock go.mod gradle.lockfile gradle/verification-metadata.xml mix.lock package-lock.json packages.lock.json pdm.lock Pipfile.lock pnpm-lock.yaml poetry.lock pom.xml pubspec.lock renv.lock requirements.txt yarn.lock])
+   --no-config                                                      Disable osv-scanner config and always use a default configuration (default: false)
+   --help, -h                                                       show help
 
 ---
 
 [TestRun_LocalDatabases/#02 - 2]
-No package sources found, --help for usage information.
+flag provided but not defined: -experimental-local-db
 
 ---
 
 [TestRun_LocalDatabases/#02 - 3]
-Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
+Incorrect Usage: flag provided but not defined: -experimental-local-db
+
+Did you mean "--experimental-local-db-path"?
+
+NAME:
+   osv-scanner scan - scans various mediums for dependencies and matches it against the OSV database
+
+USAGE:
+   osv-scanner scan command [command options] [directory1 directory2...]
+
+DESCRIPTION:
+   scans various mediums for dependencies and matches it against the OSV database
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+OPTIONS:
+   --docker value, -D value [ --docker value, -D value ]            scan docker image with this name. Warning: Only run this on a trusted container image, as it runs the container image to retrieve the package versions
+   --lockfile value, -L value [ --lockfile value, -L value ]        scan package lockfile on this path
+   --sbom value, -S value [ --sbom value, -S value ]                scan sbom file on this path
+   --config value                                                   set/override config file
+   --format value, -f value                                         sets the output format; value can be: table, vertical, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5 (default: "table")
+   --json                                                           sets output to json (deprecated, use --format json instead) (default: false)
+   --output value                                                   saves the result to the given file path
+   --skip-git                                                       skip scanning git repositories (default: false)
+   --recursive, -r                                                  check subdirectories (default: false)
+   --experimental-call-analysis                                     [Deprecated] attempt call analysis on code to detect only active vulnerabilities (default: false)
+   --no-ignore                                                      also scan files that would be ignored by .gitignore (default: false)
+   --call-analysis value [ --call-analysis value ]                  attempt call analysis on code to detect only active vulnerabilities
+   --no-call-analysis value [ --no-call-analysis value ]            disables call graph analysis
+   --verbosity value                                                specify the level of information that should be provided during runtime; value can be: error, warn, info, verbose (default: "info")
+   --experimental-offline                                           checks for vulnerabilities using local databases that are already cached (default: false)
+   --experimental-download-offline-databases                        downloads vulnerability databases for offline comparison (default: false)
+   --experimental-all-packages                                      when json output is selected, prints all packages (default: false)
+   --experimental-licenses-summary                                  report a license summary, implying the --experimental-all-packages flag (default: false)
+   --experimental-licenses value [ --experimental-licenses value ]  report on licenses based on an allowlist
+   --experimental-only-packages                                     only collects packages, does not scan for vulnerabilities (default: false)
+   --consider-scan-path-as-root                                     Transform package path root to be the scanning path, thus removing any information about the host (default: false)
+   --paths-relative-to-scan-dir                                     Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator) (default: false)
+   --enable-parsers value [ --enable-parsers value ]                Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: [Cargo.lock composer.lock conan.lock Gemfile.lock go.mod gradle.lockfile gradle/verification-metadata.xml mix.lock package-lock.json packages.lock.json pdm.lock Pipfile.lock pnpm-lock.yaml poetry.lock pom.xml pubspec.lock renv.lock requirements.txt yarn.lock])
+   --no-config                                                      Disable osv-scanner config and always use a default configuration (default: false)
+   --help, -h                                                       show help
 
 ---
 
 [TestRun_LocalDatabases/#02 - 4]
-No package sources found, --help for usage information.
+flag provided but not defined: -experimental-local-db
 
 ---
 
@@ -1429,30 +1623,104 @@ No issues found
 ---
 
 [TestRun_LocalDatabases/#04 - 1]
-Scanning dir ./fixtures/locks-many-with-invalid
-Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
-Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
-Loaded RubyGems local db from <tempdir>/osv-scanner/RubyGems/all.zip
-Loaded npm local db from <tempdir>/osv-scanner/npm/all.zip
+Incorrect Usage: flag provided but not defined: -experimental-local-db
+
+Did you mean "--experimental-local-db-path"?
+
+NAME:
+   osv-scanner scan - scans various mediums for dependencies and matches it against the OSV database
+
+USAGE:
+   osv-scanner scan command [command options] [directory1 directory2...]
+
+DESCRIPTION:
+   scans various mediums for dependencies and matches it against the OSV database
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+OPTIONS:
+   --docker value, -D value [ --docker value, -D value ]            scan docker image with this name. Warning: Only run this on a trusted container image, as it runs the container image to retrieve the package versions
+   --lockfile value, -L value [ --lockfile value, -L value ]        scan package lockfile on this path
+   --sbom value, -S value [ --sbom value, -S value ]                scan sbom file on this path
+   --config value                                                   set/override config file
+   --format value, -f value                                         sets the output format; value can be: table, vertical, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5 (default: "table")
+   --json                                                           sets output to json (deprecated, use --format json instead) (default: false)
+   --output value                                                   saves the result to the given file path
+   --skip-git                                                       skip scanning git repositories (default: false)
+   --recursive, -r                                                  check subdirectories (default: false)
+   --experimental-call-analysis                                     [Deprecated] attempt call analysis on code to detect only active vulnerabilities (default: false)
+   --no-ignore                                                      also scan files that would be ignored by .gitignore (default: false)
+   --call-analysis value [ --call-analysis value ]                  attempt call analysis on code to detect only active vulnerabilities
+   --no-call-analysis value [ --no-call-analysis value ]            disables call graph analysis
+   --verbosity value                                                specify the level of information that should be provided during runtime; value can be: error, warn, info, verbose (default: "info")
+   --experimental-offline                                           checks for vulnerabilities using local databases that are already cached (default: false)
+   --experimental-download-offline-databases                        downloads vulnerability databases for offline comparison (default: false)
+   --experimental-all-packages                                      when json output is selected, prints all packages (default: false)
+   --experimental-licenses-summary                                  report a license summary, implying the --experimental-all-packages flag (default: false)
+   --experimental-licenses value [ --experimental-licenses value ]  report on licenses based on an allowlist
+   --experimental-only-packages                                     only collects packages, does not scan for vulnerabilities (default: false)
+   --consider-scan-path-as-root                                     Transform package path root to be the scanning path, thus removing any information about the host (default: false)
+   --paths-relative-to-scan-dir                                     Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator) (default: false)
+   --enable-parsers value [ --enable-parsers value ]                Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: [Cargo.lock composer.lock conan.lock Gemfile.lock go.mod gradle.lockfile gradle/verification-metadata.xml mix.lock package-lock.json packages.lock.json pdm.lock Pipfile.lock pnpm-lock.yaml poetry.lock pom.xml pubspec.lock renv.lock requirements.txt yarn.lock])
+   --no-config                                                      Disable osv-scanner config and always use a default configuration (default: false)
+   --help, -h                                                       show help
 
 ---
 
 [TestRun_LocalDatabases/#04 - 2]
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
+flag provided but not defined: -experimental-local-db
 
 ---
 
 [TestRun_LocalDatabases/#04 - 3]
-Scanning dir ./fixtures/locks-many-with-invalid
-Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
-Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
-Loaded RubyGems local db from <tempdir>/osv-scanner/RubyGems/all.zip
-Loaded npm local db from <tempdir>/osv-scanner/npm/all.zip
+Incorrect Usage: flag provided but not defined: -experimental-local-db
+
+Did you mean "--experimental-local-db-path"?
+
+NAME:
+   osv-scanner scan - scans various mediums for dependencies and matches it against the OSV database
+
+USAGE:
+   osv-scanner scan command [command options] [directory1 directory2...]
+
+DESCRIPTION:
+   scans various mediums for dependencies and matches it against the OSV database
+
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+OPTIONS:
+   --docker value, -D value [ --docker value, -D value ]            scan docker image with this name. Warning: Only run this on a trusted container image, as it runs the container image to retrieve the package versions
+   --lockfile value, -L value [ --lockfile value, -L value ]        scan package lockfile on this path
+   --sbom value, -S value [ --sbom value, -S value ]                scan sbom file on this path
+   --config value                                                   set/override config file
+   --format value, -f value                                         sets the output format; value can be: table, vertical, json, markdown, sarif, gh-annotations, cyclonedx-1-4, cyclonedx-1-5 (default: "table")
+   --json                                                           sets output to json (deprecated, use --format json instead) (default: false)
+   --output value                                                   saves the result to the given file path
+   --skip-git                                                       skip scanning git repositories (default: false)
+   --recursive, -r                                                  check subdirectories (default: false)
+   --experimental-call-analysis                                     [Deprecated] attempt call analysis on code to detect only active vulnerabilities (default: false)
+   --no-ignore                                                      also scan files that would be ignored by .gitignore (default: false)
+   --call-analysis value [ --call-analysis value ]                  attempt call analysis on code to detect only active vulnerabilities
+   --no-call-analysis value [ --no-call-analysis value ]            disables call graph analysis
+   --verbosity value                                                specify the level of information that should be provided during runtime; value can be: error, warn, info, verbose (default: "info")
+   --experimental-offline                                           checks for vulnerabilities using local databases that are already cached (default: false)
+   --experimental-download-offline-databases                        downloads vulnerability databases for offline comparison (default: false)
+   --experimental-all-packages                                      when json output is selected, prints all packages (default: false)
+   --experimental-licenses-summary                                  report a license summary, implying the --experimental-all-packages flag (default: false)
+   --experimental-licenses value [ --experimental-licenses value ]  report on licenses based on an allowlist
+   --experimental-only-packages                                     only collects packages, does not scan for vulnerabilities (default: false)
+   --consider-scan-path-as-root                                     Transform package path root to be the scanning path, thus removing any information about the host (default: false)
+   --paths-relative-to-scan-dir                                     Same than --consider-scan-path-as-root but reports a path relative to the scan dir (removing the leading path separator) (default: false)
+   --enable-parsers value [ --enable-parsers value ]                Explicitly define which lockfile to parse. If set, any non-set parsers will be ignored. (Available parsers: [Cargo.lock composer.lock conan.lock Gemfile.lock go.mod gradle.lockfile gradle/verification-metadata.xml mix.lock package-lock.json packages.lock.json pdm.lock Pipfile.lock pnpm-lock.yaml poetry.lock pom.xml pubspec.lock renv.lock requirements.txt yarn.lock])
+   --no-config                                                      Disable osv-scanner config and always use a default configuration (default: false)
+   --help, -h                                                       show help
 
 ---
 
 [TestRun_LocalDatabases/#04 - 4]
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock
+flag provided but not defined: -experimental-local-db
 
 ---
 
@@ -2045,5 +2313,26 @@ No issues found
 
 [TestRun_SubCommands/with_scan_subcommand - 2]
 Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the filesystem. `scan` is assumed to be a subcommand here. If you intended for `scan` to be an argument to `scan`, you must specify `scan scan` in your command line.
+
+---
+
+[TestRun_WithEmptyCycloneDX15 - 1]
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "components": [],
+  "vulnerabilities": []
+}
+
+---
+
+[TestRun_WithEmptyCycloneDX15 - 2]
+Scanning dir ./fixtures/locks-empty
+Scanned <rootdir>/fixtures/locks-empty/Gemfile.lock file and found 0 packages
+Scanned <rootdir>/fixtures/locks-empty/composer.lock file and found 0 packages
+Scanned <rootdir>/fixtures/locks-empty/yarn.lock file and found 0 packages
+No package sources found, --help for usage information.
 
 ---
