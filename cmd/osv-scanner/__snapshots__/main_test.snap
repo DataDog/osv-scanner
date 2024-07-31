@@ -1928,6 +1928,7 @@ Scanning image ../../internal/image/fixtures/test-node_modules-npm-empty.tar
 | https://osv.dev/CVE-2023-42363 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-empty.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42364 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-empty.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42365 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-empty.tar:/lib/apk/db/installed |
+| https://osv.dev/CVE-2023-42366 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-empty.tar:/lib/apk/db/installed |
 +--------------------------------+------+--------------+---------+------------+-------------------------------------------------------------------------------------+
 
 ---
@@ -1944,6 +1945,7 @@ Scanning image ../../internal/image/fixtures/test-node_modules-npm-full.tar
 | https://osv.dev/CVE-2023-42363      | 5.5  | Alpine:v3.19 | busybox  | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-full.tar:/lib/apk/db/installed                    |
 | https://osv.dev/CVE-2023-42364      | 5.5  | Alpine:v3.19 | busybox  | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-full.tar:/lib/apk/db/installed                    |
 | https://osv.dev/CVE-2023-42365      | 5.5  | Alpine:v3.19 | busybox  | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-full.tar:/lib/apk/db/installed                    |
+| https://osv.dev/CVE-2023-42366      | 5.5  | Alpine:v3.19 | busybox  | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-npm-full.tar:/lib/apk/db/installed                    |
 | https://osv.dev/GHSA-38f5-ghc2-fcmv | 9.8  | npm          | cryo     | 0.0.6      | ../../internal/image/fixtures/test-node_modules-npm-full.tar:/usr/app/node_modules/.package-lock.json |
 | https://osv.dev/GHSA-vh95-rmgr-6w4m | 5.6  | npm          | minimist | 0.0.8      | ../../internal/image/fixtures/test-node_modules-npm-full.tar:/usr/app/node_modules/.package-lock.json |
 | https://osv.dev/GHSA-xvch-5gv4-984h | 9.8  | npm          | minimist | 0.0.8      | ../../internal/image/fixtures/test-node_modules-npm-full.tar:/usr/app/node_modules/.package-lock.json |
@@ -1963,6 +1965,7 @@ Scanning image ../../internal/image/fixtures/test-node_modules-pnpm-empty.tar
 | https://osv.dev/CVE-2023-42363 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-empty.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42364 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-empty.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42365 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-empty.tar:/lib/apk/db/installed |
+| https://osv.dev/CVE-2023-42366 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-empty.tar:/lib/apk/db/installed |
 +--------------------------------+------+--------------+---------+------------+--------------------------------------------------------------------------------------+
 
 ---
@@ -1979,6 +1982,7 @@ Scanning image ../../internal/image/fixtures/test-node_modules-pnpm-full.tar
 | https://osv.dev/CVE-2023-42363 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-full.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42364 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-full.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42365 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-full.tar:/lib/apk/db/installed |
+| https://osv.dev/CVE-2023-42366 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-pnpm-full.tar:/lib/apk/db/installed |
 +--------------------------------+------+--------------+---------+------------+-------------------------------------------------------------------------------------+
 
 ---
@@ -1995,6 +1999,7 @@ Scanning image ../../internal/image/fixtures/test-node_modules-yarn-empty.tar
 | https://osv.dev/CVE-2023-42363 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-empty.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42364 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-empty.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42365 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-empty.tar:/lib/apk/db/installed |
+| https://osv.dev/CVE-2023-42366 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-empty.tar:/lib/apk/db/installed |
 +--------------------------------+------+--------------+---------+------------+--------------------------------------------------------------------------------------+
 
 ---
@@ -2011,6 +2016,7 @@ Scanning image ../../internal/image/fixtures/test-node_modules-yarn-full.tar
 | https://osv.dev/CVE-2023-42363 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-full.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42364 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-full.tar:/lib/apk/db/installed |
 | https://osv.dev/CVE-2023-42365 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-full.tar:/lib/apk/db/installed |
+| https://osv.dev/CVE-2023-42366 | 5.5  | Alpine:v3.19 | busybox | 1.36.1-r15 | ../../internal/image/fixtures/test-node_modules-yarn-full.tar:/lib/apk/db/installed |
 +--------------------------------+------+--------------+---------+------------+-------------------------------------------------------------------------------------+
 
 ---
