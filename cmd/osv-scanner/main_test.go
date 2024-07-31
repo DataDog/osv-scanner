@@ -502,13 +502,13 @@ func TestRun_LocalDatabases(t *testing.T) {
 		// one specific supported sbom with vulns
 		{
 			name: "",
-			args: []string{"", "--experimental-local-db", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/postgres-stretch.cdx.xml"},
+			args: []string{"", "--experimental-offline", "--experimental-download-offline-databases", "--config=./fixtures/osv-scanner-empty-config.toml", "./fixtures/sbom-insecure/postgres-stretch.cdx.xml"},
 			exit: 0,
 		},
 		// one specific unsupported lockfile
 		{
 			name: "",
-			args: []string{"", "--experimental-local-db", "./fixtures/locks-many/not-a-lockfile.toml"},
+			args: []string{"", "--experimental-offline", "--experimental-download-offline-databases", "./fixtures/locks-many/not-a-lockfile.toml"},
 			exit: 0,
 		},
 		// all supported lockfiles in the directory should be checked
@@ -520,7 +520,7 @@ func TestRun_LocalDatabases(t *testing.T) {
 		// all supported lockfiles in the directory should be checked
 		{
 			name: "",
-			args: []string{"", "--experimental-local-db", "./fixtures/locks-many-with-invalid"},
+			args: []string{"", "--experimental-offline", "--experimental-download-offline-databases", "./fixtures/locks-many-with-invalid"},
 			exit: 0,
 		},
 		// only the files in the given directories are checked by default (no recursion)
@@ -958,32 +958,33 @@ func TestRun_InsertDefaultCommand(t *testing.T) {
 	}
 }
 
-func TestRun_MavenTransitive(t *testing.T) {
-	t.Parallel()
-	tests := []cliTestCase{
-		{
-			name: "scans transitive dependencies for pom.xml by default",
-			args: []string{"", "./fixtures/maven-transitive/pom.xml"},
-			exit: 1,
-		},
-		{
-			name: "scans transitive dependencies by specifying pom.xml",
-			args: []string{"", "-L", "pom.xml:./fixtures/maven-transitive/abc.xml"},
-			exit: 1,
-		},
-		{
-			// Direct dependencies do not have any vulnerability.
-			name: "does not scan transitive dependencies for pom.xml with offline mode",
-			args: []string{"", "--experimental-offline", "--experimental-download-offline-databases", "./fixtures/maven-transitive/pom.xml"},
-			exit: 0,
-		},
-	}
-
-	for _, tt := range tests {
-		tt := tt
-		t.Run(tt.name, func(t *testing.T) {
-			t.Parallel()
-			testCli(t, tt)
-		})
-	}
-}
+// We disabled this feature to avoid any connections to deps.dev at this stage
+//func TestRun_MavenTransitive(t *testing.T) {
+//	t.Parallel()
+//	tests := []cliTestCase{
+//		{
+//			name: "scans transitive dependencies for pom.xml by default",
+//			args: []string{"", "./fixtures/maven-transitive/pom.xml"},
+//			exit: 1,
+//		},
+//		{
+//			name: "scans transitive dependencies by specifying pom.xml",
+//			args: []string{"", "-L", "pom.xml:./fixtures/maven-transitive/abc.xml"},
+//			exit: 1,
+//		},
+//		{
+//			// Direct dependencies do not have any vulnerability.
+//			name: "does not scan transitive dependencies for pom.xml with offline mode",
+//			args: []string{"", "--experimental-offline", "--experimental-download-offline-databases", "./fixtures/maven-transitive/pom.xml"},
+//			exit: 0,
+//		},
+//	}
+//
+//	for _, tt := range tests {
+//		tt := tt
+//		t.Run(tt.name, func(t *testing.T) {
+//			t.Parallel()
+//			testCli(t, tt)
+//		})
+//	}
+//}

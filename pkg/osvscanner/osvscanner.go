@@ -370,11 +370,13 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, compareOffli
 		case "osv-scanner":
 			parsedLockfile, err = lockfile.FromOSVScannerResults(path)
 		default:
-			if !compareOffline && (parseAs == "pom.xml" || filepath.Base(path) == "pom.xml") {
-				parsedLockfile, err = extractMavenDeps(f)
-			} else {
-				parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
-			}
+			parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
+			// We are disabling this as we don't want to go through deps.dev to detect packages
+			//if !compareOffline && (parseAs == "pom.xml" || filepath.Base(path) == "pom.xml") {
+			//	parsedLockfile, err = extractMavenDeps(f)
+			//} else {
+			//	parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
+			//}
 		}
 	}
 
