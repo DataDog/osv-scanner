@@ -28,39 +28,6 @@ type PackageLocations struct {
 	Version   *PackageLocation `json:"version,omitempty"`
 }
 
-func NewPackageLocations(block FilePosition, name *FilePosition, version *FilePosition) PackageLocations {
-	result := PackageLocations{
-		Block: PackageLocation{
-			Filename:    block.Filename,
-			LineStart:   block.Line.Start,
-			LineEnd:     block.Line.End,
-			ColumnStart: block.Column.Start,
-			ColumnEnd:   block.Column.End,
-		},
-	}
-
-	if name != nil {
-		result.Name = &PackageLocation{
-			Filename:    name.Filename,
-			LineStart:   name.Line.Start,
-			LineEnd:     name.Line.End,
-			ColumnStart: name.Column.Start,
-			ColumnEnd:   name.Column.End,
-		}
-	}
-	if version != nil {
-		result.Version = &PackageLocation{
-			Filename:    version.Filename,
-			LineStart:   version.Line.Start,
-			LineEnd:     version.Line.End,
-			ColumnStart: version.Column.Start,
-			ColumnEnd:   version.Column.End,
-		}
-	}
-
-	return result
-}
-
 func (location PackageLocations) MarshalToJSONString() (string, error) {
 	str, err := json.Marshal(location)
 	if err != nil {

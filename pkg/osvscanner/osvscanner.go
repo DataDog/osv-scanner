@@ -914,14 +914,20 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		if err != nil {
 			return models.VulnerabilityResults{}, err
 		}
+
 		if actions.ConsiderScanPathAsRoot || actions.PathRelativeToScanDir {
 			for index, pkg := range pkgs {
 				pkgs[index].Source.ScanPath = dir
-				pkgs[index].Source.Path = fileposition.RemoveHostPath(dir, pkg.Source.Path, actions.ConsiderScanPathAsRoot, actions.PathRelativeToScanDir)
-			}
+				pkgs[index].Source.Path = fileposition.ToRelativePath(dir, pkg.Source.Path)
+				pkgs[index].BlockLocation.Filename = fileposition.ToRelativePath(dir, pkg.BlockLocation.Filename)
 
-			if err != nil {
-				return models.VulnerabilityResults{}, err
+				if pkgs[index].NameLocation != nil {
+					pkgs[index].NameLocation.Filename = fileposition.ToRelativePath(dir, pkg.BlockLocation.Filename)
+				}
+
+				if pkgs[index].VersionLocation != nil {
+					pkgs[index].VersionLocation.Filename = fileposition.ToRelativePath(dir, pkg.BlockLocation.Filename)
+				}
 			}
 		}
 		scannedPackages = append(scannedPackages, pkgs...)
