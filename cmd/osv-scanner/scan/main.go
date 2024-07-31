@@ -165,7 +165,12 @@ func Command(stdout, stderr io.Writer, r *reporter.Reporter) *cli.Command {
 	}
 }
 
+func addDatadogSpecificArguments(context *cli.Context) {
+	_ = context.Set("experimental-offline", "true")
+}
+
 func action(context *cli.Context, stdout, stderr io.Writer) (reporter.Reporter, error) {
+	addDatadogSpecificArguments(context)
 	format := context.String("format")
 
 	if context.Bool("json") {

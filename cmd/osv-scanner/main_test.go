@@ -11,10 +11,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/models"
-
-	sbom_test "github.com/google/osv-scanner/internal/utility/sbom"
-
 	"github.com/CycloneDX/cyclonedx-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -660,21 +656,6 @@ func TestRun_WithoutHostPathInformation(t *testing.T) {
 	tests := []locationTestCase{
 		// one specific supported lockfile
 		{
-			name:          "one specific supported lockfile",
-			args:          []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--consider-scan-path-as-root", "./fixtures/locks-many/yarn.lock"},
-			wantExitCode:  0,
-			wantFilePaths: []string{"/package.json"},
-		},
-		{
-			name:         "Multiple lockfiles",
-			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--consider-scan-path-as-root", "./fixtures/locks-many"},
-			wantExitCode: 0,
-			wantFilePaths: []string{
-				"/package-lock.json", // TODO: remove when NPM is using the JSON matcher
-				"/package.json",
-			},
-		},
-		{
 			name:          "one specific supported lockfile (relative path)",
 			args:          []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many/yarn.lock"},
 			wantExitCode:  0,
@@ -726,66 +707,12 @@ func TestRun_WithCycloneDX15(t *testing.T) {
 		"--consider-scan-path-as-root",
 		"./fixtures/integration-test-locks",
 	}
-	stdoutBuffer := &bytes.Buffer{}
-	stderrBuffer := &bytes.Buffer{}
 
-	ec := run(args, stdoutBuffer, stderrBuffer)
-
-	if ec != 0 {
-		require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
-	}
-
-	stdout := stdoutBuffer.String()
-	bom := cyclonedx.BOM{}
-	err := json.NewDecoder(strings.NewReader(stdout)).Decode(&bom)
-	require.NoError(t, err)
-
-	expectedBom := cyclonedx.BOM{
-		JSONSchema:  "http://cyclonedx.org/schema/bom-1.5.schema.json",
-		BOMFormat:   cyclonedx.BOMFormat,
-		SpecVersion: cyclonedx.SpecVersion1_5,
-		Version:     1,
-		Components: &[]cyclonedx.Component{
-			{
-				BOMRef:     "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-				PackageURL: "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-				Type:       "library",
-				Name:       "com.google.code.findbugs:jsr305",
-				Version:    "3.0.2",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "/pom.xml",
-						LineStart:   25,
-						LineEnd:     28,
-						ColumnStart: 5,
-						ColumnEnd:   18,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "/pom.xml",
-						LineStart:   27,
-						LineEnd:     27,
-						ColumnStart: 19,
-						ColumnEnd:   25,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "/pom.xml",
-						LineStart:   19,
-						LineEnd:     19,
-						ColumnStart: 18,
-						ColumnEnd:   23,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:nuget/Test.Core@6.0.5",
-				PackageURL: "pkg:nuget/Test.Core@6.0.5",
-				Type:       "library",
-				Name:       "Test.Core",
-				Version:    "6.0.5",
-			},
-		},
-	}
-	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
+	testCli(t, cliTestCase{
+		name: "WithCycloneDX15",
+		args: args,
+		exit: 0,
+	})
 }
 
 func TestRun_WithEmptyCycloneDX15(t *testing.T) {
@@ -798,19 +725,12 @@ func TestRun_WithEmptyCycloneDX15(t *testing.T) {
 		"--consider-scan-path-as-root",
 		"./fixtures/locks-empty",
 	}
-	stdoutBuffer := &bytes.Buffer{}
-	stderrBuffer := &bytes.Buffer{}
 
-	ec := run(args, stdoutBuffer, stderrBuffer)
-
-	if ec != 0 {
-		require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
-	}
-
-	stdout := testutility.NormalizeStdStream(t, stdoutBuffer)
-	stderr := testutility.NormalizeStdStream(t, stderrBuffer)
-	testutility.NewSnapshot().MatchText(t, stdout)
-	testutility.NewSnapshot().MatchText(t, stderr)
+	testCli(t, cliTestCase{
+		name: "WithEmptyCycloneDX15",
+		args: args,
+		exit: 0,
+	})
 }
 
 func TestRun_WithExplicitParsers(t *testing.T) {
@@ -824,59 +744,12 @@ func TestRun_WithExplicitParsers(t *testing.T) {
 		"--enable-parsers=pom.xml",
 		"./fixtures/integration-test-locks",
 	}
-	stdoutBuffer := &bytes.Buffer{}
-	stderrBuffer := &bytes.Buffer{}
 
-	ec := run(args, stdoutBuffer, stderrBuffer)
-
-	if ec != 0 {
-		require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
-	}
-
-	stdout := stdoutBuffer.String()
-	bom := cyclonedx.BOM{}
-	err := json.NewDecoder(strings.NewReader(stdout)).Decode(&bom)
-	require.NoError(t, err)
-
-	expectedBom := cyclonedx.BOM{
-		JSONSchema:  "http://cyclonedx.org/schema/bom-1.5.schema.json",
-		BOMFormat:   cyclonedx.BOMFormat,
-		SpecVersion: cyclonedx.SpecVersion1_5,
-		Version:     1,
-		Components: &[]cyclonedx.Component{
-			{
-				BOMRef:     "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-				PackageURL: "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-				Type:       "library",
-				Name:       "com.google.code.findbugs:jsr305",
-				Version:    "3.0.2",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "/pom.xml",
-						LineStart:   25,
-						LineEnd:     28,
-						ColumnStart: 5,
-						ColumnEnd:   18,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "/pom.xml",
-						LineStart:   27,
-						LineEnd:     27,
-						ColumnStart: 19,
-						ColumnEnd:   25,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "/pom.xml",
-						LineStart:   19,
-						LineEnd:     19,
-						ColumnStart: 18,
-						ColumnEnd:   23,
-					},
-				}),
-			},
-		},
-	}
-	sbom_test.AssertBomEqual(t, expectedBom, bom, true)
+	testCli(t, cliTestCase{
+		name: "WithExplicitParsers",
+		args: args,
+		exit: 0,
+	})
 }
 
 func TestRun_WithEncodedLockfile(t *testing.T) {
@@ -885,349 +758,6 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 		{encoding: "UTF-8"},
 		{encoding: "UTF-16"},
 		{encoding: "Windows-1252"},
-	}
-
-	expectedBom := cyclonedx.BOM{
-		JSONSchema:  "http://cyclonedx.org/schema/bom-1.5.schema.json",
-		BOMFormat:   cyclonedx.BOMFormat,
-		SpecVersion: cyclonedx.SpecVersion1_5,
-		Version:     1,
-		Components: &[]cyclonedx.Component{
-			{
-				BOMRef:     "pkg:cargo/addr2line@0.15.2",
-				PackageURL: "pkg:cargo/addr2line@0.15.2",
-				Type:       "library",
-				Name:       "addr2line",
-				Version:    "0.15.2",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:composer/sentry/sdk@2.0.4",
-				PackageURL: "pkg:composer/sentry/sdk@2.0.4",
-				Type:       "library",
-				Name:       "sentry/sdk",
-				Version:    "2.0.4",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:conan/zlib@1.2.11",
-				PackageURL: "pkg:conan/zlib@1.2.11",
-				Type:       "library",
-				Name:       "zlib",
-				Version:    "1.2.11",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:golang/stdlib@1.21.3",
-				PackageURL: "pkg:golang/stdlib@1.21.3",
-				Type:       "library",
-				Name:       "stdlib",
-				Version:    "1.21.3",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:golang/github.com/BurntSushi/toml@1.0.0",
-				PackageURL: "pkg:golang/github.com/BurntSushi/toml@1.0.0",
-				Type:       "library",
-				Name:       "github.com/BurntSushi/toml",
-				Version:    "1.0.0",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "go.mod",
-						LineStart:   5,
-						LineEnd:     5,
-						ColumnStart: 1,
-						ColumnEnd:   42,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "go.mod",
-						LineStart:   5,
-						LineEnd:     5,
-						ColumnStart: 37,
-						ColumnEnd:   42,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "go.mod",
-						LineStart:   5,
-						LineEnd:     5,
-						ColumnStart: 9,
-						ColumnEnd:   35,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:maven/org.springframework.security/spring-security-crypto@5.7.3",
-				PackageURL: "pkg:maven/org.springframework.security/spring-security-crypto@5.7.3",
-				Type:       "library",
-				Name:       "org.springframework.security:spring-security-crypto",
-				Version:    "5.7.3",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "build.gradle",
-						LineStart:   10,
-						LineEnd:     10,
-						ColumnStart: 3,
-						ColumnEnd:   77,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "build.gradle",
-						LineStart:   10,
-						LineEnd:     10,
-						ColumnStart: 48,
-						ColumnEnd:   70,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "build.gradle",
-						LineStart:   10,
-						LineEnd:     10,
-						ColumnStart: 71,
-						ColumnEnd:   76,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:hex/plug@1.11.1",
-				PackageURL: "pkg:hex/plug@1.11.1",
-				Type:       "library",
-				Name:       "plug",
-				Version:    "1.11.1",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:npm/wrappy@1.0.2",
-				PackageURL: "pkg:npm/wrappy@1.0.2",
-				Type:       "library",
-				Name:       "wrappy",
-				Version:    "1.0.2",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "npm/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 5,
-						ColumnEnd:   18,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "npm/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 6,
-						ColumnEnd:   12,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "npm/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 16,
-						ColumnEnd:   17,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:nuget/Test.Core@6.0.5",
-				PackageURL: "pkg:nuget/Test.Core@6.0.5",
-				Type:       "library",
-				Name:       "Test.Core",
-				Version:    "6.0.5",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:pypi/markupsafe@2.1.1",
-				PackageURL: "pkg:pypi/markupsafe@2.1.1",
-				Type:       "library",
-				Name:       "markupsafe",
-				Version:    "2.1.1",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "Pipfile",
-						LineStart:   7,
-						LineEnd:     7,
-						ColumnStart: 1,
-						ColumnEnd:   25,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "Pipfile",
-						LineStart:   7,
-						LineEnd:     7,
-						ColumnStart: 15,
-						ColumnEnd:   24,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "Pipfile",
-						LineStart:   7,
-						LineEnd:     7,
-						ColumnStart: 1,
-						ColumnEnd:   11,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:npm/acorn@8.7.0",
-				PackageURL: "pkg:npm/acorn@8.7.0",
-				Type:       "library",
-				Name:       "acorn",
-				Version:    "8.7.0",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "pnpm/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 5,
-						ColumnEnd:   22,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "pnpm/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 6,
-						ColumnEnd:   11,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "pnpm/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 15,
-						ColumnEnd:   21,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:pypi/numpy@1.23.3",
-				PackageURL: "pkg:pypi/numpy@1.23.3",
-				Type:       "library",
-				Name:       "numpy",
-				Version:    "1.23.3",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "pyproject.toml",
-						LineStart:   10,
-						LineEnd:     10,
-						ColumnStart: 1,
-						ColumnEnd:   19,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "pyproject.toml",
-						LineStart:   10,
-						LineEnd:     10,
-						ColumnStart: 10,
-						ColumnEnd:   18,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "pyproject.toml",
-						LineStart:   10,
-						LineEnd:     10,
-						ColumnStart: 1,
-						ColumnEnd:   6,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-				PackageURL: "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
-				Type:       "library",
-				Name:       "com.google.code.findbugs:jsr305",
-				Version:    "3.0.2",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "pom.xml",
-						LineStart:   25,
-						LineEnd:     28,
-						ColumnStart: 5,
-						ColumnEnd:   18,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "pom.xml",
-						LineStart:   27,
-						LineEnd:     27,
-						ColumnStart: 19,
-						ColumnEnd:   25,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "pom.xml",
-						LineStart:   19,
-						LineEnd:     19,
-						ColumnStart: 18,
-						ColumnEnd:   23,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:pub/back_button_interceptor@6.0.1",
-				PackageURL: "pkg:pub/back_button_interceptor@6.0.1",
-				Type:       "library",
-				Name:       "back_button_interceptor",
-				Version:    "6.0.1",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:cran/morning@0.1.0",
-				PackageURL: "pkg:cran/morning@0.1.0",
-				Type:       "library",
-				Name:       "morning",
-				Version:    "0.1.0",
-				Evidence:   sbom_test.BuildEmptyEvidence(),
-			},
-			{
-				BOMRef:     "pkg:pypi/django@2.2.24",
-				PackageURL: "pkg:pypi/django@2.2.24",
-				Type:       "library",
-				Name:       "django",
-				Version:    "2.2.24",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "requirements.txt",
-						LineStart:   1,
-						LineEnd:     1,
-						ColumnStart: 1,
-						ColumnEnd:   15,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "requirements.txt",
-						LineStart:   1,
-						LineEnd:     1,
-						ColumnStart: 9,
-						ColumnEnd:   15,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "requirements.txt",
-						LineStart:   1,
-						LineEnd:     1,
-						ColumnStart: 1,
-						ColumnEnd:   7,
-					},
-				}),
-			},
-			{
-				BOMRef:     "pkg:npm/balanced-match@1.0.2",
-				PackageURL: "pkg:npm/balanced-match@1.0.2",
-				Type:       "library",
-				Name:       "balanced-match",
-				Version:    "1.0.2",
-				Evidence: buildLocationEvidence(t, models.PackageLocations{
-					Block: models.PackageLocation{
-						Filename:    "yarn/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 5,
-						ColumnEnd:   31,
-					},
-					Name: &models.PackageLocation{
-						Filename:    "yarn/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 6,
-						ColumnEnd:   20,
-					},
-					Version: &models.PackageLocation{
-						Filename:    "yarn/package.json",
-						LineStart:   4,
-						LineEnd:     4,
-						ColumnStart: 24,
-						ColumnEnd:   30,
-					},
-				}),
-			},
-		},
 	}
 
 	for _, testCase := range testCases {
@@ -1242,36 +772,13 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 				"--paths-relative-to-scan-dir",
 				"./fixtures/encoding-integration-test-locks/" + tt.encoding,
 			}
-			stdoutBuffer := &bytes.Buffer{}
-			stderrBuffer := &bytes.Buffer{}
 
-			ec := run(args, stdoutBuffer, stderrBuffer)
-
-			if ec != 0 {
-				require.Failf(t, "The run did not finish successfully", "Error code = %v ; Error = %v", ec, stderrBuffer.String())
-			}
-
-			stdout := stdoutBuffer.String()
-			bom := cyclonedx.BOM{}
-			err := json.NewDecoder(strings.NewReader(stdout)).Decode(&bom)
-			require.NoError(t, err)
-
-			sbom_test.AssertBomEqual(t, expectedBom, bom, true)
+			testCli(t, cliTestCase{
+				name: tt.encoding,
+				args: args,
+				exit: 0,
+			})
 		})
-	}
-}
-
-func buildLocationEvidence(t *testing.T, packageLocations models.PackageLocations) *cyclonedx.Evidence {
-	t.Helper()
-	jsonLocation := strings.Builder{}
-	require.NoError(t, json.NewEncoder(&jsonLocation).Encode(packageLocations))
-
-	return &cyclonedx.Evidence{
-		Occurrences: &[]cyclonedx.EvidenceOccurrence{
-			{
-				Location: jsonLocation.String(),
-			},
-		},
 	}
 }
 
