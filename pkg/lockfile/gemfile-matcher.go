@@ -1,12 +1,14 @@
 package lockfile
 
 import (
-	"github.com/google/osv-scanner/internal/utility/fileposition"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"path/filepath"
-	"regexp"
 	"strings"
+
+	"github.com/google/osv-scanner/internal/cachedregexp"
+
+	"github.com/google/osv-scanner/internal/utility/fileposition"
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 const gemfileFilename = "Gemfile"
@@ -39,8 +41,8 @@ type gemInformation struct {
 func (matcher GemfileMatcher) GetSourceFile(lockfile DepFile) (DepFile, error) {
 	lockfileDir := filepath.Dir(lockfile.Path())
 	sourceFilePath := filepath.Join(lockfileDir, gemfileFilename)
-
 	file, err := OpenLocalDepFile(sourceFilePath)
+
 	return file, err
 }
 
@@ -75,6 +77,7 @@ func (matcher GemfileMatcher) Match(sourceFile DepFile, packages []PackageDetail
 			updatePackageDetails(sourceFile.Path(), info, pkg)
 		}
 	}
+
 	return nil
 }
 
@@ -114,7 +117,7 @@ func accumulateGemLines(lines []string, startIndex int) []string {
 }
 
 func shouldContinueAccumulate(line string) bool {
-	commentRemover, _ := regexp.Compile("#.*$")
+	commentRemover := cachedregexp.MustCompile("#.*$")
 	cleanedLine := strings.TrimSpace(commentRemover.ReplaceAllString(line, ""))
 
 	return len(cleanedLine) == 0 || strings.HasSuffix(cleanedLine, ",")
@@ -182,6 +185,7 @@ func extractVersions(lines []string, startLineNumber int, info *gemInformation) 
 				if versionLineStart == -1 {
 					return
 				}
+
 				break
 			}
 
@@ -217,8 +221,10 @@ func extractVersions(lines []string, startLineNumber int, info *gemInformation) 
 // The only non-named arguments are name and version
 // caller must be sure to call this after name has already been passed
 func isVersionField(field string) bool {
-	matched, err := regexp.MatchString("^\\w*:", field)
-	return err == nil && !matched
+	matcher := cachedregexp.MustCompile("^\\w*:")
+	matched := matcher.MatchString(field)
+
+	return !matched
 }
 
 func isCommentField(field string) bool {
