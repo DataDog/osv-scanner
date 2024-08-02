@@ -21,11 +21,6 @@ var gemSyntaxRemover = strings.NewReplacer(",", "")
 // We use a specific remover to clean quotes when we fetch the name to find it in the index
 var gemNameSyntaxRemover = strings.NewReplacer(",", "", "\"", "", "'", "")
 
-// TODO : Include limitations to PR for discussions
-// - It does not support variables into versions,
-// it would need to be able to report any location where variable is written
-// Best option right now is to suggest variable removal and an addition of fixed version
-
 type GemfileMatcher struct{}
 
 type gemInformation struct {
