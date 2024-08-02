@@ -16,6 +16,8 @@ func MockAllMatchers() {
 	lockfile.PipenvExtractor.Matcher = SuccessfulMatcher{}
 	// pyproject.toml (poetry)
 	lockfile.PoetryExtractor.Matcher = SuccessfulMatcher{}
+	// Gemfile (ruby)
+	lockfile.GemfileExtractor.Matcher = SuccessfulMatcher{}
 }
 
 type SuccessfulMatcher struct{}

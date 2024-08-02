@@ -183,15 +183,15 @@ func (e GemfileLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	return parser.dependencies, nil
 }
 
-var _ Extractor = GemfileLockExtractor{}
+var GemfileExtractor = GemfileLockExtractor{
+	WithMatcher{Matcher: GemfileMatcher{}},
+}
 
 //nolint:gochecknoinits
 func init() {
-	registerExtractor("Gemfile.lock", GemfileLockExtractor{WithMatcher{Matcher: GemfileMatcher{}}})
+	registerExtractor("Gemfile.lock", GemfileExtractor)
 }
 
 func ParseGemfileLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, GemfileLockExtractor{
-		WithMatcher{Matcher: GemfileMatcher{}},
-	})
+	return extractFromFile(pathToLockfile, GemfileExtractor)
 }
