@@ -95,6 +95,7 @@ func TestGemfileMatcher_Match_OnePackage(t *testing.T) {
 }
 
 func TestGemfileMatcher_OnePackage_MatcherFailed(t *testing.T) {
+	t.Parallel()
 	dir, err := os.Getwd()
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
