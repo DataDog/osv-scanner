@@ -159,7 +159,9 @@ func (parser *gemfileLockfileParser) parse(line string) {
 	}
 }
 
-type GemfileLockExtractor struct{}
+type GemfileLockExtractor struct {
+	WithMatcher
+}
 
 func (e GemfileLockExtractor) ShouldExtract(path string) bool {
 	return filepath.Base(path) == "Gemfile.lock"
@@ -185,9 +187,11 @@ var _ Extractor = GemfileLockExtractor{}
 
 //nolint:gochecknoinits
 func init() {
-	registerExtractor("Gemfile.lock", GemfileLockExtractor{})
+	registerExtractor("Gemfile.lock", GemfileLockExtractor{WithMatcher{Matcher: GemfileMatcher{}}})
 }
 
 func ParseGemfileLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, GemfileLockExtractor{})
+	return extractFromFile(pathToLockfile, GemfileLockExtractor{
+		WithMatcher{Matcher: GemfileMatcher{}},
+	})
 }
