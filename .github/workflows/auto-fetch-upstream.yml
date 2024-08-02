@@ -3,6 +3,10 @@ name: 'Upstream Sync'
 on:
   schedule:
     - cron:  '0 7 * * 1' # scheduled at 07:00 every Monday
+  push: # Only for testing purposes
+    branches:
+      - "marc.wieser/github_action_to_auto-fetch"
+
 
   workflow_dispatch:  # click the button on Github repo!
     inputs:
@@ -31,7 +35,7 @@ jobs:
           upstream_sync_branch: main
           upstream_sync_repo: google/osv-scanner
           # Set test_mode true during manual dispatch to run tests instead of the true action
-          test_mode: ${{ inputs.sync_test_mode }}
+          test_mode: true
 
       # Step 3: Display a sample message based on the sync output var 'has_new_commits'
       - name: New commits found
