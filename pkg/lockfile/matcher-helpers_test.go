@@ -18,6 +18,8 @@ func MockAllMatchers() {
 	lockfile.PoetryExtractor.Matcher = SuccessfulMatcher{}
 	// Gemfile (ruby)
 	lockfile.GemfileExtractor.Matcher = SuccessfulMatcher{}
+	// NuGet packages.lock.json
+	lockfile.NuGetExtractor.Matcher = SuccessfulMatcher{}
 }
 
 type SuccessfulMatcher struct{}
