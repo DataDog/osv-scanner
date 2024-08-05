@@ -17,7 +17,7 @@ func PrintCycloneDXResults(vulnResult *models.VulnerabilityResults, cycloneDXVer
 
 	bom := bomCreator(resultsByPurl)
 	encoder := cyclonedx.NewBOMEncoder(outputWriter, cyclonedx.BOMFileFormatJSON)
-	encoder.SetPretty(false) // We disable pretty print to limit big sbom issue
+	encoder.SetPretty(true)
 
 	err := encoder.Encode(bom)
 
