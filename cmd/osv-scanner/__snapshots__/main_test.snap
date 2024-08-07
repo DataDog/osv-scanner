@@ -2147,12 +2147,1546 @@ No package sources found, --help for usage information.
       }
     },
     {
-      "bom-ref": "pkg:composer/sentry/sdk@2.0.4",
+      "bom-ref": "pkg:composer/ably/ably-php@1.1.10",
       "type": "library",
-      "name": "sentry/sdk",
+      "name": "ably/ably-php",
+      "version": "1.1.10",
+      "licenses": [],
+      "purl": "pkg:composer/ably/ably-php@1.1.10",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":1,/"column_end/":28},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":23,/"column_end/":27}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/aws/aws-crt-php@v1.2.6",
+      "type": "library",
+      "name": "aws/aws-crt-php",
+      "version": "v1.2.6",
+      "licenses": [],
+      "purl": "pkg:composer/aws/aws-crt-php@v1.2.6",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/aws/aws-sdk-php@3.317.2",
+      "type": "library",
+      "name": "aws/aws-sdk-php",
+      "version": "3.317.2",
+      "licenses": [],
+      "purl": "pkg:composer/aws/aws-sdk-php@3.317.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":25,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/brick/math@0.12.1",
+      "type": "library",
+      "name": "brick/math",
+      "version": "0.12.1",
+      "licenses": [],
+      "purl": "pkg:composer/brick/math@0.12.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":20,/"line_end/":21,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":20,/"line_end/":20,/"column_start/":6,/"column_end/":16},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":21,/"line_end/":21,/"column_start/":8,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/carbonphp/carbon-doctrine-types@3.2.0",
+      "type": "library",
+      "name": "carbonphp/carbon-doctrine-types",
+      "version": "3.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/carbonphp/carbon-doctrine-types@3.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/dflydev/dot-access-data@v3.0.3",
+      "type": "library",
+      "name": "dflydev/dot-access-data",
+      "version": "v3.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/dflydev/dot-access-data@v3.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/doctrine/inflector@2.0.10",
+      "type": "library",
+      "name": "doctrine/inflector",
+      "version": "2.0.10",
+      "licenses": [],
+      "purl": "pkg:composer/doctrine/inflector@2.0.10",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":28,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/doctrine/lexer@3.0.1",
+      "type": "library",
+      "name": "doctrine/lexer",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/doctrine/lexer@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/dragonmantank/cron-expression@v3.3.3",
+      "type": "library",
+      "name": "dragonmantank/cron-expression",
+      "version": "v3.3.3",
+      "licenses": [],
+      "purl": "pkg:composer/dragonmantank/cron-expression@v3.3.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":6,/"column_end/":35},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":39,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/egulias/email-validator@4.0.2",
+      "type": "library",
+      "name": "egulias/email-validator",
+      "version": "4.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/egulias/email-validator@4.0.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":1,/"column_end/":45},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":33,/"column_end/":44}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/fakerphp/faker@v1.23.1",
+      "type": "library",
+      "name": "fakerphp/faker",
+      "version": "v1.23.1",
+      "licenses": [],
+      "purl": "pkg:composer/fakerphp/faker@v1.23.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":24,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/fruitcake/php-cors@v1.3.0",
+      "type": "library",
+      "name": "fruitcake/php-cors",
+      "version": "v1.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/fruitcake/php-cors@v1.3.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":28,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/graham-campbell/result-type@v1.1.3",
+      "type": "library",
+      "name": "graham-campbell/result-type",
+      "version": "v1.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/graham-campbell/result-type@v1.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/guzzle@7.9.2",
+      "type": "library",
+      "name": "guzzlehttp/guzzle",
+      "version": "7.9.2",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/guzzle@7.9.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":32},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":27,/"column_end/":31}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/promises@2.0.3",
+      "type": "library",
+      "name": "guzzlehttp/promises",
+      "version": "2.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/promises@2.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/psr7@2.7.0",
+      "type": "library",
+      "name": "guzzlehttp/psr7",
+      "version": "2.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/psr7@2.7.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/uri-template@v1.0.3",
+      "type": "library",
+      "name": "guzzlehttp/uri-template",
+      "version": "v1.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/uri-template@v1.0.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":33,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/hamcrest/hamcrest-php@v2.0.1",
+      "type": "library",
+      "name": "hamcrest/hamcrest-php",
+      "version": "v2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/hamcrest/hamcrest-php@v2.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/collections@v11.19.0",
+      "type": "library",
+      "name": "illuminate/collections",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/collections@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/conditionable@v11.19.0",
+      "type": "library",
+      "name": "illuminate/conditionable",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/conditionable@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/contracts@v11.19.0",
+      "type": "library",
+      "name": "illuminate/contracts",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/contracts@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/macroable@v11.19.0",
+      "type": "library",
+      "name": "illuminate/macroable",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/macroable@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/laravel/prompts@v0.1.24",
+      "type": "library",
+      "name": "laravel/prompts",
+      "version": "v0.1.24",
+      "licenses": [],
+      "purl": "pkg:composer/laravel/prompts@v0.1.24",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":25,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/laravel/serializable-closure@v1.3.3",
+      "type": "library",
+      "name": "laravel/serializable-closure",
+      "version": "v1.3.3",
+      "licenses": [],
+      "purl": "pkg:composer/laravel/serializable-closure@v1.3.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":1,/"column_end/":43},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":6,/"column_end/":34},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":38,/"column_end/":42}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/commonmark@2.5.1",
+      "type": "library",
+      "name": "league/commonmark",
+      "version": "2.5.1",
+      "licenses": [],
+      "purl": "pkg:composer/league/commonmark@2.5.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":27,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/config@v1.2.0",
+      "type": "library",
+      "name": "league/config",
+      "version": "v1.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/config@v1.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-aws-s3-v3@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-aws-s3-v3",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-aws-s3-v3@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":6,/"column_end/":32},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":36,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-local@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-local",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-local@3.28.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-path-prefixing@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-path-prefixing",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-path-prefixing@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":6,/"column_end/":37},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":41,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-read-only@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-read-only",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-read-only@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":6,/"column_end/":32},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":36,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem@3.28.0",
+      "type": "library",
+      "name": "league/flysystem",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem@3.28.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/mime-type-detection@1.15.0",
+      "type": "library",
+      "name": "league/mime-type-detection",
+      "version": "1.15.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/mime-type-detection@1.15.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/mockery/mockery@1.6.12",
+      "type": "library",
+      "name": "mockery/mockery",
+      "version": "1.6.12",
+      "licenses": [],
+      "purl": "pkg:composer/mockery/mockery@1.6.12",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/monolog/monolog@3.7.0",
+      "type": "library",
+      "name": "monolog/monolog",
+      "version": "3.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/monolog/monolog@3.7.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/mtdowling/jmespath.php@2.7.0",
+      "type": "library",
+      "name": "mtdowling/jmespath.php",
+      "version": "2.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/mtdowling/jmespath.php@2.7.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/myclabs/deep-copy@1.12.0",
+      "type": "library",
+      "name": "myclabs/deep-copy",
+      "version": "1.12.0",
+      "licenses": [],
+      "purl": "pkg:composer/myclabs/deep-copy@1.12.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nesbot/carbon@3.7.0",
+      "type": "library",
+      "name": "nesbot/carbon",
+      "version": "3.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/nesbot/carbon@3.7.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":1,/"column_end/":36},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":23,/"column_end/":35}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nette/schema@v1.3.0",
+      "type": "library",
+      "name": "nette/schema",
+      "version": "v1.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/nette/schema@v1.3.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nette/utils@v4.0.4",
+      "type": "library",
+      "name": "nette/utils",
+      "version": "v4.0.4",
+      "licenses": [],
+      "purl": "pkg:composer/nette/utils@v4.0.4",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nikic/php-parser@v5.1.0",
+      "type": "library",
+      "name": "nikic/php-parser",
+      "version": "v5.1.0",
+      "licenses": [],
+      "purl": "pkg:composer/nikic/php-parser@v5.1.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nunomaduro/termwind@v2.0.1",
+      "type": "library",
+      "name": "nunomaduro/termwind",
+      "version": "v2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/nunomaduro/termwind@v2.0.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nyholm/psr7@1.8.1",
+      "type": "library",
+      "name": "nyholm/psr7",
+      "version": "1.8.1",
+      "licenses": [],
+      "purl": "pkg:composer/nyholm/psr7@1.8.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/pda/pheanstalk@v5.0.5",
+      "type": "library",
+      "name": "pda/pheanstalk",
+      "version": "v5.0.5",
+      "licenses": [],
+      "purl": "pkg:composer/pda/pheanstalk@v5.0.5",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phar-io/manifest@2.0.4",
+      "type": "library",
+      "name": "phar-io/manifest",
       "version": "2.0.4",
       "licenses": [],
-      "purl": "pkg:composer/sentry/sdk@2.0.4",
+      "purl": "pkg:composer/phar-io/manifest@2.0.4",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phar-io/version@3.2.1",
+      "type": "library",
+      "name": "phar-io/version",
+      "version": "3.2.1",
+      "licenses": [],
+      "purl": "pkg:composer/phar-io/version@3.2.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpoption/phpoption@1.9.3",
+      "type": "library",
+      "name": "phpoption/phpoption",
+      "version": "1.9.3",
+      "licenses": [],
+      "purl": "pkg:composer/phpoption/phpoption@1.9.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpstan/phpstan@1.11.9",
+      "type": "library",
+      "name": "phpstan/phpstan",
+      "version": "1.11.9",
+      "licenses": [],
+      "purl": "pkg:composer/phpstan/phpstan@1.11.9",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":25,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-code-coverage@11.0.5",
+      "type": "library",
+      "name": "phpunit/php-code-coverage",
+      "version": "11.0.5",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-code-coverage@11.0.5",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-file-iterator@5.0.1",
+      "type": "library",
+      "name": "phpunit/php-file-iterator",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-file-iterator@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-invoker@5.0.1",
+      "type": "library",
+      "name": "phpunit/php-invoker",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-invoker@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-text-template@4.0.1",
+      "type": "library",
+      "name": "phpunit/php-text-template",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-text-template@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-timer@7.0.1",
+      "type": "library",
+      "name": "phpunit/php-timer",
+      "version": "7.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-timer@7.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/phpunit@11.3.0",
+      "type": "library",
+      "name": "phpunit/phpunit",
+      "version": "11.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/phpunit@11.3.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":1,/"column_end/":37},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":25,/"column_end/":36}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/predis/predis@v2.2.2",
+      "type": "library",
+      "name": "predis/predis",
+      "version": "v2.2.2",
+      "licenses": [],
+      "purl": "pkg:composer/predis/predis@v2.2.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":23,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/cache@3.0.0",
+      "type": "library",
+      "name": "psr/cache",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/cache@3.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/clock@1.0.0",
+      "type": "library",
+      "name": "psr/clock",
+      "version": "1.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/clock@1.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/container@2.0.2",
+      "type": "library",
+      "name": "psr/container",
+      "version": "2.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/psr/container@2.0.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":1,/"column_end/":37},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":23,/"column_end/":36}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/event-dispatcher@1.0.0",
+      "type": "library",
+      "name": "psr/event-dispatcher",
+      "version": "1.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/event-dispatcher@1.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-client@1.0.3",
+      "type": "library",
+      "name": "psr/http-client",
+      "version": "1.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-client@1.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-factory@1.1.0",
+      "type": "library",
+      "name": "psr/http-factory",
+      "version": "1.1.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-factory@1.1.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-message@2.0",
+      "type": "library",
+      "name": "psr/http-message",
+      "version": "2.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-message@2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/log@3.0.0",
+      "type": "library",
+      "name": "psr/log",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/log@3.0.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":1,/"column_end/":32},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":6,/"column_end/":13},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":17,/"column_end/":31}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/simple-cache@3.0.0",
+      "type": "library",
+      "name": "psr/simple-cache",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/simple-cache@3.0.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":6,/"column_end/":22},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":26,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ralouphie/getallheaders@3.0.3",
+      "type": "library",
+      "name": "ralouphie/getallheaders",
+      "version": "3.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/ralouphie/getallheaders@3.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ramsey/collection@2.0.0",
+      "type": "library",
+      "name": "ramsey/collection",
+      "version": "2.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/ramsey/collection@2.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ramsey/uuid@4.7.6",
+      "type": "library",
+      "name": "ramsey/uuid",
+      "version": "4.7.6",
+      "licenses": [],
+      "purl": "pkg:composer/ramsey/uuid@4.7.6",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/resend/resend-php@v0.10.1",
+      "type": "library",
+      "name": "resend/resend-php",
+      "version": "v0.10.1",
+      "licenses": [],
+      "purl": "pkg:composer/resend/resend-php@v0.10.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":27,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/rybakit/msgpack@v0.9.1",
+      "type": "library",
+      "name": "rybakit/msgpack",
+      "version": "v0.9.1",
+      "licenses": [],
+      "purl": "pkg:composer/rybakit/msgpack@v0.9.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/cli-parser@3.0.2",
+      "type": "library",
+      "name": "sebastian/cli-parser",
+      "version": "3.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/cli-parser@3.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/code-unit-reverse-lookup@4.0.1",
+      "type": "library",
+      "name": "sebastian/code-unit-reverse-lookup",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/code-unit-reverse-lookup@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/code-unit@3.0.1",
+      "type": "library",
+      "name": "sebastian/code-unit",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/code-unit@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/comparator@6.0.1",
+      "type": "library",
+      "name": "sebastian/comparator",
+      "version": "6.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/comparator@6.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/complexity@4.0.1",
+      "type": "library",
+      "name": "sebastian/complexity",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/complexity@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/diff@6.0.2",
+      "type": "library",
+      "name": "sebastian/diff",
+      "version": "6.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/diff@6.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/environment@7.2.0",
+      "type": "library",
+      "name": "sebastian/environment",
+      "version": "7.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/environment@7.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/exporter@6.1.3",
+      "type": "library",
+      "name": "sebastian/exporter",
+      "version": "6.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/exporter@6.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/global-state@7.0.2",
+      "type": "library",
+      "name": "sebastian/global-state",
+      "version": "7.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/global-state@7.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/lines-of-code@3.0.1",
+      "type": "library",
+      "name": "sebastian/lines-of-code",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/lines-of-code@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/object-enumerator@6.0.1",
+      "type": "library",
+      "name": "sebastian/object-enumerator",
+      "version": "6.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/object-enumerator@6.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/object-reflector@4.0.1",
+      "type": "library",
+      "name": "sebastian/object-reflector",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/object-reflector@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/recursion-context@6.0.2",
+      "type": "library",
+      "name": "sebastian/recursion-context",
+      "version": "6.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/recursion-context@6.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/type@5.0.1",
+      "type": "library",
+      "name": "sebastian/type",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/type@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/version@5.0.1",
+      "type": "library",
+      "name": "sebastian/version",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/version@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/cache-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/cache-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/cache-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/cache@v7.1.3",
+      "type": "library",
+      "name": "symfony/cache",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/cache@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":1,/"column_end/":28},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":23,/"column_end/":27}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/clock@v7.1.1",
+      "type": "library",
+      "name": "symfony/clock",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/clock@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/console@v7.1.3",
+      "type": "library",
+      "name": "symfony/console",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/console@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/css-selector@v7.1.1",
+      "type": "library",
+      "name": "symfony/css-selector",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/css-selector@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/deprecation-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/deprecation-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/deprecation-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/error-handler@v7.1.3",
+      "type": "library",
+      "name": "symfony/error-handler",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/error-handler@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":1,/"column_end/":36},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":6,/"column_end/":27},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":31,/"column_end/":35}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/event-dispatcher-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/event-dispatcher-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/event-dispatcher-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/event-dispatcher@v7.1.1",
+      "type": "library",
+      "name": "symfony/event-dispatcher",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/event-dispatcher@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/finder@v7.1.3",
+      "type": "library",
+      "name": "symfony/finder",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/finder@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-client-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/http-client-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-client-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-client@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-client",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-client@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-foundation@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-foundation",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-foundation@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":33,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-kernel@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-kernel",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-kernel@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/mailer@v7.1.2",
+      "type": "library",
+      "name": "symfony/mailer",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/mailer@v7.1.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/mime@v7.1.2",
+      "type": "library",
+      "name": "symfony/mime",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/mime@v7.1.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":1,/"column_end/":27},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":6,/"column_end/":18},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":22,/"column_end/":26}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-ctype@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-ctype",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-ctype@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-grapheme@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-grapheme",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-grapheme@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-idn@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-idn",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-idn@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-normalizer@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-normalizer",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-normalizer@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-mbstring@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-mbstring@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php72@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php72",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php72@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php80@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php80",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php80@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php83@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php83",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php83@v1.30.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":6,/"column_end/":28},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":32,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-uuid@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-uuid",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-uuid@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/process@v7.1.3",
+      "type": "library",
+      "name": "symfony/process",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/process@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/psr-http-message-bridge@v7.1.3",
+      "type": "library",
+      "name": "symfony/psr-http-message-bridge",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/psr-http-message-bridge@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":6,/"column_end/":37},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":41,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/routing@v7.1.3",
+      "type": "library",
+      "name": "symfony/routing",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/routing@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/service-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/service-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/service-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/string@v7.1.3",
+      "type": "library",
+      "name": "symfony/string",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/string@v7.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/translation-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/translation-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/translation-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/translation@v7.1.3",
+      "type": "library",
+      "name": "symfony/translation",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/translation@v7.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/uid@v7.1.1",
+      "type": "library",
+      "name": "symfony/uid",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/uid@v7.1.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/var-dumper@v7.1.3",
+      "type": "library",
+      "name": "symfony/var-dumper",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/var-dumper@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":28,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/var-exporter@v7.1.2",
+      "type": "library",
+      "name": "symfony/var-exporter",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/var-exporter@v7.1.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/theseer/tokenizer@1.2.3",
+      "type": "library",
+      "name": "theseer/tokenizer",
+      "version": "1.2.3",
+      "licenses": [],
+      "purl": "pkg:composer/theseer/tokenizer@1.2.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/tijsverkoyen/css-to-inline-styles@v2.2.7",
+      "type": "library",
+      "name": "tijsverkoyen/css-to-inline-styles",
+      "version": "v2.2.7",
+      "licenses": [],
+      "purl": "pkg:composer/tijsverkoyen/css-to-inline-styles@v2.2.7",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":1,/"column_end/":50},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":6,/"column_end/":39},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":43,/"column_end/":49}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/vlucas/phpdotenv@v5.6.1",
+      "type": "library",
+      "name": "vlucas/phpdotenv",
+      "version": "v5.6.1",
+      "licenses": [],
+      "purl": "pkg:composer/vlucas/phpdotenv@v5.6.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":6,/"column_end/":22},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":26,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/voku/portable-ascii@2.0.1",
+      "type": "library",
+      "name": "voku/portable-ascii",
+      "version": "2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/voku/portable-ascii@2.0.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/webmozart/assert@1.11.0",
+      "type": "library",
+      "name": "webmozart/assert",
+      "version": "1.11.0",
+      "licenses": [],
+      "purl": "pkg:composer/webmozart/assert@1.11.0",
       "evidence": {
         "occurrences": []
       }
@@ -3571,7 +5105,7 @@ Scanning dir ./fixtures/encoding-integration-test-locks/UTF-8
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/Cargo.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/Gemfile.lock file and found 99 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/Pipfile.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/composer.lock file and found 1 package
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/composer/composer.lock file and found 123 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/conan.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/go.mod file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/gradle.lockfile file and found 1 package
@@ -3608,12 +5142,1546 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock 
       }
     },
     {
-      "bom-ref": "pkg:composer/sentry/sdk@2.0.4",
+      "bom-ref": "pkg:composer/ably/ably-php@1.1.10",
       "type": "library",
-      "name": "sentry/sdk",
+      "name": "ably/ably-php",
+      "version": "1.1.10",
+      "licenses": [],
+      "purl": "pkg:composer/ably/ably-php@1.1.10",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":1,/"column_end/":28},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":23,/"column_end/":27}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/aws/aws-crt-php@v1.2.6",
+      "type": "library",
+      "name": "aws/aws-crt-php",
+      "version": "v1.2.6",
+      "licenses": [],
+      "purl": "pkg:composer/aws/aws-crt-php@v1.2.6",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/aws/aws-sdk-php@3.317.2",
+      "type": "library",
+      "name": "aws/aws-sdk-php",
+      "version": "3.317.2",
+      "licenses": [],
+      "purl": "pkg:composer/aws/aws-sdk-php@3.317.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":25,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/brick/math@0.12.1",
+      "type": "library",
+      "name": "brick/math",
+      "version": "0.12.1",
+      "licenses": [],
+      "purl": "pkg:composer/brick/math@0.12.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":20,/"line_end/":21,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":20,/"line_end/":20,/"column_start/":6,/"column_end/":16},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":21,/"line_end/":21,/"column_start/":8,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/carbonphp/carbon-doctrine-types@3.2.0",
+      "type": "library",
+      "name": "carbonphp/carbon-doctrine-types",
+      "version": "3.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/carbonphp/carbon-doctrine-types@3.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/dflydev/dot-access-data@v3.0.3",
+      "type": "library",
+      "name": "dflydev/dot-access-data",
+      "version": "v3.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/dflydev/dot-access-data@v3.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/doctrine/inflector@2.0.10",
+      "type": "library",
+      "name": "doctrine/inflector",
+      "version": "2.0.10",
+      "licenses": [],
+      "purl": "pkg:composer/doctrine/inflector@2.0.10",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":28,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/doctrine/lexer@3.0.1",
+      "type": "library",
+      "name": "doctrine/lexer",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/doctrine/lexer@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/dragonmantank/cron-expression@v3.3.3",
+      "type": "library",
+      "name": "dragonmantank/cron-expression",
+      "version": "v3.3.3",
+      "licenses": [],
+      "purl": "pkg:composer/dragonmantank/cron-expression@v3.3.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":6,/"column_end/":35},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":39,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/egulias/email-validator@4.0.2",
+      "type": "library",
+      "name": "egulias/email-validator",
+      "version": "4.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/egulias/email-validator@4.0.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":1,/"column_end/":45},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":33,/"column_end/":44}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/fakerphp/faker@v1.23.1",
+      "type": "library",
+      "name": "fakerphp/faker",
+      "version": "v1.23.1",
+      "licenses": [],
+      "purl": "pkg:composer/fakerphp/faker@v1.23.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":24,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/fruitcake/php-cors@v1.3.0",
+      "type": "library",
+      "name": "fruitcake/php-cors",
+      "version": "v1.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/fruitcake/php-cors@v1.3.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":28,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/graham-campbell/result-type@v1.1.3",
+      "type": "library",
+      "name": "graham-campbell/result-type",
+      "version": "v1.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/graham-campbell/result-type@v1.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/guzzle@7.9.2",
+      "type": "library",
+      "name": "guzzlehttp/guzzle",
+      "version": "7.9.2",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/guzzle@7.9.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":32},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":27,/"column_end/":31}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/promises@2.0.3",
+      "type": "library",
+      "name": "guzzlehttp/promises",
+      "version": "2.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/promises@2.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/psr7@2.7.0",
+      "type": "library",
+      "name": "guzzlehttp/psr7",
+      "version": "2.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/psr7@2.7.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/uri-template@v1.0.3",
+      "type": "library",
+      "name": "guzzlehttp/uri-template",
+      "version": "v1.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/uri-template@v1.0.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":33,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/hamcrest/hamcrest-php@v2.0.1",
+      "type": "library",
+      "name": "hamcrest/hamcrest-php",
+      "version": "v2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/hamcrest/hamcrest-php@v2.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/collections@v11.19.0",
+      "type": "library",
+      "name": "illuminate/collections",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/collections@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/conditionable@v11.19.0",
+      "type": "library",
+      "name": "illuminate/conditionable",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/conditionable@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/contracts@v11.19.0",
+      "type": "library",
+      "name": "illuminate/contracts",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/contracts@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/macroable@v11.19.0",
+      "type": "library",
+      "name": "illuminate/macroable",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/macroable@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/laravel/prompts@v0.1.24",
+      "type": "library",
+      "name": "laravel/prompts",
+      "version": "v0.1.24",
+      "licenses": [],
+      "purl": "pkg:composer/laravel/prompts@v0.1.24",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":25,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/laravel/serializable-closure@v1.3.3",
+      "type": "library",
+      "name": "laravel/serializable-closure",
+      "version": "v1.3.3",
+      "licenses": [],
+      "purl": "pkg:composer/laravel/serializable-closure@v1.3.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":1,/"column_end/":43},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":6,/"column_end/":34},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":38,/"column_end/":42}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/commonmark@2.5.1",
+      "type": "library",
+      "name": "league/commonmark",
+      "version": "2.5.1",
+      "licenses": [],
+      "purl": "pkg:composer/league/commonmark@2.5.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":27,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/config@v1.2.0",
+      "type": "library",
+      "name": "league/config",
+      "version": "v1.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/config@v1.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-aws-s3-v3@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-aws-s3-v3",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-aws-s3-v3@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":6,/"column_end/":32},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":36,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-local@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-local",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-local@3.28.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-path-prefixing@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-path-prefixing",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-path-prefixing@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":6,/"column_end/":37},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":41,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-read-only@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-read-only",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-read-only@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":6,/"column_end/":32},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":36,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem@3.28.0",
+      "type": "library",
+      "name": "league/flysystem",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem@3.28.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/mime-type-detection@1.15.0",
+      "type": "library",
+      "name": "league/mime-type-detection",
+      "version": "1.15.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/mime-type-detection@1.15.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/mockery/mockery@1.6.12",
+      "type": "library",
+      "name": "mockery/mockery",
+      "version": "1.6.12",
+      "licenses": [],
+      "purl": "pkg:composer/mockery/mockery@1.6.12",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/monolog/monolog@3.7.0",
+      "type": "library",
+      "name": "monolog/monolog",
+      "version": "3.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/monolog/monolog@3.7.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/mtdowling/jmespath.php@2.7.0",
+      "type": "library",
+      "name": "mtdowling/jmespath.php",
+      "version": "2.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/mtdowling/jmespath.php@2.7.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/myclabs/deep-copy@1.12.0",
+      "type": "library",
+      "name": "myclabs/deep-copy",
+      "version": "1.12.0",
+      "licenses": [],
+      "purl": "pkg:composer/myclabs/deep-copy@1.12.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nesbot/carbon@3.7.0",
+      "type": "library",
+      "name": "nesbot/carbon",
+      "version": "3.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/nesbot/carbon@3.7.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":1,/"column_end/":36},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":23,/"column_end/":35}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nette/schema@v1.3.0",
+      "type": "library",
+      "name": "nette/schema",
+      "version": "v1.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/nette/schema@v1.3.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nette/utils@v4.0.4",
+      "type": "library",
+      "name": "nette/utils",
+      "version": "v4.0.4",
+      "licenses": [],
+      "purl": "pkg:composer/nette/utils@v4.0.4",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nikic/php-parser@v5.1.0",
+      "type": "library",
+      "name": "nikic/php-parser",
+      "version": "v5.1.0",
+      "licenses": [],
+      "purl": "pkg:composer/nikic/php-parser@v5.1.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nunomaduro/termwind@v2.0.1",
+      "type": "library",
+      "name": "nunomaduro/termwind",
+      "version": "v2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/nunomaduro/termwind@v2.0.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nyholm/psr7@1.8.1",
+      "type": "library",
+      "name": "nyholm/psr7",
+      "version": "1.8.1",
+      "licenses": [],
+      "purl": "pkg:composer/nyholm/psr7@1.8.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/pda/pheanstalk@v5.0.5",
+      "type": "library",
+      "name": "pda/pheanstalk",
+      "version": "v5.0.5",
+      "licenses": [],
+      "purl": "pkg:composer/pda/pheanstalk@v5.0.5",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phar-io/manifest@2.0.4",
+      "type": "library",
+      "name": "phar-io/manifest",
       "version": "2.0.4",
       "licenses": [],
-      "purl": "pkg:composer/sentry/sdk@2.0.4",
+      "purl": "pkg:composer/phar-io/manifest@2.0.4",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phar-io/version@3.2.1",
+      "type": "library",
+      "name": "phar-io/version",
+      "version": "3.2.1",
+      "licenses": [],
+      "purl": "pkg:composer/phar-io/version@3.2.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpoption/phpoption@1.9.3",
+      "type": "library",
+      "name": "phpoption/phpoption",
+      "version": "1.9.3",
+      "licenses": [],
+      "purl": "pkg:composer/phpoption/phpoption@1.9.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpstan/phpstan@1.11.9",
+      "type": "library",
+      "name": "phpstan/phpstan",
+      "version": "1.11.9",
+      "licenses": [],
+      "purl": "pkg:composer/phpstan/phpstan@1.11.9",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":25,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-code-coverage@11.0.5",
+      "type": "library",
+      "name": "phpunit/php-code-coverage",
+      "version": "11.0.5",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-code-coverage@11.0.5",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-file-iterator@5.0.1",
+      "type": "library",
+      "name": "phpunit/php-file-iterator",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-file-iterator@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-invoker@5.0.1",
+      "type": "library",
+      "name": "phpunit/php-invoker",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-invoker@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-text-template@4.0.1",
+      "type": "library",
+      "name": "phpunit/php-text-template",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-text-template@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-timer@7.0.1",
+      "type": "library",
+      "name": "phpunit/php-timer",
+      "version": "7.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-timer@7.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/phpunit@11.3.0",
+      "type": "library",
+      "name": "phpunit/phpunit",
+      "version": "11.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/phpunit@11.3.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":1,/"column_end/":37},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":25,/"column_end/":36}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/predis/predis@v2.2.2",
+      "type": "library",
+      "name": "predis/predis",
+      "version": "v2.2.2",
+      "licenses": [],
+      "purl": "pkg:composer/predis/predis@v2.2.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":23,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/cache@3.0.0",
+      "type": "library",
+      "name": "psr/cache",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/cache@3.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/clock@1.0.0",
+      "type": "library",
+      "name": "psr/clock",
+      "version": "1.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/clock@1.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/container@2.0.2",
+      "type": "library",
+      "name": "psr/container",
+      "version": "2.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/psr/container@2.0.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":1,/"column_end/":37},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":23,/"column_end/":36}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/event-dispatcher@1.0.0",
+      "type": "library",
+      "name": "psr/event-dispatcher",
+      "version": "1.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/event-dispatcher@1.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-client@1.0.3",
+      "type": "library",
+      "name": "psr/http-client",
+      "version": "1.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-client@1.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-factory@1.1.0",
+      "type": "library",
+      "name": "psr/http-factory",
+      "version": "1.1.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-factory@1.1.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-message@2.0",
+      "type": "library",
+      "name": "psr/http-message",
+      "version": "2.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-message@2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/log@3.0.0",
+      "type": "library",
+      "name": "psr/log",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/log@3.0.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":1,/"column_end/":32},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":6,/"column_end/":13},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":17,/"column_end/":31}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/simple-cache@3.0.0",
+      "type": "library",
+      "name": "psr/simple-cache",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/simple-cache@3.0.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":6,/"column_end/":22},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":26,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ralouphie/getallheaders@3.0.3",
+      "type": "library",
+      "name": "ralouphie/getallheaders",
+      "version": "3.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/ralouphie/getallheaders@3.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ramsey/collection@2.0.0",
+      "type": "library",
+      "name": "ramsey/collection",
+      "version": "2.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/ramsey/collection@2.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ramsey/uuid@4.7.6",
+      "type": "library",
+      "name": "ramsey/uuid",
+      "version": "4.7.6",
+      "licenses": [],
+      "purl": "pkg:composer/ramsey/uuid@4.7.6",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/resend/resend-php@v0.10.1",
+      "type": "library",
+      "name": "resend/resend-php",
+      "version": "v0.10.1",
+      "licenses": [],
+      "purl": "pkg:composer/resend/resend-php@v0.10.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":27,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/rybakit/msgpack@v0.9.1",
+      "type": "library",
+      "name": "rybakit/msgpack",
+      "version": "v0.9.1",
+      "licenses": [],
+      "purl": "pkg:composer/rybakit/msgpack@v0.9.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/cli-parser@3.0.2",
+      "type": "library",
+      "name": "sebastian/cli-parser",
+      "version": "3.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/cli-parser@3.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/code-unit-reverse-lookup@4.0.1",
+      "type": "library",
+      "name": "sebastian/code-unit-reverse-lookup",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/code-unit-reverse-lookup@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/code-unit@3.0.1",
+      "type": "library",
+      "name": "sebastian/code-unit",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/code-unit@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/comparator@6.0.1",
+      "type": "library",
+      "name": "sebastian/comparator",
+      "version": "6.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/comparator@6.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/complexity@4.0.1",
+      "type": "library",
+      "name": "sebastian/complexity",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/complexity@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/diff@6.0.2",
+      "type": "library",
+      "name": "sebastian/diff",
+      "version": "6.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/diff@6.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/environment@7.2.0",
+      "type": "library",
+      "name": "sebastian/environment",
+      "version": "7.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/environment@7.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/exporter@6.1.3",
+      "type": "library",
+      "name": "sebastian/exporter",
+      "version": "6.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/exporter@6.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/global-state@7.0.2",
+      "type": "library",
+      "name": "sebastian/global-state",
+      "version": "7.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/global-state@7.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/lines-of-code@3.0.1",
+      "type": "library",
+      "name": "sebastian/lines-of-code",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/lines-of-code@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/object-enumerator@6.0.1",
+      "type": "library",
+      "name": "sebastian/object-enumerator",
+      "version": "6.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/object-enumerator@6.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/object-reflector@4.0.1",
+      "type": "library",
+      "name": "sebastian/object-reflector",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/object-reflector@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/recursion-context@6.0.2",
+      "type": "library",
+      "name": "sebastian/recursion-context",
+      "version": "6.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/recursion-context@6.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/type@5.0.1",
+      "type": "library",
+      "name": "sebastian/type",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/type@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/version@5.0.1",
+      "type": "library",
+      "name": "sebastian/version",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/version@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/cache-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/cache-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/cache-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/cache@v7.1.3",
+      "type": "library",
+      "name": "symfony/cache",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/cache@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":1,/"column_end/":28},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":23,/"column_end/":27}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/clock@v7.1.1",
+      "type": "library",
+      "name": "symfony/clock",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/clock@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/console@v7.1.3",
+      "type": "library",
+      "name": "symfony/console",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/console@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/css-selector@v7.1.1",
+      "type": "library",
+      "name": "symfony/css-selector",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/css-selector@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/deprecation-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/deprecation-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/deprecation-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/error-handler@v7.1.3",
+      "type": "library",
+      "name": "symfony/error-handler",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/error-handler@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":1,/"column_end/":36},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":6,/"column_end/":27},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":31,/"column_end/":35}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/event-dispatcher-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/event-dispatcher-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/event-dispatcher-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/event-dispatcher@v7.1.1",
+      "type": "library",
+      "name": "symfony/event-dispatcher",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/event-dispatcher@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/finder@v7.1.3",
+      "type": "library",
+      "name": "symfony/finder",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/finder@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-client-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/http-client-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-client-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-client@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-client",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-client@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-foundation@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-foundation",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-foundation@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":33,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-kernel@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-kernel",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-kernel@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/mailer@v7.1.2",
+      "type": "library",
+      "name": "symfony/mailer",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/mailer@v7.1.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/mime@v7.1.2",
+      "type": "library",
+      "name": "symfony/mime",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/mime@v7.1.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":1,/"column_end/":27},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":6,/"column_end/":18},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":22,/"column_end/":26}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-ctype@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-ctype",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-ctype@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-grapheme@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-grapheme",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-grapheme@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-idn@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-idn",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-idn@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-normalizer@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-normalizer",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-normalizer@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-mbstring@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-mbstring@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php72@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php72",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php72@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php80@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php80",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php80@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php83@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php83",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php83@v1.30.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":6,/"column_end/":28},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":32,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-uuid@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-uuid",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-uuid@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/process@v7.1.3",
+      "type": "library",
+      "name": "symfony/process",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/process@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/psr-http-message-bridge@v7.1.3",
+      "type": "library",
+      "name": "symfony/psr-http-message-bridge",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/psr-http-message-bridge@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":6,/"column_end/":37},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":41,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/routing@v7.1.3",
+      "type": "library",
+      "name": "symfony/routing",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/routing@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/service-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/service-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/service-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/string@v7.1.3",
+      "type": "library",
+      "name": "symfony/string",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/string@v7.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/translation-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/translation-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/translation-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/translation@v7.1.3",
+      "type": "library",
+      "name": "symfony/translation",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/translation@v7.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/uid@v7.1.1",
+      "type": "library",
+      "name": "symfony/uid",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/uid@v7.1.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/var-dumper@v7.1.3",
+      "type": "library",
+      "name": "symfony/var-dumper",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/var-dumper@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":28,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/var-exporter@v7.1.2",
+      "type": "library",
+      "name": "symfony/var-exporter",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/var-exporter@v7.1.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/theseer/tokenizer@1.2.3",
+      "type": "library",
+      "name": "theseer/tokenizer",
+      "version": "1.2.3",
+      "licenses": [],
+      "purl": "pkg:composer/theseer/tokenizer@1.2.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/tijsverkoyen/css-to-inline-styles@v2.2.7",
+      "type": "library",
+      "name": "tijsverkoyen/css-to-inline-styles",
+      "version": "v2.2.7",
+      "licenses": [],
+      "purl": "pkg:composer/tijsverkoyen/css-to-inline-styles@v2.2.7",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":1,/"column_end/":50},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":6,/"column_end/":39},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":43,/"column_end/":49}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/vlucas/phpdotenv@v5.6.1",
+      "type": "library",
+      "name": "vlucas/phpdotenv",
+      "version": "v5.6.1",
+      "licenses": [],
+      "purl": "pkg:composer/vlucas/phpdotenv@v5.6.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":6,/"column_end/":22},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":26,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/voku/portable-ascii@2.0.1",
+      "type": "library",
+      "name": "voku/portable-ascii",
+      "version": "2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/voku/portable-ascii@2.0.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/webmozart/assert@1.11.0",
+      "type": "library",
+      "name": "webmozart/assert",
+      "version": "1.11.0",
+      "licenses": [],
+      "purl": "pkg:composer/webmozart/assert@1.11.0",
       "evidence": {
         "occurrences": []
       }
@@ -5032,7 +8100,7 @@ Scanning dir ./fixtures/encoding-integration-test-locks/UTF-16
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/Cargo.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/Gemfile.lock file and found 99 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/Pipfile.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/composer.lock file and found 1 package
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/composer/composer.lock file and found 123 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/conan.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/go.mod file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/gradle.lockfile file and found 1 package
@@ -5069,12 +8137,1546 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       }
     },
     {
-      "bom-ref": "pkg:composer/sentry/sdk@2.0.4",
+      "bom-ref": "pkg:composer/ably/ably-php@1.1.10",
       "type": "library",
-      "name": "sentry/sdk",
+      "name": "ably/ably-php",
+      "version": "1.1.10",
+      "licenses": [],
+      "purl": "pkg:composer/ably/ably-php@1.1.10",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":1,/"column_end/":28},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":55,/"line_end/":55,/"column_start/":23,/"column_end/":27}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/aws/aws-crt-php@v1.2.6",
+      "type": "library",
+      "name": "aws/aws-crt-php",
+      "version": "v1.2.6",
+      "licenses": [],
+      "purl": "pkg:composer/aws/aws-crt-php@v1.2.6",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/aws/aws-sdk-php@3.317.2",
+      "type": "library",
+      "name": "aws/aws-sdk-php",
+      "version": "3.317.2",
+      "licenses": [],
+      "purl": "pkg:composer/aws/aws-sdk-php@3.317.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":56,/"line_end/":56,/"column_start/":25,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/brick/math@0.12.1",
+      "type": "library",
+      "name": "brick/math",
+      "version": "0.12.1",
+      "licenses": [],
+      "purl": "pkg:composer/brick/math@0.12.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":20,/"line_end/":21,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":20,/"line_end/":20,/"column_start/":6,/"column_end/":16},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":21,/"line_end/":21,/"column_start/":8,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/carbonphp/carbon-doctrine-types@3.2.0",
+      "type": "library",
+      "name": "carbonphp/carbon-doctrine-types",
+      "version": "3.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/carbonphp/carbon-doctrine-types@3.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/dflydev/dot-access-data@v3.0.3",
+      "type": "library",
+      "name": "dflydev/dot-access-data",
+      "version": "v3.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/dflydev/dot-access-data@v3.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/doctrine/inflector@2.0.10",
+      "type": "library",
+      "name": "doctrine/inflector",
+      "version": "2.0.10",
+      "licenses": [],
+      "purl": "pkg:composer/doctrine/inflector@2.0.10",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":22,/"line_end/":22,/"column_start/":28,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/doctrine/lexer@3.0.1",
+      "type": "library",
+      "name": "doctrine/lexer",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/doctrine/lexer@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/dragonmantank/cron-expression@v3.3.3",
+      "type": "library",
+      "name": "dragonmantank/cron-expression",
+      "version": "v3.3.3",
+      "licenses": [],
+      "purl": "pkg:composer/dragonmantank/cron-expression@v3.3.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":6,/"column_end/":35},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":23,/"line_end/":23,/"column_start/":39,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/egulias/email-validator@4.0.2",
+      "type": "library",
+      "name": "egulias/email-validator",
+      "version": "4.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/egulias/email-validator@4.0.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":1,/"column_end/":45},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":24,/"line_end/":24,/"column_start/":33,/"column_end/":44}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/fakerphp/faker@v1.23.1",
+      "type": "library",
+      "name": "fakerphp/faker",
+      "version": "v1.23.1",
+      "licenses": [],
+      "purl": "pkg:composer/fakerphp/faker@v1.23.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":57,/"line_end/":57,/"column_start/":24,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/fruitcake/php-cors@v1.3.0",
+      "type": "library",
+      "name": "fruitcake/php-cors",
+      "version": "v1.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/fruitcake/php-cors@v1.3.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":25,/"line_end/":25,/"column_start/":28,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/graham-campbell/result-type@v1.1.3",
+      "type": "library",
+      "name": "graham-campbell/result-type",
+      "version": "v1.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/graham-campbell/result-type@v1.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/guzzle@7.9.2",
+      "type": "library",
+      "name": "guzzlehttp/guzzle",
+      "version": "7.9.2",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/guzzle@7.9.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":32},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":26,/"line_end/":26,/"column_start/":27,/"column_end/":31}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/promises@2.0.3",
+      "type": "library",
+      "name": "guzzlehttp/promises",
+      "version": "2.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/promises@2.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/psr7@2.7.0",
+      "type": "library",
+      "name": "guzzlehttp/psr7",
+      "version": "2.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/psr7@2.7.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/guzzlehttp/uri-template@v1.0.3",
+      "type": "library",
+      "name": "guzzlehttp/uri-template",
+      "version": "v1.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/guzzlehttp/uri-template@v1.0.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":27,/"line_end/":27,/"column_start/":33,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/hamcrest/hamcrest-php@v2.0.1",
+      "type": "library",
+      "name": "hamcrest/hamcrest-php",
+      "version": "v2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/hamcrest/hamcrest-php@v2.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/collections@v11.19.0",
+      "type": "library",
+      "name": "illuminate/collections",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/collections@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/conditionable@v11.19.0",
+      "type": "library",
+      "name": "illuminate/conditionable",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/conditionable@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/contracts@v11.19.0",
+      "type": "library",
+      "name": "illuminate/contracts",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/contracts@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/illuminate/macroable@v11.19.0",
+      "type": "library",
+      "name": "illuminate/macroable",
+      "version": "v11.19.0",
+      "licenses": [],
+      "purl": "pkg:composer/illuminate/macroable@v11.19.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/laravel/prompts@v0.1.24",
+      "type": "library",
+      "name": "laravel/prompts",
+      "version": "v0.1.24",
+      "licenses": [],
+      "purl": "pkg:composer/laravel/prompts@v0.1.24",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":28,/"line_end/":28,/"column_start/":25,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/laravel/serializable-closure@v1.3.3",
+      "type": "library",
+      "name": "laravel/serializable-closure",
+      "version": "v1.3.3",
+      "licenses": [],
+      "purl": "pkg:composer/laravel/serializable-closure@v1.3.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":1,/"column_end/":43},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":6,/"column_end/":34},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":29,/"line_end/":29,/"column_start/":38,/"column_end/":42}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/commonmark@2.5.1",
+      "type": "library",
+      "name": "league/commonmark",
+      "version": "2.5.1",
+      "licenses": [],
+      "purl": "pkg:composer/league/commonmark@2.5.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":30,/"line_end/":30,/"column_start/":27,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/config@v1.2.0",
+      "type": "library",
+      "name": "league/config",
+      "version": "v1.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/config@v1.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-aws-s3-v3@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-aws-s3-v3",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-aws-s3-v3@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":6,/"column_end/":32},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":58,/"line_end/":58,/"column_start/":36,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-local@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-local",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-local@3.28.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-path-prefixing@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-path-prefixing",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-path-prefixing@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":6,/"column_end/":37},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":59,/"line_end/":59,/"column_start/":41,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem-read-only@3.28.0",
+      "type": "library",
+      "name": "league/flysystem-read-only",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem-read-only@3.28.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":6,/"column_end/":32},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":60,/"line_end/":60,/"column_start/":36,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/flysystem@3.28.0",
+      "type": "library",
+      "name": "league/flysystem",
+      "version": "3.28.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/flysystem@3.28.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/league/mime-type-detection@1.15.0",
+      "type": "library",
+      "name": "league/mime-type-detection",
+      "version": "1.15.0",
+      "licenses": [],
+      "purl": "pkg:composer/league/mime-type-detection@1.15.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/mockery/mockery@1.6.12",
+      "type": "library",
+      "name": "mockery/mockery",
+      "version": "1.6.12",
+      "licenses": [],
+      "purl": "pkg:composer/mockery/mockery@1.6.12",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":61,/"line_end/":61,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/monolog/monolog@3.7.0",
+      "type": "library",
+      "name": "monolog/monolog",
+      "version": "3.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/monolog/monolog@3.7.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":31,/"line_end/":31,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/mtdowling/jmespath.php@2.7.0",
+      "type": "library",
+      "name": "mtdowling/jmespath.php",
+      "version": "2.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/mtdowling/jmespath.php@2.7.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/myclabs/deep-copy@1.12.0",
+      "type": "library",
+      "name": "myclabs/deep-copy",
+      "version": "1.12.0",
+      "licenses": [],
+      "purl": "pkg:composer/myclabs/deep-copy@1.12.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nesbot/carbon@3.7.0",
+      "type": "library",
+      "name": "nesbot/carbon",
+      "version": "3.7.0",
+      "licenses": [],
+      "purl": "pkg:composer/nesbot/carbon@3.7.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":1,/"column_end/":36},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":32,/"line_end/":32,/"column_start/":23,/"column_end/":35}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nette/schema@v1.3.0",
+      "type": "library",
+      "name": "nette/schema",
+      "version": "v1.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/nette/schema@v1.3.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nette/utils@v4.0.4",
+      "type": "library",
+      "name": "nette/utils",
+      "version": "v4.0.4",
+      "licenses": [],
+      "purl": "pkg:composer/nette/utils@v4.0.4",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nikic/php-parser@v5.1.0",
+      "type": "library",
+      "name": "nikic/php-parser",
+      "version": "v5.1.0",
+      "licenses": [],
+      "purl": "pkg:composer/nikic/php-parser@v5.1.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nunomaduro/termwind@v2.0.1",
+      "type": "library",
+      "name": "nunomaduro/termwind",
+      "version": "v2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/nunomaduro/termwind@v2.0.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":33,/"line_end/":33,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/nyholm/psr7@1.8.1",
+      "type": "library",
+      "name": "nyholm/psr7",
+      "version": "1.8.1",
+      "licenses": [],
+      "purl": "pkg:composer/nyholm/psr7@1.8.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":62,/"line_end/":62,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/pda/pheanstalk@v5.0.5",
+      "type": "library",
+      "name": "pda/pheanstalk",
+      "version": "v5.0.5",
+      "licenses": [],
+      "purl": "pkg:composer/pda/pheanstalk@v5.0.5",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":63,/"line_end/":63,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phar-io/manifest@2.0.4",
+      "type": "library",
+      "name": "phar-io/manifest",
       "version": "2.0.4",
       "licenses": [],
-      "purl": "pkg:composer/sentry/sdk@2.0.4",
+      "purl": "pkg:composer/phar-io/manifest@2.0.4",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phar-io/version@3.2.1",
+      "type": "library",
+      "name": "phar-io/version",
+      "version": "3.2.1",
+      "licenses": [],
+      "purl": "pkg:composer/phar-io/version@3.2.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpoption/phpoption@1.9.3",
+      "type": "library",
+      "name": "phpoption/phpoption",
+      "version": "1.9.3",
+      "licenses": [],
+      "purl": "pkg:composer/phpoption/phpoption@1.9.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpstan/phpstan@1.11.9",
+      "type": "library",
+      "name": "phpstan/phpstan",
+      "version": "1.11.9",
+      "licenses": [],
+      "purl": "pkg:composer/phpstan/phpstan@1.11.9",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":64,/"line_end/":64,/"column_start/":25,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-code-coverage@11.0.5",
+      "type": "library",
+      "name": "phpunit/php-code-coverage",
+      "version": "11.0.5",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-code-coverage@11.0.5",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-file-iterator@5.0.1",
+      "type": "library",
+      "name": "phpunit/php-file-iterator",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-file-iterator@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-invoker@5.0.1",
+      "type": "library",
+      "name": "phpunit/php-invoker",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-invoker@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-text-template@4.0.1",
+      "type": "library",
+      "name": "phpunit/php-text-template",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-text-template@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/php-timer@7.0.1",
+      "type": "library",
+      "name": "phpunit/php-timer",
+      "version": "7.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/php-timer@7.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/phpunit/phpunit@11.3.0",
+      "type": "library",
+      "name": "phpunit/phpunit",
+      "version": "11.3.0",
+      "licenses": [],
+      "purl": "pkg:composer/phpunit/phpunit@11.3.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":1,/"column_end/":37},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":65,/"line_end/":65,/"column_start/":25,/"column_end/":36}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/predis/predis@v2.2.2",
+      "type": "library",
+      "name": "predis/predis",
+      "version": "v2.2.2",
+      "licenses": [],
+      "purl": "pkg:composer/predis/predis@v2.2.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":66,/"line_end/":66,/"column_start/":23,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/cache@3.0.0",
+      "type": "library",
+      "name": "psr/cache",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/cache@3.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/clock@1.0.0",
+      "type": "library",
+      "name": "psr/clock",
+      "version": "1.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/clock@1.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/container@2.0.2",
+      "type": "library",
+      "name": "psr/container",
+      "version": "2.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/psr/container@2.0.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":1,/"column_end/":37},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":34,/"line_end/":34,/"column_start/":23,/"column_end/":36}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/event-dispatcher@1.0.0",
+      "type": "library",
+      "name": "psr/event-dispatcher",
+      "version": "1.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/event-dispatcher@1.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-client@1.0.3",
+      "type": "library",
+      "name": "psr/http-client",
+      "version": "1.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-client@1.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-factory@1.1.0",
+      "type": "library",
+      "name": "psr/http-factory",
+      "version": "1.1.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-factory@1.1.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/http-message@2.0",
+      "type": "library",
+      "name": "psr/http-message",
+      "version": "2.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/http-message@2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/log@3.0.0",
+      "type": "library",
+      "name": "psr/log",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/log@3.0.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":1,/"column_end/":32},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":6,/"column_end/":13},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":35,/"line_end/":35,/"column_start/":17,/"column_end/":31}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/psr/simple-cache@3.0.0",
+      "type": "library",
+      "name": "psr/simple-cache",
+      "version": "3.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/psr/simple-cache@3.0.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":1,/"column_end/":41},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":6,/"column_end/":22},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":36,/"line_end/":36,/"column_start/":26,/"column_end/":40}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ralouphie/getallheaders@3.0.3",
+      "type": "library",
+      "name": "ralouphie/getallheaders",
+      "version": "3.0.3",
+      "licenses": [],
+      "purl": "pkg:composer/ralouphie/getallheaders@3.0.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ramsey/collection@2.0.0",
+      "type": "library",
+      "name": "ramsey/collection",
+      "version": "2.0.0",
+      "licenses": [],
+      "purl": "pkg:composer/ramsey/collection@2.0.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/ramsey/uuid@4.7.6",
+      "type": "library",
+      "name": "ramsey/uuid",
+      "version": "4.7.6",
+      "licenses": [],
+      "purl": "pkg:composer/ramsey/uuid@4.7.6",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":37,/"line_end/":37,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/resend/resend-php@v0.10.1",
+      "type": "library",
+      "name": "resend/resend-php",
+      "version": "v0.10.1",
+      "licenses": [],
+      "purl": "pkg:composer/resend/resend-php@v0.10.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":1,/"column_end/":35},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":6,/"column_end/":23},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":67,/"line_end/":67,/"column_start/":27,/"column_end/":34}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/rybakit/msgpack@v0.9.1",
+      "type": "library",
+      "name": "rybakit/msgpack",
+      "version": "v0.9.1",
+      "licenses": [],
+      "purl": "pkg:composer/rybakit/msgpack@v0.9.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/cli-parser@3.0.2",
+      "type": "library",
+      "name": "sebastian/cli-parser",
+      "version": "3.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/cli-parser@3.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/code-unit-reverse-lookup@4.0.1",
+      "type": "library",
+      "name": "sebastian/code-unit-reverse-lookup",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/code-unit-reverse-lookup@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/code-unit@3.0.1",
+      "type": "library",
+      "name": "sebastian/code-unit",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/code-unit@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/comparator@6.0.1",
+      "type": "library",
+      "name": "sebastian/comparator",
+      "version": "6.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/comparator@6.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/complexity@4.0.1",
+      "type": "library",
+      "name": "sebastian/complexity",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/complexity@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/diff@6.0.2",
+      "type": "library",
+      "name": "sebastian/diff",
+      "version": "6.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/diff@6.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/environment@7.2.0",
+      "type": "library",
+      "name": "sebastian/environment",
+      "version": "7.2.0",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/environment@7.2.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/exporter@6.1.3",
+      "type": "library",
+      "name": "sebastian/exporter",
+      "version": "6.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/exporter@6.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/global-state@7.0.2",
+      "type": "library",
+      "name": "sebastian/global-state",
+      "version": "7.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/global-state@7.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/lines-of-code@3.0.1",
+      "type": "library",
+      "name": "sebastian/lines-of-code",
+      "version": "3.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/lines-of-code@3.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/object-enumerator@6.0.1",
+      "type": "library",
+      "name": "sebastian/object-enumerator",
+      "version": "6.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/object-enumerator@6.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/object-reflector@4.0.1",
+      "type": "library",
+      "name": "sebastian/object-reflector",
+      "version": "4.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/object-reflector@4.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/recursion-context@6.0.2",
+      "type": "library",
+      "name": "sebastian/recursion-context",
+      "version": "6.0.2",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/recursion-context@6.0.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/type@5.0.1",
+      "type": "library",
+      "name": "sebastian/type",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/type@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/sebastian/version@5.0.1",
+      "type": "library",
+      "name": "sebastian/version",
+      "version": "5.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/sebastian/version@5.0.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/cache-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/cache-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/cache-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/cache@v7.1.3",
+      "type": "library",
+      "name": "symfony/cache",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/cache@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":1,/"column_end/":28},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":6,/"column_end/":19},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":68,/"line_end/":68,/"column_start/":23,/"column_end/":27}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/clock@v7.1.1",
+      "type": "library",
+      "name": "symfony/clock",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/clock@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/console@v7.1.3",
+      "type": "library",
+      "name": "symfony/console",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/console@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":38,/"line_end/":38,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/css-selector@v7.1.1",
+      "type": "library",
+      "name": "symfony/css-selector",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/css-selector@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/deprecation-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/deprecation-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/deprecation-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/error-handler@v7.1.3",
+      "type": "library",
+      "name": "symfony/error-handler",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/error-handler@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":1,/"column_end/":36},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":6,/"column_end/":27},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":39,/"line_end/":39,/"column_start/":31,/"column_end/":35}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/event-dispatcher-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/event-dispatcher-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/event-dispatcher-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/event-dispatcher@v7.1.1",
+      "type": "library",
+      "name": "symfony/event-dispatcher",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/event-dispatcher@v7.1.1",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/finder@v7.1.3",
+      "type": "library",
+      "name": "symfony/finder",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/finder@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":40,/"line_end/":40,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-client-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/http-client-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-client-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-client@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-client",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-client@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":69,/"line_end/":69,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-foundation@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-foundation",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-foundation@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":6,/"column_end/":29},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":41,/"line_end/":41,/"column_start/":33,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/http-kernel@v7.1.3",
+      "type": "library",
+      "name": "symfony/http-kernel",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/http-kernel@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":42,/"line_end/":42,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/mailer@v7.1.2",
+      "type": "library",
+      "name": "symfony/mailer",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/mailer@v7.1.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":1,/"column_end/":29},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":43,/"line_end/":43,/"column_start/":24,/"column_end/":28}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/mime@v7.1.2",
+      "type": "library",
+      "name": "symfony/mime",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/mime@v7.1.2",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":1,/"column_end/":27},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":6,/"column_end/":18},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":44,/"line_end/":44,/"column_start/":22,/"column_end/":26}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-ctype@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-ctype",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-ctype@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-grapheme@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-grapheme",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-grapheme@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-idn@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-idn",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-idn@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-intl-normalizer@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-intl-normalizer",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-intl-normalizer@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-mbstring@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-mbstring",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-mbstring@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php72@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php72",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php72@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php80@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php80",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php80@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-php83@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-php83",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-php83@v1.30.0",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":1,/"column_end/":38},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":6,/"column_end/":28},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":45,/"line_end/":45,/"column_start/":32,/"column_end/":37}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/polyfill-uuid@v1.30.0",
+      "type": "library",
+      "name": "symfony/polyfill-uuid",
+      "version": "v1.30.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/polyfill-uuid@v1.30.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/process@v7.1.3",
+      "type": "library",
+      "name": "symfony/process",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/process@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":46,/"line_end/":46,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/psr-http-message-bridge@v7.1.3",
+      "type": "library",
+      "name": "symfony/psr-http-message-bridge",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/psr-http-message-bridge@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":1,/"column_end/":46},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":6,/"column_end/":37},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":70,/"line_end/":70,/"column_start/":41,/"column_end/":45}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/routing@v7.1.3",
+      "type": "library",
+      "name": "symfony/routing",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/routing@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":1,/"column_end/":30},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":6,/"column_end/":21},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":47,/"line_end/":47,/"column_start/":25,/"column_end/":29}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/service-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/service-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/service-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/string@v7.1.3",
+      "type": "library",
+      "name": "symfony/string",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/string@v7.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/translation-contracts@v3.5.0",
+      "type": "library",
+      "name": "symfony/translation-contracts",
+      "version": "v3.5.0",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/translation-contracts@v3.5.0",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/translation@v7.1.3",
+      "type": "library",
+      "name": "symfony/translation",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/translation@v7.1.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/uid@v7.1.1",
+      "type": "library",
+      "name": "symfony/uid",
+      "version": "v7.1.1",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/uid@v7.1.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":6,/"column_end/":17},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":48,/"line_end/":48,/"column_start/":21,/"column_end/":25}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/var-dumper@v7.1.3",
+      "type": "library",
+      "name": "symfony/var-dumper",
+      "version": "v7.1.3",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/var-dumper@v7.1.3",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":6,/"column_end/":24},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":49,/"line_end/":49,/"column_start/":28,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/symfony/var-exporter@v7.1.2",
+      "type": "library",
+      "name": "symfony/var-exporter",
+      "version": "v7.1.2",
+      "licenses": [],
+      "purl": "pkg:composer/symfony/var-exporter@v7.1.2",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/theseer/tokenizer@1.2.3",
+      "type": "library",
+      "name": "theseer/tokenizer",
+      "version": "1.2.3",
+      "licenses": [],
+      "purl": "pkg:composer/theseer/tokenizer@1.2.3",
+      "evidence": {
+        "occurrences": []
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/tijsverkoyen/css-to-inline-styles@v2.2.7",
+      "type": "library",
+      "name": "tijsverkoyen/css-to-inline-styles",
+      "version": "v2.2.7",
+      "licenses": [],
+      "purl": "pkg:composer/tijsverkoyen/css-to-inline-styles@v2.2.7",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":1,/"column_end/":50},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":6,/"column_end/":39},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":50,/"line_end/":50,/"column_start/":43,/"column_end/":49}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/vlucas/phpdotenv@v5.6.1",
+      "type": "library",
+      "name": "vlucas/phpdotenv",
+      "version": "v5.6.1",
+      "licenses": [],
+      "purl": "pkg:composer/vlucas/phpdotenv@v5.6.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":1,/"column_end/":33},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":6,/"column_end/":22},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":51,/"line_end/":51,/"column_start/":26,/"column_end/":32}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/voku/portable-ascii@2.0.1",
+      "type": "library",
+      "name": "voku/portable-ascii",
+      "version": "2.0.1",
+      "licenses": [],
+      "purl": "pkg:composer/voku/portable-ascii@2.0.1",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":1,/"column_end/":34},/"name/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":6,/"column_end/":25},/"version/":{/"file_name/":/"composer/composer.json/",/"line_start/":52,/"line_end/":52,/"column_start/":29,/"column_end/":33}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:composer/webmozart/assert@1.11.0",
+      "type": "library",
+      "name": "webmozart/assert",
+      "version": "1.11.0",
+      "licenses": [],
+      "purl": "pkg:composer/webmozart/assert@1.11.0",
       "evidence": {
         "occurrences": []
       }
@@ -6493,7 +11095,7 @@ Scanning dir ./fixtures/encoding-integration-test-locks/Windows-1252
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/Cargo.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/Gemfile.lock file and found 99 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/Pipfile.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/composer.lock file and found 1 package
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/composer/composer.lock file and found 123 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/conan.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/go.mod file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/gradle.lockfile file and found 1 package
