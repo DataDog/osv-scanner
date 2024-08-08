@@ -2,11 +2,12 @@ package lockfile
 
 import (
 	"encoding/json"
-	"github.com/google/osv-scanner/internal/cachedregexp"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/osv-scanner/internal/cachedregexp"
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 const composerFilename = "composer.json"
@@ -40,7 +41,7 @@ func (depMap *dependencyMap) UnmarshalJSON(bytes []byte) error {
 			continue
 		}
 		pkgIndexes := depMap.extractPackageIndexes(pkg.Name, content)
-		if pkgIndexes == nil || len(pkgIndexes) == 0 || len(pkgIndexes[0]) < 6 {
+		if len(pkgIndexes) == 0 || len(pkgIndexes[0]) < 6 {
 			// The matcher haven't found package information, lets skip the package
 			continue
 		}
@@ -68,10 +69,10 @@ func (matcher ComposerMatcher) Match(sourceFile DepFile, packages []PackageDetai
 	requireDevIndex := cachedregexp.MustCompile("\"require-dev\"\\s*:\\s*{").FindStringIndex(contentStr)
 	requireLineOffset, requireDevLineOffset := 0, 0
 
-	if requireIndex != nil && len(requireIndex) > 1 {
+	if len(requireIndex) > 1 {
 		requireLineOffset = strings.Count(contentStr[:requireIndex[1]], "\n")
 	}
-	if requireDevIndex != nil && len(requireDevIndex) > 1 {
+	if len(requireDevIndex) > 1 {
 		requireDevLineOffset = strings.Count(contentStr[:requireDevIndex[1]], "\n")
 	}
 
@@ -90,7 +91,7 @@ func (matcher ComposerMatcher) Match(sourceFile DepFile, packages []PackageDetai
 		},
 	}
 
-	for index, _ := range packages {
+	for index := range packages {
 		jsonFile.Require.packages[index] = &packages[index]
 		jsonFile.RequireDev.packages[index] = &packages[index]
 	}
