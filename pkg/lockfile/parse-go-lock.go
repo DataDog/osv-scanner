@@ -2,11 +2,12 @@ package lockfile
 
 import (
 	"fmt"
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/osv-scanner/internal/cachedregexp"
 
 	"github.com/google/osv-scanner/internal/utility/fileposition"
 	"golang.org/x/exp/maps"
