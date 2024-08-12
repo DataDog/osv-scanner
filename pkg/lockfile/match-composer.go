@@ -41,7 +41,7 @@ func (depMap *dependencyMap) UnmarshalJSON(bytes []byte) error {
 			continue
 		}
 		pkgIndexes := depMap.extractPackageIndexes(pkg.Name, content)
-		if len(pkgIndexes) == 0 || len(pkgIndexes[0]) < 6 {
+		if len(pkgIndexes) == 0 {
 			// The matcher haven't found package information, lets skip the package
 			continue
 		}
@@ -101,22 +101,28 @@ func (matcher ComposerMatcher) Match(sourceFile DepFile, packages []PackageDetai
 
 /*
 This method find where a package is defined in the composer.json file. It returns the block indexes along with
-name and version. The expected result is a [1][6]int, with the only existing row being as follows :
+name and version. Composer does not accept a package being declared twice in the same block, so this method will always return zero or one row
+
+The expected result is a [6]int, with the following structure :
 - index 0/1 represents block start/end
 - index 2/3 represents name start/end
 - index 4/5 represents version start/end
 */
-func (depMap *dependencyMap) extractPackageIndexes(pkgName string, content string) [][]int {
+func (depMap *dependencyMap) extractPackageIndexes(pkgName string, content string) []int {
 	pkgMatcher := cachedregexp.MustCompile(".*\"(?P<pkgName>" + pkgName + ")\"\\s*:\\s*\"(?P<version>.*)\"")
+	result := pkgMatcher.FindAllStringSubmatchIndex(content, -1)
 
-	return pkgMatcher.FindAllStringSubmatchIndex(content, -1)
+	if len(result) == 0 || len(result[0]) < 6 {
+		return []int{}
+	}
+	return result[0]
 }
 
-func (depMap *dependencyMap) updatePackageDetails(pkg *PackageDetails, content string, indexes [][]int) {
-	lineStart := depMap.lineOffset + strings.Count(content[:indexes[0][0]], "\n")
-	lineStartIndex := strings.LastIndex(content[:indexes[0][0]], "\n")
-	lineEnd := depMap.lineOffset + strings.Count(content[:indexes[0][1]], "\n")
-	lineEndIndex := strings.LastIndex(content[:indexes[0][1]], "\n")
+func (depMap *dependencyMap) updatePackageDetails(pkg *PackageDetails, content string, indexes []int) {
+	lineStart := depMap.lineOffset + strings.Count(content[:indexes[0]], "\n")
+	lineStartIndex := strings.LastIndex(content[:indexes[0]], "\n")
+	lineEnd := depMap.lineOffset + strings.Count(content[:indexes[1]], "\n")
+	lineEndIndex := strings.LastIndex(content[:indexes[1]], "\n")
 
 	pkg.BlockLocation = models.FilePosition{
 		Filename: depMap.filePath,
@@ -125,8 +131,8 @@ func (depMap *dependencyMap) updatePackageDetails(pkg *PackageDetails, content s
 			End:   lineEnd + 1,
 		},
 		Column: models.Position{
-			Start: indexes[0][0] - lineStartIndex,
-			End:   indexes[0][1] - lineEndIndex,
+			Start: indexes[0] - lineStartIndex,
+			End:   indexes[1] - lineEndIndex,
 		},
 	}
 
@@ -137,8 +143,8 @@ func (depMap *dependencyMap) updatePackageDetails(pkg *PackageDetails, content s
 			End:   lineStart + 1,
 		},
 		Column: models.Position{
-			Start: indexes[0][2] - lineStartIndex,
-			End:   indexes[0][3] - lineStartIndex,
+			Start: indexes[2] - lineStartIndex,
+			End:   indexes[3] - lineStartIndex,
 		},
 	}
 
@@ -149,8 +155,8 @@ func (depMap *dependencyMap) updatePackageDetails(pkg *PackageDetails, content s
 			End:   lineEnd + 1,
 		},
 		Column: models.Position{
-			Start: indexes[0][4] - lineEndIndex,
-			End:   indexes[0][5] - lineEndIndex,
+			Start: indexes[4] - lineEndIndex,
+			End:   indexes[5] - lineEndIndex,
 		},
 	}
 }
