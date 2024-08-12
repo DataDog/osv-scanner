@@ -115,6 +115,7 @@ func (depMap *dependencyMap) extractPackageIndexes(pkgName string, content strin
 	if len(result) == 0 || len(result[0]) < 6 {
 		return []int{}
 	}
+
 	return result[0]
 }
 
