@@ -9,6 +9,7 @@ import (
 type VulnerabilityResults struct {
 	Results                    []PackageSource            `json:"results"`
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
+	ResultsByPURL              map[string]PackageVulns    `json:"results_by_purl"`
 }
 
 // ExperimentalAnalysisConfig is an experimental type intended to contain the
