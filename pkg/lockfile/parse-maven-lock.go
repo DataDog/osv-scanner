@@ -99,7 +99,9 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 					// We should locate the property in its source file
 					propOpenTag, propCloseTag = fileposition.QuoteMetaDelimiters(propOpenTag, propCloseTag)
 					position = fileposition.ExtractDelimitedRegexpPositionInBlock(lockfile.Lines[lockProperty.SourceFile], ".*", 1, propOpenTag, propCloseTag)
-					position.Filename = lockProperty.SourceFile
+					if position != nil {
+						position.Filename = lockProperty.SourceFile
+					}
 				}
 			}
 		}
@@ -413,8 +415,9 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			NameLocation:    artifactPosition,
 			VersionLocation: versionPosition,
 		}
-		if strings.TrimSpace(lockPackage.Scope) != "" {
-			pkgDetails.DepGroups = append(pkgDetails.DepGroups, lockPackage.Scope)
+		if scope := strings.TrimSpace(lockPackage.Scope); scope != "" && scope != "compile" {
+			// Only append non-default scope (compile is the default scope).
+			pkgDetails.DepGroups = append(pkgDetails.DepGroups, scope)
 		}
 		details[finalName] = pkgDetails
 	}
@@ -444,8 +447,9 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			pkgDetails.Version = resolvedVersion
 			pkgDetails.VersionLocation = versionPosition
 		}
-		if strings.TrimSpace(lockPackage.Scope) != "" {
-			pkgDetails.DepGroups = append(pkgDetails.DepGroups, lockPackage.Scope)
+		if scope := strings.TrimSpace(lockPackage.Scope); scope != "" && scope != "compile" {
+			// Only append non-default scope (compile is the default scope).
+			pkgDetails.DepGroups = append(pkgDetails.DepGroups, scope)
 		}
 		details[finalName] = pkgDetails
 	}
