@@ -14,10 +14,14 @@ func ToCycloneDX15Bom(uniquePackages map[string]models.PackageVulns, artifacts [
 }
 
 func onComponentCreated(component *cyclonedx.Component, details models.PackageVulns) {
-	occurrences := make([]cyclonedx.EvidenceOccurrence, len(details.Locations))
-	component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
+	occurrences := make([]cyclonedx.EvidenceOccurrence, 0)
 
-	for index, packageLocations := range details.Locations {
+	for _, packageLocations := range details.Locations {
+		cleanedLocation := packageLocations.Clean()
+
+		if cleanedLocation == nil {
+			continue
+		}
 		jsonLocation, err := packageLocations.MarshalToJSONString()
 
 		if err != nil {
@@ -26,6 +30,7 @@ func onComponentCreated(component *cyclonedx.Component, details models.PackageVu
 		occurrence := cyclonedx.EvidenceOccurrence{
 			Location: jsonLocation,
 		}
-		(*component.Evidence.Occurrences)[index] = occurrence
+		occurrences = append(occurrences, occurrence)
 	}
+	component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
 }
