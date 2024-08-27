@@ -20,19 +20,17 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts 
 	vulnerabilities := make(map[string]cyclonedx.Vulnerability)
 
 	fileComponents, dependsOn := addFileDependencies(artifacts)
-	components = append(components, fileComponents...)
 	for packageURL, packageDetail := range uniquePackages {
 		libraryComponent := createLibraryComponent(packageURL, packageDetail)
 		artifact := findArtifact(packageDetail.Package.Name, packageDetail.Package.Version, artifacts)
-		pkgFileComponents := createFileComponents(packageDetail, artifact, dependsOn)
+		createFileComponents(packageDetail, artifact, dependsOn, fileComponents)
 
 		pkgProcessingHook(&libraryComponent, packageDetail)
 		addVulnerabilities(vulnerabilities, packageDetail)
 
 		components = append(components, libraryComponent)
-		components = append(components, pkgFileComponents...)
 	}
-
+	components = append(components, maps.Values(fileComponents)...)
 	slices.SortFunc(components, func(a, b cyclonedx.Component) int {
 		return strings.Compare(a.BOMRef, b.BOMRef)
 	})
@@ -67,16 +65,14 @@ func findArtifact(name string, version string, artifacts []models.ScannedArtifac
 	return nil
 }
 
-func createFileComponents(packageDetail models.PackageVulns, artifact *models.ScannedArtifact, dependsOn map[string]cyclonedx.Dependency) []cyclonedx.Component {
-	components := make([]cyclonedx.Component, 0)
-
+func createFileComponents(packageDetail models.PackageVulns, artifact *models.ScannedArtifact, dependsOn map[string]cyclonedx.Dependency, components map[string]cyclonedx.Component) {
 	for _, location := range packageDetail.Locations {
 		component := cyclonedx.Component{}
 
 		component.Type = fileComponentType
 		component.BOMRef = location.Block.Filename
 		component.Name = location.Block.Filename
-		components = append(components, component)
+		components[component.BOMRef] = component
 
 		if artifact != nil {
 			// The current component is a repository artifact, meaning it is an internal dependency, we should report a dependsOn on the location
@@ -95,8 +91,6 @@ func createFileComponents(packageDetail models.PackageVulns, artifact *models.Sc
 			}
 		}
 	}
-
-	return components
 }
 
 func createLibraryComponent(packageURL string, packageDetail models.PackageVulns) cyclonedx.Component {
@@ -149,8 +143,8 @@ func addVulnerabilities(vulnerabilities map[string]cyclonedx.Vulnerability, pack
 	}
 }
 
-func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Component, map[string]cyclonedx.Dependency) {
-	components := make([]cyclonedx.Component, 0)
+func addFileDependencies(artifacts []models.ScannedArtifact) (map[string]cyclonedx.Component, map[string]cyclonedx.Dependency) {
+	components := make(map[string]cyclonedx.Component)
 	dependsOn := make(map[string]cyclonedx.Dependency)
 
 	for _, artifact := range artifacts {
@@ -160,8 +154,7 @@ func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Compon
 		component.BOMRef = artifact.Filename
 		component.Type = fileComponentType
 		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
-
-		components = append(components, component)
+		components[component.BOMRef] = component
 
 		// Computing parent dependency
 		if artifact.DependsOn != nil {

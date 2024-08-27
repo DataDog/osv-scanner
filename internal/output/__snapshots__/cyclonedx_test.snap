@@ -55,17 +55,6 @@
     {
       "bom-ref": "pom.xml",
       "type": "file",
-      "name": "pom.xml",
-      "evidence": {}
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
-      "name": "pom.xml"
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
       "name": "pom.xml"
     }
   ],
@@ -109,12 +98,6 @@
     {
       "bom-ref": "pom.xml",
       "type": "file",
-      "name": "pom.xml",
-      "evidence": {}
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
       "name": "pom.xml"
     }
   ]
@@ -141,12 +124,6 @@
       "name": "com.nobody:mine1",
       "version": "1.2.3",
       "purl": "pkg:maven/com.nobody/mine1@1.2.3"
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
-      "name": "pom.xml",
-      "evidence": {}
     },
     {
       "bom-ref": "pom.xml",
@@ -2046,21 +2023,6 @@
     {
       "bom-ref": "pom.xml",
       "type": "file",
-      "name": "pom.xml",
-      "evidence": {
-        "occurrences": [
-          {}
-        ]
-      }
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
-      "name": "pom.xml"
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
       "name": "pom.xml"
     }
   ],
@@ -2104,16 +2066,6 @@
     {
       "bom-ref": "pom.xml",
       "type": "file",
-      "name": "pom.xml",
-      "evidence": {
-        "occurrences": [
-          {}
-        ]
-      }
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
       "name": "pom.xml"
     }
   ]
@@ -2144,16 +2096,6 @@
       "name": "com.nobody:mine1",
       "version": "1.2.3",
       "purl": "pkg:maven/com.nobody/mine1@1.2.3"
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
-      "name": "pom.xml",
-      "evidence": {
-        "occurrences": [
-          {}
-        ]
-      }
     },
     {
       "bom-ref": "pom.xml",
