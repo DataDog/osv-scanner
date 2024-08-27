@@ -2091,6 +2091,16 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
   "version": 1,
   "components": [
     {
+      "bom-ref": "libs/pom.xml",
+      "type": "file",
+      "name": "libs/pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
       "bom-ref": "other-dir/pom.xml",
       "type": "file",
       "name": "other-dir/pom.xml",
@@ -2110,7 +2120,6 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
       "type": "library",
       "name": "com.foobar:common",
       "version": "1.0-SNAPSHOT",
-      "licenses": [],
       "purl": "pkg:maven/com.foobar/common@1.0-SNAPSHOT",
       "evidence": {
         "occurrences": [
@@ -2125,7 +2134,6 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
       "type": "library",
       "name": "com.google.code.findbugs:jsr305",
       "version": "3.0.2",
-      "licenses": [],
       "purl": "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
       "evidence": {
         "occurrences": [
@@ -2143,11 +2151,7 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
       "type": "library",
       "name": "Test.Core",
       "version": "6.0.5",
-      "licenses": [],
-      "purl": "pkg:nuget/Test.Core@6.0.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:nuget/Test.Core@6.0.5"
     },
     {
       "bom-ref": "pom.xml",
@@ -2174,17 +2178,19 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
     {
       "ref": "other-dir/pom.xml",
       "dependsOn": [
-        "pom.xml"
+        "pom.xml",
+        "libs/pom.xml"
       ]
     }
-  ],
-  "vulnerabilities": []
+  ]
 }
 
 ---
 
 [TestRun_WithCycloneDX15 - 2]
 Scanning dir ./fixtures/integration-test-locks
+Scanning directory for vendored libs: <rootdir>/fixtures/integration-test-locks/libs
+Scanned <rootdir>/fixtures/integration-test-locks/libs/pom.xml file and found 0 packages
 Scanned <rootdir>/fixtures/integration-test-locks/other-dir/pom.xml file and found 2 packages
 Scanned <rootdir>/fixtures/integration-test-locks/packages.lock.json file and found 1 package
 Scanned <rootdir>/fixtures/integration-test-locks/pom.xml file and found 1 package
