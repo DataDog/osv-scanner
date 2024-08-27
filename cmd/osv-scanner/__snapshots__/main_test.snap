@@ -7506,17 +7506,17 @@ Filtered 1 local package/s from the scan.
     {
       "bom-ref": "pom.xml",
       "type": "file",
-      "name": "pom.xml"
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
       "name": "pom.xml",
       "evidence": {
         "occurrences": [
           {}
         ]
       }
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
     },
     {
       "bom-ref": "project.csproj",

@@ -45,6 +45,10 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts 
 	})
 
 	dependencies := maps.Values(dependsOn)
+	slices.SortFunc(dependencies, func(a, b cyclonedx.Dependency) int {
+		return strings.Compare(a.Ref, b.Ref)
+	})
+
 	bom.Components = &components
 	bom.Dependencies = &dependencies
 	bom.Vulnerabilities = &bomVulnerabilities
@@ -159,6 +163,8 @@ func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Compon
 
 			if dependency, ok := dependsOn[artifact.DependsOn.Filename]; ok {
 				dependencies := append(*dependency.Dependencies, artifact.DependsOn.Filename)
+				slices.Sort(dependencies)
+
 				dependency.Dependencies = &dependencies
 				dependsOn[artifact.Filename] = dependency
 			} else {
