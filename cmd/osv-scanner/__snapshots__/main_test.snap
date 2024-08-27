@@ -2178,8 +2178,8 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
     {
       "ref": "other-dir/pom.xml",
       "dependsOn": [
-        "pom.xml",
-        "libs/pom.xml"
+        "libs/pom.xml",
+        "pom.xml"
       ]
     }
   ]
@@ -4849,17 +4849,17 @@ No package sources found, --help for usage information.
     {
       "bom-ref": "pom.xml",
       "type": "file",
+      "name": "pom.xml"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
       "name": "pom.xml",
       "evidence": {
         "occurrences": [
           {}
         ]
       }
-    },
-    {
-      "bom-ref": "pom.xml",
-      "type": "file",
-      "name": "pom.xml"
     },
     {
       "bom-ref": "project.csproj",
@@ -10310,8 +10310,8 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/yarn/yar
     {
       "ref": "other-dir/pom.xml",
       "dependsOn": [
-        "pom.xml",
-        "libs/pom.xml"
+        "libs/pom.xml",
+        "pom.xml"
       ]
     }
   ]

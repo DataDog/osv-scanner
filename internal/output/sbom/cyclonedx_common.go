@@ -89,6 +89,7 @@ func createFileComponents(packageDetail models.PackageVulns, artifact *models.Sc
 				}
 			} else {
 				dependencies := append(*dependency.Dependencies, artifact.Filename)
+				slices.Sort(dependencies)
 				dependency.Dependencies = &dependencies
 				dependsOn[location.Block.Filename] = dependency
 			}
