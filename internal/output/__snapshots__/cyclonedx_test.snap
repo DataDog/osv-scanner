@@ -73,8 +73,8 @@
     {
       "ref": "pom.xml",
       "dependsOn": [
-        "lib1/pom.xml",
-        "lib2/pom.xml"
+        "lib2/pom.xml",
+        "lib1/pom.xml"
       ]
     }
   ]
@@ -248,9 +248,7 @@
       ],
       "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -318,9 +316,7 @@
       ],
       "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -393,9 +389,7 @@
       ],
       "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -463,9 +457,7 @@
       ],
       "purl": "pkg:nuget/mine1@1.3.5"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -533,9 +525,7 @@
       ],
       "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -545,10 +535,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -558,10 +545,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -571,10 +555,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -600,9 +581,7 @@
       ],
       "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -619,12 +598,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -650,9 +626,7 @@
       ],
       "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -683,9 +657,7 @@
       ],
       "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -711,9 +683,7 @@
       ],
       "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -739,9 +709,7 @@
       ],
       "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -781,9 +749,7 @@
       ],
       "purl": "pkg:npm/mine2@5.9.0"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -852,37 +818,28 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -953,37 +910,28 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1012,22 +960,17 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1056,22 +999,17 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1100,22 +1038,17 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1158,22 +1091,17 @@
       "purl": "pkg:npm/mine2@5.9.0"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1192,7 +1120,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.2"
     },
     {
@@ -1200,7 +1127,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     },
     {
@@ -1208,7 +1134,6 @@
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
       "purl": "pkg:npm/mine2@3.2.5"
     },
     {
@@ -1216,71 +1141,53 @@
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1299,7 +1206,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.2"
     },
     {
@@ -1307,7 +1213,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     },
     {
@@ -1315,7 +1220,6 @@
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
       "purl": "pkg:npm/mine2@3.2.5"
     },
     {
@@ -1323,71 +1227,53 @@
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1406,7 +1292,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     },
     {
@@ -1414,7 +1299,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.3.5",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.3.5"
     },
     {
@@ -1422,7 +1306,6 @@
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
       "purl": "pkg:npm/mine2@3.2.5"
     },
     {
@@ -1430,12 +1313,9 @@
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
       "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -1452,7 +1332,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     },
     {
@@ -1460,7 +1339,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.3.5",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.3.5"
     },
     {
@@ -1468,7 +1346,6 @@
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
       "purl": "pkg:npm/mine2@3.2.5"
     },
     {
@@ -1476,41 +1353,31 @@
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1529,7 +1396,6 @@
       "type": "library",
       "name": "author1/mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:composer/author1/mine1@1.2.3"
     },
     {
@@ -1537,7 +1403,6 @@
       "type": "library",
       "name": "author3/mine3",
       "version": "0.4.1",
-      "licenses": [],
       "purl": "pkg:composer/author3/mine3@0.4.1"
     },
     {
@@ -1545,7 +1410,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.2"
     },
     {
@@ -1553,71 +1417,53 @@
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
       "purl": "pkg:nuget/mine2@3.2.5"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1636,7 +1482,6 @@
       "type": "library",
       "name": "author1/mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:composer/author1/mine1@1.2.3"
     },
     {
@@ -1644,7 +1489,6 @@
       "type": "library",
       "name": "author3/mine3",
       "version": "0.4.1",
-      "licenses": [],
       "purl": "pkg:composer/author3/mine3@0.4.1"
     },
     {
@@ -1652,7 +1496,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.2"
     },
     {
@@ -1660,71 +1503,53 @@
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
       "purl": "pkg:nuget/mine2@3.2.5"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1736,10 +1561,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -1749,10 +1571,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -1762,10 +1581,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -1782,12 +1598,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -1804,41 +1617,31 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1857,26 +1660,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1895,26 +1692,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1933,26 +1724,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -1971,26 +1756,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -2009,11 +1788,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -2025,30 +1802,23 @@
       ],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -2067,11 +1837,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -2083,30 +1851,23 @@
       ],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -2125,7 +1886,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     },
     {
@@ -2133,32 +1893,18 @@
       "type": "library",
       "name": "mine3",
       "version": "0.10.2-rc",
-      "licenses": [],
       "purl": "pkg:npm/mine3@0.10.2-rc"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
-      "ratings": [],
       "detail": "This vulnerability allows for some very scary stuff to happen - seriously, you'd not believe it!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
-      "ratings": [],
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -2177,7 +1923,6 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     },
     {
@@ -2185,26 +1930,20 @@
       "type": "library",
       "name": "mine2",
       "version": "5.9.0",
-      "licenses": [],
       "purl": "pkg:npm/mine2@5.9.0"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -2223,26 +1962,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -2478,10 +2211,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
@@ -2495,10 +2225,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
@@ -2512,10 +2239,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
@@ -2529,14 +2253,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -2560,10 +2279,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
@@ -2577,10 +2293,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
@@ -2594,10 +2307,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
@@ -2611,14 +2321,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -2647,10 +2352,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
@@ -2664,10 +2366,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
@@ -2681,10 +2380,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
@@ -2698,14 +2394,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -2729,10 +2420,7 @@
           }
         }
       ],
-      "purl": "pkg:composer/author1/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:composer/author1/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
@@ -2746,10 +2434,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
@@ -2763,10 +2448,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     },
     {
       "bom-ref": "pkg:nuget/mine1@1.3.5",
@@ -2780,14 +2462,9 @@
           }
         }
       ],
-      "purl": "pkg:nuget/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:nuget/mine1@1.3.5"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -2811,10 +2488,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
@@ -2828,10 +2502,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
@@ -2845,10 +2516,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
@@ -2862,14 +2530,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -2879,10 +2542,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -2892,10 +2552,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -2905,10 +2562,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -2932,14 +2586,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -2956,15 +2605,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -2988,14 +2631,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -3024,14 +2662,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -3055,14 +2688,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -3086,14 +2714,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -3117,10 +2740,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine2@5.9.0",
@@ -3134,14 +2754,9 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@5.9.0",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@5.9.0"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -3165,10 +2780,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
@@ -3182,10 +2794,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
@@ -3199,10 +2808,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
@@ -3216,43 +2822,31 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3278,10 +2872,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
@@ -3295,10 +2886,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
@@ -3312,10 +2900,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
@@ -3329,43 +2914,31 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3391,28 +2964,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3438,28 +3003,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3485,28 +3042,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3532,10 +3081,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine2@5.9.0",
@@ -3549,28 +3095,20 @@
           }
         }
       ],
-      "purl": "pkg:npm/mine2@5.9.0",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@5.9.0"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3589,107 +3127,74 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.2",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.2"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.2.3",
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3708,107 +3213,74 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.2",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.2"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.2.3",
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3827,48 +3299,30 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
       "type": "library",
       "name": "mine1",
       "version": "1.3.5",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -3885,77 +3339,52 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.3.5",
       "type": "library",
       "name": "mine1",
       "version": "1.3.5",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.3.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.3.5"
     },
     {
       "bom-ref": "pkg:npm/mine2@3.2.5",
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
-      "purl": "pkg:npm/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@3.2.5"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.4.1",
       "type": "library",
       "name": "mine3",
       "version": "0.4.1",
-      "licenses": [],
-      "purl": "pkg:npm/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -3974,107 +3403,74 @@
       "type": "library",
       "name": "author1/mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:composer/author1/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:composer/author1/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:composer/author3/mine3@0.4.1",
       "type": "library",
       "name": "author3/mine3",
       "version": "0.4.1",
-      "licenses": [],
-      "purl": "pkg:composer/author3/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:composer/author3/mine3@0.4.1"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.2.2",
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.2",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.2"
     },
     {
       "bom-ref": "pkg:nuget/mine2@3.2.5",
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
-      "purl": "pkg:nuget/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:nuget/mine2@3.2.5"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4093,107 +3489,74 @@
       "type": "library",
       "name": "author1/mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:composer/author1/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:composer/author1/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:composer/author3/mine3@0.4.1",
       "type": "library",
       "name": "author3/mine3",
       "version": "0.4.1",
-      "licenses": [],
-      "purl": "pkg:composer/author3/mine3@0.4.1",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:composer/author3/mine3@0.4.1"
     },
     {
       "bom-ref": "pkg:npm/mine1@1.2.2",
       "type": "library",
       "name": "mine1",
       "version": "1.2.2",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.2",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.2"
     },
     {
       "bom-ref": "pkg:nuget/mine2@3.2.5",
       "type": "library",
       "name": "mine2",
       "version": "3.2.5",
-      "licenses": [],
-      "purl": "pkg:nuget/mine2@3.2.5",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:nuget/mine2@3.2.5"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something less scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-3",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something mildly scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-5",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4205,10 +3568,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -4218,10 +3578,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -4231,10 +3588,7 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "version": 1,
-  "components": [],
-  "dependencies": [],
-  "vulnerabilities": []
+  "version": 1
 }
 
 ---
@@ -4251,15 +3605,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
-  ],
-  "dependencies": [],
-  "vulnerabilities": []
+  ]
 }
 
 ---
@@ -4276,44 +3624,31 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scarier!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4332,29 +3667,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4373,29 +3699,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4414,29 +3731,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4455,29 +3763,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4496,14 +3795,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -4515,30 +3809,23 @@
       ],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4557,14 +3844,9 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -4576,30 +3858,23 @@
       ],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4618,46 +3893,25 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine3@0.10.2-rc",
       "type": "library",
       "name": "mine3",
       "version": "0.10.2-rc",
-      "licenses": [],
-      "purl": "pkg:npm/mine3@0.10.2-rc",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine3@0.10.2-rc"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
-      "ratings": [],
       "detail": "This vulnerability allows for some very scary stuff to happen - seriously, you'd not believe it!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     },
     {
       "id": "OSV-2",
-      "references": [],
-      "ratings": [],
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4676,40 +3930,27 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     },
     {
       "bom-ref": "pkg:npm/mine2@5.9.0",
       "type": "library",
       "name": "mine2",
       "version": "5.9.0",
-      "licenses": [],
-      "purl": "pkg:npm/mine2@5.9.0",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine2@5.9.0"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }
@@ -4728,29 +3969,20 @@
       "type": "library",
       "name": "mine1",
       "version": "1.2.3",
-      "licenses": [],
-      "purl": "pkg:npm/mine1@1.2.3",
-      "evidence": {
-        "occurrences": []
-      }
+      "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
-  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
-      "references": [],
       "ratings": [
         {
+          "method": "other",
           "vector": "1"
         }
       ],
       "description": "Something scary!",
-      "advisories": [],
-      "credits": {
-        "organizations": []
-      },
-      "affects": []
+      "credits": {}
     }
   ]
 }

@@ -785,7 +785,7 @@ func TestRun_WithEncodedLockfile(t *testing.T) {
 func gatherFilepath(bom cyclonedx.BOM) []string {
 	locations := make([]string, 0)
 	for _, component := range *bom.Components {
-		if component.Type != "library" {
+		if component.Type != "library" || component.Evidence == nil {
 			continue
 		}
 		for _, location := range *component.Evidence.Occurrences {
