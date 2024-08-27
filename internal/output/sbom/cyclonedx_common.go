@@ -1,6 +1,7 @@
 package sbom
 
 import (
+	"golang.org/x/exp/maps"
 	"slices"
 	"strings"
 	"time"
@@ -17,23 +18,19 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts 
 	bomVulnerabilities := make([]cyclonedx.Vulnerability, 0)
 	vulnerabilities := make(map[string]cyclonedx.Vulnerability)
 
+	fileComponents, dependsOn := addFileDependencies(artifacts)
+	components = append(components, fileComponents...)
 	for packageURL, packageDetail := range uniquePackages {
-		component := cyclonedx.Component{}
+		libraryComponent := createLibraryComponent(packageURL, packageDetail)
+		artifact := findArtifact(packageDetail.Package.Name, packageDetail.Package.Version, artifacts)
+		pkgFileComponents := createFileComponents(packageDetail, artifact, dependsOn)
 
-		component.Type = libraryComponentType
-		component.BOMRef = packageURL
-		component.PackageURL = packageURL
-		component.Name = packageDetail.Package.Name
-		component.Version = packageDetail.Package.Version
-
-		fillLicenses(&component, packageDetail)
+		pkgProcessingHook(&libraryComponent, packageDetail)
 		addVulnerabilities(vulnerabilities, packageDetail)
 
-		pkgProcessingHook(&component, packageDetail)
-		components = append(components, component)
+		components = append(components, libraryComponent)
+		components = append(components, pkgFileComponents...)
 	}
-	fileComponents, dependencies := addFileDependencies(artifacts)
-	components = append(components, fileComponents...)
 
 	slices.SortFunc(components, func(a, b cyclonedx.Component) int {
 		return strings.Compare(a.PackageURL, b.PackageURL)
@@ -47,11 +44,64 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts 
 		return strings.Compare(a.ID, b.ID)
 	})
 
+	dependencies := maps.Values(dependsOn)
 	bom.Components = &components
 	bom.Dependencies = &dependencies
 	bom.Vulnerabilities = &bomVulnerabilities
 
 	return bom
+}
+
+func findArtifact(name string, version string, artifacts []models.ScannedArtifact) *models.ScannedArtifact {
+	for _, artifact := range artifacts {
+		if artifact.Name == name && artifact.Version == version {
+			return &artifact
+		}
+	}
+	return nil
+}
+
+func createFileComponents(packageDetail models.PackageVulns, artifact *models.ScannedArtifact, dependsOn map[string]cyclonedx.Dependency) []cyclonedx.Component {
+	components := make([]cyclonedx.Component, 0)
+
+	for _, location := range packageDetail.Locations {
+		component := cyclonedx.Component{}
+
+		component.Type = fileComponentType
+		component.BOMRef = location.Block.Filename
+		component.Name = location.Block.Filename
+		components = append(components, component)
+
+		if artifact != nil {
+			// The current component is a repository artifact, meaning it is an internal dependency, we should report a dependsOn on the location
+			if dependency, ok := dependsOn[location.Block.Filename]; !ok {
+				dependencies := make([]string, 1)
+				dependencies[0] = artifact.Filename
+				dependsOn[location.Block.Filename] = cyclonedx.Dependency{
+					Ref:          location.Block.Filename,
+					Dependencies: &dependencies,
+				}
+			} else {
+				dependencies := append(*dependency.Dependencies, artifact.Filename)
+				dependency.Dependencies = &dependencies
+				dependsOn[location.Block.Filename] = dependency
+			}
+		}
+	}
+	return components
+}
+
+func createLibraryComponent(packageURL string, packageDetail models.PackageVulns) cyclonedx.Component {
+	component := cyclonedx.Component{}
+
+	component.Type = libraryComponentType
+	component.BOMRef = packageURL
+	component.PackageURL = packageURL
+	component.Name = packageDetail.Package.Name
+	component.Version = packageDetail.Package.Version
+
+	fillLicenses(&component, packageDetail)
+	return component
 }
 
 func fillLicenses(component *cyclonedx.Component, packageDetail models.PackageVulns) {
@@ -90,9 +140,9 @@ func addVulnerabilities(vulnerabilities map[string]cyclonedx.Vulnerability, pack
 	}
 }
 
-func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Component, []cyclonedx.Dependency) {
+func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Component, map[string]cyclonedx.Dependency) {
 	components := make([]cyclonedx.Component, 0)
-	dependencies := make([]cyclonedx.Dependency, 0)
+	dependsOn := make(map[string]cyclonedx.Dependency)
 
 	for _, artifact := range artifacts {
 		component := cyclonedx.Component{}
@@ -106,17 +156,23 @@ func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Compon
 
 		// Computing parent dependency
 		if artifact.DependsOn != nil {
-			dependency := cyclonedx.Dependency{
-				Ref: component.BOMRef,
-				Dependencies: &[]string{
-					artifact.DependsOn.Filename,
-				},
+
+			if dependency, ok := dependsOn[artifact.DependsOn.Filename]; ok {
+				dependencies := append(*dependency.Dependencies, artifact.DependsOn.Filename)
+				dependency.Dependencies = &dependencies
+				dependsOn[artifact.Filename] = dependency
+			} else {
+				dependsOn[artifact.Filename] = cyclonedx.Dependency{
+					Ref: component.BOMRef,
+					Dependencies: &[]string{
+						artifact.DependsOn.Filename,
+					},
+				}
 			}
-			dependencies = append(dependencies, dependency)
 		}
 	}
 
-	return components, dependencies
+	return components, dependsOn
 }
 
 func formatDateIfExists(date time.Time) string {
