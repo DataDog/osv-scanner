@@ -7,8 +7,8 @@ import (
 
 // Combined vulnerabilities found for the scanned packages
 type VulnerabilityResults struct {
-	Results                    []PackageSource `json:"results"`
-	Artifacts                  []ScannedArtifact
+	Results                    []PackageSource            `json:"results"`
+	Artifacts                  []ScannedArtifact          `json:"artifacts,omitempty"`
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
 }
 

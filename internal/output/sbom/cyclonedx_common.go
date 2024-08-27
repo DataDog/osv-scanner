@@ -33,7 +33,7 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts 
 	}
 
 	slices.SortFunc(components, func(a, b cyclonedx.Component) int {
-		return strings.Compare(a.PackageURL, b.PackageURL)
+		return strings.Compare(a.BOMRef, b.BOMRef)
 	})
 
 	for _, vulnerability := range vulnerabilities {

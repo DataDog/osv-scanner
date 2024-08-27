@@ -63,6 +63,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -132,6 +133,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -206,6 +208,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -275,6 +278,7 @@
       "purl": "pkg:nuget/mine1@1.3.5"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -344,6 +348,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -356,6 +361,7 @@
   "specVersion": "1.4",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -368,6 +374,7 @@
   "specVersion": "1.4",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -380,6 +387,7 @@
   "specVersion": "1.4",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -407,6 +415,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -428,6 +437,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -455,6 +465,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -487,6 +498,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -514,6 +526,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -541,6 +554,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -582,6 +596,7 @@
       "purl": "pkg:npm/mine2@5.9.0"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -651,6 +666,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -751,6 +767,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -809,6 +826,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -852,6 +870,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -895,6 +914,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -952,6 +972,7 @@
       "purl": "pkg:npm/mine2@5.9.0"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1013,6 +1034,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1119,6 +1141,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1225,6 +1248,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -1270,6 +1294,7 @@
       "purl": "pkg:npm/mine3@0.4.1"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1346,6 +1371,7 @@
       "purl": "pkg:nuget/mine2@3.2.5"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1452,6 +1478,7 @@
       "purl": "pkg:nuget/mine2@3.2.5"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1525,6 +1552,7 @@
   "specVersion": "1.4",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -1537,6 +1565,7 @@
   "specVersion": "1.4",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -1549,6 +1578,7 @@
   "specVersion": "1.4",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -1570,6 +1600,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -1591,6 +1622,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -1643,6 +1675,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1680,6 +1713,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1717,6 +1751,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1754,6 +1789,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1791,6 +1827,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -1848,6 +1885,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -1913,6 +1951,7 @@
       "purl": "pkg:npm/mine3@0.10.2-rc"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -1964,6 +2003,7 @@
       "purl": "pkg:npm/mine2@5.9.0"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -2001,6 +2041,7 @@
       "purl": "pkg:npm/mine1@1.2.3"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -2098,6 +2139,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2179,6 +2221,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2265,6 +2308,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2346,6 +2390,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2427,6 +2472,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2439,6 +2485,7 @@
   "specVersion": "1.5",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2451,6 +2498,7 @@
   "specVersion": "1.5",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2463,6 +2511,7 @@
   "specVersion": "1.5",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2493,6 +2542,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2517,6 +2567,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2547,6 +2598,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2582,6 +2634,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2612,6 +2665,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2642,6 +2696,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2689,6 +2744,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2770,6 +2826,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -2882,6 +2939,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -2943,6 +3001,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -2989,6 +3048,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3035,6 +3095,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3098,6 +3159,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3171,6 +3233,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3289,6 +3352,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3407,6 +3471,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -3464,6 +3529,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3552,6 +3618,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3670,6 +3737,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3743,6 +3811,7 @@
   "specVersion": "1.5",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -3755,6 +3824,7 @@
   "specVersion": "1.5",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -3767,6 +3837,7 @@
   "specVersion": "1.5",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -3791,6 +3862,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -3815,6 +3887,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -3870,6 +3943,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3910,6 +3984,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3950,6 +4025,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -3990,6 +4066,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -4030,6 +4107,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -4090,6 +4168,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "GHSA-123",
@@ -4161,6 +4240,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -4218,6 +4298,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",
@@ -4258,6 +4339,7 @@
       }
     }
   ],
+  "dependencies": [],
   "vulnerabilities": [
     {
       "id": "OSV-1",

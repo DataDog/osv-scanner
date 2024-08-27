@@ -240,7 +240,7 @@ No issues found
 [TestRun/all_supported_lockfiles_in_the_directory_should_be_checked - 1]
 Scanning dir ./fixtures/locks-many-with-invalid
 Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock ((extracting as composer.lock) could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
+Scanned <rootdir>/fixtures/locks-many-with-invalid/composer.lock file and found 0 packages
 Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
 No issues found
 
@@ -1487,7 +1487,7 @@ No issues found
 [TestRun_LocalDatabases/#04 - 1]
 Scanning dir ./fixtures/locks-many-with-invalid
 Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock ((extracting as composer.lock) could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
+Scanned <rootdir>/fixtures/locks-many-with-invalid/composer.lock file and found 0 packages
 Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
 Loaded RubyGems local db from <tempdir>/osv-scanner/RubyGems/all.zip
 Loaded npm local db from <tempdir>/osv-scanner/npm/all.zip
@@ -1502,7 +1502,7 @@ No issues found
 [TestRun_LocalDatabases/#04 - 3]
 Scanning dir ./fixtures/locks-many-with-invalid
 Scanned <rootdir>/fixtures/locks-many-with-invalid/Gemfile.lock file and found 1 package
-Attempted to scan lockfile but failed: <rootdir>/fixtures/locks-many-with-invalid/composer.lock ((extracting as composer.lock) could not extract from <rootdir>/fixtures/locks-many-with-invalid/composer.lock: invalid character ',' looking for beginning of object key string)
+Scanned <rootdir>/fixtures/locks-many-with-invalid/composer.lock file and found 0 packages
 Scanned <rootdir>/fixtures/locks-many-with-invalid/yarn.lock file and found 1 package
 Loaded RubyGems local db from <tempdir>/osv-scanner/RubyGems/all.zip
 Loaded npm local db from <tempdir>/osv-scanner/npm/all.zip
@@ -1851,20 +1851,38 @@ Scanned <rootdir>/fixtures/locks-insecure/composer.lock file and found 1 package
 ---
 
 [TestRun_LockfileWithExplicitParseAs/#07 - 1]
+Scanned <rootdir>/fixtures/locks-insecure/my-package-lock.json file as a Cargo.lock and found 0 packages
+Scanning dir ./fixtures/locks-insecure
+Scanned <rootdir>/fixtures/locks-insecure/composer.lock file and found 1 package
+Scanning dir ./fixtures/locks-many
+Scanned <rootdir>/fixtures/locks-many/Gemfile.lock file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/alpine.cdx.xml as CycloneDX SBOM and found 14 packages
+Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/package-lock.json file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/yarn.lock file and found 1 package
+Loaded filter from: <rootdir>/fixtures/locks-many/osv-scanner.toml
+GHSA-whgm-jr23-g3j9 and 1 alias have been filtered out because: Test manifest file
+Filtered 1 vulnerability from output
++-------------------------------------+------+-----------+------------------+---------+---------------------------------------+
+| OSV URL                             | CVSS | ECOSYSTEM | PACKAGE          | VERSION | SOURCE                                |
++-------------------------------------+------+-----------+------------------+---------+---------------------------------------+
+| https://osv.dev/GHSA-9f46-5r25-5wfm | 9.8  | Packagist | league/flysystem | 1.0.8   | fixtures/locks-insecure/composer.lock |
++-------------------------------------+------+-----------+------------------+---------+---------------------------------------+
 
 ---
 
 [TestRun_LockfileWithExplicitParseAs/#07 - 2]
-(extracting as Cargo.lock) could not extract from <rootdir>/fixtures/locks-insecure/my-package-lock.json: toml: line 1: expected '.' or '=', but got '{' instead
 
 ---
 
 [TestRun_LockfileWithExplicitParseAs/#08 - 1]
+Scanned <rootdir>/fixtures/locks-many/yarn.lock file as a package-lock.json and found 0 packages
+No issues found
 
 ---
 
 [TestRun_LockfileWithExplicitParseAs/#08 - 2]
-(extracting as package-lock.json) could not extract from <rootdir>/fixtures/locks-many/yarn.lock: invalid character '#' looking for beginning of value
+No package sources found, --help for usage information.
 
 ---
 
@@ -2073,6 +2091,21 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
   "version": 1,
   "components": [
     {
+      "bom-ref": "other-dir/pom.xml",
+      "type": "file",
+      "name": "other-dir/pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
+      "bom-ref": "other-dir/pom.xml",
+      "type": "file",
+      "name": "other-dir/pom.xml"
+    },
+    {
       "bom-ref": "pkg:maven/com.foobar/common@1.0-SNAPSHOT",
       "type": "library",
       "name": "com.foobar:common",
@@ -2115,6 +2148,34 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
       "evidence": {
         "occurrences": []
       }
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "other-dir/pom.xml",
+      "dependsOn": [
+        "pom.xml"
+      ]
     }
   ],
   "vulnerabilities": []
@@ -2137,6 +2198,7 @@ Scanned <rootdir>/fixtures/integration-test-locks/pom.xml file and found 1 packa
   "specVersion": "1.5",
   "version": 1,
   "components": [],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -2158,6 +2220,371 @@ No package sources found, --help for usage information.
   "specVersion": "1.5",
   "version": 1,
   "components": [
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Pipfile",
+      "type": "file",
+      "name": "Pipfile"
+    },
+    {
+      "bom-ref": "build.gradle",
+      "type": "file",
+      "name": "build.gradle"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "go.mod",
+      "type": "file",
+      "name": "go.mod"
+    },
+    {
+      "bom-ref": "go.mod",
+      "type": "file",
+      "name": "go.mod"
+    },
+    {
+      "bom-ref": "go.mod",
+      "type": "file",
+      "name": "go.mod"
+    },
+    {
+      "bom-ref": "npm/package.json",
+      "type": "file",
+      "name": "npm/package.json"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
     {
       "bom-ref": "pkg:cargo/addr2line@0.15.2",
       "type": "library",
@@ -4965,7 +5392,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"pom.xml/",/"line_start/":25,/"line_end/":28,/"column_start/":5,/"column_end/":18},/"name/":{/"file_name/":/"pom.xml/",/"line_start/":27,/"line_end/":27,/"column_start/":19,/"column_end/":25},/"version/":{/"file_name/":/"pom.xml/",/"line_start/":19,/"line_end/":19,/"column_start/":18,/"column_end/":23}}"
+            "location": "{/"block/":{/"file_name/":/"pom.xml/",/"line_start/":27,/"line_end/":30,/"column_start/":5,/"column_end/":18},/"name/":{/"file_name/":/"pom.xml/",/"line_start/":29,/"line_end/":29,/"column_start/":19,/"column_end/":25},/"version/":{/"file_name/":/"pom.xml/",/"line_start/":21,/"line_end/":21,/"column_start/":18,/"column_end/":23}}"
           }
         ]
       }
@@ -5145,8 +5572,49 @@ No package sources found, --help for usage information.
           }
         ]
       }
+    },
+    {
+      "bom-ref": "pnpm/package.json",
+      "type": "file",
+      "name": "pnpm/package.json"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
+      "bom-ref": "project.csproj",
+      "type": "file",
+      "name": "project.csproj"
+    },
+    {
+      "bom-ref": "pyproject.toml",
+      "type": "file",
+      "name": "pyproject.toml"
+    },
+    {
+      "bom-ref": "requirements.txt",
+      "type": "file",
+      "name": "requirements.txt"
+    },
+    {
+      "bom-ref": "yarn/package.json",
+      "type": "file",
+      "name": "yarn/package.json"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -5184,6 +5652,361 @@ Filtered 1 local package/s from the scan.
   "version": 1,
   "components": [
     {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Pipfile",
+      "type": "file",
+      "name": "Pipfile"
+    },
+    {
+      "bom-ref": "build.gradle",
+      "type": "file",
+      "name": "build.gradle"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "go.mod",
+      "type": "file",
+      "name": "go.mod"
+    },
+    {
+      "bom-ref": "npm/package.json",
+      "type": "file",
+      "name": "npm/package.json"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
       "bom-ref": "pkg:cargo/addr2line@0.15.2",
       "type": "library",
       "name": "addr2line",
@@ -8141,8 +8964,49 @@ Filtered 1 local package/s from the scan.
           }
         ]
       }
+    },
+    {
+      "bom-ref": "pnpm/package.json",
+      "type": "file",
+      "name": "pnpm/package.json"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
+      "bom-ref": "project.csproj",
+      "type": "file",
+      "name": "project.csproj"
+    },
+    {
+      "bom-ref": "pyproject.toml",
+      "type": "file",
+      "name": "pyproject.toml"
+    },
+    {
+      "bom-ref": "requirements.txt",
+      "type": "file",
+      "name": "requirements.txt"
+    },
+    {
+      "bom-ref": "yarn/package.json",
+      "type": "file",
+      "name": "yarn/package.json"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -8179,6 +9043,361 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
   "version": 1,
   "components": [
     {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Gemfile",
+      "type": "file",
+      "name": "Gemfile"
+    },
+    {
+      "bom-ref": "Pipfile",
+      "type": "file",
+      "name": "Pipfile"
+    },
+    {
+      "bom-ref": "build.gradle",
+      "type": "file",
+      "name": "build.gradle"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "composer/composer.json",
+      "type": "file",
+      "name": "composer/composer.json"
+    },
+    {
+      "bom-ref": "go.mod",
+      "type": "file",
+      "name": "go.mod"
+    },
+    {
+      "bom-ref": "npm/package.json",
+      "type": "file",
+      "name": "npm/package.json"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
+      "bom-ref": "nuget/project.csproj",
+      "type": "file",
+      "name": "nuget/project.csproj"
+    },
+    {
       "bom-ref": "pkg:cargo/addr2line@0.15.2",
       "type": "library",
       "name": "addr2line",
@@ -11136,8 +12355,49 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
           }
         ]
       }
+    },
+    {
+      "bom-ref": "pnpm/package.json",
+      "type": "file",
+      "name": "pnpm/package.json"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
+    },
+    {
+      "bom-ref": "project.csproj",
+      "type": "file",
+      "name": "project.csproj"
+    },
+    {
+      "bom-ref": "pyproject.toml",
+      "type": "file",
+      "name": "pyproject.toml"
+    },
+    {
+      "bom-ref": "requirements.txt",
+      "type": "file",
+      "name": "requirements.txt"
+    },
+    {
+      "bom-ref": "yarn/package.json",
+      "type": "file",
+      "name": "yarn/package.json"
     }
   ],
+  "dependencies": [],
   "vulnerabilities": []
 }
 
@@ -11174,6 +12434,21 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/yarn/yar
   "version": 1,
   "components": [
     {
+      "bom-ref": "other-dir/pom.xml",
+      "type": "file",
+      "name": "other-dir/pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
+      "bom-ref": "other-dir/pom.xml",
+      "type": "file",
+      "name": "other-dir/pom.xml"
+    },
+    {
       "bom-ref": "pkg:maven/com.foobar/common@1.0-SNAPSHOT",
       "type": "library",
       "name": "com.foobar:common",
@@ -11205,6 +12480,34 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/yarn/yar
           }
         ]
       }
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml",
+      "evidence": {
+        "occurrences": [
+          {}
+        ]
+      }
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
+    },
+    {
+      "bom-ref": "pom.xml",
+      "type": "file",
+      "name": "pom.xml"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "other-dir/pom.xml",
+      "dependsOn": [
+        "pom.xml"
+      ]
     }
   ],
   "vulnerabilities": []
