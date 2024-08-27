@@ -11,7 +11,7 @@ import (
 
 type PackageProcessingHook = func(component *cyclonedx.Component, details models.PackageVulns)
 
-func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, pkgProcessingHook PackageProcessingHook) *cyclonedx.BOM {
+func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts []models.ScannedArtifact, pkgProcessingHook PackageProcessingHook) *cyclonedx.BOM {
 	bom := cyclonedx.NewBOM()
 	components := make([]cyclonedx.Component, 0)
 	bomVulnerabilities := make([]cyclonedx.Vulnerability, 0)
@@ -32,6 +32,8 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, pkgProcess
 		pkgProcessingHook(&component, packageDetail)
 		components = append(components, component)
 	}
+	fileComponents, dependencies := addFileDependencies(artifacts)
+	components = append(components, fileComponents...)
 
 	slices.SortFunc(components, func(a, b cyclonedx.Component) int {
 		return strings.Compare(a.PackageURL, b.PackageURL)
@@ -46,6 +48,7 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, pkgProcess
 	})
 
 	bom.Components = &components
+	bom.Dependencies = &dependencies
 	bom.Vulnerabilities = &bomVulnerabilities
 
 	return bom
@@ -85,6 +88,35 @@ func addVulnerabilities(vulnerabilities map[string]cyclonedx.Vulnerability, pack
 			Credits:     buildCredits(vulnerability),
 		}
 	}
+}
+
+func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Component, []cyclonedx.Dependency) {
+	components := make([]cyclonedx.Component, 0)
+	dependencies := make([]cyclonedx.Dependency, 0)
+
+	for _, artifact := range artifacts {
+		component := cyclonedx.Component{}
+		occurrences := make([]cyclonedx.EvidenceOccurrence, 1)
+		component.Name = artifact.Filename
+		component.BOMRef = artifact.Filename
+		component.Type = fileComponentType
+		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
+
+		components = append(components, component)
+
+		// Computing parent dependency
+		if artifact.DependsOn != nil {
+			dependency := cyclonedx.Dependency{
+				Ref: component.BOMRef,
+				Dependencies: &[]string{
+					artifact.DependsOn.Filename,
+				},
+			}
+			dependencies = append(dependencies, dependency)
+		}
+	}
+
+	return components, dependencies
 }
 
 func formatDateIfExists(date time.Time) string {

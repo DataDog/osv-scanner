@@ -5,8 +5,8 @@ import (
 	"github.com/google/osv-scanner/pkg/models"
 )
 
-func ToCycloneDX15Bom(uniquePackages map[string]models.PackageVulns) *cyclonedx.BOM {
-	bom := buildCycloneDXBom(uniquePackages, onComponentCreated)
+func ToCycloneDX15Bom(uniquePackages map[string]models.PackageVulns, artifacts []models.ScannedArtifact) *cyclonedx.BOM {
+	bom := buildCycloneDXBom(uniquePackages, artifacts, onComponentCreated)
 	bom.JSONSchema = cycloneDx15Schema
 	bom.SpecVersion = cyclonedx.SpecVersion1_5
 

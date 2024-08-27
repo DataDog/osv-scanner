@@ -16,7 +16,7 @@ func PrintCycloneDXResults(vulnResult *models.VulnerabilityResults, cycloneDXVer
 	bomCreator := sbom.SpecVersionToBomCreator[cycloneDXVersion]
 	resultsByPurl, errs := purl.Group(vulnResult.Results)
 
-	bom := bomCreator(resultsByPurl)
+	bom := bomCreator(resultsByPurl, vulnResult.Artifacts)
 	encoder := cyclonedx.NewBOMEncoder(outputWriter, cyclonedx.BOMFileFormatJSON)
 	encoder.SetPretty(testing.Testing())
 
