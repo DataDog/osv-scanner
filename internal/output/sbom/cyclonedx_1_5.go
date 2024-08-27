@@ -32,5 +32,7 @@ func onComponentCreated(component *cyclonedx.Component, details models.PackageVu
 		}
 		occurrences = append(occurrences, occurrence)
 	}
-	component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
+	if len(occurrences) > 0 {
+		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
+	}
 }
