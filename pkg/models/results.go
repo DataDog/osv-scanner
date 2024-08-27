@@ -7,19 +7,19 @@ import (
 
 // Combined vulnerabilities found for the scanned packages
 type VulnerabilityResults struct {
-	Results                    []PackageSource           `json:"results"`
+	Results                    []PackageSource `json:"results"`
 	Artifacts                  []ScannedArtifact
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
 }
 
 type ArtifactDetail struct {
-	Name    string
-	Version string
+	Name     string
+	Version  string
+	Filename string
 }
 
 type ScannedArtifact struct {
 	ArtifactDetail
-	FilePosition
 	DependsOn *ArtifactDetail
 }
 
