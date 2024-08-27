@@ -1,10 +1,11 @@
 package sbom
 
 import (
-	"golang.org/x/exp/maps"
 	"slices"
 	"strings"
 	"time"
+
+	"golang.org/x/exp/maps"
 
 	"github.com/CycloneDX/cyclonedx-go"
 	"github.com/google/osv-scanner/pkg/models"
@@ -62,6 +63,7 @@ func findArtifact(name string, version string, artifacts []models.ScannedArtifac
 			return &artifact
 		}
 	}
+
 	return nil
 }
 
@@ -92,6 +94,7 @@ func createFileComponents(packageDetail models.PackageVulns, artifact *models.Sc
 			}
 		}
 	}
+
 	return components
 }
 
@@ -105,6 +108,7 @@ func createLibraryComponent(packageURL string, packageDetail models.PackageVulns
 	component.Version = packageDetail.Package.Version
 
 	fillLicenses(&component, packageDetail)
+
 	return component
 }
 
@@ -160,7 +164,6 @@ func addFileDependencies(artifacts []models.ScannedArtifact) ([]cyclonedx.Compon
 
 		// Computing parent dependency
 		if artifact.DependsOn != nil {
-
 			if dependency, ok := dependsOn[artifact.DependsOn.Filename]; ok {
 				dependencies := append(*dependency.Dependencies, artifact.DependsOn.Filename)
 				slices.Sort(dependencies)

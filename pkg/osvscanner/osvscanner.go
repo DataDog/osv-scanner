@@ -176,7 +176,6 @@ func scanDir(r reporter.Reporter, dir string, skipGit bool, recursive bool, useG
 				if artifact != nil {
 					scannedArtifacts = append(scannedArtifacts, *artifact)
 				}
-
 			}
 			// No need to check for error
 			// If scan fails, it means it isn't a valid SBOM file,
@@ -897,7 +896,6 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		if artifact != nil {
 			scannedArtifacts = append(scannedArtifacts, *artifact)
 		}
-
 	}
 
 	for _, sbomElem := range actions.SBOMPaths {

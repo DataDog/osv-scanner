@@ -34,8 +34,8 @@ type MavenLockDependency struct {
 type MavenLockParent struct {
 	XMLName      xml.Name `xml:"parent"`
 	RelativePath string   `xml:"relativePath"`
-	GroupId      string   `xml:"groupId"`
-	ArtifactId   string   `xml:"artifactId"`
+	GroupID      string   `xml:"groupId"`
+	ArtifactID   string   `xml:"artifactId"`
 	Version      string   `xml:"version"`
 }
 
@@ -256,8 +256,8 @@ func (e MavenLockExtractor) mergeLockfiles(childLockfile *MavenLockFile, parentL
 	parentLockfile.Parent = MavenLockParent{
 		XMLName:      childLockfile.Parent.XMLName,
 		RelativePath: childLockfile.Parent.RelativePath,
-		GroupId:      parentLockfile.GroupID,
-		ArtifactId:   parentLockfile.ArtifactID,
+		GroupID:      parentLockfile.GroupID,
+		ArtifactID:   parentLockfile.ArtifactID,
 		Version:      parentLockfile.Version,
 	}
 	// The following fields are not mandatory, in case they are not defined in the child, the one from the parent should be kept
@@ -501,7 +501,7 @@ func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, err
 	}
 
 	if parsedLockfile.Parent != (MavenLockParent{}) {
-		parentArtifact := parsedLockfile.Parent.GroupId + ":" + parsedLockfile.Parent.ArtifactId
+		parentArtifact := parsedLockfile.Parent.GroupID + ":" + parsedLockfile.Parent.ArtifactID
 		artifact.DependsOn = &models.ArtifactDetail{
 			Name:     parentArtifact,
 			Version:  parsedLockfile.Parent.Version,

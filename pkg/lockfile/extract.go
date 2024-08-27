@@ -67,6 +67,7 @@ func ExtractDeps(f DepFile, extractAs string, enabledParsers map[string]bool) (L
 	packages, err := extractor.Extract(f)
 
 	if err != nil && extractedAs != "" {
+		//nolint:all
 		err = fmt.Errorf("(extracting as %s) %w", extractedAs, err)
 	}
 

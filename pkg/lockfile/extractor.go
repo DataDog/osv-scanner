@@ -3,10 +3,11 @@ package lockfile
 import (
 	"errors"
 	"fmt"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"os"
 	"path/filepath"
+
+	"github.com/google/osv-scanner/pkg/models"
 
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
