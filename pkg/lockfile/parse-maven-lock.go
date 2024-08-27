@@ -317,6 +317,20 @@ func (e MavenLockExtractor) enrichProperties(f DepFile, properties map[string]Ma
 	return MavenLockProperties{m: properties}
 }
 
+func (e MavenLockExtractor) resolveParentFilename(parent MavenLockParent, currentPath string) string {
+	// If a parent is defined, use its relative path to find the File, then recurse to decode it properly and enrich its dependencies
+	// If the relativePath is not defined, default to ../pom.xml
+	parentRelativePath := parent.RelativePath
+	if len(parentRelativePath) == 0 {
+		parentRelativePath = "../pom.xml"
+	} else if !strings.HasSuffix(parentRelativePath, ".xml") {
+		// It means we only have a path, we should append the default pom.xml
+		parentRelativePath = path.Join(parentRelativePath, "pom.xml")
+	}
+
+	return filepath.FromSlash(filepath.Join(filepath.Dir(currentPath), parentRelativePath))
+}
+
 func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int, visitedPath map[string]bool) (*MavenLockFile, error) {
 	var parsedLockfile *MavenLockFile
 
@@ -350,16 +364,7 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int, visitedPath ma
 		return parsedLockfile, nil
 	}
 
-	// If a parent is defined, use its relative path to find the File, then recurse to decode it properly and enrich its dependencies
-	// If the relativePath is not defined, default to ../pom.xml
-	parentRelativePath := parsedLockfile.Parent.RelativePath
-	if len(parentRelativePath) == 0 {
-		parentRelativePath = "../pom.xml"
-	} else if !strings.HasSuffix(parentRelativePath, ".xml") {
-		// It means we only have a path, we should append the default pom.xml
-		parentRelativePath = path.Join(parentRelativePath, "pom.xml")
-	}
-	parentPath := filepath.FromSlash(filepath.Join(filepath.Dir(f.Path()), parentRelativePath))
+	parentPath := e.resolveParentFilename(parsedLockfile.Parent, f.Path())
 	if _, err := os.Stat(parentPath); errors.Is(err, os.ErrNotExist) {
 		// If the parent pom does not exist, it still can be in an external repository, but it is unreachable from the parser
 		_, _ = fmt.Fprintf(os.Stderr, "Maven lockfile parser couldn't reach the parent because it is not locally defined\n")
@@ -486,27 +491,11 @@ func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, err
 	}
 
 	artifactName := parsedLockfile.GroupID + ":" + parsedLockfile.ArtifactID
-	lineCount := len(parsedLockfile.Lines[f.Path()])
-	columnCount := len(parsedLockfile.Lines[f.Path()][lineCount-1])
-	if columnCount == 0 && lineCount >= 2 {
-		// This means the last line is empty, we take the one just before
-		columnCount = len(parsedLockfile.Lines[f.Path()][lineCount-2])
-	}
 
 	artifact := models.ScannedArtifact{
 		ArtifactDetail: models.ArtifactDetail{
-			Name:    artifactName,
-			Version: parsedLockfile.Version,
-		},
-		FilePosition: models.FilePosition{
-			Line: models.Position{
-				Start: 1,
-				End:   lineCount,
-			},
-			Column: models.Position{
-				Start: 1,
-				End:   columnCount,
-			},
+			Name:     artifactName,
+			Version:  parsedLockfile.Version,
 			Filename: f.Path(),
 		},
 	}
@@ -514,8 +503,9 @@ func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, err
 	if parsedLockfile.Parent != (MavenLockParent{}) {
 		parentArtifact := parsedLockfile.Parent.GroupId + ":" + parsedLockfile.Parent.ArtifactId
 		artifact.DependsOn = &models.ArtifactDetail{
-			Name:    parentArtifact,
-			Version: parsedLockfile.Parent.Version,
+			Name:     parentArtifact,
+			Version:  parsedLockfile.Parent.Version,
+			Filename: e.resolveParentFilename(parsedLockfile.Parent, f.Path()),
 		}
 	}
 
