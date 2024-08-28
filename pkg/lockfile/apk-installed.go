@@ -3,10 +3,11 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"sort"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 const AlpineEcosystem Ecosystem = "Alpine"

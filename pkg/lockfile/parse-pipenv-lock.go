@@ -3,8 +3,9 @@ package lockfile
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
+
+	"github.com/google/osv-scanner/pkg/models"
 
 	"golang.org/x/exp/maps"
 )

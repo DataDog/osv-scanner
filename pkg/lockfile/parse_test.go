@@ -2,11 +2,12 @@ package lockfile_test
 
 import (
 	"errors"
-	"github.com/google/osv-scanner/pkg/models"
 	"os"
 	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/google/osv-scanner/internal/output"
 	"github.com/google/osv-scanner/pkg/lockfile"

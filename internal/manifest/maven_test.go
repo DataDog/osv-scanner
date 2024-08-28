@@ -1,9 +1,10 @@
 package manifest_test
 
 import (
-	"github.com/google/osv-scanner/pkg/models"
 	"io/fs"
 	"testing"
+
+	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/google/osv-scanner/internal/manifest"
 	"github.com/google/osv-scanner/internal/resolution/clienttest"

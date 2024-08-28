@@ -2,8 +2,9 @@ package lockfile
 
 import (
 	"fmt"
-	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
+
+	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/BurntSushi/toml"
 )

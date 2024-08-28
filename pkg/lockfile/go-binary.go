@@ -3,10 +3,11 @@ package lockfile
 import (
 	"bytes"
 	"debug/buildinfo"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 type GoBinaryExtractor struct{}

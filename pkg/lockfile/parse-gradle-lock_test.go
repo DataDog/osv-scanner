@@ -3,12 +3,13 @@ package lockfile_test
 import (
 	"bytes"
 	"errors"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/stretchr/testify/assert"
 

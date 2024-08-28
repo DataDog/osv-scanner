@@ -3,10 +3,11 @@ package lockfile
 import (
 	"errors"
 	"fmt"
-	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/models"
 
 	"gopkg.in/yaml.v3"
 )

@@ -66,6 +66,7 @@ func buildProperties(metadatas models.PackageMetadata) []cyclonedx.Property {
 			Value: value,
 		})
 	}
+
 	return properties
 }
 

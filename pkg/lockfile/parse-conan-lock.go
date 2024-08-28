@@ -3,9 +3,10 @@ package lockfile
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 type ConanReference struct {
