@@ -3,6 +3,7 @@ package lockfile_test
 import (
 	"bytes"
 	"errors"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"io/fs"
 	"os"
@@ -53,10 +54,11 @@ func TestParseNuGetLock_v1_OneFramework_OnePackage(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:      "Test.Core",
-			Version:   "6.0.5",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.Core",
+			Version:        "6.0.5",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 	})
 }
@@ -72,16 +74,18 @@ func TestParseNuGetLock_v1_OneFramework_TwoPackages(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:      "Test.Core",
-			Version:   "6.0.5",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.Core",
+			Version:        "6.0.5",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 		{
-			Name:      "Test.System",
-			Version:   "0.13.0-beta4",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.System",
+			Version:        "0.13.0-beta4",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 	})
 }
@@ -97,22 +101,25 @@ func TestParseNuGetLock_v1_TwoFrameworks_MixedPackages(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:      "Test.Core",
-			Version:   "6.0.5",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.Core",
+			Version:        "6.0.5",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 		{
-			Name:      "Test.System",
-			Version:   "0.13.0-beta4",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.System",
+			Version:        "0.13.0-beta4",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 		{
-			Name:      "Test.System",
-			Version:   "2.15.0",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.System",
+			Version:        "2.15.0",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 	})
 }
@@ -128,16 +135,18 @@ func TestParseNuGetLock_v1_TwoFrameworks_DifferentPackages(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:      "Test.Core",
-			Version:   "6.0.5",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.Core",
+			Version:        "6.0.5",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 		{
-			Name:      "Test.System",
-			Version:   "0.13.0-beta4",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.System",
+			Version:        "0.13.0-beta4",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 	})
 }
@@ -153,10 +162,11 @@ func TestParseNuGetLock_v1_TwoFrameworks_DuplicatePackages(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:      "Test.Core",
-			Version:   "6.0.5",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.Core",
+			Version:        "6.0.5",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 	})
 }
@@ -193,10 +203,11 @@ func TestParseNuGetLock_v1_OneFramework_OnePackage_MatchedFailed(t *testing.T) {
 	assert.Contains(t, buffer.String(), matcherError.Error())
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:      "Test.Core",
-			Version:   "6.0.5",
-			Ecosystem: lockfile.NuGetEcosystem,
-			CompareAs: lockfile.NuGetEcosystem,
+			Name:           "Test.Core",
+			Version:        "6.0.5",
+			PackageManager: models.NuGet,
+			Ecosystem:      lockfile.NuGetEcosystem,
+			CompareAs:      lockfile.NuGetEcosystem,
 		},
 	})
 

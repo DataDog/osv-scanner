@@ -2,6 +2,7 @@ package lockfile_test
 
 import (
 	"errors"
+	"github.com/google/osv-scanner/pkg/models"
 	"os"
 	"reflect"
 	"strings"
@@ -190,40 +191,47 @@ func TestLockfile_String(t *testing.T) {
 	lockf := lockfile.Lockfile{
 		Packages: []lockfile.PackageDetails{
 			{
-				Name:      "addr2line",
-				Version:   "0.15.2",
-				Ecosystem: lockfile.CargoEcosystem,
+				Name:           "addr2line",
+				Version:        "0.15.2",
+				PackageManager: models.Crates,
+				Ecosystem:      lockfile.CargoEcosystem,
 			},
 			{
-				Name:      "@typescript-eslint/types",
-				Version:   "5.13.0",
-				Ecosystem: lockfile.PnpmEcosystem,
+				Name:           "@typescript-eslint/types",
+				Version:        "5.13.0",
+				PackageManager: models.Pnpm,
+				Ecosystem:      lockfile.PnpmEcosystem,
 			},
 			{
-				Name:      "wasi",
-				Version:   "0.10.2+wasi-snapshot-preview1",
-				Ecosystem: lockfile.CargoEcosystem,
+				Name:           "wasi",
+				Version:        "0.10.2+wasi-snapshot-preview1",
+				PackageManager: models.Crates,
+				Ecosystem:      lockfile.CargoEcosystem,
 			},
 			{
-				Name:      "sentry/sdk",
-				Version:   "2.0.4",
-				Ecosystem: lockfile.ComposerEcosystem,
+				Name:           "sentry/sdk",
+				Version:        "2.0.4",
+				PackageManager: models.Composer,
+				Ecosystem:      lockfile.ComposerEcosystem,
 			},
 			{
-				Name:      "no-version",
-				Version:   "",
-				Ecosystem: lockfile.CargoEcosystem,
+				Name:           "no-version",
+				Version:        "",
+				PackageManager: models.Crates,
+				Ecosystem:      lockfile.CargoEcosystem,
 			},
 			{
-				Name:      "no-ecosystem",
-				Version:   "1.2.3",
-				Ecosystem: "",
+				Name:           "no-ecosystem",
+				Version:        "1.2.3",
+				Ecosystem:      "",
+				PackageManager: models.Unknown,
 			},
 			{
-				Name:      "no-ecosystem",
-				Version:   "1.2.3",
-				Ecosystem: "",
-				Commit:    "with-commit",
+				Name:           "no-ecosystem",
+				Version:        "1.2.3",
+				Ecosystem:      "",
+				Commit:         "with-commit",
+				PackageManager: models.Unknown,
 			},
 		},
 	}

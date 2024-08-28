@@ -3,6 +3,7 @@ package lockfile_test
 import (
 	"bytes"
 	"errors"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"io/fs"
 	"os"
@@ -63,8 +64,9 @@ func TestComposerMatcher_Match_OnePackage(t *testing.T) {
 
 	packages := []lockfile.PackageDetails{
 		{
-			Name:    "brick/math",
-			Version: "0.12.9",
+			Name:           "brick/math",
+			Version:        "0.12.9",
+			PackageManager: models.Composer,
 		},
 	}
 	err = composerMatcher.Match(sourceFile, packages)
