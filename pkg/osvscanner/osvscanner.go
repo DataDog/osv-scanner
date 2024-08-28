@@ -397,11 +397,12 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, _ bool, enab
 	packages := make([]scannedPackage, len(parsedLockfile.Packages))
 	for i, pkgDetail := range parsedLockfile.Packages {
 		packages[i] = scannedPackage{
-			Name:      pkgDetail.Name,
-			Version:   pkgDetail.Version,
-			Commit:    pkgDetail.Commit,
-			Ecosystem: pkgDetail.Ecosystem,
-			DepGroups: pkgDetail.DepGroups,
+			Name:           pkgDetail.Name,
+			Version:        pkgDetail.Version,
+			Commit:         pkgDetail.Commit,
+			Ecosystem:      pkgDetail.Ecosystem,
+			PackageManager: pkgDetail.PackageManager,
+			DepGroups:      pkgDetail.DepGroups,
 			Source: models.SourceInfo{
 				Path: path,
 				Type: "lockfile",
@@ -794,6 +795,7 @@ type scannedPackage struct {
 	PURL            string
 	Name            string
 	Ecosystem       lockfile.Ecosystem
+	PackageManager  models.PackageManager
 	Commit          string
 	Version         string
 	Source          models.SourceInfo
