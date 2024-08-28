@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"sort"
 	"strings"
@@ -42,11 +43,12 @@ func fromCSVRecord(lines []string) (PackageDetails, error) {
 	}
 
 	return PackageDetails{
-		Name:      name,
-		Version:   version,
-		Ecosystem: ecosystem,
-		CompareAs: compareAs,
-		Commit:    commit,
+		Name:           name,
+		Version:        version,
+		Ecosystem:      ecosystem,
+		CompareAs:      compareAs,
+		Commit:         commit,
+		PackageManager: models.Unknown,
 	}, nil
 }
 

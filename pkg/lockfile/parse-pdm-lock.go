@@ -2,6 +2,7 @@ package lockfile
 
 import (
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 
 	"github.com/BurntSushi/toml"
@@ -38,10 +39,11 @@ func (p PdmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 	for _, pkg := range parsedLockFile.Packages {
 		details := PackageDetails{
-			Name:      pkg.Name,
-			Version:   pkg.Version,
-			Ecosystem: PdmEcosystem,
-			CompareAs: PdmEcosystem,
+			Name:           pkg.Name,
+			Version:        pkg.Version,
+			PackageManager: models.Pdm,
+			Ecosystem:      PdmEcosystem,
+			CompareAs:      PdmEcosystem,
 		}
 
 		var optional = true

@@ -3,6 +3,7 @@ package lockfile
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 	"strings"
 
@@ -32,10 +33,11 @@ func parseNuGetLockDependencies(dependencies map[string]NuGetLockPackage) map[st
 			continue
 		}
 		details[name+"@"+dependency.Resolved] = PackageDetails{
-			Name:      name,
-			Version:   dependency.Resolved,
-			Ecosystem: NuGetEcosystem,
-			CompareAs: NuGetEcosystem,
+			Name:           name,
+			Version:        dependency.Resolved,
+			PackageManager: models.NuGet,
+			Ecosystem:      NuGetEcosystem,
+			CompareAs:      NuGetEcosystem,
 		}
 	}
 

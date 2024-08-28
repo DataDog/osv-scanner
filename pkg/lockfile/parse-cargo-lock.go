@@ -2,6 +2,7 @@ package lockfile
 
 import (
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 
 	"github.com/BurntSushi/toml"
@@ -38,10 +39,11 @@ func (e CargoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 	for _, lockPackage := range parsedLockfile.Packages {
 		packages = append(packages, PackageDetails{
-			Name:      lockPackage.Name,
-			Version:   lockPackage.Version,
-			Ecosystem: CargoEcosystem,
-			CompareAs: CargoEcosystem,
+			Name:           lockPackage.Name,
+			Version:        lockPackage.Version,
+			PackageManager: models.Crates,
+			Ecosystem:      CargoEcosystem,
+			CompareAs:      CargoEcosystem,
 		})
 	}
 

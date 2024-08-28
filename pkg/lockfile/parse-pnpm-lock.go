@@ -3,6 +3,7 @@ package lockfile
 import (
 	"errors"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"path/filepath"
 	"strconv"
@@ -266,6 +267,7 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 			Name:           name,
 			Version:        version,
 			TargetVersions: targetVersions,
+			PackageManager: models.Pnpm,
 			Ecosystem:      PnpmEcosystem,
 			CompareAs:      PnpmEcosystem,
 			Commit:         commit,

@@ -3,6 +3,7 @@ package lockfile
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 	"strings"
 )
@@ -122,10 +123,11 @@ func parseConanV1Lock(lockfile ConanLockFile) []PackageDetails {
 			continue
 		}
 		packages = append(packages, PackageDetails{
-			Name:      reference.Name,
-			Version:   reference.Version,
-			Ecosystem: ConanEcosystem,
-			CompareAs: ConanEcosystem,
+			Name:           reference.Name,
+			Version:        reference.Version,
+			PackageManager: models.Conan,
+			Ecosystem:      ConanEcosystem,
+			CompareAs:      ConanEcosystem,
 		})
 	}
 
@@ -142,11 +144,12 @@ func parseConanRequires(packages *[]PackageDetails, requires []string, group str
 		}
 
 		*packages = append(*packages, PackageDetails{
-			Name:      reference.Name,
-			Version:   reference.Version,
-			Ecosystem: ConanEcosystem,
-			CompareAs: ConanEcosystem,
-			DepGroups: []string{group},
+			Name:           reference.Name,
+			Version:        reference.Version,
+			PackageManager: models.Conan,
+			Ecosystem:      ConanEcosystem,
+			CompareAs:      ConanEcosystem,
+			DepGroups:      []string{group},
 		})
 	}
 }

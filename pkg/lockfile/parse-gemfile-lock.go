@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"log"
 	"path/filepath"
 	"strings"
@@ -48,11 +49,12 @@ type gemfileLockfileParser struct {
 
 func (parser *gemfileLockfileParser) addDependency(name string, version string) {
 	parser.dependencies = append(parser.dependencies, PackageDetails{
-		Name:      name,
-		Version:   version,
-		Ecosystem: BundlerEcosystem,
-		CompareAs: BundlerEcosystem,
-		Commit:    parser.currentGemCommit,
+		Name:           name,
+		Version:        version,
+		PackageManager: models.Bundler,
+		Ecosystem:      BundlerEcosystem,
+		CompareAs:      BundlerEcosystem,
+		Commit:         parser.currentGemCommit,
 	})
 }
 

@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"os"
 	"path/filepath"
 	"strings"
@@ -63,11 +64,12 @@ func (e MixLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		}
 
 		packages = append(packages, PackageDetails{
-			Name:      name,
-			Version:   version,
-			Ecosystem: MixEcosystem,
-			CompareAs: MixEcosystem,
-			Commit:    commit,
+			Name:           name,
+			Version:        version,
+			PackageManager: models.Hex,
+			Ecosystem:      MixEcosystem,
+			CompareAs:      MixEcosystem,
+			Commit:         commit,
 		})
 	}
 

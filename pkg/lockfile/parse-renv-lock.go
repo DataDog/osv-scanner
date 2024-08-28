@@ -3,6 +3,7 @@ package lockfile
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 )
 
@@ -42,10 +43,11 @@ func (e RenvLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		}
 
 		packages = append(packages, PackageDetails{
-			Name:      pkg.Package,
-			Version:   pkg.Version,
-			Ecosystem: CRANEcosystem,
-			CompareAs: CRANEcosystem,
+			Name:           pkg.Package,
+			Version:        pkg.Version,
+			PackageManager: models.Renv,
+			Ecosystem:      CRANEcosystem,
+			CompareAs:      CRANEcosystem,
 		})
 	}
 

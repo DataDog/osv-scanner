@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"sort"
 	"strings"
 
@@ -49,8 +50,9 @@ func parseSourceField(source string) (string, string) {
 
 func parseDpkgPackageGroup(group []string) PackageDetails {
 	var pkg = PackageDetails{
-		Ecosystem: DebianEcosystem,
-		CompareAs: DebianEcosystem,
+		Ecosystem:      DebianEcosystem,
+		CompareAs:      DebianEcosystem,
+		PackageManager: models.Unknown,
 	}
 
 	sourcePresent := false

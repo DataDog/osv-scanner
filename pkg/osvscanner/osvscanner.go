@@ -1062,9 +1062,10 @@ func makeRequest(
 		// Prefer making package requests where possible.
 		case p.Ecosystem != "" && p.Name != "" && p.Version != "":
 			query.Queries = append(query.Queries, osv.MakePkgRequest(lockfile.PackageDetails{
-				Name:      p.Name,
-				Version:   p.Version,
-				Ecosystem: p.Ecosystem,
+				Name:           p.Name,
+				Version:        p.Version,
+				Ecosystem:      p.Ecosystem,
+				PackageManager: models.Unknown,
 			}))
 		case p.Commit != "":
 			query.Queries = append(query.Queries, osv.MakeCommitRequest(p.Commit))

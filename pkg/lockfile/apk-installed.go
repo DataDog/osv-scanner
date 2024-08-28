@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"io"
 	"sort"
 	"strings"
@@ -36,8 +37,9 @@ func groupApkPackageLines(scanner *bufio.Scanner) [][]string {
 
 func parseApkPackageGroup(group []string) PackageDetails {
 	var pkg = PackageDetails{
-		Ecosystem: AlpineEcosystem,
-		CompareAs: AlpineEcosystem,
+		Ecosystem:      AlpineEcosystem,
+		CompareAs:      AlpineEcosystem,
+		PackageManager: models.Unknown,
 	}
 
 	// File SPECS: https://wiki.alpinelinux.org/wiki/Apk_spec

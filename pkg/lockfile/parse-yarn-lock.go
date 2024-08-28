@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -219,6 +220,7 @@ func parseYarnPackage(dependency YarnPackage) PackageDetails {
 		Name:           dependency.Name,
 		Version:        dependency.Version,
 		TargetVersions: dependency.TargetVersions,
+		PackageManager: models.Yarn,
 		Ecosystem:      YarnEcosystem,
 		CompareAs:      YarnEcosystem,
 		Commit:         tryExtractCommit(dependency.Resolution),

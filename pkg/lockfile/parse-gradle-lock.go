@@ -3,6 +3,7 @@ package lockfile
 import (
 	"bufio"
 	"fmt"
+	"github.com/google/osv-scanner/pkg/models"
 	"path/filepath"
 	"strings"
 )
@@ -29,10 +30,11 @@ func parseToGradlePackageDetail(line string) (PackageDetails, error) {
 	version = strings.SplitN(version, "=", 2)[0]
 
 	return PackageDetails{
-		Name:      fmt.Sprintf("%s:%s", group, artifact),
-		Version:   version,
-		Ecosystem: MavenEcosystem,
-		CompareAs: MavenEcosystem,
+		Name:           fmt.Sprintf("%s:%s", group, artifact),
+		Version:        version,
+		PackageManager: models.Gradle,
+		Ecosystem:      MavenEcosystem,
+		CompareAs:      MavenEcosystem,
 	}, nil
 }
 
