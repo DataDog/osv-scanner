@@ -104,6 +104,7 @@ type PackageVulns struct {
 	Groups            []GroupInfo        `json:"groups,omitempty"`
 	Licenses          []License          `json:"licenses,omitempty"`
 	LicenseViolations []License          `json:"license_violations,omitempty"`
+	Metadata          PackageMetadata    `json:"metadata,omitempty"`
 }
 
 type GroupInfo struct {
@@ -171,9 +172,8 @@ type AnalysisInfo struct {
 
 // Specific package information
 type PackageInfo struct {
-	Name           string `json:"name"`
-	Version        string `json:"version"`
-	Ecosystem      string `json:"ecosystem"`
-	PackageManager string `json:"package_manager,omitempty"`
-	Commit         string `json:"commit,omitempty"`
+	Name      string `json:"name"`
+	Version   string `json:"version"`
+	Ecosystem string `json:"ecosystem"`
+	Commit    string `json:"commit,omitempty"`
 }
