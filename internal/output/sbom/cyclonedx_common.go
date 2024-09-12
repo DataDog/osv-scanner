@@ -1,6 +1,7 @@
 package sbom
 
 import (
+	"github.com/google/osv-scanner/internal/utility/purl"
 	"slices"
 	"strings"
 	"time"
@@ -67,13 +68,6 @@ func findArtifact(name string, version string, artifacts []models.ScannedArtifac
 
 func createFileComponents(packageDetail models.PackageVulns, artifact *models.ScannedArtifact, dependsOn map[string]cyclonedx.Dependency, components map[string]cyclonedx.Component) {
 	for _, location := range packageDetail.Locations {
-		component := cyclonedx.Component{}
-
-		component.Type = fileComponentType
-		component.BOMRef = location.Block.Filename
-		component.Name = location.Block.Filename
-		components[component.BOMRef] = component
-
 		if artifact != nil {
 			// The current component is a repository artifact, meaning it is an internal dependency, we should report a dependsOn on the location
 			if dependency, ok := dependsOn[location.Block.Filename]; !ok {
@@ -148,17 +142,30 @@ func addFileDependencies(artifacts []models.ScannedArtifact) (map[string]cyclone
 	dependsOn := make(map[string]cyclonedx.Dependency)
 
 	for _, artifact := range artifacts {
+		artifactPURL, err := purl.From(models.PackageInfo{
+			Name:      artifact.Name,
+			Version:   artifact.Version,
+			Ecosystem: string(artifact.Ecosystem),
+		})
+		if err != nil {
+			continue
+		}
+
 		component := cyclonedx.Component{}
-		occurrences := make([]cyclonedx.EvidenceOccurrence, 1)
+		properties := make([]cyclonedx.Property, 1)
 		component.Name = artifact.Filename
 		component.BOMRef = artifact.Filename
 		component.Type = fileComponentType
-		component.Evidence = &cyclonedx.Evidence{Occurrences: &occurrences}
+		properties[0] = cyclonedx.Property{
+			Name:  "osv-scanner:package",
+			Value: artifactPURL.String(),
+		}
+		component.Properties = &properties
 		components[component.BOMRef] = component
 
 		// Computing parent dependency
 		if artifact.DependsOn != nil {
-			if dependency, ok := dependsOn[artifact.DependsOn.Filename]; ok {
+			if dependency, ok := dependsOn[artifact.Filename]; ok {
 				dependencies := append(*dependency.Dependencies, artifact.DependsOn.Filename)
 				slices.Sort(dependencies)
 
