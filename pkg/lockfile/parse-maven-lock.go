@@ -494,18 +494,20 @@ func (e MavenLockExtractor) GetArtifact(f DepFile) (*models.ScannedArtifact, err
 
 	artifact := models.ScannedArtifact{
 		ArtifactDetail: models.ArtifactDetail{
-			Name:     artifactName,
-			Version:  parsedLockfile.Version,
-			Filename: f.Path(),
+			Name:      artifactName,
+			Version:   parsedLockfile.Version,
+			Filename:  f.Path(),
+			Ecosystem: models.EcosystemMaven,
 		},
 	}
 
 	if parsedLockfile.Parent != (MavenLockParent{}) {
 		parentArtifact := parsedLockfile.Parent.GroupID + ":" + parsedLockfile.Parent.ArtifactID
 		artifact.DependsOn = &models.ArtifactDetail{
-			Name:     parentArtifact,
-			Version:  parsedLockfile.Parent.Version,
-			Filename: e.resolveParentFilename(parsedLockfile.Parent, f.Path()),
+			Name:      parentArtifact,
+			Version:   parsedLockfile.Parent.Version,
+			Filename:  e.resolveParentFilename(parsedLockfile.Parent, f.Path()),
+			Ecosystem: models.EcosystemMaven,
 		}
 	}
 

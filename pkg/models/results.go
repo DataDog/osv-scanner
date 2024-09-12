@@ -13,9 +13,10 @@ type VulnerabilityResults struct {
 }
 
 type ArtifactDetail struct {
-	Name     string
-	Version  string
-	Filename string
+	Name      string
+	Version   string
+	Filename  string
+	Ecosystem Ecosystem
 }
 
 type ScannedArtifact struct {
