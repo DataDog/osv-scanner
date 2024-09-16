@@ -440,7 +440,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 				"-L",
 				"apk-installed:" + filepath.FromSlash("./fixtures/locks-many/installed"),
 			},
-			exit: 0,
+			exit: 129,
 		},
 		// "dpkg-status" is supported
 		{
