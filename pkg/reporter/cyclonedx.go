@@ -2,9 +2,10 @@ package reporter
 
 import (
 	"fmt"
-	"github.com/CycloneDX/cyclonedx-go"
 	"io"
 	"strings"
+
+	"github.com/CycloneDX/cyclonedx-go"
 
 	"github.com/google/osv-scanner/internal/output"
 
