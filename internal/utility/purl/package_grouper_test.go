@@ -173,6 +173,9 @@ func TestGroupPackageByPURL_ShouldReportDependencyAsDirect(t *testing.T) {
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
 					},
+					Metadata: map[models.PackageMetadataType]string{
+						models.PackageManagerMetadata: "Maven",
+					},
 				},
 			},
 		},
@@ -189,6 +192,7 @@ func TestGroupPackageByPURL_ShouldReportDependencyAsDirect(t *testing.T) {
 						Ecosystem: string(lockfile.MavenEcosystem),
 					},
 					Metadata: map[models.PackageMetadataType]string{
+						models.PackageManagerMetadata:     "Maven",
 						models.IsDirectDependencyMetadata: "true",
 					},
 				},
@@ -206,6 +210,7 @@ func TestGroupPackageByPURL_ShouldReportDependencyAsDirect(t *testing.T) {
 				Ecosystem: string(lockfile.MavenEcosystem),
 			},
 			Metadata: map[models.PackageMetadataType]string{
+				models.PackageManagerMetadata:     "Maven",
 				models.IsDirectDependencyMetadata: "true",
 			},
 		},
