@@ -6587,12 +6587,12 @@ No package sources found, --help for usage information.
       "purl": "pkg:golang/github.com/Private/packages/pkg/util/backoff@1.0.0",
       "properties": [
         {
-          "name": "osv-scanner:package-manager",
-          "value": "Golang"
-        },
-        {
           "name": "osv-scanner:is-direct",
           "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Golang"
         }
       ],
       "evidence": {
@@ -6611,12 +6611,12 @@ No package sources found, --help for usage information.
       "purl": "pkg:golang/github.com/kubernetes/apimachinery",
       "properties": [
         {
-          "name": "osv-scanner:package-manager",
-          "value": "Golang"
-        },
-        {
           "name": "osv-scanner:is-direct",
           "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Golang"
         }
       ],
       "evidence": {
@@ -6636,12 +6636,12 @@ No package sources found, --help for usage information.
       "purl": "pkg:golang/stdlib@1.21.3",
       "properties": [
         {
-          "name": "osv-scanner:package-manager",
-          "value": "Golang"
-        },
-        {
           "name": "osv-scanner:is-direct",
           "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Golang"
         }
       ],
       "evidence": {
@@ -11061,12 +11061,12 @@ Filtered 1 local package/s from the scan.
       "purl": "pkg:golang/github.com/BurntSushi/toml@1.0.0",
       "properties": [
         {
-          "name": "osv-scanner:package-manager",
-          "value": "Golang"
-        },
-        {
           "name": "osv-scanner:is-direct",
           "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Golang"
         }
       ],
       "evidence": {
@@ -11086,12 +11086,12 @@ Filtered 1 local package/s from the scan.
       "purl": "pkg:golang/stdlib@1.21.3",
       "properties": [
         {
-          "name": "osv-scanner:package-manager",
-          "value": "Golang"
-        },
-        {
           "name": "osv-scanner:is-direct",
           "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Golang"
         }
       ],
       "evidence": {
@@ -15510,12 +15510,12 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "purl": "pkg:golang/github.com/BurntSushi/toml@1.0.0",
       "properties": [
         {
-          "name": "osv-scanner:package-manager",
-          "value": "Golang"
-        },
-        {
           "name": "osv-scanner:is-direct",
           "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Golang"
         }
       ],
       "evidence": {
@@ -15535,12 +15535,12 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "purl": "pkg:golang/stdlib@1.21.3",
       "properties": [
         {
-          "name": "osv-scanner:package-manager",
-          "value": "Golang"
-        },
-        {
           "name": "osv-scanner:is-direct",
           "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Golang"
         }
       ],
       "evidence": {
