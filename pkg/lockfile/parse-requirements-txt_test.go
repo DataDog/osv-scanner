@@ -762,7 +762,7 @@ func TestParseRequirementsTxt_FileFormatExample(t *testing.T) {
 		},
 		{
 			Name:           "keyring",
-			Version:        "4.1.1",
+			Version:        ">=4.1.1",
 			PackageManager: models.Requirements,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
@@ -785,13 +785,18 @@ func TestParseRequirementsTxt_FileFormatExample(t *testing.T) {
 		},
 		{
 			Name:           "coverage",
-			Version:        "",
+			Version:        "!=3.5",
 			PackageManager: models.Requirements,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
 			BlockLocation: models.FilePosition{
 				Line:     models.Position{Start: 11, End: 11},
 				Column:   models.Position{Start: 1, End: 77},
+				Filename: sourcePath,
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 11, End: 11},
+				Column:   models.Position{Start: 13, End: 16},
 				Filename: sourcePath,
 			},
 			NameLocation: &models.FilePosition{
@@ -803,7 +808,7 @@ func TestParseRequirementsTxt_FileFormatExample(t *testing.T) {
 		},
 		{
 			Name:           "mopidy-dirble",
-			Version:        "1.1",
+			Version:        "~=1.1",
 			PackageManager: models.Requirements,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
@@ -913,7 +918,7 @@ func TestParseRequirementsTxt_WithAddedSupport(t *testing.T) {
 			},
 			NameLocation: &models.FilePosition{
 				Line:     models.Position{Start: 1, End: 1},
-				Column:   models.Position{Start: 1, End: 15},
+				Column:   models.Position{Start: 1, End: 8},
 				Filename: path,
 			},
 			VersionLocation: &models.FilePosition{
@@ -999,7 +1004,7 @@ func TestParseRequirementsTxt_NonNormalizedNames(t *testing.T) {
 			},
 			NameLocation: &models.FilePosition{
 				Line:     models.Position{Start: 8, End: 8},
-				Column:   models.Position{Start: 1, End: 15},
+				Column:   models.Position{Start: 1, End: 8},
 				Filename: path,
 			},
 			VersionLocation: &models.FilePosition{
@@ -1633,7 +1638,7 @@ func TestParseRequirementsTxt_WithPerRequirementOptions(t *testing.T) {
 		},
 		{
 			Name:           "barproject",
-			Version:        "1.2",
+			Version:        ">=1.2",
 			PackageManager: models.Requirements,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
@@ -1696,7 +1701,7 @@ func TestParseRequirementsTxt_LineContinuation(t *testing.T) {
 		},
 		{
 			Name:           "bar",
-			Version:        "4.5\\\\",
+			Version:        "4.5",
 			PackageManager: models.Requirements,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
@@ -1712,7 +1717,7 @@ func TestParseRequirementsTxt_LineContinuation(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 8, End: 13},
+				Column:   models.Position{Start: 8, End: 11},
 				Filename: path,
 			},
 			DepGroups: []string{"line-continuation"},
@@ -1812,7 +1817,7 @@ func TestParseRequirementsTxt_EnvironmentMarkers(t *testing.T) {
 			},
 			NameLocation: &models.FilePosition{
 				Line:     models.Position{Start: 2, End: 2},
-				Column:   models.Position{Start: 1, End: 20},
+				Column:   models.Position{Start: 1, End: 6},
 				Filename: path,
 			},
 			Commit:    "",

@@ -50,7 +50,19 @@ func packageToString(pkg lockfile.PackageDetails) string {
 		groups = "<no groups>"
 	}
 
-	return fmt.Sprintf("%s@%s (%s, %s, %s)", pkg.Name, pkg.Version, pkg.Ecosystem, commit, groups)
+	blockLocation := fmt.Sprintf("L%d-%d;C%d-%d", pkg.BlockLocation.Line.Start, pkg.BlockLocation.Line.End, pkg.BlockLocation.Column.Start, pkg.BlockLocation.Column.End)
+
+	nameLocation := "<no location>"
+	if pkg.NameLocation != nil {
+		nameLocation = fmt.Sprintf("L%d-%d;C%d-%d", pkg.NameLocation.Line.Start, pkg.NameLocation.Line.End, pkg.NameLocation.Column.Start, pkg.NameLocation.Column.End)
+	}
+
+	versionLocation := "<no location>"
+	if pkg.VersionLocation != nil {
+		versionLocation = fmt.Sprintf("L%d-%d;C%d-%d", pkg.VersionLocation.Line.Start, pkg.VersionLocation.Line.End, pkg.VersionLocation.Column.Start, pkg.VersionLocation.Column.End)
+	}
+
+	return fmt.Sprintf("%s@%s (%s, %s, %s) [block:%s] [name:%s] [version:%s]", pkg.Name, pkg.Version, pkg.Ecosystem, commit, groups, blockLocation, nameLocation, versionLocation)
 }
 
 func hasPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.PackageDetails, ignoreLocations bool) bool {
@@ -61,6 +73,7 @@ func hasPackage(t *testing.T, packages []lockfile.PackageDetails, pkg lockfile.P
 		if ignoreLocations {
 			ignore = []string{"BlockLocation", "NameLocation", "VersionLocation"}
 		}
+
 		if cmp.Equal(details, pkg, cmpopts.IgnoreFields(lockfile.PackageDetails{}, ignore...)) {
 			return true
 		}

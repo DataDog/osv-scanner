@@ -42,6 +42,8 @@ var parsers = map[string]PackageDetailsParser{
 	"renv.lock":                   ParseRenvLock,
 	"requirements.txt":            ParseRequirementsTxt,
 	"yarn.lock":                   ParseYarnLock,
+	"setup.py":                    ParseSetupPy,
+	"setup.cfg":                   ParseSetupCfg,
 }
 
 func ListParsers() []string {

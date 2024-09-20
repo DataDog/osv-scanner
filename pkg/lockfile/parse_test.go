@@ -116,6 +116,8 @@ func TestParse_FindsExpectedParsers(t *testing.T) {
 		"renv.lock",
 		"requirements.txt",
 		"yarn.lock",
+		"setup.py",
+		"setup.cfg",
 	}
 
 	count := 0
