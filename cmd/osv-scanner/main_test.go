@@ -434,7 +434,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 		},
 		// "apk-installed" is supported
 		// TODO : Check why the osv.dev query is failing with a change in ecosystem, for now commenting it as we don't use that path
-		//{
+		// {
 		//	name: "",
 		//	args: []string{
 		//		"",
@@ -442,7 +442,7 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 		//		"apk-installed:" + filepath.FromSlash("./fixtures/locks-many/installed"),
 		//	},
 		//	exit: 0,
-		//},
+		// },
 		// "dpkg-status" is supported
 		{
 			name: "",
