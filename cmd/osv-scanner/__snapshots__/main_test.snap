@@ -2165,22 +2165,12 @@ Scanned <rootdir>/fixtures/locks-insecure/composer.lock file and found 1 package
 ---
 
 [TestRun_LockfileWithExplicitParseAs/#09 - 1]
-Scanned <rootdir>/fixtures/locks-many/installed file as a apk-installed and found 1 package
-
----
-
-[TestRun_LockfileWithExplicitParseAs/#09 - 2]
-API query failed: osv.dev query failed: server response error: {"code":3,"message":"Invalid ecosystem."}
-
----
-
-[TestRun_LockfileWithExplicitParseAs/#10 - 1]
 Scanned <rootdir>/fixtures/locks-many/status file as a dpkg-status and found 1 package
 No issues found
 
 ---
 
-[TestRun_LockfileWithExplicitParseAs/#10 - 2]
+[TestRun_LockfileWithExplicitParseAs/#09 - 2]
 
 ---
 
