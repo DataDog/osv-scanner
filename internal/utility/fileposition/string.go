@@ -27,6 +27,40 @@ func extractPositionFromLine(linePosition int, line string, str string) *models.
 	}
 }
 
+func ExtractStringPositionInMultiline(multiline string, str string, blockStartLine int) *models.FilePosition {
+	if len(str) == 0 {
+		return nil
+	}
+
+	var startIdx = strings.Index(multiline, str)
+	if startIdx == -1 {
+		return nil
+	}
+
+	var startLine, startColumn = blockStartLine, 1
+	for idx := 0; idx < startIdx; idx++ {
+		startColumn++
+		if multiline[idx] == '\n' {
+			startLine++
+			startColumn = 1
+		}
+	}
+
+	var endLine, endColumn = startLine, startColumn
+	for idx := 0; idx < len(str); idx++ {
+		endColumn++
+		if str[idx] == '\n' {
+			endLine++
+			endColumn = 1
+		}
+	}
+
+	return &models.FilePosition{
+		Line:   models.Position{Start: startLine, End: endLine},
+		Column: models.Position{Start: startColumn, End: endColumn},
+	}
+}
+
 func ExtractStringPositionInBlock(block []string, str string, blockStartLine int) *models.FilePosition {
 	if len(str) == 0 {
 		return nil

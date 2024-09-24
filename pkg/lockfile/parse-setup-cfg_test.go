@@ -43,7 +43,7 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 18, End: 18},
-				Column:   models.Position{Start: 15, End: 20},
+				Column:   models.Position{Start: 12, End: 20},
 				Filename: path,
 			},
 		},
@@ -66,7 +66,7 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 19, End: 19},
-				Column:   models.Position{Start: 15, End: 20},
+				Column:   models.Position{Start: 12, End: 20},
 				Filename: path,
 			},
 		},
@@ -89,7 +89,7 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 20, End: 20},
-				Column:   models.Position{Start: 19, End: 24},
+				Column:   models.Position{Start: 17, End: 24},
 				Filename: path,
 			},
 		},
@@ -112,7 +112,7 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 22, End: 22},
-				Column:   models.Position{Start: 21, End: 26},
+				Column:   models.Position{Start: 20, End: 26},
 				Filename: path,
 			},
 		},
@@ -135,13 +135,13 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 23, End: 23},
-				Column:   models.Position{Start: 10, End: 14},
+				Column:   models.Position{Start: 9, End: 14},
 				Filename: path,
 			},
 		},
 		{
 			Name:           "testtools",
-			Version:        "2.3.0",
+			Version:        "===2.3.0",
 			PackageManager: models.SetupTools,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
@@ -158,7 +158,7 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 24, End: 24},
-				Column:   models.Position{Start: 18, End: 23},
+				Column:   models.Position{Start: 15, End: 23},
 				Filename: path,
 			},
 		},
@@ -181,13 +181,13 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 25, End: 25},
-				Column:   models.Position{Start: 15, End: 20},
+				Column:   models.Position{Start: 13, End: 20},
 				Filename: path,
 			},
 		},
 		{
 			Name:           "tensorflow",
-			Version:        "2.17.0",
+			Version:        "==2.17.0",
 			PackageManager: models.SetupTools,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
@@ -204,7 +204,7 @@ func TestParseSetupCfg(t *testing.T) {
 			},
 			VersionLocation: &models.FilePosition{
 				Line:     models.Position{Start: 27, End: 27},
-				Column:   models.Position{Start: 18, End: 24},
+				Column:   models.Position{Start: 15, End: 24},
 				Filename: path,
 			},
 		},

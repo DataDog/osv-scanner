@@ -3,12 +3,10 @@ package lockfile
 import (
 	"bufio"
 	"errors"
-	"io"
-	"path/filepath"
-
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/pkg/models"
 	"golang.org/x/exp/maps"
+	"io"
+	"path/filepath"
 )
 
 // Adds support for parsing the `install_requires` key
@@ -24,9 +22,6 @@ func (e SetupPyExtractor) ShouldExtract(path string) bool {
 
 const InstallRequiresKeyword = "install_requires"
 
-// https://regex101.com/r/szEVdW/4
-var requirementRegexp = cachedregexp.MustCompile(`\s*(?P<pkgname>[a-zA-Z0-9._-]+)\s*(\[(?P<optnames>[a-zA-Z0-9._,\s-]+)])?\s*(\(?\s*(?P<requirement>(,?(?P<constraint>~=|==|!=|<=|>=|<|>|===)\s*(?P<version>[a-zA-Z0-9._!-]+))+|(@\s*(?P<wheel>[^;]+)))\s*\)?)?\s*(;\s*(?P<envmarkers>.*))?\s*`)
-
 var SkipRunes = map[rune]struct{}{
 	' ':  {},
 	'\t': {},
@@ -37,6 +32,7 @@ var SkipRunes = map[rune]struct{}{
 
 func (e SetupPyExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	var lineNumber, columnStart = 1, 1
+	var lineContents string
 
 	packages := map[string]PackageDetails{}
 
@@ -54,6 +50,7 @@ out:
 			return nil, err
 		}
 		columnStart += runeSize
+		lineContents += string(rn)
 
 		// Skip comments, even before install_requires, as they are not relevant
 		// and might incorrectly trigger install_requires start
@@ -61,6 +58,7 @@ out:
 		if err != nil {
 			return nil, err
 		} else if skippedComment {
+			lineContents = ""
 			lineNumber++
 			columnStart = 1
 
@@ -68,6 +66,7 @@ out:
 		}
 
 		if rn == '\n' {
+			lineContents = ""
 			lineNumber++
 			columnStart = 1
 
@@ -111,63 +110,31 @@ out:
 				return nil, errors.New("unexpected string outside of install_requires with equal array")
 			}
 
-			requirement, err := readRemainingStringUntil(rn, r, &rn)
+			requirement, err := readRemainingStringUntil(r, &rn)
+			if err != nil {
+				return nil, err
+			}
+			lineContents += requirement
+
+			details, err := ParseRequirementLine(f.Path(), models.SetupTools, lineContents, requirement, lineNumber, 0, columnStart, columnStart+len(requirement))
 			if err != nil {
 				return nil, err
 			}
 
-			matches := requirementRegexp.FindStringSubmatch(requirement)
-
-			packageName := matches[requirementRegexp.SubexpIndex("pkgname")]
-			versionIdx := requirementRegexp.SubexpIndex("requirement")
-			var packageVersion string
-			if versionIdx != -1 {
-				packageVersion = matches[versionIdx]
-			}
-
-			nameColumnEnd := columnStart + len(packageName)
-			nameLocation := models.FilePosition{
-				Line:     models.Position{Start: lineNumber, End: lineNumber},
-				Column:   models.Position{Start: columnStart, End: nameColumnEnd},
-				Filename: f.Path(),
-			}
-
-			versionColumnEnd := nameColumnEnd + len(packageVersion)
-			versionLocation := models.FilePosition{
-				Line:     models.Position{Start: lineNumber, End: lineNumber},
-				Column:   models.Position{Start: nameColumnEnd, End: versionColumnEnd},
-				Filename: f.Path(),
-			}
-
-			blockLocation := models.FilePosition{
-				Line:     models.Position{Start: lineNumber, End: lineNumber},
-				Column:   models.Position{Start: columnStart, End: versionColumnEnd},
-				Filename: f.Path(),
-			}
-
-			packages[packageName] = PackageDetails{
-				Name:            packageName,
-				Version:         packageVersion,
-				PackageManager:  models.SetupTools,
-				Ecosystem:       PipEcosystem,
-				CompareAs:       PipEcosystem,
-				BlockLocation:   blockLocation,
-				NameLocation:    &nameLocation,
-				VersionLocation: &versionLocation,
-			}
+			packages[details.Name] = *details
 		} else {
-			text, err := readRemainingStringUntil(rn, r, nil)
+			text, err := readRemainingStringUntil(r, nil)
 			if err != nil {
 				return nil, err
 			}
 
-			return nil, errors.New("unexpected text=" + text)
+			return nil, errors.New("unexpected text=" + string(rn) + text)
 		}
 	}
 }
 
-func readRemainingStringUntil(current rune, r *bufio.Reader, end *rune) (string, error) {
-	text := string(current)
+func readRemainingStringUntil(r *bufio.Reader, end *rune) (string, error) {
+	var text string
 	for {
 		rn, _, err := r.ReadRune()
 		if err != nil {

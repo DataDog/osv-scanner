@@ -26,7 +26,7 @@ func TestParseSetupPy(t *testing.T) {
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
 		{
-			Name:           "Jinja2",
+			Name:           "jinja2",
 			Version:        "~=2.7.2",
 			PackageManager: models.SetupTools,
 			Ecosystem:      lockfile.PipEcosystem,
@@ -48,7 +48,7 @@ func TestParseSetupPy(t *testing.T) {
 			},
 		},
 		{
-			Name:           "Django",
+			Name:           "django",
 			Version:        ">=1.6.1",
 			PackageManager: models.SetupTools,
 			Ecosystem:      lockfile.PipEcosystem,
@@ -92,7 +92,7 @@ func TestParseSetupPy(t *testing.T) {
 			},
 		},
 		{
-			Name:           "Django-Select2",
+			Name:           "django-select2",
 			Version:        ">6.0.1",
 			PackageManager: models.SetupTools,
 			Ecosystem:      lockfile.PipEcosystem,

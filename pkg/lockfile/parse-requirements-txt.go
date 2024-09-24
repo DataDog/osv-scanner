@@ -15,10 +15,6 @@ import (
 
 const PipEcosystem Ecosystem = "PyPI"
 
-// https://regex101.com/r/ppD7Uj/1
-var wheelURLPattern = cachedregexp.MustCompile(
-	`^.*?\/(?P<distribution>[^-/]+)-(?P<version>[^-/]+)(-(?P<buildtag>[^-/]+))?-(?P<pythontag>[^-/]+)-(?P<abitag>[^-/]+)-(?P<platformtag>[^-/]+)\.whl\s*$`)
-
 // normalizedName ensures that the package name is normalized per PEP-0503
 // and then removing "added support" syntax if present.
 //
@@ -57,22 +53,6 @@ func isLineContinuation(line string) bool {
 	var re = cachedregexp.MustCompile(`([^\\]|^)(\\{2})*\\$`)
 
 	return re.MatchString(line)
-}
-
-// Please note the whl filename has been standardized here :
-// https://packaging.python.org/en/latest/specifications/binary-distribution-format/#file-name-convention
-func extractVersionFromWheelURL(wheelURL string) string {
-	matches := wheelURLPattern.FindStringSubmatch(wheelURL)
-
-	if len(matches) == 0 {
-		return ""
-	}
-
-	if version := matches[wheelURLPattern.SubexpIndex("version")]; version != "" {
-		return version
-	}
-
-	return ""
 }
 
 type RequirementsTxtExtractor struct{}
@@ -169,7 +149,7 @@ func parseRequirementsTxt(f DepFile, requiredAlready map[string]struct{}) ([]Pac
 			continue
 		}
 
-		detail, err := parseRequirementLine(f.Path(), models.Requirements, line, cleanLine, lineNumber, lineOffset, columnStart, columnEnd)
+		detail, err := ParseRequirementLine(f.Path(), models.Requirements, line, cleanLine, lineNumber, lineOffset, columnStart, columnEnd)
 		if err != nil {
 			return nil, err
 		}

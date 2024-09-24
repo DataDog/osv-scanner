@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/internal/utility/fileposition"
 	"github.com/google/osv-scanner/pkg/models"
 
@@ -16,12 +15,6 @@ import (
 )
 
 // Spec: https://setuptools.pypa.io/en/latest/userguide/declarative_config.html
-
-// https://regex101.com/r/idZTt6/4
-var commentsRegexp = cachedregexp.MustCompile(`\s*#.*`)
-
-// https://regex101.com/r/djHuI8/3
-var installRequiresRegexp = cachedregexp.MustCompile(`install_requires\s*=\s*(?P<requirements>.+)?\s*`)
 
 type SetupCfgExtractor struct{}
 
@@ -95,7 +88,7 @@ func parseSetupCfg(f DepFile, requiredAlready map[string]struct{}) ([]PackageDet
 			requirements := strings.Split(requirementsText, ";")
 
 			for _, requirement := range requirements {
-				detail, err := parseRequirementLine(f.Path(), models.SetupTools, line, requirement, lineNumber, lineOffset, columnStart, columnEnd)
+				detail, err := ParseRequirementLine(f.Path(), models.SetupTools, line, requirement, lineNumber, lineOffset, columnStart, columnEnd)
 				if err != nil {
 					return nil, err
 				}
@@ -161,7 +154,7 @@ func parseSetupCfg(f DepFile, requiredAlready map[string]struct{}) ([]PackageDet
 			continue
 		}
 
-		detail, err := parseRequirementLine(f.Path(), models.SetupTools, line, cleanLine, lineNumber, lineOffset, columnStart, columnEnd)
+		detail, err := ParseRequirementLine(f.Path(), models.SetupTools, line, cleanLine, lineNumber, lineOffset, columnStart, columnEnd)
 		if err != nil {
 			return nil, err
 		}
@@ -185,75 +178,6 @@ func parseSetupCfg(f DepFile, requiredAlready map[string]struct{}) ([]PackageDet
 	}
 
 	return maps.Values(packages), nil
-}
-
-// Spec: https://pip.pypa.io/en/stable/reference/requirements-file-format/#example
-func parseRequirementLine(path string, pkgManager models.PackageManager, line string, cleanLine string, lineNumber int, lineOffset int, columnStart int, columnEnd int) (*PackageDetails, error) {
-	var name, versionRequirememt, version, wheel string
-
-	matches := requirementRegexp.FindStringSubmatch(cleanLine)
-
-	if len(matches) == 0 {
-		return nil, errors.New("could not parse requirement line")
-	}
-
-	name = matches[requirementRegexp.SubexpIndex("pkgname")]
-
-	versionIdx := requirementRegexp.SubexpIndex("version")
-	if versionIdx < len(matches) {
-		version = matches[versionIdx]
-	}
-
-	constraintIdx := requirementRegexp.SubexpIndex("constraint")
-	if constraintIdx < len(matches) {
-		constraint := matches[constraintIdx]
-		if constraint == "===" || (constraint == "==" && !strings.Contains(version, "*")) {
-			versionRequirememt = version
-		} else {
-			versionRequirememt = constraint + version
-		}
-	}
-
-	wheelIdx := requirementRegexp.SubexpIndex("wheel")
-	if wheelIdx < len(matches) {
-		wheel = matches[wheelIdx]
-	}
-
-	if wheel != "" {
-		if strings.HasSuffix(wheel, ".whl") {
-			version = extractVersionFromWheelURL(wheel)
-			versionRequirememt = version
-		}
-	}
-
-	block := strings.Split(line, "\n")
-
-	nameLocation := fileposition.ExtractStringPositionInBlock(block, name, lineNumber)
-	if nameLocation != nil {
-		nameLocation.Filename = path
-	}
-
-	versionLocation := fileposition.ExtractStringPositionInBlock(block, version, lineNumber)
-	if versionLocation != nil {
-		versionLocation.Filename = path
-	}
-
-	blockLocation := models.FilePosition{
-		Line:     models.Position{Start: lineNumber, End: lineNumber + lineOffset},
-		Column:   models.Position{Start: columnStart, End: columnEnd},
-		Filename: path,
-	}
-
-	return &PackageDetails{
-		Name:            normalizedRequirementName(name),
-		Version:         versionRequirememt,
-		BlockLocation:   blockLocation,
-		NameLocation:    nameLocation,
-		VersionLocation: versionLocation,
-		PackageManager:  pkgManager,
-		Ecosystem:       PipEcosystem,
-		CompareAs:       PipEcosystem,
-	}, nil
 }
 
 var _ Extractor = SetupCfgExtractor{}
