@@ -109,11 +109,13 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		packages[require.Mod.Path+"@"+require.Mod.Version] = PackageDetails{
 			Name:            name,
 			Version:         version,
+			PackageManager:  models.Golang,
 			Ecosystem:       GoEcosystem,
 			CompareAs:       GoEcosystem,
 			BlockLocation:   blockLocation,
 			NameLocation:    nameLocation,
 			VersionLocation: versionLocation,
+			IsDirect:        !require.Indirect,
 		}
 	}
 
@@ -164,24 +166,28 @@ func (e GoLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			packages[replacement] = PackageDetails{
 				Name:            name,
 				Version:         version,
+				PackageManager:  models.Golang,
 				Ecosystem:       GoEcosystem,
 				CompareAs:       GoEcosystem,
 				BlockLocation:   blockLocation,
 				VersionLocation: versionLocation,
 				NameLocation:    nameLocation,
+				IsDirect:        packages[replacement].IsDirect,
 			}
 		}
 	}
 
 	if parsedLockfile.Go != nil && parsedLockfile.Go.Version != "" {
 		packages["stdlib"] = PackageDetails{
-			Name:      "stdlib",
-			Version:   parsedLockfile.Go.Version,
-			Ecosystem: GoEcosystem,
-			CompareAs: GoEcosystem,
+			Name:           "stdlib",
+			Version:        parsedLockfile.Go.Version,
+			PackageManager: models.Golang,
+			Ecosystem:      GoEcosystem,
+			CompareAs:      GoEcosystem,
 			BlockLocation: models.FilePosition{
 				Filename: f.Path(),
 			},
+			IsDirect: true,
 		}
 	}
 

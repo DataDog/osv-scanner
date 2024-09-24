@@ -401,11 +401,13 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, _ bool, enab
 	packages := make([]scannedPackage, len(parsedLockfile.Packages))
 	for i, pkgDetail := range parsedLockfile.Packages {
 		packages[i] = scannedPackage{
-			Name:      pkgDetail.Name,
-			Version:   pkgDetail.Version,
-			Commit:    pkgDetail.Commit,
-			Ecosystem: pkgDetail.Ecosystem,
-			DepGroups: pkgDetail.DepGroups,
+			Name:           pkgDetail.Name,
+			Version:        pkgDetail.Version,
+			Commit:         pkgDetail.Commit,
+			Ecosystem:      pkgDetail.Ecosystem,
+			PackageManager: pkgDetail.PackageManager,
+			IsDirect:       pkgDetail.IsDirect,
+			DepGroups:      pkgDetail.DepGroups,
 			Source: models.SourceInfo{
 				Path: path,
 				Type: "lockfile",
@@ -798,6 +800,8 @@ type scannedPackage struct {
 	PURL            string
 	Name            string
 	Ecosystem       lockfile.Ecosystem
+	PackageManager  models.PackageManager
+	IsDirect        bool
 	Commit          string
 	Version         string
 	Source          models.SourceInfo
@@ -1077,9 +1081,10 @@ func makeRequest(
 		// Prefer making package requests where possible.
 		case p.Ecosystem != "" && p.Name != "" && p.Version != "":
 			query.Queries = append(query.Queries, osv.MakePkgRequest(lockfile.PackageDetails{
-				Name:      p.Name,
-				Version:   p.Version,
-				Ecosystem: p.Ecosystem,
+				Name:           p.Name,
+				Version:        p.Version,
+				Ecosystem:      p.Ecosystem,
+				PackageManager: models.Unknown,
 			}))
 		case p.Commit != "":
 			query.Queries = append(query.Queries, osv.MakeCommitRequest(p.Commit))

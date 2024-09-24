@@ -27,22 +27,24 @@ func Group(packageSources []models.PackageSource) (map[string]models.PackageVuln
 				// Entry already exists, we need to merge slices which are not expected to be the exact same
 				packageVulns.DepGroups = append(packageVulns.DepGroups, pkg.DepGroups...)
 				packageVulns.Locations = append(packageVulns.Locations, pkg.Locations...)
+				if packageVulns.Metadata == nil {
+					packageVulns.Metadata = pkg.Metadata
+				} else {
+					packageVulns.Metadata = packageVulns.Metadata.Merge(pkg.Metadata)
+				}
 
 				uniquePackages[packageURL.ToString()] = packageVulns
 			} else {
 				// Entry does not exists yet, lets create it
 				newPackageVuln := models.PackageVulns{
-					Package: models.PackageInfo{
-						Name:      pkg.Package.Name,
-						Version:   pkg.Package.Version,
-						Ecosystem: pkg.Package.Ecosystem,
-					},
+					Package:           pkg.Package,
 					Locations:         slices.Clone(pkg.Locations),
 					DepGroups:         slices.Clone(pkg.DepGroups),
 					Vulnerabilities:   slices.Clone(pkg.Vulnerabilities),
 					Groups:            slices.Clone(pkg.Groups),
 					Licenses:          slices.Clone(pkg.Licenses),
 					LicenseViolations: slices.Clone(pkg.LicenseViolations),
+					Metadata:          pkg.Metadata,
 				}
 				uniquePackages[packageURL.ToString()] = newPackageVuln
 			}

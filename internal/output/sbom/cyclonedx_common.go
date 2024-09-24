@@ -56,6 +56,26 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts 
 	return bom
 }
 
+func buildProperties(metadatas models.PackageMetadata) []cyclonedx.Property {
+	properties := make([]cyclonedx.Property, 0)
+
+	for metadataType, value := range metadatas {
+		if len(value) == 0 {
+			continue
+		}
+		properties = append(properties, cyclonedx.Property{
+			Name:  "osv-scanner:" + string(metadataType),
+			Value: value,
+		})
+	}
+
+	slices.SortFunc(properties, func(a, b cyclonedx.Property) int {
+		return strings.Compare(a.Name, b.Name)
+	})
+
+	return properties
+}
+
 func findArtifact(name string, version string, artifacts []models.ScannedArtifact) *models.ScannedArtifact {
 	for _, artifact := range artifacts {
 		if artifact.Name == name && artifact.Version == version {

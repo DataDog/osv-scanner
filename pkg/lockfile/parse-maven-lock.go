@@ -421,7 +421,9 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		if artifactPosition == nil {
 			openTag, closeTag := fileposition.QuoteMetaDelimiters("<artifactId>", "</artifactId>")
 			artifactPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
-			artifactPosition.Filename = lockPackage.SourceFile
+			if artifactPosition != nil {
+				artifactPosition.Filename = lockPackage.SourceFile
+			}
 		}
 		if versionPosition == nil {
 			openTag, closeTag := fileposition.QuoteMetaDelimiters("<version>", "</version>")
@@ -439,6 +441,7 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			BlockLocation:   blockLocation,
 			NameLocation:    artifactPosition,
 			VersionLocation: versionPosition,
+			PackageManager:  models.Maven,
 		}
 		if scope := strings.TrimSpace(lockPackage.Scope); scope != "" && scope != "compile" {
 			// Only append non-default scope (compile is the default scope).
@@ -466,7 +469,9 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			if versionPosition == nil {
 				openTag, closeTag := fileposition.QuoteMetaDelimiters("<version>", "</version>")
 				versionPosition = fileposition.ExtractDelimitedRegexpPositionInBlock(block, ".*", lockPackage.Line.Start, openTag, closeTag)
-				versionPosition.Filename = lockPackage.SourceFile
+				if versionPosition != nil {
+					versionPosition.Filename = lockPackage.SourceFile
+				}
 			}
 
 			pkgDetails.Version = resolvedVersion
