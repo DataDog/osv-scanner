@@ -1,10 +1,11 @@
 package sbom
 
 import (
-	"github.com/google/osv-scanner/internal/utility/purl"
 	"slices"
 	"strings"
 	"time"
+
+	"github.com/google/osv-scanner/internal/utility/purl"
 
 	"golang.org/x/exp/maps"
 
@@ -24,7 +25,7 @@ func buildCycloneDXBom(uniquePackages map[string]models.PackageVulns, artifacts 
 	for packageURL, packageDetail := range uniquePackages {
 		libraryComponent := createLibraryComponent(packageURL, packageDetail)
 		artifact := findArtifact(packageDetail.Package.Name, packageDetail.Package.Version, artifacts)
-		createFileComponents(packageDetail, artifact, dependsOn, fileComponents)
+		createFileComponents(packageDetail, artifact, dependsOn)
 
 		pkgProcessingHook(&libraryComponent, packageDetail)
 		addVulnerabilities(vulnerabilities, packageDetail)
@@ -86,7 +87,7 @@ func findArtifact(name string, version string, artifacts []models.ScannedArtifac
 	return nil
 }
 
-func createFileComponents(packageDetail models.PackageVulns, artifact *models.ScannedArtifact, dependsOn map[string]cyclonedx.Dependency, components map[string]cyclonedx.Component) {
+func createFileComponents(packageDetail models.PackageVulns, artifact *models.ScannedArtifact, dependsOn map[string]cyclonedx.Dependency) {
 	for _, location := range packageDetail.Locations {
 		if artifact != nil {
 			// The current component is a repository artifact, meaning it is an internal dependency, we should report a dependsOn on the location
@@ -117,6 +118,8 @@ func createLibraryComponent(packageURL string, packageDetail models.PackageVulns
 	component.Version = packageDetail.Package.Version
 
 	fillLicenses(&component, packageDetail)
+	properties := buildProperties(packageDetail.Metadata)
+	component.Properties = &properties
 
 	return component
 }
