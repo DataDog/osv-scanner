@@ -10,6 +10,7 @@ type VulnerabilityResults struct {
 	Results                    []PackageSource            `json:"results"`
 	Artifacts                  []ScannedArtifact          `json:"artifacts,omitempty"`
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
+	ResultsByPURL              map[string]PackageVulns    `json:"results_by_purl"`
 }
 
 type ArtifactDetail struct {
