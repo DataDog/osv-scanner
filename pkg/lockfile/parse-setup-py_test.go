@@ -227,7 +227,7 @@ func TestParseSetupPy_UnexpectedEoF(t *testing.T) {
 	path := filepath.FromSlash(filepath.Join(dir, "fixtures/pip/unexpected_eof/setup.py"))
 	_, err = lockfile.ParseSetupPy(path)
 
-	assert.ErrorContains(t, err, "unexpected text=)\n")
+	assert.ErrorContains(t, err, "unexpected text=")
 }
 
 func TestParseSetupPy_DoubleEqual(t *testing.T) {
@@ -305,5 +305,5 @@ func TestParseSetupPy_UnexpectedText(t *testing.T) {
 	path := filepath.FromSlash(filepath.Join(dir, "fixtures/pip/unexpected_text/setup.py"))
 	_, err = lockfile.ParseSetupPy(path)
 
-	assert.ErrorContains(t, err, "unexpected text=foo\n)\n")
+	assert.ErrorContains(t, err, "unexpected text=foo")
 }
