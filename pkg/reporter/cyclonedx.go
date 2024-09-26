@@ -68,8 +68,8 @@ func (r *CycloneDXReporter) PrintResult(vulnerabilityResults *models.Vulnerabili
 	return nil
 }
 
-// BuildingCycloneDXBOM is only intended to be used when osv-scanner is used as a library as opposed to the CLI,
+// BuildCycloneDXBOM is only intended to be used when osv-scanner is used as a library as opposed to the CLI,
 // it has been written here to avoid being in an internal package which triggers linting issues
-func BuildingCycloneDXBOM(vulnerabilityResults *models.VulnerabilityResults) (*cyclonedx.BOM, error) {
+func BuildCycloneDXBOM(vulnerabilityResults *models.VulnerabilityResults) (*cyclonedx.BOM, error) {
 	return output.CreateCycloneDXBOM(vulnerabilityResults, models.CycloneDXVersion15)
 }

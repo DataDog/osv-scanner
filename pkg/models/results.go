@@ -8,8 +8,21 @@ import (
 // Combined vulnerabilities found for the scanned packages
 type VulnerabilityResults struct {
 	Results                    []PackageSource            `json:"results"`
+	Artifacts                  []ScannedArtifact          `json:"artifacts,omitempty"`
 	ExperimentalAnalysisConfig ExperimentalAnalysisConfig `json:"experimental_config"`
 	ResultsByPURL              map[string]PackageVulns    `json:"results_by_purl"`
+}
+
+type ArtifactDetail struct {
+	Name      string
+	Version   string
+	Filename  string
+	Ecosystem Ecosystem
+}
+
+type ScannedArtifact struct {
+	ArtifactDetail
+	DependsOn *ArtifactDetail
 }
 
 // ExperimentalAnalysisConfig is an experimental type intended to contain the
