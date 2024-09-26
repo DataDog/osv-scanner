@@ -1,11 +1,12 @@
 package lockfile_test
 
 import (
-	"github.com/google/osv-scanner/pkg/models"
-	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/google/osv-scanner/pkg/models"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 const testPath = "path"
@@ -15,7 +16,7 @@ func TestParseRequirementLine(t *testing.T) {
 
 	detail, err := lockfile.ParseRequirementLine(testPath, models.SetupTools, "    package-name[request,foo]~=1.2.3,<10.2.3 # one comment", "package-name[request,foo]~=1.2.3,<10.2.3", 3, 0, 5, 45)
 
-	assert.Nil(t, err)
+	require.NoError(t, err)
 	assert.EqualValues(t, &lockfile.PackageDetails{
 		Name:           "package-name",
 		Version:        "~=1.2.3,<10.2.3",
@@ -42,7 +43,6 @@ func TestParseRequirementLine(t *testing.T) {
 			Filename: testPath,
 		},
 	}, detail)
-
 }
 
 func TestParseRequirementLineWheel(t *testing.T) {
@@ -50,7 +50,7 @@ func TestParseRequirementLineWheel(t *testing.T) {
 
 	detail, err := lockfile.ParseRequirementLine(testPath, models.Requirements, "    wxPython_Phoenix @ http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl # one comment", "wxPython_Phoenix @ http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl", 3, 0, 5, 129)
 
-	assert.Nil(t, err)
+	require.NoError(t, err)
 	assert.EqualValues(t, &lockfile.PackageDetails{
 		Name:           "wxpython-phoenix",
 		Version:        "==3.0.3.dev1820+49a8884",
@@ -77,5 +77,4 @@ func TestParseRequirementLineWheel(t *testing.T) {
 			Filename: testPath,
 		},
 	}, detail)
-
 }

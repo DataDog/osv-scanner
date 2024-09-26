@@ -3,10 +3,11 @@ package lockfile
 import (
 	"bufio"
 	"errors"
-	"github.com/google/osv-scanner/pkg/models"
-	"golang.org/x/exp/maps"
 	"io"
 	"path/filepath"
+
+	"github.com/google/osv-scanner/pkg/models"
+	"golang.org/x/exp/maps"
 )
 
 // Adds support for parsing the `install_requires` key

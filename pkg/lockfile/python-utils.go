@@ -11,18 +11,18 @@ import (
 
 var spaceRegexp = cachedregexp.MustCompile(`\s+`)
 
-// https://regex101.com/r/idZTt6/4
-var commentsRegexp = cachedregexp.MustCompile(`\s*#.*`)
+// https://regex101.com/r/idZTt6/5
+var commentsRegexp = cachedregexp.MustCompile(`\s*#[\s\S]*$`)
 
 // https://regex101.com/r/djHuI8/3
 var installRequiresRegexp = cachedregexp.MustCompile(`install_requires\s*=\s*(?P<requirements>.+)?\s*`)
 
-// https://regex101.com/r/szEVdW/5
-var requirementRegexp = cachedregexp.MustCompile(`\s*(?P<pkgname>[a-zA-Z0-9._-]+)\s*(\[(?P<optnames>[a-zA-Z0-9._,\s-]+)])?\s*(\(?\s*(?P<requirement>(,?(?P<constraint>~=|==|!=|<=|>=|<|>|===)\s*(?P<version>[a-zA-Z0-9._!-]+))+|(@\s*(?P<wheel>[^;]+)))\s*\)?)?\s*(;\s*(?P<envmarkers>.*))?\s*`)
+// https://regex101.com/r/szEVdW/9
+var requirementRegexp = cachedregexp.MustCompile(`^\s*(?P<pkgname>[\w.-]+)\s*(\[(?P<optnames>[\w.,\s-]+)])?\s*(\(?\s*(?P<requirement>(,?\s*(?P<constraint>~=|==|!=|<=|>=|<|>|===)\s*(?P<version>[\w.!*-]+))+|(@\s*(?P<wheel>[^;\s]+)))\s*\)?)?\s*(?P<options>((((--[\w-]+)="([^"]+)")|((--[\w-]+)=([^\s]+))|((--[\w-]+)\s+([^\s]+)))\s*)*)\s*(;\s*(?P<envmarkers>.*))?\s*$`)
 
-// https://regex101.com/r/ppD7Uj/1
+// https://regex101.com/r/ppD7Uj/2
 var wheelURLPattern = cachedregexp.MustCompile(
-	`^.*?\/(?P<distribution>[^-/]+)-(?P<version>[^-/]+)(-(?P<buildtag>[^-/]+))?-(?P<pythontag>[^-/]+)-(?P<abitag>[^-/]+)-(?P<platformtag>[^-/]+)\.whl\s*$`)
+	`^\s*.*?\/(?P<distribution>[^-/]+)-(?P<version>[^-/]+)(-(?P<buildtag>[^-/]+))?-(?P<pythontag>[^-/]+)-(?P<abitag>[^-/]+)-(?P<platformtag>[^-/]+)\.whl\s*$`)
 
 // ParseRequirementLine parses python requirement
 // See: https://pip.pypa.io/en/stable/reference/requirements-file-format/#example
@@ -30,10 +30,11 @@ func ParseRequirementLine(path string, pkgManager models.PackageManager, line st
 	var name, versionRequirement, wheel string
 	var nameLocation, versionLocation *models.FilePosition
 
-	matches := requirementRegexp.FindStringSubmatch(cleanLine)
-	if len(matches) == 0 {
+	matchesList := requirementRegexp.FindAllStringSubmatch(cleanLine, -1)
+	if len(matchesList) == 0 {
 		return nil, errors.New("could not parse requirement line")
 	}
+	matches := matchesList[0]
 
 	name = matches[requirementRegexp.SubexpIndex("pkgname")]
 	nameLocation = fileposition.ExtractStringPositionInMultiline(line, name, lineNumber)
@@ -87,11 +88,11 @@ func ParseRequirementLine(path string, pkgManager models.PackageManager, line st
 // Please note the whl filename has been standardized here :
 // https://packaging.python.org/en/latest/specifications/binary-distribution-format/#file-name-convention
 func extractVersionFromWheelURL(wheelURL string) string {
-	matches := wheelURLPattern.FindStringSubmatch(wheelURL)
-
-	if len(matches) == 0 {
+	matchesList := wheelURLPattern.FindAllStringSubmatch(wheelURL, -1)
+	if len(matchesList) == 0 {
 		return ""
 	}
+	matches := matchesList[0]
 
 	if version := matches[wheelURLPattern.SubexpIndex("version")]; version != "" {
 		return version

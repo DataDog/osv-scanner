@@ -6,9 +6,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/models"
-
 	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/google/osv-scanner/pkg/models"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestRequirementsTxtExtractor_ShouldExtract(t *testing.T) {
@@ -1700,46 +1701,23 @@ func TestParseRequirementsTxt_LineContinuation(t *testing.T) {
 			DepGroups: []string{"line-continuation"},
 		},
 		{
-			Name:           "bar",
-			Version:        "==4.5",
-			PackageManager: models.Requirements,
-			Ecosystem:      lockfile.PipEcosystem,
-			CompareAs:      lockfile.PipEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 1, End: 13},
-				Filename: path,
-			},
-			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 1, End: 4},
-				Filename: path,
-			},
-			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 9, End: 9},
-				Column:   models.Position{Start: 5, End: 11},
-				Filename: path,
-			},
-			DepGroups: []string{"line-continuation"},
-		},
-		{
 			Name:           "baz",
 			Version:        "==7.8.9",
 			PackageManager: models.Requirements,
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
 			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 13, End: 14},
+				Line:     models.Position{Start: 9, End: 10},
 				Column:   models.Position{Start: 1, End: 13},
 				Filename: path,
 			},
 			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
+				Line:     models.Position{Start: 9, End: 9},
 				Column:   models.Position{Start: 1, End: 4},
 				Filename: path,
 			},
 			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 13, End: 13},
+				Line:     models.Position{Start: 9, End: 9},
 				Column:   models.Position{Start: 5, End: 13},
 				Filename: path,
 			},
@@ -1752,23 +1730,37 @@ func TestParseRequirementsTxt_LineContinuation(t *testing.T) {
 			Ecosystem:      lockfile.PipEcosystem,
 			CompareAs:      lockfile.PipEcosystem,
 			BlockLocation: models.FilePosition{
-				Line:     models.Position{Start: 17, End: 17},
+				Line:     models.Position{Start: 13, End: 13},
 				Column:   models.Position{Start: 1, End: 17},
 				Filename: path,
 			},
 			NameLocation: &models.FilePosition{
-				Line:     models.Position{Start: 17, End: 17},
+				Line:     models.Position{Start: 13, End: 13},
 				Column:   models.Position{Start: 1, End: 4},
 				Filename: path,
 			},
 			VersionLocation: &models.FilePosition{
-				Line:     models.Position{Start: 17, End: 17},
+				Line:     models.Position{Start: 13, End: 13},
 				Column:   models.Position{Start: 5, End: 16},
 				Filename: path,
 			},
 			DepGroups: []string{"line-continuation"},
 		},
 	})
+}
+
+func TestParseRequirementsTxt_NotALineContinuation(t *testing.T) {
+	t.Parallel()
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/pip/not-a-line-continuation.txt"))
+	packages, err := lockfile.ParseRequirementsTxt(path)
+
+	require.ErrorContains(t, err, "could not parse requirement line")
+	assert.Equal(t, []lockfile.PackageDetails{}, packages)
 }
 
 func TestParseRequirementsTxt_EnvironmentMarkers(t *testing.T) {
