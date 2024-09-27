@@ -873,6 +873,88 @@
       "file_name": "<rootdir>/fixtures/package-json/multiple-versions/package.json"
     },
     "packageManager": "NPM"
+  },
+  {
+    "name": "dd",
+    "version": "0.0.0-use.local",
+    "targetVersions": [
+      "javascript/datadog"
+    ],
+    "blockLocation": {
+      "line": {
+        "start": 18,
+        "end": 18
+      },
+      "column": {
+        "start": 5,
+        "end": 36
+      },
+      "file_name": "<rootdir>/fixtures/package-json/multiple-versions/package.json"
+    },
+    "versionLocation": {
+      "line": {
+        "start": 18,
+        "end": 18
+      },
+      "column": {
+        "start": 12,
+        "end": 35
+      },
+      "file_name": "<rootdir>/fixtures/package-json/multiple-versions/package.json"
+    },
+    "nameLocation": {
+      "line": {
+        "start": 18,
+        "end": 18
+      },
+      "column": {
+        "start": 6,
+        "end": 8
+      },
+      "file_name": "<rootdir>/fixtures/package-json/multiple-versions/package.json"
+    },
+    "packageManager": "NPM"
+  },
+  {
+    "name": "dd2",
+    "version": "0.0.0-use.local",
+    "targetVersions": [
+      "javascript/datadog"
+    ],
+    "blockLocation": {
+      "line": {
+        "start": 19,
+        "end": 19
+      },
+      "column": {
+        "start": 5,
+        "end": 32
+      },
+      "file_name": "<rootdir>/fixtures/package-json/multiple-versions/package.json"
+    },
+    "versionLocation": {
+      "line": {
+        "start": 19,
+        "end": 19
+      },
+      "column": {
+        "start": 13,
+        "end": 31
+      },
+      "file_name": "<rootdir>/fixtures/package-json/multiple-versions/package.json"
+    },
+    "nameLocation": {
+      "line": {
+        "start": 19,
+        "end": 19
+      },
+      "column": {
+        "start": 6,
+        "end": 9
+      },
+      "file_name": "<rootdir>/fixtures/package-json/multiple-versions/package.json"
+    },
+    "packageManager": "NPM"
   }
 ]
 ---

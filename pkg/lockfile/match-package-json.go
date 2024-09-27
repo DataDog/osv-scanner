@@ -13,10 +13,11 @@ import (
 type PackageJSONMatcher struct{}
 
 const (
-	namePrefix    = "\""
-	nameSuffix    = "\"\\s*:"
-	versionPrefix = ":\\s*\""
-	versionSuffix = "\",?"
+	namePrefix       = "\""
+	nameSuffix       = "\"\\s*:"
+	versionPrefix    = ":\\s*\""
+	versionSuffix    = "\",?"
+	optionalPrefixes = "(file:|link:|portal:)?"
 )
 
 func (m PackageJSONMatcher) GetSourceFile(lockfile DepFile) (DepFile, error) {
@@ -30,7 +31,7 @@ func tryGetNameLocation(name string, line string, lineNumber int) *models.FilePo
 }
 
 func tryGetVersionLocation(targetVersion string, line string, lineNumber int) *models.FilePosition {
-	versionRegexp := cachedregexp.QuoteMeta(targetVersion)
+	versionRegexp := optionalPrefixes + cachedregexp.QuoteMeta(targetVersion)
 
 	return fileposition.ExtractDelimitedRegexpPositionInBlock([]string{line}, versionRegexp, lineNumber, versionPrefix, versionSuffix)
 }

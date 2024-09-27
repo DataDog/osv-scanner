@@ -274,6 +274,18 @@ func TestPackageJSONMatcher_Match_Target_Version(t *testing.T) {
 			PackageManager: models.NPM,
 			TargetVersions: []string{">1.0.2"},
 		},
+		{
+			Name:           "dd",
+			Version:        "0.0.0-use.local",
+			PackageManager: models.NPM,
+			TargetVersions: []string{"javascript/datadog"},
+		},
+		{
+			Name:           "dd2",
+			Version:        "0.0.0-use.local",
+			PackageManager: models.NPM,
+			TargetVersions: []string{"javascript/datadog"},
+		},
 	}
 	err = packageJSONMatcher.Match(sourceFile, packages)
 	if err != nil {

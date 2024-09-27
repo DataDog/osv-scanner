@@ -14,6 +14,8 @@
     "kpg": "npm:pkg@1.5.0",
     "boo": "1.5.3",
     "cde": ">1.0.2",
-    "abc": "1"
+    "abc": "1",
+    "dd": "link:javascript/datadog",
+    "dd2": "javascript/datadog"
   }
 }
