@@ -60,7 +60,9 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 	variablesCount := 0
 
 	interpolationReg := cachedregexp.MustCompile(`\${([^}]+)}`)
+	isMixedReg := cachedregexp.MustCompile(`.+\${[^}]+}|\$[^}]+}.+`)
 	projectProperties := buildProjectProperties(lockfile)
+	isMixed := isMixedReg.MatchString(fieldToResolve)
 
 	result := interpolationReg.ReplaceAllFunc([]byte(fieldToResolve), func(bytes []byte) []byte {
 		variablesCount += 1
@@ -124,7 +126,7 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 		return []byte(property)
 	})
 
-	if variablesCount > 1 {
+	if variablesCount > 1 || isMixed {
 		position = nil
 	}
 
