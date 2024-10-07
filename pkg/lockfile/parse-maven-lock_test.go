@@ -219,7 +219,7 @@ func TestParseMavenLock_TwoPackageWithMixedVersionDefinition(t *testing.T) {
 			},
 		},
 		{
-			Name:           "org.slf4j:slf4j-log4j12",
+			Name:           "org.slf4j:slf4j-log4j12-3.0",
 			Version:        "1.7.25",
 			Ecosystem:      lockfile.MavenEcosystem,
 			CompareAs:      lockfile.MavenEcosystem,
@@ -231,7 +231,7 @@ func TestParseMavenLock_TwoPackageWithMixedVersionDefinition(t *testing.T) {
 			},
 			NameLocation: &models.FilePosition{
 				Line:     models.Position{Start: 14, End: 14},
-				Column:   models.Position{Start: 19, End: 32},
+				Column:   models.Position{Start: 19, End: 48},
 				Filename: path,
 			},
 			VersionLocation: &models.FilePosition{
