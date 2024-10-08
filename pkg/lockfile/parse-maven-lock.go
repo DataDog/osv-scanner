@@ -53,8 +53,9 @@ func buildProjectProperties(lockfile MavenLockFile) map[string]string {
 }
 
 /*
-You can see the regex working here : https://regex101.com/r/inAPiN/2
-*/
+ * You can see the interpolationReg working here : https://regex101.com/r/inAPiN/2
+ * You can see the isMixedReg working here : https://regex101.com/r/KG4tS6/1
+ */
 func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fieldToResolve string) (string, *models.FilePosition) {
 	var position *models.FilePosition
 	variablesCount := 0
