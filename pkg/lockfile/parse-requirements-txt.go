@@ -6,88 +6,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/google/osv-scanner/internal/utility/fileposition"
 	"github.com/google/osv-scanner/pkg/models"
 
 	"github.com/google/osv-scanner/internal/cachedregexp"
+	"github.com/google/osv-scanner/internal/utility/fileposition"
 	"golang.org/x/exp/maps"
 )
 
 const PipEcosystem Ecosystem = "PyPI"
-
-// todo: expand this to support more things, e.g.
-//
-//	https://pip.pypa.io/en/stable/reference/requirements-file-format/#example
-func parseLine(path string, line string, lineNumber int, lineOffset int, columnStart int, columnEnd int) PackageDetails {
-	// Remove environment markers
-	// pre https://pip.pypa.io/en/stable/reference/requirement-specifiers/#overview
-	line = strings.Split(line, ";")[0]
-
-	var constraint string
-	name := line
-
-	version := ""
-
-	if strings.Contains(line, "==") {
-		constraint = "=="
-	}
-
-	if strings.Contains(line, ">=") {
-		constraint = ">="
-	}
-
-	if strings.Contains(line, "~=") {
-		constraint = "~="
-	}
-
-	if strings.Contains(line, "!=") {
-		constraint = "!="
-	}
-
-	if constraint != "" {
-		unprocessedName, unprocessedVersion, _ := strings.Cut(line, constraint)
-		name = strings.TrimSpace(unprocessedName)
-
-		if constraint != "!=" {
-			version, _, _ = strings.Cut(strings.TrimSpace(unprocessedVersion), " ")
-		}
-	} else if strings.Contains(line, "@") {
-		unprocessedName, unprocessedFileLocation, _ := strings.Cut(line, "@")
-		name = strings.TrimSpace(unprocessedName)
-		fileLocation := strings.TrimSpace(unprocessedFileLocation)
-		if strings.HasSuffix(fileLocation, ".whl") {
-			version = extractVersionFromWheelURL(fileLocation)
-		}
-	}
-
-	block := strings.Split(line, "\n")
-	blockLocation := models.FilePosition{
-		Line:     models.Position{Start: lineNumber, End: lineNumber + lineOffset},
-		Column:   models.Position{Start: columnStart, End: columnEnd},
-		Filename: path,
-	}
-
-	nameLocation := fileposition.ExtractStringPositionInBlock(block, name, lineNumber)
-	if nameLocation != nil {
-		nameLocation.Filename = path
-	}
-
-	versionLocation := fileposition.ExtractStringPositionInBlock(block, version, lineNumber)
-	if versionLocation != nil {
-		versionLocation.Filename = path
-	}
-
-	return PackageDetails{
-		Name:            normalizedRequirementName(name),
-		Version:         version,
-		BlockLocation:   blockLocation,
-		NameLocation:    nameLocation,
-		VersionLocation: versionLocation,
-		PackageManager:  models.Requirements,
-		Ecosystem:       PipEcosystem,
-		CompareAs:       PipEcosystem,
-	}
-}
 
 // normalizedName ensures that the package name is normalized per PEP-0503
 // and then removing "added support" syntax if present.
@@ -109,12 +35,6 @@ func normalizedRequirementName(name string) string {
 	return name
 }
 
-func removeComments(line string) string {
-	var re = cachedregexp.MustCompile(`(^|\s+)#.*$`)
-
-	return strings.TrimSpace(re.ReplaceAllString(line, ""))
-}
-
 func isNotRequirementLine(line string) bool {
 	return line == "" ||
 		// flags are not supported
@@ -133,20 +53,6 @@ func isLineContinuation(line string) bool {
 	var re = cachedregexp.MustCompile(`([^\\]|^)(\\{2})*\\$`)
 
 	return re.MatchString(line)
-}
-
-// Please note the whl filename has been standardized here :
-// https://packaging.python.org/en/latest/specifications/binary-distribution-format/#file-name-convention
-func extractVersionFromWheelURL(wheelURL string) string {
-	paths := strings.Split(wheelURL, "/")
-	filename := paths[len(paths)-1]
-	parts := strings.Split(filename, "-")
-
-	if len(parts) < 2 {
-		return ""
-	}
-
-	return parts[1]
 }
 
 type RequirementsTxtExtractor struct{}
@@ -196,8 +102,10 @@ func parseRequirementsTxt(f DepFile, requiredAlready map[string]struct{}) ([]Pac
 			}
 		}
 
-		line = removeComments(line)
-		if ar := strings.TrimPrefix(line, "-r "); ar != line {
+		columnEnd = fileposition.GetLastNonEmptyCharacterIndexInLine(lastLine)
+
+		cleanLine := commentsRegexp.ReplaceAllLiteralString(strings.TrimSpace(line), "")
+		if ar := strings.TrimPrefix(cleanLine, "-r "); ar != cleanLine {
 			if strings.HasPrefix(ar, "http://") || strings.HasPrefix(ar, "https://") {
 				// If the linked requirement file is not locally stored, we skip it
 				continue
@@ -237,16 +145,17 @@ func parseRequirementsTxt(f DepFile, requiredAlready map[string]struct{}) ([]Pac
 			continue
 		}
 
-		if isNotRequirementLine(line) {
+		if isNotRequirementLine(cleanLine) {
 			continue
 		}
 
-		columnEnd = fileposition.GetLastNonEmptyCharacterIndexInLine(lastLine)
-
-		detail := parseLine(f.Path(), line, lineNumber, lineOffset, columnStart, columnEnd)
+		detail, err := ParseRequirementLine(f.Path(), models.Requirements, line, cleanLine, lineNumber, lineOffset, columnStart, columnEnd)
+		if err != nil {
+			return nil, err
+		}
 		key := detail.Name + "@" + detail.Version
 		if _, ok := packages[key]; !ok {
-			packages[key] = detail
+			packages[key] = *detail
 		}
 		d := packages[key]
 		if !hasGroup(d.DepGroups) {
