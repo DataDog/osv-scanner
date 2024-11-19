@@ -21,7 +21,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_NoPackages(t *testing.T) {
 	t.Parallel()
 
 	packages, _, err := testParsingNodeModules(t, "fixtures/npm/empty.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -33,7 +32,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_OnePackage(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/one-package.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -51,6 +49,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_OnePackage(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 	})
 }
@@ -59,7 +58,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_OnePackageDev(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/one-package-dev.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -78,6 +76,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_OnePackageDev(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 	})
 }
@@ -86,7 +85,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_TwoPackages(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/two-packages.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -104,6 +102,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_TwoPackages(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 		{
 			Name:           "supports-color",
@@ -117,6 +116,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_TwoPackages(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 	})
 }
@@ -125,7 +125,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_ScopedPackages(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/scoped-packages.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -162,7 +161,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_NestedDependencies(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/nested-dependencies.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -235,7 +233,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_NestedDependenciesDup(t *testing.T)
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/nested-dependencies-dup.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -272,7 +269,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/commits.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -291,6 +287,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 		{
 			Name:           "ansi-styles",
@@ -304,6 +301,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: false,
 		},
 		{
 			Name:           "babel-preset-php",
@@ -319,6 +317,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "is-number-1",
@@ -334,6 +333,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "is-number-1",
@@ -348,6 +348,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  false,
 		},
 		{
 			Name:           "is-number-2",
@@ -363,6 +364,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "is-number-2",
@@ -377,6 +379,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  false,
 		},
 		{
 			Name:           "is-number-3",
@@ -392,6 +395,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "is-number-3",
@@ -406,6 +410,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  false,
 		},
 		{
 			Name:           "is-number-4",
@@ -421,6 +426,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "is-number-5",
@@ -436,6 +442,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "postcss-calc",
@@ -449,6 +456,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: false,
 		},
 		{
 			Name:           "raven-js",
@@ -463,6 +471,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 		{
 			Name:           "slick-carousel",
@@ -478,6 +487,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 	})
 }
@@ -486,7 +496,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_Files(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/files.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -506,6 +515,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Files(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"dev"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "abbrev",
@@ -542,7 +552,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_Alias(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/alias.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -560,6 +569,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Alias(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 		{
 			Name:           "string-width",
@@ -573,6 +583,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Alias(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 		{
 			Name:           "string-width",
@@ -586,6 +597,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Alias(t *testing.T) {
 				Column:   models.Position{Start: 5, End: 6},
 				Filename: filePath,
 			},
+			IsDirect: true,
 		},
 	})
 }
@@ -594,7 +606,6 @@ func TestNodeModulesExtractor_Extract_npm_v2_OptionalPackage(t *testing.T) {
 	t.Parallel()
 
 	packages, filePath, err := testParsingNodeModules(t, "fixtures/npm/optional-package.v2.json")
-
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -613,6 +624,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_OptionalPackage(t *testing.T) {
 				Filename: filePath,
 			},
 			DepGroups: []string{"optional"},
+			IsDirect:  true,
 		},
 		{
 			Name:           "supports-color",
