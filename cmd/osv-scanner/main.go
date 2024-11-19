@@ -6,9 +6,7 @@ import (
 	"os"
 	"slices"
 
-	"github.com/google/osv-scanner/cmd/osv-scanner/fix"
 	"github.com/google/osv-scanner/cmd/osv-scanner/scan"
-	"github.com/google/osv-scanner/cmd/osv-scanner/update"
 	"github.com/google/osv-scanner/internal/version"
 	"github.com/google/osv-scanner/pkg/osv"
 	"github.com/google/osv-scanner/pkg/osvscanner"
@@ -42,8 +40,6 @@ func run(args []string, stdout, stderr io.Writer) int {
 		DefaultCommand: "scan",
 		Commands: []*cli.Command{
 			scan.Command(stdout, stderr, &r),
-			fix.Command(stdout, stderr, &r),
-			update.Command(stdout, stderr, &r),
 		},
 	}
 
