@@ -1,8 +1,9 @@
 package lockfile
 
 import (
-	"github.com/google/osv-scanner/pkg/models"
 	"strings"
+
+	"github.com/google/osv-scanner/pkg/models"
 )
 
 type PackageDetails struct {
@@ -61,6 +62,7 @@ func (sys Ecosystem) isMavenDevGroup(groups []string) bool {
 			return false
 		}
 	}
+
 	return true
 }
 

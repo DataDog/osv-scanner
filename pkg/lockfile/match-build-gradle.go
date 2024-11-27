@@ -48,7 +48,6 @@ func (m BuildGradleMatcher) Match(sourcefile DepFile, packages []PackageDetails)
 			group, artifact, _ := strings.Cut(pkg.Name, ":")
 			// TODO: what to do if, while using extended format, components are split in multiple lines?
 			if strings.Contains(line, group) && strings.Contains(line, artifact) {
-
 				scope := m.extractingScope(line)
 				if len(scope) > 0 {
 					packages[key].DepGroups = append(packages[key].DepGroups, "runtimeClasspath")
@@ -90,7 +89,7 @@ We extract a runtimeClasspath scope when we find a runtime only instruction beca
 This let us make the difference between a testRuntime dependency and a runtime only dependency
 */
 func (m BuildGradleMatcher) extractingScope(line string) string {
-	instruction := ""
+	var instruction string
 	if strings.Contains(line, "(") {
 		instruction = strings.TrimSpace(strings.Split(line, "(")[0])
 	} else {
@@ -100,6 +99,7 @@ func (m BuildGradleMatcher) extractingScope(line string) string {
 	if instruction == "runtimeOnly" {
 		return "runtimeClasspath"
 	}
+
 	return ""
 }
 
