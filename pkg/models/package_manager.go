@@ -9,6 +9,7 @@ const (
 	Yarn         PackageManager = "Yarn"
 	Pnpm         PackageManager = "Pnpm"
 	Requirements PackageManager = "Requirements"
+	SetupTools   PackageManager = "SetupTools"
 	Pipfile      PackageManager = "Pipfile"
 	Pdm          PackageManager = "Pdm"
 	Poetry       PackageManager = "Poetry"

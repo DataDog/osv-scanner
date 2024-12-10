@@ -6745,11 +6745,11 @@ No package sources found, --help for usage information.
       ]
     },
     {
-      "bom-ref": "pkg:pypi/django@2.2.24",
+      "bom-ref": "pkg:pypi/django@==2.2.24",
       "type": "library",
       "name": "django",
-      "version": "2.2.24",
-      "purl": "pkg:pypi/django@2.2.24",
+      "version": "==2.2.24",
+      "purl": "pkg:pypi/django@==2.2.24",
       "properties": [
         {
           "name": "osv-scanner:package-manager",
@@ -6759,7 +6759,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":7,/"column_end/":15}}"
           }
         ]
       }
@@ -11008,11 +11008,11 @@ Filtered 1 local package/s from the scan.
       ]
     },
     {
-      "bom-ref": "pkg:pypi/django@2.2.24",
+      "bom-ref": "pkg:pypi/django@==2.2.24",
       "type": "library",
       "name": "django",
-      "version": "2.2.24",
-      "purl": "pkg:pypi/django@2.2.24",
+      "version": "==2.2.24",
+      "purl": "pkg:pypi/django@==2.2.24",
       "properties": [
         {
           "name": "osv-scanner:package-manager",
@@ -11022,7 +11022,7 @@ Filtered 1 local package/s from the scan.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":7,/"column_end/":15}}"
           }
         ]
       }
@@ -15270,11 +15270,11 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       ]
     },
     {
-      "bom-ref": "pkg:pypi/django@2.2.24",
+      "bom-ref": "pkg:pypi/django@==2.2.24",
       "type": "library",
       "name": "django",
-      "version": "2.2.24",
-      "purl": "pkg:pypi/django@2.2.24",
+      "version": "==2.2.24",
+      "purl": "pkg:pypi/django@==2.2.24",
       "properties": [
         {
           "name": "osv-scanner:package-manager",
@@ -15284,7 +15284,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":7,/"column_end/":15}}"
           }
         ]
       }
