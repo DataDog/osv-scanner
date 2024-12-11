@@ -27,8 +27,13 @@ func parseToGradlePackageDetail(line string) (PackageDetails, error) {
 		return PackageDetails{}, fmt.Errorf("invalid line in gradle lockfile: %s", line)
 	}
 
-	group, artifact, versionParts := parts[0], parts[1], strings.SplitN(parts[2], "=", 2)
-	version, scopes := versionParts[0], strings.Split(versionParts[1], ",")
+	var scopes []string
+	group, artifact := parts[0], parts[1]
+	version, scopesStr, found := strings.Cut(parts[2], "=")
+
+	if found {
+		scopes = strings.Split(scopesStr, ",")
+	}
 
 	return PackageDetails{
 		Name:           fmt.Sprintf("%s:%s", group, artifact),

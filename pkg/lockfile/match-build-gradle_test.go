@@ -312,7 +312,7 @@ func TestBuildGradleMatcher_Match_OneRuntimePackage_Kotlin(t *testing.T) {
 	}
 	err = buildGradleMatcher.Match(sourceFile, packages)
 	if err != nil {
-		t.Errorf("Got unexepcted error: %v", err)
+		t.Errorf("Got unexpected error: %v", err)
 	}
 
 	expectPackages(t, packages, []lockfile.PackageDetails{
