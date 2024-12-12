@@ -6900,6 +6900,10 @@ No package sources found, --help for usage information.
       "purl": "pkg:pypi/numpy@1.23.3",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -11266,6 +11270,10 @@ Filtered 1 local package/s from the scan.
       "purl": "pkg:pypi/numpy@1.23.3",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -15630,6 +15638,10 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "version": "1.23.3",
       "purl": "pkg:pypi/numpy@1.23.3",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
