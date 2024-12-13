@@ -6856,10 +6856,6 @@ No package sources found, --help for usage information.
       "purl": "pkg:pypi/certifi@2024.8.30",
       "properties": [
         {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
           "name": "osv-scanner:package-manager",
           "value": "Requirements"
         }
@@ -6867,7 +6863,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":19},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":10,/"column_end/":19}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":19},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":10,/"column_end/":19}}"
           }
         ]
       }
@@ -6891,7 +6887,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":1,/"column_end/":19},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":21,/"column_end/":26}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":1,/"column_end/":19},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":21,/"column_end/":26}}"
           }
         ]
       }
@@ -6915,7 +6911,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":9,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":9,/"column_end/":15}}"
           }
         ]
       }
@@ -6939,7 +6935,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":11},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":5},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":7,/"column_end/":11}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":1,/"column_end/":11},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":1,/"column_end/":5},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":7,/"column_end/":11}}"
           }
         ]
       }
@@ -7011,7 +7007,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":17},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":9},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":11,/"column_end/":17}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":17},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":9},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":11,/"column_end/":17}}"
           }
         ]
       }
@@ -7024,10 +7020,6 @@ No package sources found, --help for usage information.
       "purl": "pkg:pypi/urllib3@2.2.3",
       "properties": [
         {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
           "name": "osv-scanner:package-manager",
           "value": "Requirements"
         }
@@ -7035,7 +7027,7 @@ No package sources found, --help for usage information.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":10,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":10,/"column_end/":15}}"
           }
         ]
       }
@@ -11346,10 +11338,6 @@ Filtered 1 local package/s from the scan.
       "purl": "pkg:pypi/certifi@2024.8.30",
       "properties": [
         {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
           "name": "osv-scanner:package-manager",
           "value": "Requirements"
         }
@@ -11357,7 +11345,7 @@ Filtered 1 local package/s from the scan.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":19},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":10,/"column_end/":19}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":19},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":10,/"column_end/":19}}"
           }
         ]
       }
@@ -11381,7 +11369,7 @@ Filtered 1 local package/s from the scan.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":1,/"column_end/":19},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":21,/"column_end/":26}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":1,/"column_end/":19},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":21,/"column_end/":26}}"
           }
         ]
       }
@@ -11405,7 +11393,7 @@ Filtered 1 local package/s from the scan.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":9,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":9,/"column_end/":15}}"
           }
         ]
       }
@@ -11429,7 +11417,7 @@ Filtered 1 local package/s from the scan.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":11},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":5},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":7,/"column_end/":11}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":1,/"column_end/":11},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":1,/"column_end/":5},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":7,/"column_end/":11}}"
           }
         ]
       }
@@ -11501,7 +11489,7 @@ Filtered 1 local package/s from the scan.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":17},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":9},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":11,/"column_end/":17}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":17},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":9},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":11,/"column_end/":17}}"
           }
         ]
       }
@@ -11514,10 +11502,6 @@ Filtered 1 local package/s from the scan.
       "purl": "pkg:pypi/urllib3@2.2.3",
       "properties": [
         {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
           "name": "osv-scanner:package-manager",
           "value": "Requirements"
         }
@@ -11525,7 +11509,7 @@ Filtered 1 local package/s from the scan.
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":10,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":10,/"column_end/":15}}"
           }
         ]
       }
@@ -15835,10 +15819,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "purl": "pkg:pypi/certifi@2024.8.30",
       "properties": [
         {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
           "name": "osv-scanner:package-manager",
           "value": "Requirements"
         }
@@ -15846,7 +15826,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":19},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":10,/"column_end/":19}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":19},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":10,/"column_end/":19}}"
           }
         ]
       }
@@ -15870,7 +15850,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":1,/"column_end/":19},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":4,/"line_end/":4,/"column_start/":21,/"column_end/":26}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":1,/"column_end/":26},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":1,/"column_end/":19},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":11,/"line_end/":11,/"column_start/":21,/"column_end/":26}}"
           }
         ]
       }
@@ -15894,7 +15874,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":12,/"line_end/":12,/"column_start/":9,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":9,/"column_end/":15}}"
           }
         ]
       }
@@ -15918,7 +15898,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":11},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":1,/"column_end/":5},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":8,/"line_end/":8,/"column_start/":7,/"column_end/":11}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":1,/"column_end/":11},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":1,/"column_end/":5},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":15,/"line_end/":15,/"column_start/":7,/"column_end/":11}}"
           }
         ]
       }
@@ -15990,7 +15970,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":17},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":1,/"column_end/":9},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":19,/"line_end/":19,/"column_start/":11,/"column_end/":17}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":17},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":1,/"column_end/":9},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":26,/"line_end/":26,/"column_start/":11,/"column_end/":17}}"
           }
         ]
       }
@@ -16003,10 +15983,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "purl": "pkg:pypi/urllib3@2.2.3",
       "properties": [
         {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
           "name": "osv-scanner:package-manager",
           "value": "Requirements"
         }
@@ -16014,7 +15990,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "evidence": {
         "occurrences": [
           {
-            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":21,/"line_end/":21,/"column_start/":10,/"column_end/":15}}"
+            "location": "{/"block/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":15},/"name/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":1,/"column_end/":8},/"version/":{/"file_name/":/"requirements.txt/",/"line_start/":28,/"line_end/":28,/"column_start/":10,/"column_end/":15}}"
           }
         ]
       }
