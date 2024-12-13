@@ -7061,6 +7061,33 @@ No package sources found, --help for usage information.
       }
     },
     {
+      "bom-ref": "pkg:pypi/pandas@2.2.3",
+      "type": "library",
+      "name": "pandas",
+      "version": "2.2.3",
+      "purl": "pkg:pypi/pandas@2.2.3",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Requirements"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":14},/"name/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":14}}"
+          },
+          {
+            "location": "{/"block/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":14},/"name/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":14}}"
+          }
+        ]
+      }
+    },
+    {
       "bom-ref": "pkg:pypi/requests@2.32.3",
       "type": "library",
       "name": "requests",
@@ -7133,13 +7160,14 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/gradle-kotlin/g
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/mix.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/npm/package-lock.json file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/nuget/packages.lock.json file and found 3 packages
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/other-requirements.txt file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/packages.lock.json file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pnpm/pnpm-lock.yaml file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/poetry.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pom.xml file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pubspec.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/renv.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/requirements-test.txt file and found 3 packages
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/requirements.txt file and found 6 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock file and found 1 package
 Filtered 1 local package/s from the scan.
@@ -11616,6 +11644,33 @@ Filtered 1 local package/s from the scan.
       }
     },
     {
+      "bom-ref": "pkg:pypi/pandas@2.2.3",
+      "type": "library",
+      "name": "pandas",
+      "version": "2.2.3",
+      "purl": "pkg:pypi/pandas@2.2.3",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Requirements"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":14},/"name/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":14}}"
+          },
+          {
+            "location": "{/"block/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":14},/"name/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":14}}"
+          }
+        ]
+      }
+    },
+    {
       "bom-ref": "pkg:pypi/requests@2.32.3",
       "type": "library",
       "name": "requests",
@@ -11688,13 +11743,14 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/gradle-kotlin/
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/mix.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/npm/package-lock.json file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/nuget/packages.lock.json file and found 3 packages
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/other-requirements.txt file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/packages.lock.json file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pnpm/pnpm-lock.yaml file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/poetry.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pom.xml file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pubspec.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/renv.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/requirements-test.txt file and found 3 packages
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/requirements.txt file and found 6 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock file and found 1 package
 
@@ -16170,6 +16226,33 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       }
     },
     {
+      "bom-ref": "pkg:pypi/pandas@2.2.3",
+      "type": "library",
+      "name": "pandas",
+      "version": "2.2.3",
+      "purl": "pkg:pypi/pandas@2.2.3",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Requirements"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":14},/"name/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":14}}"
+          },
+          {
+            "location": "{/"block/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":14},/"name/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":1,/"column_end/":7},/"version/":{/"file_name/":/"other-requirements.txt/",/"line_start/":1,/"line_end/":1,/"column_start/":9,/"column_end/":14}}"
+          }
+        ]
+      }
+    },
+    {
       "bom-ref": "pkg:pypi/requests@2.32.3",
       "type": "library",
       "name": "requests",
@@ -16242,13 +16325,14 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/gradle-k
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/mix.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/npm/package-lock.json file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/nuget/packages.lock.json file and found 3 packages
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/other-requirements.txt file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/packages.lock.json file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pnpm/pnpm-lock.yaml file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/poetry.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pom.xml file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pubspec.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/renv.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/requirements-test.txt file and found 3 packages
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/requirements.txt file and found 6 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/yarn/yarn.lock file and found 1 package
 
