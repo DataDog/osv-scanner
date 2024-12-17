@@ -169,26 +169,26 @@ func extractDependenciesFromImporter(importers map[string]PnpmImporters) []map[s
 	return dependencies
 }
 
-func (pnpmDependencies *PnpmDependencies) contains(pkg PnpmLockPackage) bool {
+func (pnpmDependencies *PnpmDependencies) contains(pkgName, pkgVersion string) bool {
 	for name, dependency := range *pnpmDependencies {
-		if name == pkg.Name && dependency.Version == pkg.Version {
+		if name == pkgName && dependency.Version == pkgVersion {
 			return true
 		}
 	}
 	return false
 }
 
-func extractPkgScopesFromImporters(importers map[string]PnpmImporters, pkg PnpmLockPackage) []string {
+func extractPkgScopesFromImporters(importers map[string]PnpmImporters, pkgName, pkgVersion string) []string {
 	scopes := make(map[string]bool)
 
 	for _, importer := range importers {
-		if importer.Dependencies.contains(pkg) {
+		if importer.Dependencies.contains(pkgName, pkgVersion) {
 			scopes["prod"] = true
 		}
-		if importer.OptionalDependencies.contains(pkg) {
+		if importer.OptionalDependencies.contains(pkgName, pkgVersion) {
 			scopes["optional"] = true
 		}
-		if importer.DevDependencies.contains(pkg) {
+		if importer.DevDependencies.contains(pkgName, pkgVersion) {
 			scopes["dev"] = true
 		}
 	}
@@ -270,7 +270,7 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 		}
 
 		var depGroups []string
-		importerScopes := extractPkgScopesFromImporters(lockfile.Importers, pkg)
+		importerScopes := extractPkgScopesFromImporters(lockfile.Importers, name, version)
 		if pkg.Dev {
 			depGroups = append(depGroups, "dev")
 		} else if len(importerScopes) > 0 {
