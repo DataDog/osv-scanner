@@ -28,8 +28,7 @@ const MavenCentral = "https://repo.maven.apache.org/maven2"
 
 type MavenRegistryProject struct {
 	io.ReadCloser
-	context context.Context
-	path    string
+	path string
 }
 
 var errAPIFailed = errors.New("API query failed")
@@ -53,7 +52,7 @@ func NewMavenRegistryAPIClient(url string) (*MavenRegistryProject, error) {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, fmt.Errorf("%w: failed to read response body: %s", errAPIFailed, err)
+		return nil, fmt.Errorf("%w: failed to read response body: %w", errAPIFailed, err)
 	}
 
 	if len(body) == 0 {
@@ -65,7 +64,6 @@ func NewMavenRegistryAPIClient(url string) (*MavenRegistryProject, error) {
 	return &MavenRegistryProject{
 		ReadCloser: readCloser,
 		path:       url,
-		context:    context,
 	}, nil
 }
 
