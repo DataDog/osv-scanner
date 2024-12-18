@@ -162,16 +162,19 @@ func extractDependenciesFromImporter(importers map[string]PnpmImporters) []map[s
 		return dependencies
 	}
 	for _, importer := range importers {
-		dependencies = append(dependencies, importer.Dependencies)
-		dependencies = append(dependencies, importer.OptionalDependencies)
-		dependencies = append(dependencies, importer.DevDependencies)
+		dependencies = append(dependencies, importer.Dependencies, importer.OptionalDependencies, importer.DevDependencies)
 	}
 	return dependencies
 }
 
+func cleanPeerDeps(version string) string {
+	return strings.Split(version, "(")[0]
+}
+
 func (pnpmDependencies *PnpmDependencies) contains(pkgName, pkgVersion string) bool {
 	for name, dependency := range *pnpmDependencies {
-		if name == pkgName && dependency.Version == pkgVersion {
+		versionWithoutPeerDeps := cleanPeerDeps(dependency.Version)
+		if name == pkgName && versionWithoutPeerDeps == pkgVersion {
 			return true
 		}
 	}
@@ -191,6 +194,9 @@ func extractPkgScopesFromImporters(importers map[string]PnpmImporters, pkgName, 
 		if importer.DevDependencies.contains(pkgName, pkgVersion) {
 			scopes["dev"] = true
 		}
+	}
+	if len(scopes) > 0 {
+		// It is a direct dep, lets propagate the scope to the transitive packages
 	}
 	return maps.Keys(scopes)
 }
@@ -349,6 +355,16 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	// this will happen if the file is empty
 	if parsedLockfile == nil {
 		parsedLockfile = &PnpmLockfile{}
+	}
+
+	lockfileVersion, _ := strconv.ParseFloat(strings.ReplaceAll(parsedLockfile.Version, "-flavoured", ""), 32)
+	if lockfileVersion >= 6.0 {
+		file, err := f.Open(f.Path())
+		if err != nil {
+			return []PackageDetails{}, err
+		}
+		defer file.Close()
+		return e.extractV9(file)
 	}
 
 	return parsePnpmLock(*parsedLockfile), nil

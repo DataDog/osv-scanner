@@ -36,6 +36,7 @@ func TestParsePnpmLock_v9_OnePackage(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 	})
 }
@@ -79,6 +80,7 @@ func TestParsePnpmLock_v9_ScopedPackages(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 	})
 }
@@ -100,6 +102,7 @@ func TestParsePnpmLock_v9_PeerDependencies(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "acorn",
@@ -108,6 +111,7 @@ func TestParsePnpmLock_v9_PeerDependencies(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 	})
 }
@@ -128,6 +132,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "@eslint/eslintrc",
@@ -136,6 +141,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "@typescript-eslint/eslint-plugin",
@@ -145,6 +151,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "@typescript-eslint/parser",
@@ -154,6 +161,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "@typescript-eslint/type-utils",
@@ -162,6 +170,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "@typescript-eslint/typescript-estree",
@@ -170,6 +179,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "@typescript-eslint/utils",
@@ -178,6 +188,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "debug",
@@ -186,6 +197,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "eslint",
@@ -195,6 +207,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "has-flag",
@@ -203,6 +216,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "supports-color",
@@ -211,6 +225,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "tsutils",
@@ -219,6 +234,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "typescript",
@@ -228,6 +244,7 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 	})
 }
@@ -247,7 +264,8 @@ func TestParsePnpmLock_v9_MultipleVersions(t *testing.T) {
 			PackageManager: models.Pnpm,
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
-			IsDirect:       true,
+			IsDirect:       false,
+			DepGroups:      []string{"prod"},
 		},
 		{
 			Name:           "uuid",
@@ -257,14 +275,17 @@ func TestParsePnpmLock_v9_MultipleVersions(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 		{
-			Name:           "xmlbuilder",
-			Version:        "11.0.1",
+			Name:           "aws-sdk",
+			Version:        "2.1692.0",
 			PackageManager: models.Pnpm,
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
-			IsDirect:       false,
+			TargetVersions: []string{"^2.1087.0"},
+			IsDirect:       true,
+			DepGroups:      []string{"prod"},
 		},
 	})
 }
@@ -286,6 +307,7 @@ func TestParsePnpmLock_v9_Commits(t *testing.T) {
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
 			Commit:         "02fa893d619d3da85411acc8fd4e2eea0e95a9d9",
+			DepGroups:      []string{"prod"},
 			IsDirect:       true,
 		},
 		{
@@ -295,6 +317,7 @@ func TestParsePnpmLock_v9_Commits(t *testing.T) {
 			TargetVersions: []string{"github:jonschlinkert/is-number#master"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			DepGroups:      []string{"prod"},
 			Commit:         "98e8ff1da1a89f93d1397a24d7413ed15421c139",
 			IsDirect:       true,
 		},
@@ -317,6 +340,7 @@ func TestParsePnpmLock_v9_MixedGroups(t *testing.T) {
 			TargetVersions: []string{"^5.0.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			DepGroups:      []string{"prod"},
 			IsDirect:       true,
 		},
 		{
@@ -326,6 +350,7 @@ func TestParsePnpmLock_v9_MixedGroups(t *testing.T) {
 			TargetVersions: []string{"^8.0.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			DepGroups:      []string{"optional"},
 			IsDirect:       true,
 		},
 		{
@@ -335,6 +360,7 @@ func TestParsePnpmLock_v9_MixedGroups(t *testing.T) {
 			TargetVersions: []string{"^7.0.0"},
 			Ecosystem:      lockfile.PnpmEcosystem,
 			CompareAs:      lockfile.PnpmEcosystem,
+			DepGroups:      []string{"dev"},
 			IsDirect:       true,
 		},
 	})
