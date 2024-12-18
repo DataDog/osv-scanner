@@ -368,9 +368,9 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int, visitedPath ma
 	}
 
 	parentPath := e.resolveParentFilename(parsedLockfile.Parent, f.Path())
-	if _, err := os.Stat(parentPath); errors.Is(err, os.ErrNotExist) {
+	if _, err = os.Stat(parentPath); errors.Is(err, os.ErrNotExist) {
 		// If the parent pom does not exist, it still can be in an external repository, but it is unreachable from the parser
-		_, _ = fmt.Fprintf(os.Stderr, "Maven lockfile parser couldn't reach the parent because it is not locally defined\n")
+		_, _ = fmt.Fprintf(os.Stderr, "Maven lockfile parser couldn't reach the parent because it is not locally defined: %s\n", parentPath)
 		return parsedLockfile, nil
 	}
 
@@ -449,7 +449,7 @@ func (e MavenLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		}
 		if scope := strings.TrimSpace(lockPackage.Scope); scope != "" && scope != "compile" {
 			// Only append non-default scope (compile is the default scope).
-			pkgDetails.DepGroups = append(pkgDetails.DepGroups, scope)
+			pkgDetails.DepGroups = append(pkgDetails.DepGroups, strings.ToLower(scope))
 		}
 		details[finalName] = pkgDetails
 	}
