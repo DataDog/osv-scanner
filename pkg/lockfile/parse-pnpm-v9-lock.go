@@ -8,6 +8,7 @@ import (
 	"golang.org/x/exp/maps"
 	"gopkg.in/yaml.v3"
 	"io"
+	"strconv"
 	"strings"
 )
 
@@ -210,7 +211,7 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 	return maps.Values(packages)
 }
 
-func (e PnpmLockExtractor) extract(f DepFile) ([]PackageDetails, error) {
+func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	var parsedLockfile *PnpmLockfile
 
 	err := yaml.NewDecoder(f).Decode(&parsedLockfile)
@@ -224,5 +225,29 @@ func (e PnpmLockExtractor) extract(f DepFile) ([]PackageDetails, error) {
 		parsedLockfile = &PnpmLockfile{}
 	}
 
+	// Check if we need to use the legacy extractor instead
+	lockfileVersion, _ := strconv.ParseFloat(strings.ReplaceAll(parsedLockfile.Version, "-flavoured", ""), 32)
+	if lockfileVersion < 7.0 {
+		file, err := f.Open(f.Path())
+		if err != nil {
+			return []PackageDetails{}, err
+		}
+		defer file.Close()
+		return e.extractLegacyPnpm(file)
+	}
+
 	return parsePnpmLock(*parsedLockfile), nil
+}
+
+var PnpmExtractor = PnpmLockExtractor{
+	WithMatcher{Matcher: PackageJSONMatcher{}},
+}
+
+//nolint:gochecknoinits
+func init() {
+	registerExtractor("pnpm-lock.yaml", PnpmExtractor)
+}
+
+func ParsePnpmLock(pathToLockfile string) ([]PackageDetails, error) {
+	return extractFromFile(pathToLockfile, PnpmExtractor)
 }

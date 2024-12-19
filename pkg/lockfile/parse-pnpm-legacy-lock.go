@@ -285,7 +285,7 @@ func (e PnpmLockExtractor) ShouldExtract(path string) bool {
 	return filepath.Base(path) == "pnpm-lock.yaml"
 }
 
-func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
+func (e PnpmLockExtractor) extractLegacyPnpm(f DepFile) ([]PackageDetails, error) {
 	var parsedLockfile *PnpmLegacyLockfile
 
 	err := yaml.NewDecoder(f).Decode(&parsedLockfile)
@@ -299,28 +299,5 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 		parsedLockfile = &PnpmLegacyLockfile{}
 	}
 
-	lockfileVersion, _ := strconv.ParseFloat(strings.ReplaceAll(parsedLockfile.Version, "-flavoured", ""), 32)
-	if lockfileVersion > 6.0 {
-		file, err := f.Open(f.Path())
-		if err != nil {
-			return []PackageDetails{}, err
-		}
-		defer file.Close()
-		return e.extract(file)
-	}
-
 	return parsePnpmLegacyLock(*parsedLockfile), nil
-}
-
-var PnpmExtractor = PnpmLockExtractor{
-	WithMatcher{Matcher: PackageJSONMatcher{}},
-}
-
-//nolint:gochecknoinits
-func init() {
-	registerExtractor("pnpm-lock.yaml", PnpmExtractor)
-}
-
-func ParsePnpmLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, PnpmExtractor)
 }
