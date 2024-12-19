@@ -246,6 +246,15 @@ func TestParsePnpmLock_v9_PeerDependenciesAdvanced(t *testing.T) {
 			IsDirect:       true,
 			DepGroups:      []string{"prod"},
 		},
+		{
+			Name:           "chalk",
+			Version:        "4.1.2",
+			PackageManager: models.Pnpm,
+			Ecosystem:      lockfile.PnpmEcosystem,
+			CompareAs:      lockfile.PnpmEcosystem,
+			IsDirect:       false,
+			DepGroups:      []string{"prod"},
+		},
 	})
 }
 
