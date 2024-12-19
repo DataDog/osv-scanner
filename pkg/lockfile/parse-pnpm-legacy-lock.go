@@ -14,47 +14,47 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type PnpmLockPackageResolution struct {
+type PnpmLegacyLockPackageResolution struct {
 	Tarball string `yaml:"tarball"`
 	Commit  string `yaml:"commit"`
 	Repo    string `yaml:"repo"`
 	Type    string `yaml:"type"`
 }
 
-type PnpmLockPackage struct {
-	Resolution PnpmLockPackageResolution `yaml:"resolution"`
-	Name       string                    `yaml:"name"`
-	Version    string                    `yaml:"version"`
-	Dev        bool                      `yaml:"dev"`
+type PnpmLegacyLockPackage struct {
+	Resolution PnpmLegacyLockPackageResolution `yaml:"resolution"`
+	Name       string                          `yaml:"name"`
+	Version    string                          `yaml:"version"`
+	Dev        bool                            `yaml:"dev"`
 }
 
-type PnpmLockDependency struct {
+type PnpmLegacyLockDependency struct {
 	Specifier string `yaml:"specifier"`
 	Version   string `yaml:"version"`
 }
 
 type (
-	PnpmLockPackages map[string]PnpmLockPackage
-	PnpmSpecifiers   map[string]string
-	PnpmDependencies map[string]PnpmLockDependency
+	PnpmLegacyLockPackages map[string]PnpmLegacyLockPackage
+	PnpmLegacySpecifiers   map[string]string
+	PnpmLegacyDependencies map[string]PnpmLegacyLockDependency
 )
 
-type PnpmLockfile struct {
-	Version              string           `yaml:"lockfileVersion"`
-	Packages             PnpmLockPackages `yaml:"packages,omitempty"`
-	Specifiers           PnpmSpecifiers   `yaml:"specifiers,omitempty"`
-	Dependencies         PnpmDependencies `yaml:"dependencies,omitempty"`
-	OptionalDependencies PnpmDependencies `yaml:"optionalDependencies,omitempty"`
-	DevDependencies      PnpmDependencies `yaml:"devDependencies,omitempty"`
+type PnpmLegacyLockfile struct {
+	Version              string                 `yaml:"lockfileVersion"`
+	Packages             PnpmLegacyLockPackages `yaml:"packages,omitempty"`
+	Specifiers           PnpmLegacySpecifiers   `yaml:"specifiers,omitempty"`
+	Dependencies         PnpmLegacyDependencies `yaml:"dependencies,omitempty"`
+	OptionalDependencies PnpmLegacyDependencies `yaml:"optionalDependencies,omitempty"`
+	DevDependencies      PnpmLegacyDependencies `yaml:"devDependencies,omitempty"`
 }
 
-func (pnpmDependencies *PnpmDependencies) UnmarshalYAML(value *yaml.Node) error {
+func (pnpmDependencies *PnpmLegacyDependencies) UnmarshalYAML(value *yaml.Node) error {
 	if *pnpmDependencies == nil {
-		*pnpmDependencies = make(map[string]PnpmLockDependency)
+		*pnpmDependencies = make(map[string]PnpmLegacyLockDependency)
 	}
 
 	for i := 0; i < len(value.Content); i += 2 {
-		var pnpmLockDependency PnpmLockDependency
+		var pnpmLockDependency PnpmLegacyLockDependency
 
 		keyNode := value.Content[i]
 		valueNode := value.Content[i+1]
@@ -138,7 +138,7 @@ func cleanPeerDeps(version string) string {
 	return strings.Split(version, "(")[0]
 }
 
-func (pnpmDependencies *PnpmDependencies) contains(pkgName, pkgVersion string) bool {
+func (pnpmDependencies *PnpmLegacyDependencies) contains(pkgName, pkgVersion string) bool {
 	for name, dependency := range *pnpmDependencies {
 		versionWithoutPeerDeps := cleanPeerDeps(dependency.Version)
 		if name == pkgName && versionWithoutPeerDeps == pkgVersion {
@@ -169,7 +169,7 @@ func sanitizeLocalDependencyPath(value string, prefix string) string {
 	return value
 }
 
-func getVersionInfo(name string, maps ...map[string]PnpmLockDependency) (specifier, version string, found bool) {
+func getVersionInfo(name string, maps ...map[string]PnpmLegacyLockDependency) (specifier, version string, found bool) {
 	for _, m := range maps {
 		if info, ok := m[name]; ok {
 			return info.Specifier, info.Version, true
@@ -179,7 +179,7 @@ func getVersionInfo(name string, maps ...map[string]PnpmLockDependency) (specifi
 	return "", "", false
 }
 
-func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
+func parsePnpmLegacyLock(lockfile PnpmLegacyLockfile) []PackageDetails {
 	packages := make([]PackageDetails, 0, len(lockfile.Packages))
 
 	for s, pkg := range lockfile.Packages {
@@ -286,7 +286,7 @@ func (e PnpmLockExtractor) ShouldExtract(path string) bool {
 }
 
 func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
-	var parsedLockfile *PnpmLockfile
+	var parsedLockfile *PnpmLegacyLockfile
 
 	err := yaml.NewDecoder(f).Decode(&parsedLockfile)
 
@@ -296,7 +296,7 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 
 	// this will happen if the file is empty
 	if parsedLockfile == nil {
-		parsedLockfile = &PnpmLockfile{}
+		parsedLockfile = &PnpmLegacyLockfile{}
 	}
 
 	lockfileVersion, _ := strconv.ParseFloat(strings.ReplaceAll(parsedLockfile.Version, "-flavoured", ""), 32)
@@ -306,10 +306,10 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			return []PackageDetails{}, err
 		}
 		defer file.Close()
-		return e.extractV9(file)
+		return e.extract(file)
 	}
 
-	return parsePnpmLock(*parsedLockfile), nil
+	return parsePnpmLegacyLock(*parsedLockfile), nil
 }
 
 var PnpmExtractor = PnpmLockExtractor{

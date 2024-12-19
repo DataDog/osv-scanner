@@ -11,32 +11,32 @@ import (
 	"strings"
 )
 
-type PnpmV9LockPackageResolution struct {
+type PnpmLockPackageResolution struct {
 	Tarball string `yaml:"tarball"`
 	Commit  string `yaml:"commit"`
 	Repo    string `yaml:"repo"`
 	Type    string `yaml:"type"`
 }
 
-type PnpmV9LockDependency struct {
+type PnpmLockDependency struct {
 	Specifier string `yaml:"specifier"`
 	Version   string `yaml:"version"`
 }
 
-type PnpmV9Package struct {
+type PnpmPackage struct {
 	Resolution map[string]string `yaml:"resolution"`
 	Version    string            `yaml:"version"`
 }
 
 type (
-	PnpmV9LockPackages map[string]PnpmV9Package
-	PnpmV9Dependencies map[string]PnpmV9LockDependency
+	PnpmLockPackages map[string]PnpmPackage
+	PnpmDependencies map[string]PnpmLockDependency
 )
 
-type PnpmV9Importers struct {
-	Dependencies         PnpmV9Dependencies `yaml:"dependencies,omitempty"`
-	OptionalDependencies PnpmV9Dependencies `yaml:"optionalDependencies,omitempty"`
-	DevDependencies      PnpmV9Dependencies `yaml:"devDependencies,omitempty"`
+type PnpmImporters struct {
+	Dependencies         PnpmDependencies `yaml:"dependencies,omitempty"`
+	OptionalDependencies PnpmDependencies `yaml:"optionalDependencies,omitempty"`
+	DevDependencies      PnpmDependencies `yaml:"devDependencies,omitempty"`
 }
 
 type PnpmSnapshot struct {
@@ -44,19 +44,19 @@ type PnpmSnapshot struct {
 	OptionalDependencies map[string]string `yaml:"optionalDependencies"`
 }
 
-type PnpmV9Lockfile struct {
-	Version   string                     `yaml:"lockfileVersion"`
-	Importers map[string]PnpmV9Importers `yaml:"importers,omitempty"`
-	Packages  PnpmV9LockPackages         `yaml:"packages,omitempty"`
-	Snapshots map[string]PnpmSnapshot    `yaml:"snapshots,omitempty"`
+type PnpmLockfile struct {
+	Version   string                   `yaml:"lockfileVersion"`
+	Importers map[string]PnpmImporters `yaml:"importers,omitempty"`
+	Packages  PnpmLockPackages         `yaml:"packages,omitempty"`
+	Snapshots map[string]PnpmSnapshot  `yaml:"snapshots,omitempty"`
 }
 
 type PnpmDirectDependency struct {
 	Pkg PackageDetails
-	Dep PnpmV9LockDependency
+	Dep PnpmLockDependency
 }
 
-func getCleanedVersion(lockfile PnpmV9Lockfile, name, version string) string {
+func getCleanedVersion(lockfile PnpmLockfile, name, version string) string {
 	if strings.HasPrefix(version, "https://codeload.github.com") {
 		// This is a link to a tarball, not a version we need to check the resolved version in the package section
 		if pkg, ok := lockfile.Packages[name+"@"+version]; ok {
@@ -111,7 +111,7 @@ func addDependencyToPackageDetails(dependency PackageDetails, deps map[string]Pa
 	return deps
 }
 
-func extractTransitiveDeps(lockfile PnpmV9Lockfile, root PnpmDirectDependency, targetedKey string, deps map[string]PackageDetails) map[string]PackageDetails {
+func extractTransitiveDeps(lockfile PnpmLockfile, root PnpmDirectDependency, targetedKey string, deps map[string]PackageDetails) map[string]PackageDetails {
 	// Need to look at dependencies
 	visitedSnapshots := make(map[string]bool)
 	snapshotQueue := make([]string, 1)
@@ -168,7 +168,7 @@ func extractTransitiveDeps(lockfile PnpmV9Lockfile, root PnpmDirectDependency, t
 	return deps
 }
 
-func extractDirectDependencies(lockfile PnpmV9Lockfile, roots []PnpmDirectDependency, dependencies PnpmV9Dependencies, depGroup string) []PnpmDirectDependency {
+func extractDirectDependencies(lockfile PnpmLockfile, roots []PnpmDirectDependency, dependencies PnpmDependencies, depGroup string) []PnpmDirectDependency {
 	for dependencyName, dependency := range dependencies {
 		roots = append(roots, PnpmDirectDependency{
 			Pkg: PackageDetails{
@@ -188,7 +188,7 @@ func extractDirectDependencies(lockfile PnpmV9Lockfile, roots []PnpmDirectDepend
 	return roots
 }
 
-func parsePnpmV9Lock(lockfile PnpmV9Lockfile) []PackageDetails {
+func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 	// First create the deps tree
 	// To do so, first look at the packages list, for each package, look into the importers
 	// If present in the importers => its direct and we know its scope
@@ -210,8 +210,8 @@ func parsePnpmV9Lock(lockfile PnpmV9Lockfile) []PackageDetails {
 	return maps.Values(packages)
 }
 
-func (e PnpmLockExtractor) extractV9(f DepFile) ([]PackageDetails, error) {
-	var parsedLockfile *PnpmV9Lockfile
+func (e PnpmLockExtractor) extract(f DepFile) ([]PackageDetails, error) {
+	var parsedLockfile *PnpmLockfile
 
 	err := yaml.NewDecoder(f).Decode(&parsedLockfile)
 
@@ -221,8 +221,8 @@ func (e PnpmLockExtractor) extractV9(f DepFile) ([]PackageDetails, error) {
 
 	// this will happen if the file is empty
 	if parsedLockfile == nil {
-		parsedLockfile = &PnpmV9Lockfile{}
+		parsedLockfile = &PnpmLockfile{}
 	}
 
-	return parsePnpmV9Lock(*parsedLockfile), nil
+	return parsePnpmLock(*parsedLockfile), nil
 }
