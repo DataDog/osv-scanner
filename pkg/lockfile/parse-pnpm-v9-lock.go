@@ -79,29 +79,29 @@ func getCommitFromVersion(version string) string {
 	return ""
 }
 
+func mergeSlices(slices ...[]string) []string {
+	result := make(map[string]bool)
+	for _, slice := range slices {
+		for _, item := range slice {
+			result[item] = true
+		}
+	}
+
+	return maps.Keys(result)
+}
+
 func addDependencyToPackageDetails(dependency PackageDetails, deps map[string]PackageDetails) map[string]PackageDetails {
 	key := dependency.Name + "@" + dependency.Version
 
 	if dep, exists := deps[key]; exists {
-		newDepGroups := make(map[string]bool)
-		newTargetedVersions := make(map[string]bool)
-		for _, depGroup := range dep.DepGroups {
-			newDepGroups[depGroup] = true
-		}
-		for _, depGroup := range dependency.DepGroups {
-			newDepGroups[depGroup] = true
-		}
-		for _, targetedVersion := range dep.TargetVersions {
-			newTargetedVersions[targetedVersion] = true
-		}
-		for _, targetedVersion := range dependency.TargetVersions {
-			newTargetedVersions[targetedVersion] = true
+		newDepGroups := mergeSlices(dep.DepGroups, dependency.DepGroups)
+		newTargetedVersions := mergeSlices(dep.TargetVersions, dependency.TargetVersions)
+
+		if len(newTargetedVersions) > 0 {
+			dep.DepGroups = newDepGroups
 		}
 		if len(newTargetedVersions) > 0 {
-			dep.DepGroups = maps.Keys(newDepGroups)
-		}
-		if len(newTargetedVersions) > 0 {
-			dep.TargetVersions = maps.Keys(newTargetedVersions)
+			dep.TargetVersions = newTargetedVersions
 		}
 		dep.IsDirect = dep.IsDirect || dependency.IsDirect
 		deps[key] = dep
