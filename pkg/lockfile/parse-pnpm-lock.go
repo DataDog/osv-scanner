@@ -3,6 +3,7 @@ package lockfile
 import (
 	"errors"
 	"fmt"
+	"golang.org/x/exp/maps"
 	"io"
 	"path/filepath"
 	"strconv"
@@ -40,21 +41,19 @@ type (
 )
 
 type PnpmImporters struct {
-	Dot struct {
-		Dependencies         PnpmDependencies `yaml:"dependencies,omitempty"`
-		OptionalDependencies PnpmDependencies `yaml:"optionalDependencies,omitempty"`
-		DevDependencies      PnpmDependencies `yaml:"devDependencies,omitempty"`
-	} `yaml:".,omitempty"`
-}
-
-type PnpmLockfile struct {
-	Version              string           `yaml:"lockfileVersion"`
-	Packages             PnpmLockPackages `yaml:"packages,omitempty"`
-	Specifiers           PnpmSpecifiers   `yaml:"specifiers,omitempty"`
 	Dependencies         PnpmDependencies `yaml:"dependencies,omitempty"`
 	OptionalDependencies PnpmDependencies `yaml:"optionalDependencies,omitempty"`
 	DevDependencies      PnpmDependencies `yaml:"devDependencies,omitempty"`
-	Importers            PnpmImporters    `yaml:"importers,omitempty"`
+}
+
+type PnpmLockfile struct {
+	Version              string                   `yaml:"lockfileVersion"`
+	Packages             PnpmLockPackages         `yaml:"packages,omitempty"`
+	Specifiers           PnpmSpecifiers           `yaml:"specifiers,omitempty"`
+	Dependencies         PnpmDependencies         `yaml:"dependencies,omitempty"`
+	OptionalDependencies PnpmDependencies         `yaml:"optionalDependencies,omitempty"`
+	DevDependencies      PnpmDependencies         `yaml:"devDependencies,omitempty"`
+	Importers            map[string]PnpmImporters `yaml:"importers,omitempty"`
 }
 
 func (pnpmDependencies *PnpmDependencies) UnmarshalYAML(value *yaml.Node) error {
@@ -156,6 +155,52 @@ func extractPnpmPackageNameAndVersion(dependencyPath string, lockfileVersion str
 	return name, version
 }
 
+func extractDependenciesFromImporter(importers map[string]PnpmImporters) []map[string]PnpmLockDependency {
+	dependencies := make([]map[string]PnpmLockDependency, 0)
+
+	if importers == nil {
+		return dependencies
+	}
+	for _, importer := range importers {
+		dependencies = append(dependencies, importer.Dependencies, importer.OptionalDependencies, importer.DevDependencies)
+	}
+	return dependencies
+}
+
+func cleanPeerDeps(version string) string {
+	return strings.Split(version, "(")[0]
+}
+
+func (pnpmDependencies *PnpmDependencies) contains(pkgName, pkgVersion string) bool {
+	for name, dependency := range *pnpmDependencies {
+		versionWithoutPeerDeps := cleanPeerDeps(dependency.Version)
+		if name == pkgName && versionWithoutPeerDeps == pkgVersion {
+			return true
+		}
+	}
+	return false
+}
+
+func extractPkgScopesFromImporters(importers map[string]PnpmImporters, pkgName, pkgVersion string) []string {
+	scopes := make(map[string]bool)
+
+	for _, importer := range importers {
+		if importer.Dependencies.contains(pkgName, pkgVersion) {
+			scopes["prod"] = true
+		}
+		if importer.OptionalDependencies.contains(pkgName, pkgVersion) {
+			scopes["optional"] = true
+		}
+		if importer.DevDependencies.contains(pkgName, pkgVersion) {
+			scopes["dev"] = true
+		}
+	}
+	if len(scopes) > 0 {
+		// It is a direct dep, lets propagate the scope to the transitive packages
+	}
+	return maps.Keys(scopes)
+}
+
 func parseNameAtVersion(value string) (name string, version string) {
 	// look for pattern "name@version", where name is allowed to contain zero or more "@"
 	matches := cachedregexp.MustCompile(`^(.+)@([\d.]+)$`).FindStringSubmatch(value)
@@ -231,8 +276,11 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 		}
 
 		var depGroups []string
+		importerScopes := extractPkgScopesFromImporters(lockfile.Importers, name, version)
 		if pkg.Dev {
 			depGroups = append(depGroups, "dev")
+		} else if len(importerScopes) > 0 {
+			depGroups = append(depGroups, importerScopes...)
 		}
 
 		var targetVersions []string
@@ -240,16 +288,18 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 		var dependencyVersion string
 		var isDirect bool
 
+		dependencies := extractDependenciesFromImporter(lockfile.Importers)
+		dependencies = append(dependencies, lockfile.Dependencies, lockfile.DevDependencies, lockfile.OptionalDependencies)
 		// Find target and dependency version
 		if sp, ok := lockfile.Specifiers[name]; ok {
 			// lockfile version <6.0
 			targetVersion = sp
 			dependencyVersion = ""
-			if _, v, f := getVersionInfo(name, lockfile.Dependencies, lockfile.OptionalDependencies, lockfile.DevDependencies); f {
+			if _, v, f := getVersionInfo(name, dependencies...); f {
 				isDirect = true
 				dependencyVersion = v
 			}
-		} else if sp, v, f := getVersionInfo(name, lockfile.Dependencies, lockfile.Importers.Dot.Dependencies, lockfile.Importers.Dot.OptionalDependencies, lockfile.Importers.Dot.DevDependencies); f {
+		} else if sp, v, f := getVersionInfo(name, dependencies...); f {
 			// lockfile version >6.0
 			targetVersion = sp
 			dependencyVersion = v
@@ -305,6 +355,16 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 	// this will happen if the file is empty
 	if parsedLockfile == nil {
 		parsedLockfile = &PnpmLockfile{}
+	}
+
+	lockfileVersion, _ := strconv.ParseFloat(strings.ReplaceAll(parsedLockfile.Version, "-flavoured", ""), 32)
+	if lockfileVersion >= 6.0 {
+		file, err := f.Open(f.Path())
+		if err != nil {
+			return []PackageDetails{}, err
+		}
+		defer file.Close()
+		return e.extractV9(file)
 	}
 
 	return parsePnpmLock(*parsedLockfile), nil
