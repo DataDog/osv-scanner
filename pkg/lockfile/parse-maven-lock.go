@@ -400,7 +400,6 @@ func (e MavenLockExtractor) resolveParentFilename(parent MavenLockParent, curren
 
 			return u
 		}
-
 	} else if !strings.HasSuffix(parentRelativePath, ".xml") {
 		// It means we only have a path, we should append the default pom.xml
 		parentRelativePath = path.Join(parentRelativePath, "pom.xml")
@@ -457,7 +456,7 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int, visitedPath ma
 	var parentErr error
 
 	// If the parent pom does not exist, it still can be in an external repository
-	if strings.HasPrefix(parentPath, "http") {
+	if strings.Contains(parentPath, "https") {
 		mavenRegistryClient, clientErr := NewMavenRegistryAPIClient(parentPath)
 		if clientErr != nil {
 			_, _ = fmt.Fprintf(os.Stderr, "Failed to fetch parent pom from remote repository: %s\n", parentPath)
