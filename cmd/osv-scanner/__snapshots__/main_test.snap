@@ -6688,6 +6688,27 @@ No package sources found, --help for usage information.
       }
     },
     {
+      "bom-ref": "pkg:npm/debug@1.0.0",
+      "type": "library",
+      "name": "debug",
+      "version": "1.0.0",
+      "purl": "pkg:npm/debug@1.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Pnpm"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:npm/debug@2.6.9",
       "type": "library",
       "name": "debug",
@@ -7266,7 +7287,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/npm/package-loc
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/nuget/packages.lock.json file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/other-requirements.txt file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/packages.lock.json file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pnpm/pnpm-lock.yaml file and found 1 package
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pnpm/pnpm-lock.yaml file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pnpm-9/pnpm-lock.yaml file and found 5 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/poetry.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pom.xml file and found 1 package
