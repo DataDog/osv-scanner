@@ -6761,6 +6761,10 @@ No package sources found, --help for usage information.
       "purl": "pkg:npm/ms@2.0.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:package-manager",
           "value": "Pnpm"
         }
@@ -6773,6 +6777,10 @@ No package sources found, --help for usage information.
       "version": "2.1.2",
       "purl": "pkg:npm/ms@2.1.2",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:package-manager",
           "value": "Pnpm"
@@ -11441,6 +11449,10 @@ Filtered 1 local package/s from the scan.
       "purl": "pkg:npm/ms@2.0.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:package-manager",
           "value": "Pnpm"
         }
@@ -11453,6 +11465,10 @@ Filtered 1 local package/s from the scan.
       "version": "2.1.2",
       "purl": "pkg:npm/ms@2.1.2",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:package-manager",
           "value": "Pnpm"
@@ -16120,6 +16136,10 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "purl": "pkg:npm/ms@2.0.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:package-manager",
           "value": "Pnpm"
         }
@@ -16132,6 +16152,10 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       "version": "2.1.2",
       "purl": "pkg:npm/ms@2.1.2",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:package-manager",
           "value": "Pnpm"
