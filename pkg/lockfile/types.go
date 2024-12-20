@@ -37,7 +37,10 @@ func (sys Ecosystem) IsDevGroup(groups []string) bool {
 		return sys.isDevGroup(groups, "build-requires")
 	case MavenEcosystem:
 		return sys.isMavenDevGroup(groups)
+	case AlpineEcosystem, DebianEcosystem, CargoEcosystem, BundlerEcosystem, GoEcosystem, MixEcosystem, NuGetEcosystem, CRANEcosystem:
+		return false
 	}
+
 	return false
 }
 

@@ -134,20 +134,6 @@ func extractPnpmPackageNameAndVersion(dependencyPath string) (string, string) {
 	return name, version
 }
 
-func cleanPeerDeps(version string) string {
-	return strings.Split(version, "(")[0]
-}
-
-func (pnpmDependencies *PnpmLegacyDependencies) contains(pkgName, pkgVersion string) bool {
-	for name, dependency := range *pnpmDependencies {
-		versionWithoutPeerDeps := cleanPeerDeps(dependency.Version)
-		if name == pkgName && versionWithoutPeerDeps == pkgVersion {
-			return true
-		}
-	}
-	return false
-}
-
 func parseNameAtVersion(value string) (name string, version string) {
 	// look for pattern "name@version", where name is allowed to contain zero or more "@"
 	matches := cachedregexp.MustCompile(`^(.+)@([\d.]+)$`).FindStringSubmatch(value)

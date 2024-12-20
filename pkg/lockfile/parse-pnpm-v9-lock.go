@@ -3,13 +3,14 @@ package lockfile
 import (
 	"errors"
 	"fmt"
+	"io"
+	"strconv"
+	"strings"
+
 	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/pkg/models"
 	"golang.org/x/exp/maps"
 	"gopkg.in/yaml.v3"
-	"io"
-	"strconv"
-	"strings"
 )
 
 type PnpmLockPackageResolution struct {
@@ -63,8 +64,10 @@ func getCleanedVersion(lockfile PnpmLockfile, name, version string) string {
 		if pkg, ok := lockfile.Packages[name+"@"+version]; ok {
 			return pkg.Version
 		}
+
 		return ""
 	}
+
 	return strings.Split(version, "(")[0]
 }
 
@@ -77,6 +80,7 @@ func getCommitFromVersion(version string) string {
 			return matched[1]
 		}
 	}
+
 	return ""
 }
 
@@ -109,14 +113,15 @@ func addDependencyToPackageDetails(dependency PackageDetails, deps map[string]Pa
 	} else {
 		deps[key] = dependency
 	}
+
 	return deps
 }
 
 func extractTransitiveDeps(lockfile PnpmLockfile, root PnpmDirectDependency, targetedKey string, deps map[string]PackageDetails) map[string]PackageDetails {
 	// Need to look at dependencies
 	visitedSnapshots := make(map[string]bool)
-	snapshotQueue := make([]string, 1)
-	snapshotQueue[0] = targetedKey
+	snapshotQueue := make([]string, 0)
+	snapshotQueue = append(snapshotQueue, targetedKey)
 
 	for len(snapshotQueue) > 0 {
 		targetedKey = snapshotQueue[0]
@@ -186,6 +191,7 @@ func extractDirectDependencies(lockfile PnpmLockfile, roots []PnpmDirectDependen
 			Dep: dependency,
 		})
 	}
+
 	return roots
 }
 
@@ -208,6 +214,7 @@ func parsePnpmLock(lockfile PnpmLockfile) []PackageDetails {
 		packages = addDependencyToPackageDetails(direct.Pkg, packages)
 		packages = extractTransitiveDeps(lockfile, direct, direct.Pkg.Name+"@"+direct.Dep.Version, packages)
 	}
+
 	return maps.Values(packages)
 }
 
@@ -233,6 +240,7 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 			return []PackageDetails{}, err
 		}
 		defer file.Close()
+
 		return e.extractLegacyPnpm(file)
 	}
 
