@@ -2469,10 +2469,7 @@ Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the 
           },
           {
             "location": "{/"block/":{/"file_name/":/"pom.xml/",/"line_start/":27,/"line_end/":30,/"column_start/":5,/"column_end/":18},/"name/":{/"file_name/":/"pom.xml/",/"line_start/":29,/"line_end/":29,/"column_start/":19,/"column_end/":25},/"version/":{/"file_name/":/"pom.xml/",/"line_start/":21,/"line_end/":21,/"column_start/":18,/"column_end/":23}}"
-          },
-          {
-            "location": "{/"block/":{/"file_name/":/"pom.xml/",/"line_start/":27,/"line_end/":31,/"column_start/":5,/"column_end/":18},/"name/":{/"file_name/":/"pom.xml/",/"line_start/":29,/"line_end/":29,/"column_start/":19,/"column_end/":25},/"version/":{/"file_name/":/"pom.xml/",/"line_start/":21,/"line_end/":21,/"column_start/":18,/"column_end/":23}}"
-          },
+          }
         ]
       }
     },
@@ -16649,9 +16646,6 @@ Filtered 2 local package/s from the scan.
           },
           {
             "location": "{/"block/":{/"file_name/":/"pom.xml/",/"line_start/":27,/"line_end/":30,/"column_start/":5,/"column_end/":18},/"name/":{/"file_name/":/"pom.xml/",/"line_start/":29,/"line_end/":29,/"column_start/":19,/"column_end/":25},/"version/":{/"file_name/":/"pom.xml/",/"line_start/":21,/"line_end/":21,/"column_start/":18,/"column_end/":23}}"
-          },
-          {
-            "location": "{/"block/":{/"file_name/":/"pom.xml/",/"line_start/":27,/"line_end/":31,/"column_start/":5,/"column_end/":18},/"name/":{/"file_name/":/"pom.xml/",/"line_start/":29,/"line_end/":29,/"column_start/":19,/"column_end/":25},/"version/":{/"file_name/":/"pom.xml/",/"line_start/":21,/"line_end/":21,/"column_start/":18,/"column_end/":23}}"
           }
         ]
       }
