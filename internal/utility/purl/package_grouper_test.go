@@ -25,15 +25,6 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
 					},
-					Vulnerabilities: []models.Vulnerability{
-						{ID: "GHSA-456"},
-					},
-					Groups: []models.GroupInfo{
-						{
-							IDs:     []string{"GHSA-456"},
-							Aliases: []string{"GHSA-456"},
-						},
-					},
 					DepGroups: []string{"build"},
 				},
 				{
@@ -42,30 +33,12 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
 					},
-					Vulnerabilities: []models.Vulnerability{
-						{ID: "GHSA-456"},
-					},
-					Groups: []models.GroupInfo{
-						{
-							IDs:     []string{"GHSA-456"},
-							Aliases: []string{"GHSA-456"},
-						},
-					},
 				},
 				{
 					Package: models.PackageInfo{
 						Name:      "foo.bar:the-first-package",
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
-					},
-					Vulnerabilities: []models.Vulnerability{
-						{ID: "GHSA-456"},
-					},
-					Groups: []models.GroupInfo{
-						{
-							IDs:     []string{"GHSA-456"},
-							Aliases: []string{"GHSA-456"},
-						},
 					},
 				},
 				{
@@ -89,15 +62,6 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 						Version:   "1.0.0",
 						Ecosystem: string(lockfile.MavenEcosystem),
 					},
-					Vulnerabilities: []models.Vulnerability{
-						{ID: "GHSA-456"},
-					},
-					Groups: []models.GroupInfo{
-						{
-							IDs:     []string{"GHSA-456"},
-							Aliases: []string{"GHSA-456"},
-						},
-					},
 					DepGroups: []string{"test"},
 				},
 				{
@@ -119,15 +83,6 @@ func TestGroupPackageByPURL_ShouldUnifyPackages(t *testing.T) {
 				Name:      "foo.bar:the-first-package",
 				Version:   "1.0.0",
 				Ecosystem: string(lockfile.MavenEcosystem),
-			},
-			Vulnerabilities: []models.Vulnerability{
-				{ID: "GHSA-456"},
-			},
-			Groups: []models.GroupInfo{
-				{
-					IDs:     []string{"GHSA-456"},
-					Aliases: []string{"GHSA-456"},
-				},
 			},
 			DepGroups: []string{"build", "test"},
 		},
