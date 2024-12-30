@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/osv-scanner/internal/cachedregexp"
+	"github.com/datadog/osv-scanner/internal/cachedregexp"
 )
 
 // Attempts to normalize any file paths in the given `output` so that they can

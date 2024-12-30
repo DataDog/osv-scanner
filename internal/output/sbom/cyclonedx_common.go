@@ -1,14 +1,14 @@
 package sbom
 
 import (
-	"github.com/google/osv-scanner/internal/utility/purl"
+	"github.com/datadog/osv-scanner/internal/utility/purl"
 	"slices"
 	"strings"
 
 	"golang.org/x/exp/maps"
 
 	"github.com/CycloneDX/cyclonedx-go"
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 type PackageProcessingHook = func(component *cyclonedx.Component, details models.PackageVulns)

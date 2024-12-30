@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 func ParseOSVScannerResults(pathToLockfile string) ([]PackageDetails, error) {

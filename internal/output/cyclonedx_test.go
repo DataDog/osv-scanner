@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/google/osv-scanner/internal/output"
-	"github.com/google/osv-scanner/internal/testutility"
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/internal/output"
+	"github.com/datadog/osv-scanner/internal/testutility"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 func TestPrintCycloneDX14Results_WithDependencies(t *testing.T) {
