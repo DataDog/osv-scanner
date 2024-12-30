@@ -4,8 +4,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/google/osv-scanner/internal/utility/fileposition"
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/internal/utility/fileposition"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 type PipfileMatcher struct{}

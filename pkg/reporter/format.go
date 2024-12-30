@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 var format = []string{"cyclonedx-1-4", "cyclonedx-1-5"}

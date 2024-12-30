@@ -2,15 +2,15 @@ package main
 
 import (
 	"errors"
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 	"io"
 	"os"
 	"slices"
 
-	"github.com/google/osv-scanner/cmd/osv-scanner/scan"
-	"github.com/google/osv-scanner/internal/version"
-	"github.com/google/osv-scanner/pkg/osvscanner"
-	"github.com/google/osv-scanner/pkg/reporter"
+	"github.com/datadog/osv-scanner/cmd/osv-scanner/scan"
+	"github.com/datadog/osv-scanner/internal/version"
+	"github.com/datadog/osv-scanner/pkg/osvscanner"
+	"github.com/datadog/osv-scanner/pkg/reporter"
 
 	"github.com/urfave/cli/v2"
 )

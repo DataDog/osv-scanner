@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 var errCSVRecordNotEnoughFields = errors.New("not enough fields (expected at least four)")

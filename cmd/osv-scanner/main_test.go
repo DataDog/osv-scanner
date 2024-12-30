@@ -14,8 +14,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/google/osv-scanner/internal/cachedregexp"
-	"github.com/google/osv-scanner/internal/testutility"
+	"github.com/datadog/osv-scanner/internal/cachedregexp"
+	"github.com/datadog/osv-scanner/internal/testutility"
 	"github.com/urfave/cli/v2"
 )
 

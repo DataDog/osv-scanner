@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 
-	"github.com/google/osv-scanner/internal/output"
-	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/datadog/osv-scanner/internal/output"
+	"github.com/datadog/osv-scanner/pkg/lockfile"
 )
 
 func expectNumberOfParsersCalled(t *testing.T, numberOfParsersCalled int) {

@@ -5,7 +5,7 @@ import (
 	"os"
 	"reflect"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 var shouldDebugInTOML bool
