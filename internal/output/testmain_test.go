@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/google/osv-scanner/internal/testutility"
+	"github.com/datadog/osv-scanner/internal/testutility"
 )
 
 func TestMain(m *testing.M) {

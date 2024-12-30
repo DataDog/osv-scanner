@@ -20,6 +20,4 @@ runs:
   steps:
     - name: Run go test
       shell: bash
-      env:
-        TEST_ACCEPTANCE: true
       run: ./scripts/run_tests.sh

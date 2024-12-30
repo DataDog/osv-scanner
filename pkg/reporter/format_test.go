@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/reporter"
+	"github.com/datadog/osv-scanner/pkg/reporter"
 )
 
 func TestNew(t *testing.T) {

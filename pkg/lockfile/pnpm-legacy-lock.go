@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 
-	"github.com/google/osv-scanner/internal/cachedregexp"
+	"github.com/datadog/osv-scanner/internal/cachedregexp"
 	"gopkg.in/yaml.v3"
 )
 

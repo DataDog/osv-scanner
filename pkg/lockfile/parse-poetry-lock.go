@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 
 	"github.com/BurntSushi/toml"
 )

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/datadog/osv-scanner/pkg/lockfile"
 )
 
 func createTestDir(t *testing.T) (string, func()) {

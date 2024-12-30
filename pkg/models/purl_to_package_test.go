@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 func TestPURLToPackage(t *testing.T) {

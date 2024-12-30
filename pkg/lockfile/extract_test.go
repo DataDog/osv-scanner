@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/datadog/osv-scanner/pkg/lockfile"
 )
 
 type TestDepFile struct {

@@ -8,9 +8,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 
-	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/datadog/osv-scanner/pkg/lockfile"
 )
 
 func TestMavenLockExtractor_ShouldExtract(t *testing.T) {

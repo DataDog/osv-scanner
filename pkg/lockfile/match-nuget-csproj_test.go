@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 
-	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/datadog/osv-scanner/pkg/lockfile"
 	"github.com/stretchr/testify/assert"
 )
 

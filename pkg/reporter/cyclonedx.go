@@ -7,9 +7,9 @@ import (
 
 	"github.com/CycloneDX/cyclonedx-go"
 
-	"github.com/google/osv-scanner/internal/output"
+	"github.com/datadog/osv-scanner/internal/output"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 )
 
 type CycloneDXReporter struct {

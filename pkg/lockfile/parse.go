@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 
 	"golang.org/x/exp/maps"
 )

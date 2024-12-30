@@ -4,9 +4,9 @@ import (
 	"io/fs"
 	"testing"
 
-	"github.com/google/osv-scanner/pkg/models"
+	"github.com/datadog/osv-scanner/pkg/models"
 
-	"github.com/google/osv-scanner/pkg/lockfile"
+	"github.com/datadog/osv-scanner/pkg/lockfile"
 )
 
 func TestComposerLockExtractor_ShouldExtract(t *testing.T) {
