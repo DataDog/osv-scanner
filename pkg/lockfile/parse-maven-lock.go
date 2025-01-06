@@ -33,9 +33,9 @@ type MavenRegistryProject struct {
 
 var errAPIFailed = errors.New("API query failed")
 
-func NewMavenRegistryAPIClient(url string) (*MavenRegistryProject, error) {
-	context := context.Background()
-	req, err := http.NewRequestWithContext(context, http.MethodGet, url, nil)
+func NewMavenRegistryAPIClient(url string) (DepFile, error) {
+	ctx := context.Background()
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make new request: %w", err)
 	}
@@ -379,13 +379,18 @@ func (e MavenLockExtractor) resolveParentFilename(parent MavenLockParent, curren
 	// If the relativePath is not defined, default to ../pom.xml
 	parentRelativePath := parent.RelativePath
 	if len(parentRelativePath) == 0 {
-		parentRelativePath = "../pom.xml"
-
 		// if the parent path exists, use that,
 		// else we return an empty string to signal that we should fetch a remote pom
-		if _, err := os.Stat(filepath.FromSlash(
-			filepath.Join(filepath.Dir(currentPath), parentRelativePath),
-		)); errors.Is(err, os.ErrNotExist) {
+		parentRelativePath = "../pom.xml"
+
+		shouldComputeURL := strings.HasPrefix(currentPath, "https")
+		if !shouldComputeURL {
+			localPath := filepath.Join(filepath.Dir(currentPath), parentRelativePath)
+			_, err := os.Stat(localPath)
+			shouldComputeURL = errors.Is(err, os.ErrNotExist)
+		}
+
+		if shouldComputeURL {
 			u, err := url.JoinPath(
 				MavenCentral,
 				strings.ReplaceAll(parent.GroupID, ".", "/"),
@@ -456,11 +461,13 @@ func (e MavenLockExtractor) decodeMavenFile(f DepFile, depth int, visitedPath ma
 	var parentErr error
 
 	// If the parent pom does not exist, it still can be in an external repository
-	if strings.Contains(parentPath, "https") {
+	if strings.HasPrefix(parentPath, "https") {
 		mavenRegistryClient, clientErr := NewMavenRegistryAPIClient(parentPath)
+		// If the remote pom does not exist, we can't do anything.
 		if clientErr != nil {
 			_, _ = fmt.Fprintf(os.Stderr, "Failed to fetch parent pom from remote repository: %s\n", parentPath)
-			return nil, clientErr
+			//nolint:nilerr // we don't want to consider a network request failing for the parent as being unable to handle the lockfile
+			return parsedLockfile, nil
 		}
 
 		parentLockfile, err = e.decodeMavenFile(mavenRegistryClient, depth+1, visitedPath)
