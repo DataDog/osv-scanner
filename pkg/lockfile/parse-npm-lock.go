@@ -169,14 +169,9 @@ func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency, path s
 			PackageManager: models.NPM,
 			Ecosystem:      NpmEcosystem,
 			CompareAs:      NpmEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     detail.Line,
-				Column:   detail.Column,
-				Filename: path,
-			},
-			Commit:    commit,
-			DepGroups: detail.depGroups(),
-			IsDirect:  true,
+			Commit:         commit,
+			DepGroups:      detail.depGroups(),
+			IsDirect:       true,
 		})
 	}
 
@@ -291,13 +286,8 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[
 				Ecosystem:      NpmEcosystem,
 				CompareAs:      NpmEcosystem,
 				Commit:         commit,
-				BlockLocation: models.FilePosition{
-					Line:     detail.Line,
-					Column:   detail.Column,
-					Filename: path,
-				},
-				DepGroups: detail.depGroups(),
-				IsDirect:  isDirect,
+				DepGroups:      detail.depGroups(),
+				IsDirect:       isDirect,
 			})
 		}
 	}
