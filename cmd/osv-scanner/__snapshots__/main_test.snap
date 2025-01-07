@@ -222,14 +222,7 @@ unsupported output format "unknown" - must be one of: cyclonedx-1-4, cyclonedx-1
           "name": "osv-scanner:package-manager",
           "value": "NPM"
         }
-      ],
-      "evidence": {
-        "occurrences": [
-          {
-            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package-lock.json/",/"line_start/":5,/"line_end/":7,/"column_start/":5,/"column_end/":6}}"
-          }
-        ]
-      }
+      ]
     },
     {
       "bom-ref": "pkg:npm/balanced-match@1.0.2",
@@ -448,14 +441,7 @@ Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
           "name": "osv-scanner:package-manager",
           "value": "NPM"
         }
-      ],
-      "evidence": {
-        "occurrences": [
-          {
-            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-test-ignore/package-lock.json/",/"line_start/":5,/"line_end/":7,/"column_start/":5,/"column_end/":6}}"
-          }
-        ]
-      }
+      ]
     }
   ]
 }
@@ -5059,6 +5045,47 @@ No package sources found, --help for usage information.
       }
     },
     {
+      "bom-ref": "pkg:npm/osv-scanner@0.0.0-use.local",
+      "type": "library",
+      "name": "osv-scanner",
+      "version": "0.0.0-use.local",
+      "purl": "pkg:npm/osv-scanner@0.0.0-use.local",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/supports-color@10.0.0",
+      "type": "library",
+      "name": "supports-color",
+      "version": "10.0.0",
+      "purl": "pkg:npm/supports-color@10.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
+    },
+    {
       "bom-ref": "pkg:npm/wrappy@1.0.2",
       "type": "library",
       "name": "wrappy",
@@ -5517,7 +5544,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pubspec.lock fi
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/renv.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/requirements.txt file and found 6 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock file and found 1 package
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock file and found 3 packages
 
 ---
 
@@ -15005,5 +15032,1984 @@ Scanning dir ./fixtures/integration-test-locks
 Scanned <rootdir>/fixtures/integration-test-locks/libs/pom.xml file and found 0 packages
 Scanned <rootdir>/fixtures/integration-test-locks/other-dir/pom.xml file and found 2 packages
 Scanned <rootdir>/fixtures/integration-test-locks/pom.xml file and found 1 package
+
+---
+
+[TestRun_YarnPackageOnly/v1.22.0 - 1]
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "components": [
+    {
+      "bom-ref": "pkg:npm/%40eslint-community%2Feslint-utils@4.4.1",
+      "type": "library",
+      "name": "@eslint-community/eslint-utils",
+      "version": "4.4.1",
+      "purl": "pkg:npm/%40eslint-community%2Feslint-utils@4.4.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40eslint-community%2Fregexpp@4.12.1",
+      "type": "library",
+      "name": "@eslint-community/regexpp",
+      "version": "4.12.1",
+      "purl": "pkg:npm/%40eslint-community%2Fregexpp@4.12.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.scandir@2.1.5",
+      "type": "library",
+      "name": "@nodelib/fs.scandir",
+      "version": "2.1.5",
+      "purl": "pkg:npm/%40nodelib%2Ffs.scandir@2.1.5",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.stat@2.0.5",
+      "type": "library",
+      "name": "@nodelib/fs.stat",
+      "version": "2.0.5",
+      "purl": "pkg:npm/%40nodelib%2Ffs.stat@2.0.5",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.walk@1.2.8",
+      "type": "library",
+      "name": "@nodelib/fs.walk",
+      "version": "1.2.8",
+      "purl": "pkg:npm/%40nodelib%2Ffs.walk@1.2.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40types%2Fjson-schema@7.0.15",
+      "type": "library",
+      "name": "@types/json-schema",
+      "version": "7.0.15",
+      "purl": "pkg:npm/%40types%2Fjson-schema@7.0.15",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40types%2Fsemver@7.5.8",
+      "type": "library",
+      "name": "@types/semver",
+      "version": "7.5.8",
+      "purl": "pkg:npm/%40types%2Fsemver@7.5.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Feslint-plugin@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/eslint-plugin",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Feslint-plugin@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":9,/"column_end/":54},/"name/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":10,/"column_end/":42},/"version/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":46,/"column_end/":53}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Fscope-manager@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/scope-manager",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Fscope-manager@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftype-utils@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/type-utils",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftype-utils@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftypes@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/types",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftypes@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftypescript-estree@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/typescript-estree",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftypescript-estree@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Futils@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/utils",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Futils@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Fvisitor-keys@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/visitor-keys",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Fvisitor-keys@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/array-union@2.1.0",
+      "type": "library",
+      "name": "array-union",
+      "version": "2.1.0",
+      "purl": "pkg:npm/array-union@2.1.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/braces@3.0.3",
+      "type": "library",
+      "name": "braces",
+      "version": "3.0.3",
+      "purl": "pkg:npm/braces@3.0.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/debug@4.4.0",
+      "type": "library",
+      "name": "debug",
+      "version": "4.4.0",
+      "purl": "pkg:npm/debug@4.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":9,/"column_end/":25},/"name/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":10,/"column_end/":15},/"version/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":19,/"column_end/":24}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:npm/dir-glob@3.0.1",
+      "type": "library",
+      "name": "dir-glob",
+      "version": "3.0.1",
+      "purl": "pkg:npm/dir-glob@3.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/eslint-scope@5.1.1",
+      "type": "library",
+      "name": "eslint-scope",
+      "version": "5.1.1",
+      "purl": "pkg:npm/eslint-scope@5.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/eslint-visitor-keys@3.4.3",
+      "type": "library",
+      "name": "eslint-visitor-keys",
+      "version": "3.4.3",
+      "purl": "pkg:npm/eslint-visitor-keys@3.4.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/esrecurse@4.3.0",
+      "type": "library",
+      "name": "esrecurse",
+      "version": "4.3.0",
+      "purl": "pkg:npm/esrecurse@4.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/estraverse@4.3.0",
+      "type": "library",
+      "name": "estraverse",
+      "version": "4.3.0",
+      "purl": "pkg:npm/estraverse@4.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/estraverse@5.3.0",
+      "type": "library",
+      "name": "estraverse",
+      "version": "5.3.0",
+      "purl": "pkg:npm/estraverse@5.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fast-glob@3.3.2",
+      "type": "library",
+      "name": "fast-glob",
+      "version": "3.3.2",
+      "purl": "pkg:npm/fast-glob@3.3.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fastq@1.18.0",
+      "type": "library",
+      "name": "fastq",
+      "version": "1.18.0",
+      "purl": "pkg:npm/fastq@1.18.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fill-range@7.1.1",
+      "type": "library",
+      "name": "fill-range",
+      "version": "7.1.1",
+      "purl": "pkg:npm/fill-range@7.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/glob-parent@5.1.2",
+      "type": "library",
+      "name": "glob-parent",
+      "version": "5.1.2",
+      "purl": "pkg:npm/glob-parent@5.1.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/globby@11.1.0",
+      "type": "library",
+      "name": "globby",
+      "version": "11.1.0",
+      "purl": "pkg:npm/globby@11.1.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/graphemer@1.4.0",
+      "type": "library",
+      "name": "graphemer",
+      "version": "1.4.0",
+      "purl": "pkg:npm/graphemer@1.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ignore@5.3.2",
+      "type": "library",
+      "name": "ignore",
+      "version": "5.3.2",
+      "purl": "pkg:npm/ignore@5.3.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-extglob@2.1.1",
+      "type": "library",
+      "name": "is-extglob",
+      "version": "2.1.1",
+      "purl": "pkg:npm/is-extglob@2.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-glob@4.0.3",
+      "type": "library",
+      "name": "is-glob",
+      "version": "4.0.3",
+      "purl": "pkg:npm/is-glob@4.0.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-number@7.0.0",
+      "type": "library",
+      "name": "is-number",
+      "version": "7.0.0",
+      "purl": "pkg:npm/is-number@7.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/merge2@1.4.1",
+      "type": "library",
+      "name": "merge2",
+      "version": "1.4.1",
+      "purl": "pkg:npm/merge2@1.4.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/micromatch@4.0.8",
+      "type": "library",
+      "name": "micromatch",
+      "version": "4.0.8",
+      "purl": "pkg:npm/micromatch@4.0.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ms@2.1.3",
+      "type": "library",
+      "name": "ms",
+      "version": "2.1.3",
+      "purl": "pkg:npm/ms@2.1.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/natural-compare-lite@1.4.0",
+      "type": "library",
+      "name": "natural-compare-lite",
+      "version": "1.4.0",
+      "purl": "pkg:npm/natural-compare-lite@1.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/path-type@4.0.0",
+      "type": "library",
+      "name": "path-type",
+      "version": "4.0.0",
+      "purl": "pkg:npm/path-type@4.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/picomatch@2.3.1",
+      "type": "library",
+      "name": "picomatch",
+      "version": "2.3.1",
+      "purl": "pkg:npm/picomatch@2.3.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/queue-microtask@1.2.3",
+      "type": "library",
+      "name": "queue-microtask",
+      "version": "1.2.3",
+      "purl": "pkg:npm/queue-microtask@1.2.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/reusify@1.0.4",
+      "type": "library",
+      "name": "reusify",
+      "version": "1.0.4",
+      "purl": "pkg:npm/reusify@1.0.4",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/run-parallel@1.2.0",
+      "type": "library",
+      "name": "run-parallel",
+      "version": "1.2.0",
+      "purl": "pkg:npm/run-parallel@1.2.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/semver@7.6.3",
+      "type": "library",
+      "name": "semver",
+      "version": "7.6.3",
+      "purl": "pkg:npm/semver@7.6.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/slash@3.0.0",
+      "type": "library",
+      "name": "slash",
+      "version": "3.0.0",
+      "purl": "pkg:npm/slash@3.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/to-regex-range@5.0.1",
+      "type": "library",
+      "name": "to-regex-range",
+      "version": "5.0.1",
+      "purl": "pkg:npm/to-regex-range@5.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/tslib@1.14.1",
+      "type": "library",
+      "name": "tslib",
+      "version": "1.14.1",
+      "purl": "pkg:npm/tslib@1.14.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/tsutils@3.21.0",
+      "type": "library",
+      "name": "tsutils",
+      "version": "3.21.0",
+      "purl": "pkg:npm/tsutils@3.21.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    }
+  ]
+}
+
+---
+
+[TestRun_YarnPackageOnly/v1.22.0 - 2]
+Scanning dir ./fixtures/integration-yarn/v1.22.0
+Scanned <rootdir>/fixtures/integration-yarn/v1.22.0/yarn.lock file and found 47 packages
+
+---
+
+[TestRun_YarnPackageOnly/v3.8.7 - 1]
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "components": [
+    {
+      "bom-ref": "pkg:npm/%40eslint-community%2Feslint-utils@4.4.1",
+      "type": "library",
+      "name": "@eslint-community/eslint-utils",
+      "version": "4.4.1",
+      "purl": "pkg:npm/%40eslint-community%2Feslint-utils@4.4.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40eslint-community%2Fregexpp@4.12.1",
+      "type": "library",
+      "name": "@eslint-community/regexpp",
+      "version": "4.12.1",
+      "purl": "pkg:npm/%40eslint-community%2Fregexpp@4.12.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.scandir@2.1.5",
+      "type": "library",
+      "name": "@nodelib/fs.scandir",
+      "version": "2.1.5",
+      "purl": "pkg:npm/%40nodelib%2Ffs.scandir@2.1.5",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.stat@2.0.5",
+      "type": "library",
+      "name": "@nodelib/fs.stat",
+      "version": "2.0.5",
+      "purl": "pkg:npm/%40nodelib%2Ffs.stat@2.0.5",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.walk@1.2.8",
+      "type": "library",
+      "name": "@nodelib/fs.walk",
+      "version": "1.2.8",
+      "purl": "pkg:npm/%40nodelib%2Ffs.walk@1.2.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40types%2Fjson-schema@7.0.15",
+      "type": "library",
+      "name": "@types/json-schema",
+      "version": "7.0.15",
+      "purl": "pkg:npm/%40types%2Fjson-schema@7.0.15",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40types%2Fsemver@7.5.8",
+      "type": "library",
+      "name": "@types/semver",
+      "version": "7.5.8",
+      "purl": "pkg:npm/%40types%2Fsemver@7.5.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Feslint-plugin@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/eslint-plugin",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Feslint-plugin@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":9,/"column_end/":54},/"name/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":10,/"column_end/":42},/"version/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":46,/"column_end/":53}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Fscope-manager@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/scope-manager",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Fscope-manager@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftype-utils@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/type-utils",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftype-utils@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftypes@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/types",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftypes@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftypescript-estree@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/typescript-estree",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftypescript-estree@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Futils@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/utils",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Futils@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Fvisitor-keys@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/visitor-keys",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Fvisitor-keys@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/array-union@2.1.0",
+      "type": "library",
+      "name": "array-union",
+      "version": "2.1.0",
+      "purl": "pkg:npm/array-union@2.1.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/braces@3.0.3",
+      "type": "library",
+      "name": "braces",
+      "version": "3.0.3",
+      "purl": "pkg:npm/braces@3.0.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/debug@4.4.0",
+      "type": "library",
+      "name": "debug",
+      "version": "4.4.0",
+      "purl": "pkg:npm/debug@4.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":9,/"column_end/":25},/"name/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":10,/"column_end/":15},/"version/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":19,/"column_end/":24}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:npm/dir-glob@3.0.1",
+      "type": "library",
+      "name": "dir-glob",
+      "version": "3.0.1",
+      "purl": "pkg:npm/dir-glob@3.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/eslint-scope@5.1.1",
+      "type": "library",
+      "name": "eslint-scope",
+      "version": "5.1.1",
+      "purl": "pkg:npm/eslint-scope@5.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/eslint-visitor-keys@3.4.3",
+      "type": "library",
+      "name": "eslint-visitor-keys",
+      "version": "3.4.3",
+      "purl": "pkg:npm/eslint-visitor-keys@3.4.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/esrecurse@4.3.0",
+      "type": "library",
+      "name": "esrecurse",
+      "version": "4.3.0",
+      "purl": "pkg:npm/esrecurse@4.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/estraverse@4.3.0",
+      "type": "library",
+      "name": "estraverse",
+      "version": "4.3.0",
+      "purl": "pkg:npm/estraverse@4.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/estraverse@5.3.0",
+      "type": "library",
+      "name": "estraverse",
+      "version": "5.3.0",
+      "purl": "pkg:npm/estraverse@5.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fast-glob@3.3.2",
+      "type": "library",
+      "name": "fast-glob",
+      "version": "3.3.2",
+      "purl": "pkg:npm/fast-glob@3.3.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fastq@1.18.0",
+      "type": "library",
+      "name": "fastq",
+      "version": "1.18.0",
+      "purl": "pkg:npm/fastq@1.18.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fill-range@7.1.1",
+      "type": "library",
+      "name": "fill-range",
+      "version": "7.1.1",
+      "purl": "pkg:npm/fill-range@7.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/glob-parent@5.1.2",
+      "type": "library",
+      "name": "glob-parent",
+      "version": "5.1.2",
+      "purl": "pkg:npm/glob-parent@5.1.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/globby@11.1.0",
+      "type": "library",
+      "name": "globby",
+      "version": "11.1.0",
+      "purl": "pkg:npm/globby@11.1.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/graphemer@1.4.0",
+      "type": "library",
+      "name": "graphemer",
+      "version": "1.4.0",
+      "purl": "pkg:npm/graphemer@1.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ignore@5.3.2",
+      "type": "library",
+      "name": "ignore",
+      "version": "5.3.2",
+      "purl": "pkg:npm/ignore@5.3.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-extglob@2.1.1",
+      "type": "library",
+      "name": "is-extglob",
+      "version": "2.1.1",
+      "purl": "pkg:npm/is-extglob@2.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-glob@4.0.3",
+      "type": "library",
+      "name": "is-glob",
+      "version": "4.0.3",
+      "purl": "pkg:npm/is-glob@4.0.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-number@7.0.0",
+      "type": "library",
+      "name": "is-number",
+      "version": "7.0.0",
+      "purl": "pkg:npm/is-number@7.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/merge2@1.4.1",
+      "type": "library",
+      "name": "merge2",
+      "version": "1.4.1",
+      "purl": "pkg:npm/merge2@1.4.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/micromatch@4.0.8",
+      "type": "library",
+      "name": "micromatch",
+      "version": "4.0.8",
+      "purl": "pkg:npm/micromatch@4.0.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ms@2.1.3",
+      "type": "library",
+      "name": "ms",
+      "version": "2.1.3",
+      "purl": "pkg:npm/ms@2.1.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/natural-compare-lite@1.4.0",
+      "type": "library",
+      "name": "natural-compare-lite",
+      "version": "1.4.0",
+      "purl": "pkg:npm/natural-compare-lite@1.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/path-type@4.0.0",
+      "type": "library",
+      "name": "path-type",
+      "version": "4.0.0",
+      "purl": "pkg:npm/path-type@4.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/picomatch@2.3.1",
+      "type": "library",
+      "name": "picomatch",
+      "version": "2.3.1",
+      "purl": "pkg:npm/picomatch@2.3.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/queue-microtask@1.2.3",
+      "type": "library",
+      "name": "queue-microtask",
+      "version": "1.2.3",
+      "purl": "pkg:npm/queue-microtask@1.2.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/reusify@1.0.4",
+      "type": "library",
+      "name": "reusify",
+      "version": "1.0.4",
+      "purl": "pkg:npm/reusify@1.0.4",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/run-parallel@1.2.0",
+      "type": "library",
+      "name": "run-parallel",
+      "version": "1.2.0",
+      "purl": "pkg:npm/run-parallel@1.2.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/semver@7.6.3",
+      "type": "library",
+      "name": "semver",
+      "version": "7.6.3",
+      "purl": "pkg:npm/semver@7.6.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/slash@3.0.0",
+      "type": "library",
+      "name": "slash",
+      "version": "3.0.0",
+      "purl": "pkg:npm/slash@3.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/suiftly.io@0.0.0-use.local",
+      "type": "library",
+      "name": "suiftly.io",
+      "version": "0.0.0-use.local",
+      "purl": "pkg:npm/suiftly.io@0.0.0-use.local",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/to-regex-range@5.0.1",
+      "type": "library",
+      "name": "to-regex-range",
+      "version": "5.0.1",
+      "purl": "pkg:npm/to-regex-range@5.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/tslib@1.14.1",
+      "type": "library",
+      "name": "tslib",
+      "version": "1.14.1",
+      "purl": "pkg:npm/tslib@1.14.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/tsutils@3.21.0",
+      "type": "library",
+      "name": "tsutils",
+      "version": "3.21.0",
+      "purl": "pkg:npm/tsutils@3.21.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    }
+  ]
+}
+
+---
+
+[TestRun_YarnPackageOnly/v3.8.7 - 2]
+Scanning dir ./fixtures/integration-yarn/v3.8.7
+Scanned <rootdir>/fixtures/integration-yarn/v3.8.7/yarn.lock file and found 48 packages
+
+---
+
+[TestRun_YarnPackageOnly/v4.6.0 - 1]
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "components": [
+    {
+      "bom-ref": "pkg:npm/%40eslint-community%2Feslint-utils@4.4.1",
+      "type": "library",
+      "name": "@eslint-community/eslint-utils",
+      "version": "4.4.1",
+      "purl": "pkg:npm/%40eslint-community%2Feslint-utils@4.4.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40eslint-community%2Fregexpp@4.12.1",
+      "type": "library",
+      "name": "@eslint-community/regexpp",
+      "version": "4.12.1",
+      "purl": "pkg:npm/%40eslint-community%2Fregexpp@4.12.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.scandir@2.1.5",
+      "type": "library",
+      "name": "@nodelib/fs.scandir",
+      "version": "2.1.5",
+      "purl": "pkg:npm/%40nodelib%2Ffs.scandir@2.1.5",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.stat@2.0.5",
+      "type": "library",
+      "name": "@nodelib/fs.stat",
+      "version": "2.0.5",
+      "purl": "pkg:npm/%40nodelib%2Ffs.stat@2.0.5",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40nodelib%2Ffs.walk@1.2.8",
+      "type": "library",
+      "name": "@nodelib/fs.walk",
+      "version": "1.2.8",
+      "purl": "pkg:npm/%40nodelib%2Ffs.walk@1.2.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40types%2Fjson-schema@7.0.15",
+      "type": "library",
+      "name": "@types/json-schema",
+      "version": "7.0.15",
+      "purl": "pkg:npm/%40types%2Fjson-schema@7.0.15",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40types%2Fsemver@7.5.8",
+      "type": "library",
+      "name": "@types/semver",
+      "version": "7.5.8",
+      "purl": "pkg:npm/%40types%2Fsemver@7.5.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Feslint-plugin@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/eslint-plugin",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Feslint-plugin@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":9,/"column_end/":54},/"name/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":10,/"column_end/":42},/"version/":{/"file_name/":/"package.json/",/"line_start/":8,/"line_end/":8,/"column_start/":46,/"column_end/":53}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Fscope-manager@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/scope-manager",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Fscope-manager@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftype-utils@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/type-utils",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftype-utils@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftypes@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/types",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftypes@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Ftypescript-estree@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/typescript-estree",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Ftypescript-estree@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Futils@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/utils",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Futils@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/%40typescript-eslint%2Fvisitor-keys@5.62.0",
+      "type": "library",
+      "name": "@typescript-eslint/visitor-keys",
+      "version": "5.62.0",
+      "purl": "pkg:npm/%40typescript-eslint%2Fvisitor-keys@5.62.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/array-union@2.1.0",
+      "type": "library",
+      "name": "array-union",
+      "version": "2.1.0",
+      "purl": "pkg:npm/array-union@2.1.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/braces@3.0.3",
+      "type": "library",
+      "name": "braces",
+      "version": "3.0.3",
+      "purl": "pkg:npm/braces@3.0.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/debug@4.4.0",
+      "type": "library",
+      "name": "debug",
+      "version": "4.4.0",
+      "purl": "pkg:npm/debug@4.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":9,/"column_end/":25},/"name/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":10,/"column_end/":15},/"version/":{/"file_name/":/"package.json/",/"line_start/":11,/"line_end/":11,/"column_start/":19,/"column_end/":24}}"
+          }
+        ]
+      }
+    },
+    {
+      "bom-ref": "pkg:npm/dir-glob@3.0.1",
+      "type": "library",
+      "name": "dir-glob",
+      "version": "3.0.1",
+      "purl": "pkg:npm/dir-glob@3.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/eslint-scope@5.1.1",
+      "type": "library",
+      "name": "eslint-scope",
+      "version": "5.1.1",
+      "purl": "pkg:npm/eslint-scope@5.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/eslint-visitor-keys@3.4.3",
+      "type": "library",
+      "name": "eslint-visitor-keys",
+      "version": "3.4.3",
+      "purl": "pkg:npm/eslint-visitor-keys@3.4.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/esrecurse@4.3.0",
+      "type": "library",
+      "name": "esrecurse",
+      "version": "4.3.0",
+      "purl": "pkg:npm/esrecurse@4.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/estraverse@4.3.0",
+      "type": "library",
+      "name": "estraverse",
+      "version": "4.3.0",
+      "purl": "pkg:npm/estraverse@4.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/estraverse@5.3.0",
+      "type": "library",
+      "name": "estraverse",
+      "version": "5.3.0",
+      "purl": "pkg:npm/estraverse@5.3.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fast-glob@3.3.2",
+      "type": "library",
+      "name": "fast-glob",
+      "version": "3.3.2",
+      "purl": "pkg:npm/fast-glob@3.3.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fastq@1.18.0",
+      "type": "library",
+      "name": "fastq",
+      "version": "1.18.0",
+      "purl": "pkg:npm/fastq@1.18.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/fill-range@7.1.1",
+      "type": "library",
+      "name": "fill-range",
+      "version": "7.1.1",
+      "purl": "pkg:npm/fill-range@7.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/glob-parent@5.1.2",
+      "type": "library",
+      "name": "glob-parent",
+      "version": "5.1.2",
+      "purl": "pkg:npm/glob-parent@5.1.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/globby@11.1.0",
+      "type": "library",
+      "name": "globby",
+      "version": "11.1.0",
+      "purl": "pkg:npm/globby@11.1.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/graphemer@1.4.0",
+      "type": "library",
+      "name": "graphemer",
+      "version": "1.4.0",
+      "purl": "pkg:npm/graphemer@1.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ignore@5.3.2",
+      "type": "library",
+      "name": "ignore",
+      "version": "5.3.2",
+      "purl": "pkg:npm/ignore@5.3.2",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-extglob@2.1.1",
+      "type": "library",
+      "name": "is-extglob",
+      "version": "2.1.1",
+      "purl": "pkg:npm/is-extglob@2.1.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-glob@4.0.3",
+      "type": "library",
+      "name": "is-glob",
+      "version": "4.0.3",
+      "purl": "pkg:npm/is-glob@4.0.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/is-number@7.0.0",
+      "type": "library",
+      "name": "is-number",
+      "version": "7.0.0",
+      "purl": "pkg:npm/is-number@7.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/merge2@1.4.1",
+      "type": "library",
+      "name": "merge2",
+      "version": "1.4.1",
+      "purl": "pkg:npm/merge2@1.4.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/micromatch@4.0.8",
+      "type": "library",
+      "name": "micromatch",
+      "version": "4.0.8",
+      "purl": "pkg:npm/micromatch@4.0.8",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ms@2.1.3",
+      "type": "library",
+      "name": "ms",
+      "version": "2.1.3",
+      "purl": "pkg:npm/ms@2.1.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/natural-compare-lite@1.4.0",
+      "type": "library",
+      "name": "natural-compare-lite",
+      "version": "1.4.0",
+      "purl": "pkg:npm/natural-compare-lite@1.4.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/path-type@4.0.0",
+      "type": "library",
+      "name": "path-type",
+      "version": "4.0.0",
+      "purl": "pkg:npm/path-type@4.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/picomatch@2.3.1",
+      "type": "library",
+      "name": "picomatch",
+      "version": "2.3.1",
+      "purl": "pkg:npm/picomatch@2.3.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/queue-microtask@1.2.3",
+      "type": "library",
+      "name": "queue-microtask",
+      "version": "1.2.3",
+      "purl": "pkg:npm/queue-microtask@1.2.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/reusify@1.0.4",
+      "type": "library",
+      "name": "reusify",
+      "version": "1.0.4",
+      "purl": "pkg:npm/reusify@1.0.4",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/run-parallel@1.2.0",
+      "type": "library",
+      "name": "run-parallel",
+      "version": "1.2.0",
+      "purl": "pkg:npm/run-parallel@1.2.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/semver@7.6.3",
+      "type": "library",
+      "name": "semver",
+      "version": "7.6.3",
+      "purl": "pkg:npm/semver@7.6.3",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/slash@3.0.0",
+      "type": "library",
+      "name": "slash",
+      "version": "3.0.0",
+      "purl": "pkg:npm/slash@3.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/suiftly.io@0.0.0-use.local",
+      "type": "library",
+      "name": "suiftly.io",
+      "version": "0.0.0-use.local",
+      "purl": "pkg:npm/suiftly.io@0.0.0-use.local",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/to-regex-range@5.0.1",
+      "type": "library",
+      "name": "to-regex-range",
+      "version": "5.0.1",
+      "purl": "pkg:npm/to-regex-range@5.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/tslib@1.14.1",
+      "type": "library",
+      "name": "tslib",
+      "version": "1.14.1",
+      "purl": "pkg:npm/tslib@1.14.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/tsutils@3.21.0",
+      "type": "library",
+      "name": "tsutils",
+      "version": "3.21.0",
+      "purl": "pkg:npm/tsutils@3.21.0",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    }
+  ]
+}
+
+---
+
+[TestRun_YarnPackageOnly/v4.6.0 - 2]
+Scanning dir ./fixtures/integration-yarn/v4.6.0
+Scanned <rootdir>/fixtures/integration-yarn/v4.6.0/yarn.lock file and found 48 packages
 
 ---
