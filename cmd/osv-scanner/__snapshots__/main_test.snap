@@ -9773,6 +9773,47 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock 
       }
     },
     {
+      "bom-ref": "pkg:npm/osv-scanner@0.0.0-use.local",
+      "type": "library",
+      "name": "osv-scanner",
+      "version": "0.0.0-use.local",
+      "purl": "pkg:npm/osv-scanner@0.0.0-use.local",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/supports-color@10.0.0",
+      "type": "library",
+      "name": "supports-color",
+      "version": "10.0.0",
+      "purl": "pkg:npm/supports-color@10.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
+    },
+    {
       "bom-ref": "pkg:npm/wrappy@1.0.2",
       "type": "library",
       "name": "wrappy",
@@ -10231,7 +10272,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pubspec.lock f
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/renv.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/requirements.txt file and found 6 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock file and found 1 package
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock file and found 3 packages
 
 ---
 
@@ -14460,6 +14501,47 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       }
     },
     {
+      "bom-ref": "pkg:npm/osv-scanner@0.0.0-use.local",
+      "type": "library",
+      "name": "osv-scanner",
+      "version": "0.0.0-use.local",
+      "purl": "pkg:npm/osv-scanner@0.0.0-use.local",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/supports-color@10.0.0",
+      "type": "library",
+      "name": "supports-color",
+      "version": "10.0.0",
+      "purl": "pkg:npm/supports-color@10.0.0",
+      "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"yarn/package.json/",/"line_start/":7,/"line_end/":7,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
+    },
+    {
       "bom-ref": "pkg:npm/wrappy@1.0.2",
       "type": "library",
       "name": "wrappy",
@@ -14918,7 +15000,7 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pubspec.
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/renv.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/requirements.txt file and found 6 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/yarn/yarn.lock file and found 1 package
+Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/yarn/yarn.lock file and found 3 packages
 
 ---
 
