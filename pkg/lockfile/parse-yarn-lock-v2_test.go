@@ -532,3 +532,52 @@ func TestParseYarnLock_v2_WithAliases(t *testing.T) {
 
 	expectPackagesWithoutLocations(t, packages, expected)
 }
+
+func TestParseYarnLock_v2_WithDependencies(t *testing.T) {
+	t.Parallel()
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/yarn/with-dependencies-v2.lock"))
+	packages, err := lockfile.ParseYarnLock(path)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	expected := []lockfile.PackageDetails{
+		{
+			Name:           "domino",
+			Version:        "2.1.6+git",
+			Commit:         "f2435fe1f9f7c91ade0bd472c4723e5eacd7d19a",
+			TargetVersions: []string{"https://github.com/angular/domino.git#f2435fe1f9f7c91ade0bd472c4723e5eacd7d19a"},
+			Ecosystem:      lockfile.YarnEcosystem,
+			CompareAs:      lockfile.YarnEcosystem,
+			PackageManager: models.Yarn,
+			Dependencies:   make([]*lockfile.PackageDetails, 0),
+		},
+		{
+			Name:           "tslib",
+			Version:        "2.6.2",
+			TargetVersions: []string{"^2.3.0"},
+			Ecosystem:      lockfile.YarnEcosystem,
+			CompareAs:      lockfile.YarnEcosystem,
+			PackageManager: models.Yarn,
+			Dependencies:   make([]*lockfile.PackageDetails, 0),
+		},
+		{
+			Name:           "zone.js",
+			Version:        "0.0.0-use.local",
+			TargetVersions: []string{"workspace:."},
+			Ecosystem:      lockfile.YarnEcosystem,
+			CompareAs:      lockfile.YarnEcosystem,
+			PackageManager: models.Yarn,
+			Dependencies:   make([]*lockfile.PackageDetails, 0),
+		},
+	}
+	expected[0].Dependencies = append(expected[0].Dependencies, &expected[1])
+	expected[2].Dependencies = append(expected[2].Dependencies, &expected[0], &expected[1])
+
+	expectPackagesWithoutLocations(t, packages, expected)
+}
