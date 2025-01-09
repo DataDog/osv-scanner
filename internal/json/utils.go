@@ -1,8 +1,9 @@
 package json
 
 import (
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"strings"
+
+	"github.com/google/osv-scanner/internal/cachedregexp"
 )
 
 /*

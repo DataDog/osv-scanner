@@ -2,9 +2,10 @@ package lockfile
 
 import (
 	"encoding/json"
-	jsonUtils "github.com/google/osv-scanner/internal/json"
 	"io"
 	"path/filepath"
+
+	jsonUtils "github.com/google/osv-scanner/internal/json"
 )
 
 const composerFilename = "composer.json"

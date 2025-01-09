@@ -2,8 +2,9 @@ package lockfile
 
 import (
 	"encoding/json"
-	jsonUtils "github.com/google/osv-scanner/internal/json"
 	"io"
+
+	jsonUtils "github.com/google/osv-scanner/internal/json"
 )
 
 const (

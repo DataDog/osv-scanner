@@ -1,9 +1,10 @@
 package lockfile
 
 import (
+	"strings"
+
 	"github.com/google/osv-scanner/pkg/models"
 	"golang.org/x/exp/maps"
-	"strings"
 )
 
 // TODO : THIS FILE SHOULD BE MOVED TO ITS OWN INTERNAL PACKAGE ONCE WE CUT ORIGINAL REPO LINKS
