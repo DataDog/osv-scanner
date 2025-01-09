@@ -163,7 +163,8 @@ func determineYarnPackageDependencies(group []string) []YarnDependency {
 		} else if indentCount != -1 {
 			// A line inside the dependencies section, lets parse it
 			match := lineParsing.FindStringSubmatch(cleaned)
-			name, version, registry := match[1], match[2], ""
+			name, version := match[1], match[2]
+			var registry string
 
 			if strings.Contains(version, ":") {
 				registry, version, _ = strings.Cut(version, ":")
@@ -308,6 +309,7 @@ func indexByTargetVersion(packages []YarnPackage) map[string]YarnPackage {
 			index[pkg.Name+"@"+targetVersion] = pkg
 		}
 	}
+
 	return index
 }
 
@@ -316,6 +318,7 @@ func indexByNameAndVersions(packages []PackageDetails) map[string]*PackageDetail
 	for index, pkg := range packages {
 		result[pkg.Name+"@"+pkg.Version] = &packages[index]
 	}
+
 	return result
 }
 

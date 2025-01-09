@@ -11,7 +11,7 @@ import (
 func TestNodeModulesExtractor_Extract_npm_v2_InvalidJson(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/not-json.txt")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/not-json.txt")
 
 	expectErrContaining(t, err, "could not extract from")
 	expectPackages(t, packages, []lockfile.PackageDetails{})
@@ -20,7 +20,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_InvalidJson(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_NoPackages(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/empty.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/empty.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -31,7 +31,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_NoPackages(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_OnePackage(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/one-package.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/one-package.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -52,7 +52,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_OnePackage(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_OnePackageDev(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/one-package-dev.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/one-package-dev.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -74,7 +74,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_OnePackageDev(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_TwoPackages(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/two-packages.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/two-packages.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -104,7 +104,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_TwoPackages(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_ScopedPackages(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/scoped-packages.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/scoped-packages.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -130,7 +130,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_ScopedPackages(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_NestedDependencies(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/nested-dependencies.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/nested-dependencies.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -177,7 +177,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_NestedDependencies(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_NestedDependenciesDup(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/nested-dependencies-dup.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/nested-dependencies-dup.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -203,7 +203,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_NestedDependenciesDup(t *testing.T)
 func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/commits.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/commits.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -360,7 +360,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Commits(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_Files(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/files.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/files.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -401,7 +401,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Files(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_Alias(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/alias.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/alias.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}
@@ -440,7 +440,7 @@ func TestNodeModulesExtractor_Extract_npm_v2_Alias(t *testing.T) {
 func TestNodeModulesExtractor_Extract_npm_v2_OptionalPackage(t *testing.T) {
 	t.Parallel()
 
-	packages, _, err := testParsingNodeModules(t, "fixtures/npm/optional-package.v2.json")
+	packages, err := testParsingNodeModules(t, "fixtures/npm/optional-package.v2.json")
 	if err != nil {
 		t.Errorf("Got unexpected error: %v", err)
 	}

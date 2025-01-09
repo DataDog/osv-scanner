@@ -2,10 +2,10 @@ package lockfile
 
 import (
 	"encoding/json"
-	"golang.org/x/exp/maps"
 	"io"
-	"regexp"
 	"strings"
+
+	"golang.org/x/exp/maps"
 
 	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/pkg/models"
@@ -19,24 +19,24 @@ const (
 
 type PackageJSONMatcher struct{}
 
-type packageJsonDependencyMap struct {
+type packageJSONDependencyMap struct {
 	rootType   int
 	filePath   string
 	lineOffset int
 	packages   []*PackageDetails
 }
 
-type packageJsonFile struct {
-	Dependencies         packageJsonDependencyMap `json:"dependencies"`
-	DevDependencies      packageJsonDependencyMap `json:"devDependencies"`
-	OptionalDependencies packageJsonDependencyMap `json:"optionalDependencies"`
+type packageJSONFile struct {
+	Dependencies         packageJSONDependencyMap `json:"dependencies"`
+	DevDependencies      packageJSONDependencyMap `json:"devDependencies"`
+	OptionalDependencies packageJSONDependencyMap `json:"optionalDependencies"`
 }
 
 func (m PackageJSONMatcher) GetSourceFile(lockfile DepFile) (DepFile, error) {
 	return lockfile.Open("package.json")
 }
 
-func (depMap *packageJsonDependencyMap) UnmarshalJSON(data []byte) error {
+func (depMap *packageJSONDependencyMap) UnmarshalJSON(data []byte) error {
 	content := string(data)
 
 	for _, pkg := range depMap.packages {
@@ -101,8 +101,8 @@ The expected result of FindAllStringSubmatchIndex is a [6]int, with the followin
 - index 4/5 represents version start/end
 */
 // TODO : Unify in a util class with the composer one
-func (depMap *packageJsonDependencyMap) extractPackageIndexes(pkgName, targetedVersion, content string) []int {
-	pkgMatcher := cachedregexp.MustCompile(`"(?P<pkgName>` + pkgName + `)\"\s*:\s*\"(?P<version>` + regexp.QuoteMeta(targetedVersion) + `)"`)
+func (depMap *packageJSONDependencyMap) extractPackageIndexes(pkgName, targetedVersion, content string) []int {
+	pkgMatcher := cachedregexp.MustCompile(`"(?P<pkgName>` + pkgName + `)\"\s*:\s*\"(?P<version>` + cachedregexp.QuoteMeta(targetedVersion) + `)"`)
 	result := pkgMatcher.FindAllStringSubmatchIndex(content, -1)
 
 	if len(result) == 0 || len(result[0]) < 6 {
@@ -113,7 +113,7 @@ func (depMap *packageJsonDependencyMap) extractPackageIndexes(pkgName, targetedV
 }
 
 // TODO : Unify it in a util class with the composer one
-func (depMap *packageJsonDependencyMap) updatePackageDetails(pkg *PackageDetails, content string, indexes []int) {
+func (depMap *packageJSONDependencyMap) updatePackageDetails(pkg *PackageDetails, content string, indexes []int) {
 	lineStart := depMap.lineOffset + strings.Count(content[:indexes[0]], "\n")
 	lineStartIndex := strings.LastIndex(content[:indexes[0]], "\n")
 	lineEnd := depMap.lineOffset + strings.Count(content[:indexes[1]], "\n")
@@ -170,6 +170,7 @@ func getSectionOffset(sectionName string, content string) int {
 	if len(sectionIndex) < 2 {
 		return -1
 	}
+
 	return strings.Count(content[:sectionIndex[1]], "\n")
 }
 
@@ -183,18 +184,18 @@ func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails)
 	devDependenciesLineOffset := getSectionOffset("devDependencies", contentStr)
 	optionalDepenenciesLineOffset := getSectionOffset("optionalDependencies", contentStr)
 
-	jsonFile := packageJsonFile{
-		Dependencies: packageJsonDependencyMap{
+	jsonFile := packageJSONFile{
+		Dependencies: packageJSONDependencyMap{
 			rootType:   typeDependencies,
 			filePath:   sourcefile.Path(),
 			lineOffset: dependenciesLineOffset,
 		},
-		DevDependencies: packageJsonDependencyMap{
+		DevDependencies: packageJSONDependencyMap{
 			rootType:   typeDevDependencies,
 			filePath:   sourcefile.Path(),
 			lineOffset: devDependenciesLineOffset,
 		},
-		OptionalDependencies: packageJsonDependencyMap{
+		OptionalDependencies: packageJSONDependencyMap{
 			rootType:   typeOptionalDependencies,
 			filePath:   sourcefile.Path(),
 			lineOffset: optionalDepenenciesLineOffset,
