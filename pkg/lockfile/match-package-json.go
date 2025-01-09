@@ -4,11 +4,6 @@ import (
 	"encoding/json"
 	jsonUtils "github.com/google/osv-scanner/internal/json"
 	"io"
-	"strings"
-
-	"golang.org/x/exp/maps"
-
-	"github.com/google/osv-scanner/pkg/models"
 )
 
 const (
@@ -20,10 +15,7 @@ const (
 type PackageJSONMatcher struct{}
 
 type packageJSONDependencyMap struct {
-	rootType   int
-	filePath   string
-	lineOffset int
-	packages   []*PackageDetails
+	MatcherDependencyMap
 }
 
 type packageJSONFile struct {
@@ -39,7 +31,7 @@ func (m PackageJSONMatcher) GetSourceFile(lockfile DepFile) (DepFile, error) {
 func (depMap *packageJSONDependencyMap) UnmarshalJSON(data []byte) error {
 	content := string(data)
 
-	for _, pkg := range depMap.packages {
+	for _, pkg := range depMap.Packages {
 		var pkgIndexes []int
 
 		for _, targetedVersion := range pkg.TargetVersions {
@@ -53,86 +45,24 @@ func (depMap *packageJSONDependencyMap) UnmarshalJSON(data []byte) error {
 			// The matcher haven't found package information, lets skip it
 			continue
 		}
-
-		if depMap.rootType == typeDependencies {
-			pkg.DepGroups = append(pkg.DepGroups, "prod")
-		} else if depMap.rootType == typeDevDependencies {
-			pkg.DepGroups = append(pkg.DepGroups, "dev")
-		} else if depMap.rootType == typeOptionalDependencies {
-			pkg.DepGroups = append(pkg.DepGroups, "optional")
+		var depGroup string
+		if depMap.RootType == typeDependencies {
+			depGroup = "prod"
+		} else if depMap.RootType == typeDevDependencies {
+			depGroup = "dev"
+		} else if depMap.RootType == typeOptionalDependencies {
+			depGroup = "optional"
 		}
-		propagateDepGroups(pkg)
 
-		if (depMap.rootType == typeDevDependencies || depMap.rootType == typeOptionalDependencies) && pkg.BlockLocation.Line.Start != 0 {
+		if (depMap.RootType == typeDevDependencies || depMap.RootType == typeOptionalDependencies) && pkg.BlockLocation.Line.Start != 0 {
 			// If it is a dev or optional dependency definition and we already found a package location,
 			// we skip it to prioritize non-dev dependencies
-			continue
+			pkgIndexes = []int{}
 		}
-		depMap.updatePackageDetails(pkg, content, pkgIndexes)
+		depMap.UpdatePackageDetails(pkg, content, pkgIndexes, depGroup)
 	}
 
 	return nil
-}
-
-func propagateDepGroups(root *PackageDetails) {
-	newDepGroups := make(map[string]bool)
-	for _, group := range root.DepGroups {
-		newDepGroups[group] = true
-	}
-
-	for _, deps := range root.Dependencies {
-		for _, group := range deps.DepGroups {
-			newDepGroups[group] = true
-		}
-		deps.DepGroups = maps.Keys(newDepGroups)
-		propagateDepGroups(deps)
-	}
-}
-
-// TODO : Unify it in a util class with the composer one
-func (depMap *packageJSONDependencyMap) updatePackageDetails(pkg *PackageDetails, content string, indexes []int) {
-	lineStart := depMap.lineOffset + strings.Count(content[:indexes[0]], "\n")
-	lineStartIndex := strings.LastIndex(content[:indexes[0]], "\n")
-	lineEnd := depMap.lineOffset + strings.Count(content[:indexes[1]], "\n")
-	lineEndIndex := strings.LastIndex(content[:indexes[1]], "\n")
-
-	pkg.IsDirect = true
-
-	pkg.BlockLocation = models.FilePosition{
-		Filename: depMap.filePath,
-		Line: models.Position{
-			Start: lineStart + 1,
-			End:   lineEnd + 1,
-		},
-		Column: models.Position{
-			Start: indexes[0] - lineStartIndex,
-			End:   indexes[1] - lineEndIndex,
-		},
-	}
-
-	pkg.NameLocation = &models.FilePosition{
-		Filename: depMap.filePath,
-		Line: models.Position{
-			Start: lineStart + 1,
-			End:   lineStart + 1,
-		},
-		Column: models.Position{
-			Start: indexes[2] - lineStartIndex,
-			End:   indexes[3] - lineStartIndex,
-		},
-	}
-
-	pkg.VersionLocation = &models.FilePosition{
-		Filename: depMap.filePath,
-		Line: models.Position{
-			Start: lineEnd + 1,
-			End:   lineEnd + 1,
-		},
-		Column: models.Position{
-			Start: indexes[4] - lineEndIndex,
-			End:   indexes[5] - lineEndIndex,
-		},
-	}
 }
 
 func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails) error {
@@ -147,28 +77,34 @@ func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails)
 
 	jsonFile := packageJSONFile{
 		Dependencies: packageJSONDependencyMap{
-			rootType:   typeDependencies,
-			filePath:   sourcefile.Path(),
-			lineOffset: dependenciesLineOffset,
+			MatcherDependencyMap: MatcherDependencyMap{
+				RootType:   typeDependencies,
+				FilePath:   sourcefile.Path(),
+				LineOffset: dependenciesLineOffset,
+			},
 		},
 		DevDependencies: packageJSONDependencyMap{
-			rootType:   typeDevDependencies,
-			filePath:   sourcefile.Path(),
-			lineOffset: devDependenciesLineOffset,
+			MatcherDependencyMap: MatcherDependencyMap{
+				RootType:   typeDevDependencies,
+				FilePath:   sourcefile.Path(),
+				LineOffset: devDependenciesLineOffset,
+			},
 		},
 		OptionalDependencies: packageJSONDependencyMap{
-			rootType:   typeOptionalDependencies,
-			filePath:   sourcefile.Path(),
-			lineOffset: optionalDepenenciesLineOffset,
+			MatcherDependencyMap: MatcherDependencyMap{
+				RootType:   typeOptionalDependencies,
+				FilePath:   sourcefile.Path(),
+				LineOffset: optionalDepenenciesLineOffset,
+			},
 		},
 	}
 	packagesPtr := make([]*PackageDetails, len(packages))
 	for index := range packages {
 		packagesPtr[index] = &packages[index]
 	}
-	jsonFile.Dependencies.packages = packagesPtr
-	jsonFile.DevDependencies.packages = packagesPtr
-	jsonFile.OptionalDependencies.packages = packagesPtr
+	jsonFile.Dependencies.Packages = packagesPtr
+	jsonFile.DevDependencies.Packages = packagesPtr
+	jsonFile.OptionalDependencies.Packages = packagesPtr
 
 	return json.Unmarshal(content, &jsonFile)
 }
