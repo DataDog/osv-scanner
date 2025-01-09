@@ -2,6 +2,7 @@ package lockfile
 
 import (
 	"encoding/json"
+	jsonUtils "github.com/google/osv-scanner/internal/json"
 	"io"
 	"path/filepath"
 	"strings"
@@ -65,16 +66,8 @@ func (matcher ComposerMatcher) Match(sourceFile DepFile, packages []PackageDetai
 		return err
 	}
 	contentStr := string(content)
-	requireIndex := cachedregexp.MustCompile("\"require\"\\s*:\\s*{").FindStringIndex(contentStr)
-	requireDevIndex := cachedregexp.MustCompile("\"require-dev\"\\s*:\\s*{").FindStringIndex(contentStr)
-	requireLineOffset, requireDevLineOffset := 0, 0
-
-	if len(requireIndex) > 1 {
-		requireLineOffset = strings.Count(contentStr[:requireIndex[1]], "\n")
-	}
-	if len(requireDevIndex) > 1 {
-		requireDevLineOffset = strings.Count(contentStr[:requireDevIndex[1]], "\n")
-	}
+	requireLineOffset := jsonUtils.GetSectionOffset("require", contentStr)
+	requireDevLineOffset := jsonUtils.GetSectionOffset("require-dev", contentStr)
 
 	jsonFile := composerFile{
 		Require: dependencyMap{

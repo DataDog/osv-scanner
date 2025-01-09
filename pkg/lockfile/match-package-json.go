@@ -2,6 +2,7 @@ package lockfile
 
 import (
 	"encoding/json"
+	jsonUtils "github.com/google/osv-scanner/internal/json"
 	"io"
 	"strings"
 
@@ -158,31 +159,15 @@ func (depMap *packageJSONDependencyMap) updatePackageDetails(pkg *PackageDetails
 	}
 }
 
-/*
-*
-This method computes the start line of any section in the file.
-To see the regex in action, check out https://regex101.com/r/3EHqB8/1 (it uses the dependencies section as an example)
-*/
-// TODO : Unify it with composer
-func getSectionOffset(sectionName string, content string) int {
-	sectionMatcher := cachedregexp.MustCompile(`(?m)^\s*"` + sectionName + `":\s*{\s*$`)
-	sectionIndex := sectionMatcher.FindStringIndex(content)
-	if len(sectionIndex) < 2 {
-		return -1
-	}
-
-	return strings.Count(content[:sectionIndex[1]], "\n")
-}
-
 func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails) error {
 	content, err := io.ReadAll(sourcefile)
 	if err != nil {
 		return err
 	}
 	contentStr := string(content)
-	dependenciesLineOffset := getSectionOffset("dependencies", contentStr)
-	devDependenciesLineOffset := getSectionOffset("devDependencies", contentStr)
-	optionalDepenenciesLineOffset := getSectionOffset("optionalDependencies", contentStr)
+	dependenciesLineOffset := jsonUtils.GetSectionOffset("dependencies", contentStr)
+	devDependenciesLineOffset := jsonUtils.GetSectionOffset("devDependencies", contentStr)
+	optionalDepenenciesLineOffset := jsonUtils.GetSectionOffset("optionalDependencies", contentStr)
 
 	jsonFile := packageJSONFile{
 		Dependencies: packageJSONDependencyMap{
