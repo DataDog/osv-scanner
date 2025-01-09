@@ -18,3 +18,36 @@ func GetSectionOffset(sectionName string, content string) int {
 
 	return strings.Count(content[:sectionIndex[1]], "\n")
 }
+
+/*
+ExtractPackageIndexes find where a package is defined in a json source file. It returns the block indexes along with
+name and version. It assumes:
+ 1. the package won't be declared twice in the same block
+ 2. the declaration will be shaped as "<package name>" : "<version or constraints>"
+
+# If no targeted version is passed, it will search for any version
+
+You can see the regex in action here: https://regex101.com/r/zzrEAh/1
+
+The expected result of FindAllStringSubmatchIndex is a [6]int, with the following structure :
+- index 0/1 represents block start/end
+- index 2/3 represents name start/end
+- index 4/5 represents version start/end
+*/
+func ExtractPackageIndexes(pkgName, targetedVersion, content string) []int {
+	var versionRegex string
+
+	if len(targetedVersion) == 0 {
+		versionRegex = ".*"
+	} else {
+		versionRegex = cachedregexp.QuoteMeta(targetedVersion)
+	}
+	pkgMatcher := cachedregexp.MustCompile(`"(?P<pkgName>` + pkgName + `)\"\s*:\s*\"(?P<version>` + versionRegex + `)"`)
+	result := pkgMatcher.FindAllStringSubmatchIndex(content, -1)
+
+	if len(result) == 0 || len(result[0]) < 6 {
+		return []int{}
+	}
+
+	return result[0]
+}

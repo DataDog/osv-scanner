@@ -7,7 +7,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/pkg/models"
 )
 
@@ -41,7 +40,7 @@ func (depMap *dependencyMap) UnmarshalJSON(bytes []byte) error {
 			// we skip it to prioritize non-dev dependencies
 			continue
 		}
-		pkgIndexes := depMap.extractPackageIndexes(pkg.Name, content)
+		pkgIndexes := jsonUtils.ExtractPackageIndexes(pkg.Name, "", content)
 		if len(pkgIndexes) == 0 {
 			// The matcher haven't found package information, lets skip the package
 			continue
@@ -90,26 +89,6 @@ func (matcher ComposerMatcher) Match(sourceFile DepFile, packages []PackageDetai
 	}
 
 	return json.Unmarshal(content, &jsonFile)
-}
-
-/*
-This method find where a package is defined in the composer.json file. It returns the block indexes along with
-name and version. Composer does not accept a package being declared twice in the same block, so this method will always return zero or one row
-
-The expected result is a [6]int, with the following structure :
-- index 0/1 represents block start/end
-- index 2/3 represents name start/end
-- index 4/5 represents version start/end
-*/
-func (depMap *dependencyMap) extractPackageIndexes(pkgName string, content string) []int {
-	pkgMatcher := cachedregexp.MustCompile(".*\"(?P<pkgName>" + pkgName + ")\"\\s*:\\s*\"(?P<version>.*)\"")
-	result := pkgMatcher.FindAllStringSubmatchIndex(content, -1)
-
-	if len(result) == 0 || len(result[0]) < 6 {
-		return []int{}
-	}
-
-	return result[0]
 }
 
 func (depMap *dependencyMap) updatePackageDetails(pkg *PackageDetails, content string, indexes []int) {

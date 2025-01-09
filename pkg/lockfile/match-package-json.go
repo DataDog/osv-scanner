@@ -8,7 +8,6 @@ import (
 
 	"golang.org/x/exp/maps"
 
-	"github.com/google/osv-scanner/internal/cachedregexp"
 	"github.com/google/osv-scanner/pkg/models"
 )
 
@@ -44,7 +43,7 @@ func (depMap *packageJSONDependencyMap) UnmarshalJSON(data []byte) error {
 		var pkgIndexes []int
 
 		for _, targetedVersion := range pkg.TargetVersions {
-			pkgIndexes = depMap.extractPackageIndexes(pkg.Name, targetedVersion, content)
+			pkgIndexes = jsonUtils.ExtractPackageIndexes(pkg.Name, targetedVersion, content)
 			if len(pkgIndexes) > 0 {
 				break
 			}
@@ -88,29 +87,6 @@ func propagateDepGroups(root *PackageDetails) {
 		deps.DepGroups = maps.Keys(newDepGroups)
 		propagateDepGroups(deps)
 	}
-}
-
-/*
-This method find where a package is defined in a json source file. It returns the block indexes along with
-name and version. It assumes the package won't be declared twice in the same block.
-
-You can see the regex in action here: https://regex101.com/r/zzrEAh/1
-
-The expected result of FindAllStringSubmatchIndex is a [6]int, with the following structure :
-- index 0/1 represents block start/end
-- index 2/3 represents name start/end
-- index 4/5 represents version start/end
-*/
-// TODO : Unify in a util class with the composer one
-func (depMap *packageJSONDependencyMap) extractPackageIndexes(pkgName, targetedVersion, content string) []int {
-	pkgMatcher := cachedregexp.MustCompile(`"(?P<pkgName>` + pkgName + `)\"\s*:\s*\"(?P<version>` + cachedregexp.QuoteMeta(targetedVersion) + `)"`)
-	result := pkgMatcher.FindAllStringSubmatchIndex(content, -1)
-
-	if len(result) == 0 || len(result[0]) < 6 {
-		return []int{}
-	}
-
-	return result[0]
 }
 
 // TODO : Unify it in a util class with the composer one
