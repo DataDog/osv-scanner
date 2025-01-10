@@ -195,17 +195,21 @@ func extractRootKeyPackageName(name string) string {
 }
 
 func (pkg NpmLockPackage) depGroups() []string {
+	groups := make([]string, 0)
 	if pkg.Dev {
-		return []string{"dev"}
+		groups = append(groups, "dev")
 	}
 	if pkg.Optional {
-		return []string{"optional"}
+		groups = append(groups, "optional")
 	}
 	if pkg.DevOptional {
-		return []string{"dev", "optional"}
+		groups = append(groups, "dev", "optional")
+	}
+	if !pkg.Dev && !pkg.DevOptional {
+		groups = append(groups, "prod")
 	}
 
-	return nil
+	return groups
 }
 
 func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]PackageDetails {
