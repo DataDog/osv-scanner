@@ -171,7 +171,6 @@ func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency) map[st
 			CompareAs:      NpmEcosystem,
 			Commit:         commit,
 			DepGroups:      detail.depGroups(),
-			IsDirect:       true,
 		})
 	}
 
@@ -251,14 +250,11 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 		// the dependencies with the version written as it appears in the package.json
 		var targetVersions []string
 		var targetVersion string
-		var isDirect bool
 		rootKey := extractRootKeyPackageName(namePath)
 		if p, ok := packages[""]; ok {
 			if dep, ok := p.Dependencies[rootKey]; ok {
 				targetVersion = dep
-				isDirect = true
 			} else if devDep, ok := p.DevDependencies[rootKey]; ok {
-				isDirect = true
 				targetVersion = devDep
 			}
 		}
@@ -291,7 +287,6 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]Packag
 				CompareAs:      NpmEcosystem,
 				Commit:         commit,
 				DepGroups:      detail.depGroups(),
-				IsDirect:       isDirect,
 			})
 		}
 	}
