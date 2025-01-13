@@ -659,3 +659,105 @@ func TestParseNpmLock_v2_SamePackageDifferentGroups(t *testing.T) {
 		},
 	})
 }
+
+func TestParseNpmLock_v2_Workspaces(t *testing.T) {
+	t.Parallel()
+
+	dir, err := os.Getwd()
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/workspaces/package-lock.json"))
+	packages, err := lockfile.ParseNpmLock(path)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	sourceFile, err := lockfile.OpenLocalDepFile("fixtures/package-json/workspaces/package.json")
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+	err = packageJSONMatcher.Match(sourceFile, packages)
+	if err != nil {
+		t.Errorf("Got unexpected error: %v", err)
+	}
+
+	workspace1path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/workspaces/folder/package.json"))
+	workspace2path := filepath.FromSlash(filepath.Join(dir, "fixtures/package-json/workspaces/other-folder/workspace-2/package.json"))
+
+	expectPackages(t, packages, []lockfile.PackageDetails{
+		{
+			Name:           "lodash",
+			Version:        "4.17.21",
+			PackageManager: models.NPM,
+			TargetVersions: []string{"^4.17.21"},
+			Ecosystem:      lockfile.NpmEcosystem,
+			CompareAs:      lockfile.NpmEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 5, End: 25},
+				Filename: workspace1path,
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 6, End: 12},
+				Filename: workspace1path,
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 16, End: 24},
+				Filename: workspace1path,
+			},
+			IsDirect: true,
+		},
+		{
+			Name:           "semver",
+			Version:        "7.6.3",
+			PackageManager: models.NPM,
+			TargetVersions: []string{"^7.3.2"},
+			Ecosystem:      lockfile.NpmEcosystem,
+			CompareAs:      lockfile.NpmEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 5, End: 23},
+				Filename: workspace2path,
+			},
+			NameLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 6, End: 12},
+				Filename: workspace2path,
+			},
+			VersionLocation: &models.FilePosition{
+				Line:     models.Position{Start: 5, End: 5},
+				Column:   models.Position{Start: 16, End: 22},
+				Filename: workspace2path,
+			},
+			IsDirect: true,
+		},
+		{
+			Name:           "workspace-1",
+			Version:        "1.0.0",
+			PackageManager: models.NPM,
+			Ecosystem:      lockfile.NpmEcosystem,
+			CompareAs:      lockfile.NpmEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 15, End: 21},
+				Column:   models.Position{Start: 5, End: 6},
+				Filename: path,
+			},
+		},
+		{
+			Name:           "workspace-2",
+			Version:        "1.0.0",
+			PackageManager: models.NPM,
+			Ecosystem:      lockfile.NpmEcosystem,
+			CompareAs:      lockfile.NpmEcosystem,
+			BlockLocation: models.FilePosition{
+				Line:     models.Position{Start: 46, End: 51},
+				Column:   models.Position{Start: 5, End: 6},
+				Filename: path,
+			},
+		},
+	})
+}

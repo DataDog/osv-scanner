@@ -13,6 +13,7 @@ import (
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 
+	"github.com/bmatcuk/doublestar"
 	"github.com/google/osv-scanner/internal/utility/fileposition"
 
 	"github.com/google/osv-scanner/pkg/models"
@@ -50,6 +51,8 @@ type NpmLockPackage struct {
 	DevDependencies      map[string]string `json:"devDependencies,omitempty"`
 	OptionalDependencies map[string]string `json:"optionalDependencies,omitempty"`
 	PeerDependencies     map[string]string `json:"peerDependencies,omitempty"`
+
+	Workspaces []string `json:"workspaces,omitempty"`
 
 	Dev         bool `json:"dev,omitempty"`
 	DevOptional bool `json:"devOptional,omitempty"`
@@ -213,8 +216,42 @@ func (pkg NpmLockPackage) depGroups() []string {
 	return nil
 }
 
+func matchesWorkspacePattern(patterns []string, testPath string) bool {
+	for _, pattern := range patterns {
+		if matched, _ := doublestar.Match(pattern, testPath); matched {
+			return true
+		}
+	}
+
+	return false
+}
+
 func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[string]PackageDetails {
 	details := npmPackageDetailsMap{}
+	rootPkg, hasRootPkg := packages[""]
+
+	// Find workspace patterns from root package
+	var workspacePatterns []string
+	if hasRootPkg {
+		workspacePatterns = rootPkg.Workspaces
+	}
+
+	// Build map of workspace package paths to their dependency versions
+	workspaceDeps := make(map[string]string)
+	for pkgPath, pkg := range packages {
+		if strings.HasPrefix(pkgPath, "node_modules/") || pkgPath == "" {
+			continue
+		}
+
+		if matchesWorkspacePattern(workspacePatterns, pkgPath) {
+			// Store all dependencies for this workspace
+			for _, p := range []map[string]string{pkg.Dependencies, pkg.DevDependencies, pkg.OptionalDependencies} {
+				for k, v := range p {
+					workspaceDeps[k] = v
+				}
+			}
+		}
+	}
 
 	keys := reflect.ValueOf(packages).MapKeys()
 	keysOrder := func(i, j int) bool { return keys[i].Interface().(string) < keys[j].Interface().(string) }
@@ -254,6 +291,8 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[
 		var targetVersion string
 		var isDirect bool
 		rootKey := extractRootKeyPackageName(namePath)
+
+		// First check root package dependencies
 		if p, ok := packages[""]; ok {
 			if dep, ok := p.Dependencies[rootKey]; ok {
 				targetVersion = dep
@@ -261,6 +300,14 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[
 			} else if devDep, ok := p.DevDependencies[rootKey]; ok {
 				isDirect = true
 				targetVersion = devDep
+			}
+		}
+
+		// Then check workspace package dependencies
+		if targetVersion == "" {
+			if dep, ok := workspaceDeps[rootKey]; ok {
+				targetVersion = dep
+				isDirect = true
 			}
 		}
 
