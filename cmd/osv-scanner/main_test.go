@@ -264,7 +264,6 @@ func TestRun_WithoutHostPathInformation(t *testing.T) {
 			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many"},
 			wantExitCode: 0,
 			wantFilePaths: []string{
-				"package-lock.json", // TODO: remove when NPM is using the JSON matcher
 				"package.json",
 			},
 		},

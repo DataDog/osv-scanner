@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io"
 
-	jsonUtils "github.com/google/osv-scanner/internal/json"
+	jsonUtils "github.com/datadog/osv-scanner/internal/json"
 )
 
 const (
