@@ -105,17 +105,17 @@ func (pdm npmPackageDetailsMap) add(key string, details PackageDetails) {
 }
 
 func (dep *NpmLockDependency) depGroups() []string {
-	if dep.Dev && dep.Optional {
-		return []string{"dev", "optional"}
+	groups := make([]string, 0)
+	if dep.Optional {
+		groups = append(groups, "optional")
 	}
 	if dep.Dev {
-		return []string{"dev"}
-	}
-	if dep.Optional {
-		return []string{"optional"}
+		groups = append(groups, "dev")
+	} else {
+		groups = append(groups, "prod")
 	}
 
-	return nil
+	return groups
 }
 
 func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency) map[string]PackageDetails {
