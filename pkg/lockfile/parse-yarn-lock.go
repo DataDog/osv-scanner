@@ -146,30 +146,36 @@ func determineYarnPackageVersion(group []string) string {
 	return ""
 }
 
-// You can find the line parsing regex in action here: https://regex101.com/r/QoJ3b7/3
+/*
+You can find the line parsing regex in action here: https://regex101.com/r/QoJ3b7/3
+All expected formats are defined in the regex documentation
+*/
 func determineYarnPackageDependencies(group []string) []YarnDependency {
 	indentCount := -1
 	results := make([]YarnDependency, 0)
 	lineParsing := cachedregexp.MustCompile(`^"?(?P<package_name>[^\s":]+)"?\s*:?\s*"?(?P<targeted_version>[^"\n]+)"?$`)
 
 	for _, line := range group {
-		cleaned := strings.TrimSpace(line)
-		if strings.HasPrefix(cleaned, "dependencies") {
+		trimmed := strings.TrimSpace(line)
+		if strings.HasPrefix(trimmed, "dependencies") {
 			// start of the dependencies section
-			indentCount = len(line) - len(cleaned)
-		} else if indentCount != -1 && len(line)-len(cleaned) == indentCount {
+			indentCount = len(line) - len(trimmed)
+		} else if indentCount != -1 && len(line)-len(trimmed) == indentCount {
 			// end of the dependencies section, we can stop there
 			break
 		} else if indentCount != -1 {
 			// A line inside the dependencies section, lets parse it
-			match := lineParsing.FindStringSubmatch(cleaned)
-			name, version := match[1], match[2]
-			var registry string
+			match := lineParsing.FindStringSubmatch(trimmed)
+			if len(match) < 3 {
+				// The line have an invalid format, lets skip it
+				continue
+			}
+			name := match[1]
+			registry, version, found := strings.Cut(match[2], ":")
 
-			if strings.Contains(version, ":") {
-				registry, version, _ = strings.Cut(version, ":")
-			} else {
+			if !found {
 				registry = "npm"
+				version = match[2]
 			}
 
 			results = append(results, YarnDependency{
@@ -254,6 +260,19 @@ func tryExtractCommit(resolution string) string {
 	return ""
 }
 
+/*
+buildDependencyTree leverage yarn lockfile format to build the subtree of a package
+
+`rootPkgName` is the name of the package which needs its dependency tree to be built
+`rootPkgTargetVersion` is the constraint of the package we search (for example ^1.0.0)
+`rootPkgRegistry` is the registry used to download this dependency (defaults to npm)
+`dependencies` is the representation of the yarn lockfile, where the key is either package name, registry and target version
+or package name and target version and the value is the package definition in Yarn format
+`packagesIndex` is an index of all package in osv-scanner format where the key is the package name and the package version
+
+This methods build the dependency tree by looking at the yarn dependencies definition and matching every transitive dependency
+with the index to get a pointer to the osv-scanner formatted child package
+*/
 func buildDependencyTree(rootPkgName, rootPkgTargetVersion, rootPkgRegistry string, dependencies map[string]YarnPackage, packagesIndex map[string]*PackageDetails) []*PackageDetails {
 	results := make([]*PackageDetails, 0)
 	pkg, ok := dependencies[rootPkgName+"@"+rootPkgTargetVersion]
