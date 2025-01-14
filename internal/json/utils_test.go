@@ -1,11 +1,13 @@
 package json
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestExtractPackageIndexes(t *testing.T) {
+	t.Parallel()
 	type args struct {
 		pkgName         string
 		targetedVersion string
@@ -53,8 +55,10 @@ func TestExtractPackageIndexes(t *testing.T) {
 			expected: []int{},
 		},
 	}
-	for _, tt := range tests {
+	for _, testCase := range tests {
+		tt := testCase
 		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
 			result := ExtractPackageIndexes(tt.args.pkgName, tt.args.targetedVersion, tt.args.content)
 			assert.Equal(t, tt.expected, result)
 		})
@@ -62,6 +66,7 @@ func TestExtractPackageIndexes(t *testing.T) {
 }
 
 func TestGetSectionOffset(t *testing.T) {
+	t.Parallel()
 	assert.Equal(t, 5, GetSectionOffset("dependencies", `{
 		"private": true,
 		"devDependencies": {

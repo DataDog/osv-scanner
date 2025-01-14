@@ -1,12 +1,14 @@
 package lockfile
 
 import (
+	"testing"
+
 	"github.com/google/osv-scanner/pkg/models"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestMatcherDependencyMap_UpdatePackageDetails(t *testing.T) {
+	t.Parallel()
 	type fields struct {
 		LineOffset int
 	}
@@ -240,8 +242,10 @@ func TestMatcherDependencyMap_UpdatePackageDetails(t *testing.T) {
 			},
 		},
 	}
-	for _, tt := range tests {
+	for _, testCase := range tests {
+		tt := testCase
 		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
 			depMap := &MatcherDependencyMap{
 				RootType:   0,
 				FilePath:   "file-path",
@@ -261,10 +265,10 @@ func TestMatcherDependencyMap_UpdatePackageDetails(t *testing.T) {
 			if tt.expected != nil {
 				assert.EqualExportedValues(t, *tt.expected, *depMap.Packages[0])
 			} else {
-				assert.EqualExportedValues(t, *depMap.Packages[0], PackageDetails{
+				assert.EqualExportedValues(t, PackageDetails{
 					Name:    "Foobar",
 					Version: "1.2.3",
-				})
+				}, *depMap.Packages[0])
 			}
 		})
 	}
