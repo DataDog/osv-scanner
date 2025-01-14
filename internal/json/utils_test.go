@@ -60,3 +60,15 @@ func TestExtractPackageIndexes(t *testing.T) {
 		})
 	}
 }
+
+func TestGetSectionOffset(t *testing.T) {
+	assert.Equal(t, 5, GetSectionOffset("dependencies", `{
+		"private": true,
+		"devDependencies": {
+			"foo": ">1.0.0"
+		},
+		"dependencies": {
+			"bar": "1.0.0"
+		}
+	}`))
+}
