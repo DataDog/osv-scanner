@@ -11,7 +11,7 @@ import (
 	"github.com/datadog/osv-scanner/pkg/models"
 )
 
-// This method creates a CycloneDX SBOM and returns it. Error being returned here are from components being filtered during PURL grouping
+// CreateCycloneDXBOM creates a CycloneDX SBOM and returns it. Error being returned here are from components being filtered during PURL grouping
 func CreateCycloneDXBOM(vulnResult *models.VulnerabilityResults, cycloneDXVersion models.CycloneDXVersion) (*cyclonedx.BOM, error) {
 	bomCreator := sbom.SpecVersionToBomCreator[cycloneDXVersion]
 	resultsByPurl, errs := purl.Group(vulnResult.Results)

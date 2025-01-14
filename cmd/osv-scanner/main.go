@@ -2,10 +2,12 @@ package main
 
 import (
 	"errors"
-	"github.com/datadog/osv-scanner/pkg/models"
+	"fmt"
 	"io"
 	"os"
 	"slices"
+
+	"github.com/datadog/osv-scanner/pkg/models"
 
 	"github.com/datadog/osv-scanner/cmd/osv-scanner/scan"
 	"github.com/datadog/osv-scanner/internal/version"
@@ -23,15 +25,13 @@ var (
 func run(args []string, stdout, stderr io.Writer) int {
 	var r reporter.Reporter
 	cli.VersionPrinter = func(ctx *cli.Context) {
-		// Use the app Writer and ErrWriter since they will be the writers to keep parallel tests consistent
-		r = reporter.NewCycloneDXReporter(stdout, stderr, models.CycloneDXVersion15, reporter.InfoLevel)
-		r.Infof("osv-scanner version: %s\ncommit: %s\nbuilt at: %s\n", ctx.App.Version, commit, date)
+		_, _ = fmt.Fprintf(stdout, "osv-scanner version: %s\ncommit: %s\nbuilt at: %s\n", ctx.App.Version, commit, date)
 	}
 
 	app := &cli.App{
 		Name:           "osv-scanner",
 		Version:        version.OSVVersion,
-		Usage:          "scans various mediums for dependencies and checks them against the OSV database",
+		Usage:          "scans various mediums for dependencies",
 		Suggest:        true,
 		Writer:         stdout,
 		ErrWriter:      stderr,

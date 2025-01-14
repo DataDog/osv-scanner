@@ -1,7 +1,6 @@
 package lockfile
 
 import (
-	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -13,8 +12,6 @@ import (
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
 )
-
-var ErrOpenNotSupported = errors.New("this file does not support opening files")
 
 // DepFile is an abstraction for a file that has been opened for extraction,
 // and that knows how to open other DepFiles relative to itself.

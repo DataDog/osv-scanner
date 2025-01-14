@@ -34,22 +34,17 @@ func TestFindExtractor(t *testing.T) {
 
 	lockfiles := map[string]string{
 		"buildscript-gradle.lockfile":      "gradle.lockfile",
-		"Cargo.lock":                       "Cargo.lock",
 		"composer.lock":                    "composer.lock",
 		"Gemfile.lock":                     "Gemfile.lock",
 		"go.mod":                           "go.mod",
 		"gradle/verification-metadata.xml": "gradle/verification-metadata.xml",
 		"gradle.lockfile":                  "gradle.lockfile",
-		"mix.lock":                         "mix.lock",
-		"pdm.lock":                         "pdm.lock",
 		"Pipfile.lock":                     "Pipfile.lock",
 		"package-lock.json":                "package-lock.json",
 		"packages.lock.json":               "packages.lock.json",
 		"pnpm-lock.yaml":                   "pnpm-lock.yaml",
 		"poetry.lock":                      "poetry.lock",
 		"pom.xml":                          "pom.xml",
-		"pubspec.lock":                     "pubspec.lock",
-		"renv.lock":                        "renv.lock",
 		"requirements.txt":                 "requirements.txt",
 		"yarn.lock":                        "yarn.lock",
 	}
@@ -90,23 +85,17 @@ func TestExtractDeps_FindsExpectedExtractor(t *testing.T) {
 
 	lockfiles := []string{
 		"buildscript-gradle.lockfile",
-		"Cargo.lock",
 		"composer.lock",
-		"conan.lock",
 		"Gemfile.lock",
 		"go.mod",
 		"gradle.lockfile",
 		"gradle/verification-metadata.xml",
-		"mix.lock",
-		"pdm.lock",
 		"Pipfile.lock",
 		"package-lock.json",
 		"packages.lock.json",
 		"pnpm-lock.yaml",
 		"poetry.lock",
 		"pom.xml",
-		"pubspec.lock",
-		"renv.lock",
 		"requirements.txt",
 		"yarn.lock",
 	}
@@ -166,7 +155,7 @@ func TestListExtractors(t *testing.T) {
 
 	extractors := lockfile.ListExtractors()
 
-	firstExpected := "Cargo.lock"
+	firstExpected := "composer.lock"
 	//nolint:ifshort
 	lastExpected := "yarn.lock"
 

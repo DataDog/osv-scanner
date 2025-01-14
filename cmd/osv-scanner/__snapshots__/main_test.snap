@@ -15,13 +15,13 @@ No package sources found, --help for usage information.
 ---
 
 [TestRun/#01 - 1]
+osv-scanner version: 1.8.2
+commit: n/a
+built at: n/a
 
 ---
 
 [TestRun/#01 - 2]
-osv-scanner version: 1.8.2
-commit: n/a
-built at: n/a
 
 ---
 
@@ -30,14 +30,58 @@ built at: n/a
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "version": 1
+  "version": 1,
+  "components": [
+    {
+      "bom-ref": "pkg:gem/ast@2.4.2",
+      "type": "library",
+      "name": "ast",
+      "version": "2.4.2",
+      "purl": "pkg:gem/ast@2.4.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Bundler"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/balanced-match@1.0.2",
+      "type": "library",
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "purl": "pkg:npm/balanced-match@1.0.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-gitignore/subdir/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"<rootdir>/fixtures/locks-gitignore/subdir/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"<rootdir>/fixtures/locks-gitignore/subdir/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
+    }
+  ]
 }
 
 ---
 
 [TestRun/#02 - 2]
-Scanning dir ./fixtures/locks-many/not-a-lockfile.toml
-No package sources found, --help for usage information.
+Scanning dir ./fixtures/locks-gitignore
+Scanned <rootdir>/fixtures/locks-gitignore/Gemfile.lock file and found 1 package
+Scanned <rootdir>/fixtures/locks-gitignore/subdir/yarn.lock file and found 1 package
 
 ---
 
@@ -102,70 +146,10 @@ Scanned <rootdir>/fixtures/locks-gitignore/subdir/yarn.lock file and found 1 pac
 ---
 
 [TestRun/#04 - 1]
-{
-  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
-  "bomFormat": "CycloneDX",
-  "specVersion": "1.5",
-  "version": 1,
-  "components": [
-    {
-      "bom-ref": "pkg:gem/ast@2.4.2",
-      "type": "library",
-      "name": "ast",
-      "version": "2.4.2",
-      "purl": "pkg:gem/ast@2.4.2",
-      "properties": [
-        {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Bundler"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:npm/balanced-match@1.0.2",
-      "type": "library",
-      "name": "balanced-match",
-      "version": "1.0.2",
-      "purl": "pkg:npm/balanced-match@1.0.2",
-      "properties": [
-        {
-          "name": "osv-scanner:is-direct",
-          "value": "true"
-        },
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Yarn"
-        }
-      ],
-      "evidence": {
-        "occurrences": [
-          {
-            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-gitignore/subdir/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"<rootdir>/fixtures/locks-gitignore/subdir/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"<rootdir>/fixtures/locks-gitignore/subdir/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":24,/"column_end/":30}}"
-          }
-        ]
-      }
-    }
-  ]
-}
 
 ---
 
 [TestRun/#04 - 2]
-Scanning dir ./fixtures/locks-gitignore
-Scanned <rootdir>/fixtures/locks-gitignore/Gemfile.lock file and found 1 package
-Scanned <rootdir>/fixtures/locks-gitignore/subdir/yarn.lock file and found 1 package
-
----
-
-[TestRun/#05 - 1]
-
----
-
-[TestRun/#05 - 2]
 unsupported output format "unknown" - must be one of: cyclonedx-1-4, cyclonedx-1-5
 
 ---
@@ -384,68 +368,6 @@ Scanned <rootdir>/fixtures/locks-one-with-nested/yarn.lock file and found 1 pack
 
 ---
 
-[TestRun/one_specific_supported_lockfile - 1]
-{
-  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
-  "bomFormat": "CycloneDX",
-  "specVersion": "1.5",
-  "version": 1,
-  "components": [
-    {
-      "bom-ref": "pkg:composer/sentry/sdk@2.0.4",
-      "type": "library",
-      "name": "sentry/sdk",
-      "version": "2.0.4",
-      "purl": "pkg:composer/sentry/sdk@2.0.4",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Composer"
-        }
-      ]
-    }
-  ]
-}
-
----
-
-[TestRun/one_specific_supported_lockfile - 2]
-Scanning dir ./fixtures/locks-many/composer.lock
-Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
-
----
-
-[TestRun/one_specific_supported_lockfile_with_ignore - 1]
-{
-  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
-  "bomFormat": "CycloneDX",
-  "specVersion": "1.5",
-  "version": 1,
-  "components": [
-    {
-      "bom-ref": "pkg:npm/ansi-html@0.0.1",
-      "type": "library",
-      "name": "ansi-html",
-      "version": "0.0.1",
-      "purl": "pkg:npm/ansi-html@0.0.1",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "NPM"
-        }
-      ]
-    }
-  ]
-}
-
----
-
-[TestRun/one_specific_supported_lockfile_with_ignore - 2]
-Scanning dir ./fixtures/locks-test-ignore/package-lock.json
-Scanned <rootdir>/fixtures/locks-test-ignore/package-lock.json file and found 1 package
-
----
-
 [TestRun/only_the_files_in_the_given_directories_are_checked_by_default_(no_recursion) - 1]
 {
   "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
@@ -507,6 +429,60 @@ Scanned <rootdir>/fixtures/locks-one-with-nested/yarn.lock file and found 1 pack
           "value": "Composer"
         }
       ]
+    },
+    {
+      "bom-ref": "pkg:gem/ast@2.4.2",
+      "type": "library",
+      "name": "ast",
+      "version": "2.4.2",
+      "purl": "pkg:gem/ast@2.4.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Bundler"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ansi-html@0.0.1",
+      "type": "library",
+      "name": "ansi-html",
+      "version": "0.0.1",
+      "purl": "pkg:npm/ansi-html@0.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "NPM"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/balanced-match@1.0.2",
+      "type": "library",
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "purl": "pkg:npm/balanced-match@1.0.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
     }
   ]
 }
@@ -536,6 +512,60 @@ Scanned <rootdir>/fixtures/locks-one-with-nested/yarn.lock file and found 1 pack
           "value": "Composer"
         }
       ]
+    },
+    {
+      "bom-ref": "pkg:gem/ast@2.4.2",
+      "type": "library",
+      "name": "ast",
+      "version": "2.4.2",
+      "purl": "pkg:gem/ast@2.4.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Bundler"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ansi-html@0.0.1",
+      "type": "library",
+      "name": "ansi-html",
+      "version": "0.0.1",
+      "purl": "pkg:npm/ansi-html@0.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "NPM"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/balanced-match@1.0.2",
+      "type": "library",
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "purl": "pkg:npm/balanced-match@1.0.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
     }
   ]
 }
@@ -543,8 +573,11 @@ Scanned <rootdir>/fixtures/locks-one-with-nested/yarn.lock file and found 1 pack
 ---
 
 [TestRun/verbosity_level_=_info - 2]
-Scanning dir ./fixtures/locks-many/composer.lock
+Scanning dir ./fixtures/locks-many
+Scanned <rootdir>/fixtures/locks-many/Gemfile.lock file and found 1 package
 Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/package-lock.json file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/yarn.lock file and found 1 package
 
 ---
 
@@ -681,6 +714,60 @@ Scanned <rootdir>/fixtures/locks-one-with-nested/yarn.lock file and found 1 pack
           "value": "Composer"
         }
       ]
+    },
+    {
+      "bom-ref": "pkg:gem/ast@2.4.2",
+      "type": "library",
+      "name": "ast",
+      "version": "2.4.2",
+      "purl": "pkg:gem/ast@2.4.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Bundler"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ansi-html@0.0.1",
+      "type": "library",
+      "name": "ansi-html",
+      "version": "0.0.1",
+      "purl": "pkg:npm/ansi-html@0.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "NPM"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/balanced-match@1.0.2",
+      "type": "library",
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "purl": "pkg:npm/balanced-match@1.0.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
     }
   ]
 }
@@ -688,8 +775,11 @@ Scanned <rootdir>/fixtures/locks-one-with-nested/yarn.lock file and found 1 pack
 ---
 
 [TestRun_SubCommands/with_no_subcommand - 2]
-Scanning dir ./fixtures/locks-many/composer.lock
+Scanning dir ./fixtures/locks-many
+Scanned <rootdir>/fixtures/locks-many/Gemfile.lock file and found 1 package
 Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/package-lock.json file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/yarn.lock file and found 1 package
 
 ---
 
@@ -712,6 +802,60 @@ Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
           "value": "Composer"
         }
       ]
+    },
+    {
+      "bom-ref": "pkg:gem/ast@2.4.2",
+      "type": "library",
+      "name": "ast",
+      "version": "2.4.2",
+      "purl": "pkg:gem/ast@2.4.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Bundler"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/ansi-html@0.0.1",
+      "type": "library",
+      "name": "ansi-html",
+      "version": "0.0.1",
+      "purl": "pkg:npm/ansi-html@0.0.1",
+      "properties": [
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "NPM"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:npm/balanced-match@1.0.2",
+      "type": "library",
+      "name": "balanced-match",
+      "version": "1.0.2",
+      "purl": "pkg:npm/balanced-match@1.0.2",
+      "properties": [
+        {
+          "name": "osv-scanner:is-direct",
+          "value": "true"
+        },
+        {
+          "name": "osv-scanner:package-manager",
+          "value": "Yarn"
+        }
+      ],
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "{/"block/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":5,/"column_end/":31},/"name/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":6,/"column_end/":20},/"version/":{/"file_name/":/"<rootdir>/fixtures/locks-many/package.json/",/"line_start/":4,/"line_end/":4,/"column_start/":24,/"column_end/":30}}"
+          }
+        ]
+      }
     }
   ]
 }
@@ -720,8 +864,11 @@ Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
 
 [TestRun_SubCommands/with_scan_subcommand - 2]
 Warning: `scan` exists as both a subcommand of OSV-Scanner and as a file on the filesystem. `scan` is assumed to be a subcommand here. If you intended for `scan` to be an argument to `scan`, you must specify `scan scan` in your command line.
-Scanning dir ./fixtures/locks-many/composer.lock
+Scanning dir ./fixtures/locks-many
+Scanned <rootdir>/fixtures/locks-many/Gemfile.lock file and found 1 package
 Scanned <rootdir>/fixtures/locks-many/composer.lock file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/package-lock.json file and found 1 package
+Scanned <rootdir>/fixtures/locks-many/yarn.lock file and found 1 package
 
 ---
 
@@ -759,19 +906,6 @@ No package sources found, --help for usage information.
         {
           "name": "osv-scanner:package",
           "value": "pkg:maven/com.example/my-project@0.0.1-SNAPSHOT"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:cargo/addr2line@0.15.2",
-      "type": "library",
-      "name": "addr2line",
-      "version": "0.15.2",
-      "purl": "pkg:cargo/addr2line@0.15.2",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Crates"
         }
       ]
     },
@@ -3111,32 +3245,6 @@ No package sources found, --help for usage information.
       ]
     },
     {
-      "bom-ref": "pkg:conan/zlib@1.2.11",
-      "type": "library",
-      "name": "zlib",
-      "version": "1.2.11",
-      "purl": "pkg:conan/zlib@1.2.11",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Conan"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:cran/morning@0.1.0",
-      "type": "library",
-      "name": "morning",
-      "version": "0.1.0",
-      "purl": "pkg:cran/morning@0.1.0",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Renv"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:gem/RedCloth@4.2.9",
       "type": "library",
       "name": "RedCloth",
@@ -4688,19 +4796,6 @@ No package sources found, --help for usage information.
       ]
     },
     {
-      "bom-ref": "pkg:hex/plug@1.11.1",
-      "type": "library",
-      "name": "plug",
-      "version": "1.11.1",
-      "purl": "pkg:hex/plug@1.11.1",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Hex"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
       "type": "library",
       "name": "com.google.code.findbugs:jsr305",
@@ -5262,19 +5357,6 @@ No package sources found, --help for usage information.
       }
     },
     {
-      "bom-ref": "pkg:pub/back_button_interceptor@6.0.1",
-      "type": "library",
-      "name": "back_button_interceptor",
-      "version": "6.0.1",
-      "purl": "pkg:pub/back_button_interceptor@6.0.1",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Pub"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:pypi/beautifulsoup4@4.9.3",
       "type": "library",
       "name": "beautifulsoup4",
@@ -5587,16 +5669,13 @@ No package sources found, --help for usage information.
 
 [TestRun_WithEncodedLockfile/UTF-8 - 2]
 Scanning dir ./fixtures/encoding-integration-test-locks/UTF-8
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/Cargo.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/Gemfile.lock file and found 99 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/Pipfile.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/composer/composer.lock file and found 123 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/conan.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/go.mod file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/gradle-groovy/gradle.lockfile file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/gradle-kotlin/gradle.lockfile file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/maven-spring/pom.xml file and found 3 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/mix.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/npm/package-lock.json file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/nuget/packages.lock.json file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/other-requirements.txt file and found 1 package
@@ -5605,8 +5684,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pnpm/pnpm-lock.
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pnpm-9/pnpm-lock.yaml file and found 5 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/poetry.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pom.xml file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/pubspec.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/renv.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/requirements.txt file and found 6 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock file and found 3 packages
@@ -5628,19 +5705,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock 
         {
           "name": "osv-scanner:package",
           "value": "pkg:maven/com.example/my-project@0.0.1-SNAPSHOT"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:cargo/addr2line@0.15.2",
-      "type": "library",
-      "name": "addr2line",
-      "version": "0.15.2",
-      "purl": "pkg:cargo/addr2line@0.15.2",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Crates"
         }
       ]
     },
@@ -7980,32 +8044,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock 
       ]
     },
     {
-      "bom-ref": "pkg:conan/zlib@1.2.11",
-      "type": "library",
-      "name": "zlib",
-      "version": "1.2.11",
-      "purl": "pkg:conan/zlib@1.2.11",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Conan"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:cran/morning@0.1.0",
-      "type": "library",
-      "name": "morning",
-      "version": "0.1.0",
-      "purl": "pkg:cran/morning@0.1.0",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Renv"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:gem/RedCloth@4.2.9",
       "type": "library",
       "name": "RedCloth",
@@ -9510,19 +9548,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock 
       ]
     },
     {
-      "bom-ref": "pkg:hex/plug@1.11.1",
-      "type": "library",
-      "name": "plug",
-      "version": "1.11.1",
-      "purl": "pkg:hex/plug@1.11.1",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Hex"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
       "type": "library",
       "name": "com.google.code.findbugs:jsr305",
@@ -10061,19 +10086,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock 
           }
         ]
       }
-    },
-    {
-      "bom-ref": "pkg:pub/back_button_interceptor@6.0.1",
-      "type": "library",
-      "name": "back_button_interceptor",
-      "version": "6.0.1",
-      "purl": "pkg:pub/back_button_interceptor@6.0.1",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Pub"
-        }
-      ]
     },
     {
       "bom-ref": "pkg:pypi/beautifulsoup4@4.9.3",
@@ -10388,16 +10400,13 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-8/yarn/yarn.lock 
 
 [TestRun_WithEncodedLockfile/UTF-16 - 2]
 Scanning dir ./fixtures/encoding-integration-test-locks/UTF-16
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/Cargo.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/Gemfile.lock file and found 99 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/Pipfile.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/composer/composer.lock file and found 123 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/conan.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/go.mod file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/gradle-groovy/gradle.lockfile file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/gradle-kotlin/gradle.lockfile file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/maven-spring/pom.xml file and found 3 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/mix.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/npm/package-lock.json file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/nuget/packages.lock.json file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/other-requirements.txt file and found 1 package
@@ -10406,8 +10415,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pnpm/pnpm-lock
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pnpm-9/pnpm-lock.yaml file and found 5 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/poetry.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pom.xml file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/pubspec.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/renv.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/requirements.txt file and found 6 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock file and found 3 packages
@@ -10429,19 +10436,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
         {
           "name": "osv-scanner:package",
           "value": "pkg:maven/com.example/my-project@0.0.1-SNAPSHOT"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:cargo/addr2line@0.15.2",
-      "type": "library",
-      "name": "addr2line",
-      "version": "0.15.2",
-      "purl": "pkg:cargo/addr2line@0.15.2",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Crates"
         }
       ]
     },
@@ -12781,32 +12775,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       ]
     },
     {
-      "bom-ref": "pkg:conan/zlib@1.2.11",
-      "type": "library",
-      "name": "zlib",
-      "version": "1.2.11",
-      "purl": "pkg:conan/zlib@1.2.11",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Conan"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:cran/morning@0.1.0",
-      "type": "library",
-      "name": "morning",
-      "version": "0.1.0",
-      "purl": "pkg:cran/morning@0.1.0",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Renv"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:gem/RedCloth@4.2.9",
       "type": "library",
       "name": "RedCloth",
@@ -14311,19 +14279,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       ]
     },
     {
-      "bom-ref": "pkg:hex/plug@1.11.1",
-      "type": "library",
-      "name": "plug",
-      "version": "1.11.1",
-      "purl": "pkg:hex/plug@1.11.1",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Hex"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:maven/com.google.code.findbugs/jsr305@3.0.2",
       "type": "library",
       "name": "com.google.code.findbugs:jsr305",
@@ -14864,19 +14819,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
       }
     },
     {
-      "bom-ref": "pkg:pub/back_button_interceptor@6.0.1",
-      "type": "library",
-      "name": "back_button_interceptor",
-      "version": "6.0.1",
-      "purl": "pkg:pub/back_button_interceptor@6.0.1",
-      "properties": [
-        {
-          "name": "osv-scanner:package-manager",
-          "value": "Pub"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:pypi/beautifulsoup4@4.9.3",
       "type": "library",
       "name": "beautifulsoup4",
@@ -15189,16 +15131,13 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/UTF-16/yarn/yarn.lock
 
 [TestRun_WithEncodedLockfile/Windows-1252 - 2]
 Scanning dir ./fixtures/encoding-integration-test-locks/Windows-1252
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/Cargo.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/Gemfile.lock file and found 99 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/Pipfile.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/composer/composer.lock file and found 123 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/conan.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/go.mod file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/gradle-groovy/gradle.lockfile file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/gradle-kotlin/gradle.lockfile file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/maven-spring/pom.xml file and found 3 packages
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/mix.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/npm/package-lock.json file and found 2 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/nuget/packages.lock.json file and found 3 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/other-requirements.txt file and found 1 package
@@ -15207,8 +15146,6 @@ Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pnpm/pnp
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pnpm-9/pnpm-lock.yaml file and found 5 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/poetry.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pom.xml file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/pubspec.lock file and found 1 package
-Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/renv.lock file and found 1 package
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/requirements-test.txt file and found 4 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/requirements.txt file and found 6 packages
 Scanned <rootdir>/fixtures/encoding-integration-test-locks/Windows-1252/yarn/yarn.lock file and found 3 packages

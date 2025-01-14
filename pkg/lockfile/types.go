@@ -31,14 +31,12 @@ func (sys Ecosystem) IsDevGroup(groups []string) bool {
 	switch sys {
 	case NpmEcosystem:
 		return sys.isNpmDevGroup(groups)
-	case ComposerEcosystem, PipEcosystem, PubEcosystem:
+	case ComposerEcosystem, PipEcosystem:
 		// Also PnpmEcosystem(=NpmEcosystem) and PipenvEcosystem(=PipEcosystem,=PoetryEcosystem).
 		return sys.isDevGroup(groups, "dev")
-	case ConanEcosystem:
-		return sys.isDevGroup(groups, "build-requires")
 	case MavenEcosystem:
 		return sys.isMavenDevGroup(groups)
-	case AlpineEcosystem, DebianEcosystem, CargoEcosystem, BundlerEcosystem, GoEcosystem, MixEcosystem, NuGetEcosystem, CRANEcosystem:
+	case BundlerEcosystem, GoEcosystem, NuGetEcosystem:
 		return false
 	}
 

@@ -22,9 +22,3 @@ const (
 	libraryComponentType = "library"
 	fileComponentType    = "file"
 )
-
-var SeverityMapper = map[models.SeverityType]cyclonedx.ScoringMethod{
-	models.SeverityCVSSV2: cyclonedx.ScoringMethodCVSSv2,
-	models.SeverityCVSSV3: cyclonedx.ScoringMethodCVSSv3,
-	models.SeverityCVSSV4: cyclonedx.ScoringMethodCVSSv4,
-}

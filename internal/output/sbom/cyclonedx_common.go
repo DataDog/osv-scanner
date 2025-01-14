@@ -1,9 +1,10 @@
 package sbom
 
 import (
-	"github.com/datadog/osv-scanner/internal/utility/purl"
 	"slices"
 	"strings"
+
+	"github.com/datadog/osv-scanner/internal/utility/purl"
 
 	"golang.org/x/exp/maps"
 

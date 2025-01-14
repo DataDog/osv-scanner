@@ -46,10 +46,6 @@ func ExtractDelimitedStringPositionInBlock(block []string, str string, blockStar
 	return nil
 }
 
-func ExtractRegexpPositionInBlock(block []string, str string, blockStartLine int) *models.FilePosition {
-	return ExtractDelimitedRegexpPositionInBlock(block, str, blockStartLine, "", "")
-}
-
 func QuoteMetaDelimiters(prefix string, suffix string) (string, string) {
 	return cachedregexp.QuoteMeta(prefix), cachedregexp.QuoteMeta(suffix)
 }

@@ -15,7 +15,7 @@ func Format() []string {
 
 // New returns an implementation of the reporter interface depending on the format passed in
 // set terminalWidth as 0 to indicate the output is not a terminal
-func New(format string, stdout, stderr io.Writer, level VerbosityLevel, terminalWidth int) (Reporter, error) {
+func New(format string, stdout, stderr io.Writer, level VerbosityLevel) (Reporter, error) {
 	switch format {
 	case "cyclonedx-1-4":
 		return NewCycloneDXReporter(stdout, stderr, models.CycloneDXVersion14, level), nil

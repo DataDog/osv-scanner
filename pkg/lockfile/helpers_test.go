@@ -3,6 +3,7 @@ package lockfile_test
 import (
 	"errors"
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 
@@ -140,4 +141,32 @@ func expectPackagesWithoutLocations(t *testing.T, actualPackages []lockfile.Pack
 	t.Helper()
 
 	innerExpectPackages(t, actualPackages, expectedPackages, true)
+}
+
+func expectNumberOfParsersCalled(t *testing.T, numberOfParsersCalled int) {
+	t.Helper()
+
+	directories, err := os.ReadDir(".")
+
+	if err != nil {
+		t.Fatalf("unable to read current directory: ")
+	}
+
+	count := 0
+
+	for _, directory := range directories {
+		if strings.HasPrefix(directory.Name(), "parse-") &&
+			!strings.HasSuffix(directory.Name(), "_test.go") {
+			count++
+		}
+	}
+
+	if numberOfParsersCalled != count {
+		t.Errorf(
+			"Expected %d %s to have been called, but had %d",
+			count,
+			output.Form(count, "parser", "parsers"),
+			numberOfParsersCalled,
+		)
+	}
 }

@@ -1,7 +1,6 @@
 package osvscanner
 
 import (
-	//nolint:gosec
 	"errors"
 	"fmt"
 	"os"
@@ -156,25 +155,7 @@ func scanLockfile(r reporter.Reporter, path string, parseAs string, enabledParse
 	f, err := lockfile.OpenLocalDepFile(path)
 
 	if err == nil {
-		// special case for the APK and DPKG parsers because they have a very generic name while
-		// living at a specific location, so they are not included in the map of parsers
-		// used by lockfile.Parse to avoid false-positives when scanning projects
-		switch parseAs {
-		case "apk-installed":
-			parsedLockfile, err = lockfile.FromApkInstalled(path)
-		case "dpkg-status":
-			parsedLockfile, err = lockfile.FromDpkgStatus(path)
-		case "osv-scanner":
-			parsedLockfile, err = lockfile.FromOSVScannerResults(path)
-		default:
-			parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
-			// We are disabling this as we don't want to go through deps.dev to detect packages
-			// if !compareOffline && (parseAs == "pom.xml" || filepath.Base(path) == "pom.xml") {
-			//	parsedLockfile, err = extractMavenDeps(f)
-			// } else {
-			//	parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
-			// }
-		}
+		parsedLockfile, err = lockfile.ExtractDeps(f, parseAs, enabledParsers)
 	}
 
 	if err != nil {
@@ -258,7 +239,6 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		r = &reporter.VoidReporter{}
 	}
 
-	//nolint:prealloc // Not sure how many there will be in advance.
 	var scannedPackages []scannedPackage
 	var scannedArtifacts []models.ScannedArtifact
 
@@ -268,6 +248,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 
 	for _, dir := range actions.DirectoryPaths {
 		r.Infof("Scanning dir %s\n", dir)
+
 		pkgs, artifacts, err := scanDir(r, dir, actions.Recursive, enabledParsers)
 		if err != nil {
 			return models.VulnerabilityResults{}, err
@@ -302,6 +283,7 @@ func DoScan(actions ScannerActions, r reporter.Reporter) (models.VulnerabilityRe
 		return models.VulnerabilityResults{}, NoPackagesFoundErr
 	}
 
-	vulnerabilityResults := groupBySource(r, scannedPackages, scannedArtifacts)
+	vulnerabilityResults := groupBySource(scannedPackages, scannedArtifacts)
+
 	return vulnerabilityResults, nil
 }

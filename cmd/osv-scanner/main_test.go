@@ -163,18 +163,6 @@ func TestRun(t *testing.T) {
 			args: []string{"", "--version"},
 			exit: 0,
 		},
-		// one specific supported lockfile
-		{
-			name: "one specific supported lockfile",
-			args: []string{"", "./fixtures/locks-many/composer.lock"},
-			exit: 0,
-		},
-		// one specific unsupported lockfile
-		{
-			name: "",
-			args: []string{"", "./fixtures/locks-many/not-a-lockfile.toml"},
-			exit: 0,
-		},
 		// all supported lockfiles in the directory should be checked
 		{
 			name: "Scan locks-many",
@@ -214,28 +202,22 @@ func TestRun(t *testing.T) {
 		// output format: unsupported
 		{
 			name: "",
-			args: []string{"", "--format", "unknown", "./fixtures/locks-many/composer.lock"},
+			args: []string{"", "--format", "unknown", "./fixtures/locks-many"},
 			exit: 127,
-		},
-		// one specific supported lockfile with ignore
-		{
-			name: "one specific supported lockfile with ignore",
-			args: []string{"", "./fixtures/locks-test-ignore/package-lock.json"},
-			exit: 0,
 		},
 		{
 			name: "invalid --verbosity value",
-			args: []string{"", "--verbosity", "unknown", "./fixtures/locks-many/composer.lock"},
+			args: []string{"", "--verbosity", "unknown", "./fixtures/locks-many"},
 			exit: 127,
 		},
 		{
 			name: "verbosity level = error",
-			args: []string{"", "--verbosity", "error", "./fixtures/locks-many/composer.lock"},
+			args: []string{"", "--verbosity", "error", "./fixtures/locks-many"},
 			exit: 0,
 		},
 		{
 			name: "verbosity level = info",
-			args: []string{"", "--verbosity", "info", "./fixtures/locks-many/composer.lock"},
+			args: []string{"", "--verbosity", "info", "./fixtures/locks-many"},
 			exit: 0,
 		},
 	}
@@ -252,13 +234,6 @@ func TestRun(t *testing.T) {
 func TestRun_WithoutHostPathInformation(t *testing.T) {
 	t.Parallel()
 	tests := []locationTestCase{
-		// one specific supported lockfile
-		{
-			name:          "one specific supported lockfile (relative path)",
-			args:          []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many/yarn.lock"},
-			wantExitCode:  0,
-			wantFilePaths: []string{"package.json"},
-		},
 		{
 			name:         "Multiple lockfiles (relative path)",
 			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many"},
@@ -385,13 +360,13 @@ func TestRun_SubCommands(t *testing.T) {
 		// without subcommands
 		{
 			name: "with no subcommand",
-			args: []string{"", "./fixtures/locks-many/composer.lock"},
+			args: []string{"", "./fixtures/locks-many"},
 			exit: 0,
 		},
 		// with scan subcommand
 		{
 			name: "with scan subcommand",
-			args: []string{"", "scan", "./fixtures/locks-many/composer.lock"},
+			args: []string{"", "scan", "./fixtures/locks-many"},
 			exit: 0,
 		},
 		// scan with a flag
