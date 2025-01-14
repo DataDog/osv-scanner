@@ -30,9 +30,10 @@ type PackageDetailsParser = func(pathToLockfile string) ([]PackageDetails, error
 func (sys Ecosystem) IsDevGroup(groups []string) bool {
 	switch sys {
 	case NpmEcosystem:
+		// Also PnpmEcosystem(=NpmEcosystem) and YarnEcosystem(=NpmEcosystem)
 		return sys.isNpmDevGroup(groups)
 	case ComposerEcosystem, PipEcosystem, PubEcosystem:
-		// Also PnpmEcosystem(=NpmEcosystem) and PipenvEcosystem(=PipEcosystem,=PoetryEcosystem).
+		// Also PipenvEcosystem(=PipEcosystem,=PoetryEcosystem).
 		return sys.isDevGroup(groups, "dev")
 	case ConanEcosystem:
 		return sys.isDevGroup(groups, "build-requires")

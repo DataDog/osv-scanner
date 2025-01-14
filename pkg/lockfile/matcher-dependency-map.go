@@ -41,6 +41,10 @@ indexes is a [6]int array representing block, name and version location offsets 
 depGroup represent the new dependency group to add
 */
 func (depMap *MatcherDependencyMap) UpdatePackageDetails(pkg *PackageDetails, content string, indexes []int, depGroup string) {
+	if pkg == nil {
+		return
+	}
+
 	pkg.IsDirect = true
 	if len(indexes) > 0 {
 		depMap.updatePackageDetailLocation(pkg, content, indexes)
