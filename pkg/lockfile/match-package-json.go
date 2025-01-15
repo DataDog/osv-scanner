@@ -15,6 +15,10 @@ const (
 
 type PackageJSONMatcher struct{}
 
+/*
+packageJSONDependencyMap is here to have access to all MatcherDependencyMap methods and at the same time having
+a different type to have a clear UnmarshallJSON method for the json decoder and avoid overlaps with other matchers.
+*/
 type packageJSONDependencyMap struct {
 	MatcherDependencyMap
 }
@@ -66,6 +70,18 @@ func (depMap *packageJSONDependencyMap) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+/*
+Match works by leveraging the json decoder to only parse json sections of interest (e.g dependencies)
+Whenever the json decoder try to deserialize a file, it will look at json sections it needs to deserialize
+and then call the proper UnmarshallJSON method of the type. As the JSON decoder expect us to only deserialize it,
+not trying to find the exact location in the file of the content, it does not provide us buffer information (offset, file path, etc...)
+
+To work around this limitation, we are pre-filling the structure with all the field we will need during the deserialization :
+  - The root type to know which json section we are deserializing
+  - The file path to be able to fill properly location fields of PackageDetails
+  - The line offset to be able to compute the line of any found dependencies in the file
+  - And a list of pointer to the original PackageDetails extracted by the parser to be able to modify them with the json section content
+*/
 func (m PackageJSONMatcher) Match(sourcefile DepFile, packages []PackageDetails) error {
 	content, err := io.ReadAll(sourcefile)
 	if err != nil {
