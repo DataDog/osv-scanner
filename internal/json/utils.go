@@ -9,9 +9,12 @@ import (
 /*
 GetSectionOffset computes the start line of any section in the file.
 To see the regex in action, check out https://regex101.com/r/3EHqB8/1 (it uses the dependencies section as an example)
+It matches lines like this:
+
+	"dependencies": {
 */
 func GetSectionOffset(sectionName string, content string) int {
-	sectionMatcher := cachedregexp.MustCompile(`(?m)^\s*"` + sectionName + `":\s*{\s*$`)
+	sectionMatcher := cachedregexp.MustCompile(`(?m)^\s*"` + cachedregexp.QuoteMeta(sectionName) + `":\s*{\s*$`)
 	sectionIndex := sectionMatcher.FindStringIndex(content)
 	if len(sectionIndex) < 2 {
 		return -1
@@ -29,6 +32,9 @@ name and version. It assumes:
 # If no targeted version is passed, it will search for any version
 
 You can see the regex in action here: https://regex101.com/r/zzrEAh/1
+It matches the following:
+"@typescript-eslint/eslint-plugin": "^5.12.0",
+"test": "3"
 
 The expected result of FindAllStringSubmatchIndex is a [6]int, with the following structure :
 - index 0/1 represents block start/end

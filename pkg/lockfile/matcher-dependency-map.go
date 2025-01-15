@@ -29,7 +29,7 @@ type MatcherDependencyMap struct {
 }
 
 /*
-UpdatePackageDetails  updates the PackageDetails structure with the following information :
+UpdatePackageDetails updates the PackageDetails structure with the following information :
 
 - Is the package direct (if we find it in a matcher, it is always direct)
 - Package location in the matched file (block, name and version)
@@ -41,6 +41,10 @@ indexes is a [6]int array representing block, name and version location offsets 
 depGroup represent the new dependency group to add
 */
 func (depMap *MatcherDependencyMap) UpdatePackageDetails(pkg *PackageDetails, content string, indexes []int, depGroup string) {
+	if pkg == nil {
+		return
+	}
+
 	pkg.IsDirect = true
 	if len(indexes) > 0 {
 		depMap.updatePackageDetailLocation(pkg, content, indexes)
@@ -94,6 +98,10 @@ func (depMap *MatcherDependencyMap) updatePackageDetailLocation(pkg *PackageDeta
 	}
 }
 
+/*
+propagateDepGroups traverse the tree of dependency from the top level parent
+and to merge child dependency group with its parent to have a complete array of all dependency groups found.
+*/
 func propagateDepGroups(root *PackageDetails) {
 	newDepGroups := make(map[string]bool)
 	for _, group := range root.DepGroups {
