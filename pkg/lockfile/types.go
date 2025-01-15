@@ -42,6 +42,8 @@ func (sys Ecosystem) IsDevGroup(groups []string) bool {
 		return sys.isDevGroup(groups, devDependencyGroup)
 	case MavenEcosystem:
 		return sys.isMavenDevGroup(groups)
+	case BundlerEcosystem, GoEcosystem, NuGetEcosystem:
+		return false
 	}
 
 	return false
