@@ -60,7 +60,8 @@ func (matcher GemspecFileMatcher) Match(sourceFile DepFile, packages []PackageDe
 }
 
 func (matcher GemspecFileMatcher) findGemspecs(node *Node) ([]gemspecMetadata, error) {
-	// Matches calls to add_dependency, add_runtime_dependency, and add_development_dependency
+	// Matches method calls to add_dependency, add_runtime_dependency and add_development_dependency
+	// extracting the gem dependency name and gem dependency requirements
 	dependencyQuery := `(
 		(call
 			receiver: (_)

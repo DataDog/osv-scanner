@@ -65,6 +65,8 @@ func (matcher GemfileMatcher) Match(sourceFile DepFile, packages []PackageDetail
 }
 
 func findGems(node *Node) ([]gemMetadata, error) {
+	// Matches method calls to `gem`
+	// extracting the gem dependency name and gem dependency requirement
 	gemQueryString := `(
 		(call
 			method: (identifier) @method_name
@@ -128,6 +130,8 @@ func findGems(node *Node) ([]gemMetadata, error) {
 }
 
 func findGroupedGems(node *Node) ([]gemMetadata, error) {
+	// Matches method calls to `group` with a block
+	// extracting the groups and the block (which will contain the calls to `gem`)
 	groupQueryString := `(
 		(call
 			method: (identifier) @method_name
@@ -177,6 +181,8 @@ func findGroupedGems(node *Node) ([]gemMetadata, error) {
 }
 
 func findGroupsInPairs(node *Node) ([]string, error) {
+	// Matches pairs of key-value where the key is "group"
+	// This can be a simple pair or a pair used inside other structures like a hash
 	pairQuery := `(
 		(pair
 			key: [(hash_key_symbol) (simple_symbol)] @pair_key
