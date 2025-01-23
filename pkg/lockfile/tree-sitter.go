@@ -178,13 +178,11 @@ func (m MatchResult) FindFirstByName(captureName string) *Node {
 func (m MatchResult) FindByName(captureName string) []*Node {
 	var nodes []*Node
 	if idx, exists := m.query.CaptureIndexForName(captureName); exists {
-		for _, capture := range m.match.Captures {
-			if uint(capture.Index) == idx {
-				nodes = append(nodes, &Node{
-					Ctx:    m.Ctx,
-					TSNode: &capture.Node,
-				})
-			}
+		for _, node := range m.match.NodesForCaptureIndex(idx) {
+			nodes = append(nodes, &Node{
+				Ctx:    m.Ctx,
+				TSNode: &node,
+			})
 		}
 	}
 
