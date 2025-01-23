@@ -70,9 +70,9 @@ func (sc SourceContext) ExtractTextValue(node *treesitter.Node) (string, error) 
 }
 
 type ParseResult struct {
-	ctx  *SourceContext
+	Ctx  *SourceContext
 	tree *treesitter.Tree
-	node *Node
+	Node *Node
 }
 
 func ParseFile(sourceFile DepFile, language *treesitter.Language) (*ParseResult, error) {
@@ -97,11 +97,11 @@ func ParseFile(sourceFile DepFile, language *treesitter.Language) (*ParseResult,
 	}
 
 	return &ParseResult{
-		ctx:  ctx,
+		Ctx:  ctx,
 		tree: tree,
-		node: &Node{
-			ctx:  ctx,
-			node: tree.RootNode(),
+		Node: &Node{
+			Ctx:    ctx,
+			TSNode: tree.RootNode(),
 		},
 	}, nil
 }
@@ -111,12 +111,12 @@ func (p ParseResult) Close() {
 }
 
 type Node struct {
-	ctx  *SourceContext
-	node *treesitter.Node
+	Ctx    *SourceContext
+	TSNode *treesitter.Node
 }
 
 func (n Node) Query(queryString string, onMatch func(match *MatchResult) error) error {
-	query, err := treesitter.NewQuery(n.ctx.language, queryString)
+	query, err := treesitter.NewQuery(n.Ctx.language, queryString)
 	if err != nil {
 		return err
 	}
@@ -125,7 +125,7 @@ func (n Node) Query(queryString string, onMatch func(match *MatchResult) error) 
 	queryCursor := treesitter.NewQueryCursor()
 	defer queryCursor.Close()
 
-	matches := queryCursor.Matches(query, n.node, n.ctx.sourceFileContent)
+	matches := queryCursor.Matches(query, n.TSNode, n.Ctx.sourceFileContent)
 	for {
 		match := matches.Next()
 		if match == nil {
@@ -133,7 +133,7 @@ func (n Node) Query(queryString string, onMatch func(match *MatchResult) error) 
 		}
 
 		err := onMatch(&MatchResult{
-			ctx:   n.ctx,
+			Ctx:   n.Ctx,
 			query: query,
 			match: match,
 		})
@@ -146,7 +146,7 @@ func (n Node) Query(queryString string, onMatch func(match *MatchResult) error) 
 }
 
 type MatchResult struct {
-	ctx   *SourceContext
+	Ctx   *SourceContext
 	query *treesitter.Query
 	match *treesitter.QueryMatch
 }
@@ -156,8 +156,8 @@ func (m MatchResult) FindFirstByName(captureName string) *Node {
 		for _, capture := range m.match.Captures {
 			if uint(capture.Index) == idx {
 				return &Node{
-					ctx:  m.ctx,
-					node: &capture.Node,
+					Ctx:    m.Ctx,
+					TSNode: &capture.Node,
 				}
 			}
 		}
@@ -172,8 +172,8 @@ func (m MatchResult) FindByName(captureName string) []*Node {
 		for _, capture := range m.match.Captures {
 			if uint(capture.Index) == idx {
 				nodes = append(nodes, &Node{
-					ctx:  m.ctx,
-					node: &capture.Node,
+					Ctx:    m.Ctx,
+					TSNode: &capture.Node,
 				})
 			}
 		}

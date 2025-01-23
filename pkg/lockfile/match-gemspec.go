@@ -50,7 +50,7 @@ func (matcher GemspecFileMatcher) Match(sourceFile DepFile, packages []PackageDe
 	}
 	defer treeResult.Close()
 
-	gems, err := matcher.findGemspecs(treeResult.node)
+	gems, err := matcher.findGemspecs(treeResult.Node)
 	if err != nil {
 		return err
 	}
@@ -94,13 +94,13 @@ func (matcher GemspecFileMatcher) findGemspecs(node *Node) ([]gemspecMetadata, e
 		callNode := match.FindFirstByName("dependency_call")
 
 		methodNameNode := match.FindFirstByName("method_name")
-		methodName, err := node.ctx.ExtractTextValue(methodNameNode.node)
+		methodName, err := node.Ctx.ExtractTextValue(methodNameNode.TSNode)
 		if err != nil {
 			return err
 		}
 
 		dependencyNameNode := match.FindFirstByName("gem_name")
-		dependencyName, err := node.ctx.ExtractTextValue(dependencyNameNode.node)
+		dependencyName, err := node.Ctx.ExtractTextValue(dependencyNameNode.TSNode)
 		if err != nil {
 			return err
 		}
@@ -110,15 +110,15 @@ func (matcher GemspecFileMatcher) findGemspecs(node *Node) ([]gemspecMetadata, e
 		metadata := gemspecMetadata{
 			name:        dependencyName,
 			isDev:       methodName == "add_development_dependency",
-			blockLine:   models.Position{Start: int(callNode.node.StartPosition().Row) + 1, End: int(callNode.node.EndPosition().Row) + 1},
-			blockColumn: models.Position{Start: int(callNode.node.StartPosition().Column) + 1, End: int(callNode.node.EndPosition().Column) + 1},
-			nameLine:    models.Position{Start: int(dependencyNameNode.node.StartPosition().Row) + 1, End: int(dependencyNameNode.node.EndPosition().Row) + 1},
-			nameColumn:  models.Position{Start: int(dependencyNameNode.node.StartPosition().Column) + 1, End: int(dependencyNameNode.node.EndPosition().Column) + 1},
+			blockLine:   models.Position{Start: int(callNode.TSNode.StartPosition().Row) + 1, End: int(callNode.TSNode.EndPosition().Row) + 1},
+			blockColumn: models.Position{Start: int(callNode.TSNode.StartPosition().Column) + 1, End: int(callNode.TSNode.EndPosition().Column) + 1},
+			nameLine:    models.Position{Start: int(dependencyNameNode.TSNode.StartPosition().Row) + 1, End: int(dependencyNameNode.TSNode.EndPosition().Row) + 1},
+			nameColumn:  models.Position{Start: int(dependencyNameNode.TSNode.StartPosition().Column) + 1, End: int(dependencyNameNode.TSNode.EndPosition().Column) + 1},
 		}
 
 		if len(requirementNodes) > 0 {
-			metadata.versionLine = &models.Position{Start: int(requirementNodes[0].node.StartPosition().Row) + 1, End: int(requirementNodes[len(requirementNodes)-1].node.EndPosition().Row) + 1}
-			metadata.versionColumn = &models.Position{Start: int(requirementNodes[0].node.StartPosition().Column) + 3, End: int(requirementNodes[len(requirementNodes)-1].node.EndPosition().Column) + 1}
+			metadata.versionLine = &models.Position{Start: int(requirementNodes[0].TSNode.StartPosition().Row) + 1, End: int(requirementNodes[len(requirementNodes)-1].TSNode.EndPosition().Row) + 1}
+			metadata.versionColumn = &models.Position{Start: int(requirementNodes[0].TSNode.StartPosition().Column) + 3, End: int(requirementNodes[len(requirementNodes)-1].TSNode.EndPosition().Column) + 1}
 		}
 
 		gems = append(gems, metadata)
