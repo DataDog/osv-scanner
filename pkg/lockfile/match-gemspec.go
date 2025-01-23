@@ -75,10 +75,8 @@ func (matcher GemspecFileMatcher) findGemspecs(node *Node) ([]gemspecMetadata, e
 				(string) @gem_name
 				.
 				[
-					(array
-						(string)
-					)
 					(string)
+					(array (string))
 					(comment)
 					","
 				]* @gem_requirements

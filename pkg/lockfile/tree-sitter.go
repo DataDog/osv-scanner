@@ -28,20 +28,22 @@ type SourceContext struct {
 }
 
 func (sc SourceContext) ExtractTextValues(node *treesitter.Node) ([]string, error) {
-	if node.GrammarName() == "simple_symbol" || node.GrammarName() == "string" {
+	if node.Kind() == "simple_symbol" || node.Kind() == "string" {
 		textValue, err := sc.ExtractTextValue(node)
 		if err != nil {
 			return nil, err
 		}
 
 		return []string{textValue}, nil
-	} else if _, skip := knownGrammarSeparators[node.GrammarName()]; skip {
+	} else if _, skip := knownGrammarSeparators[node.Kind()]; skip {
 		return nil, nil
-	} else if node.GrammarName() == "array" || node.GrammarName() == "argument_list" {
+	} else if node.Kind() == "array" || node.Kind() == "argument_list" {
 		groups := make([]string, 0)
-		for i := range node.ChildCount() {
-			childNode := node.Child(i)
-			extractedGroups, err := sc.ExtractTextValues(childNode)
+
+		cursor := node.Walk()
+		defer cursor.Close()
+		for _, childNode := range node.Children(cursor) {
+			extractedGroups, err := sc.ExtractTextValues(&childNode)
 			if err != nil {
 				return nil, err
 			}
@@ -51,22 +53,26 @@ func (sc SourceContext) ExtractTextValues(node *treesitter.Node) ([]string, erro
 		return groups, nil
 	}
 
-	return nil, errors.New("found unsupported grammar type=" + node.GrammarName())
+	return nil, errors.New("found unsupported grammar type=" + node.Kind())
 }
 
 func (sc SourceContext) ExtractTextValue(node *treesitter.Node) (string, error) {
-	if node.GrammarName() == "simple_symbol" {
+	if node.Kind() == "simple_symbol" {
 		// Symbols are prefixed with a colon, so we need to remove it to get the clean text value
 		return strings.TrimPrefix(node.Utf8Text(sc.sourceFileContent), ":"), nil
-	} else if node.GrammarName() == "string" {
-		// Strings are wrapped in quotes, so we need to extract the text from the inner node
-		return node.Child(1).Utf8Text(sc.sourceFileContent), nil
-	} else if node.GrammarName() == "identifier" || node.GrammarName() == "string_content" {
+	} else if node.Kind() == "string" {
+		// Strings are wrapped in quotes, so we need to extract the text from the inner node and check if they have content
+		stringContentNode := node.NamedChild(0)
+		if stringContentNode == nil {
+			return "", nil
+		}
+		return stringContentNode.Utf8Text(sc.sourceFileContent), nil
+	} else if node.Kind() == "identifier" || node.Kind() == "string_content" {
 		// Strings are wrapped in quotes, so we need to extract the text from the inner node
 		return node.Utf8Text(sc.sourceFileContent), nil
 	}
 
-	return "", errors.New("found unsupported grammar type='" + node.GrammarName() + "' to extract text value")
+	return "", errors.New("found unsupported grammar type='" + node.Kind() + "' to extract text value")
 }
 
 type ParseResult struct {
