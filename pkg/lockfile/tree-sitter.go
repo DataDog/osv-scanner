@@ -96,6 +96,9 @@ func ParseFile(sourceFile DepFile, language *treesitter.Language) (*ParseResult,
 	}
 
 	tree := parser.Parse(sourceFileContent, nil)
+	if tree.RootNode().HasError() {
+		return nil, errors.New("Error parsing file=" + sourceFile.Path())
+	}
 
 	ctx := &SourceContext{
 		language,

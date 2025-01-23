@@ -11,12 +11,12 @@ func Test_ParseFile(t *testing.T) {
 
 	sourcefile, err := lockfile.OpenLocalDepFile("fixtures/bundler/groups/Gemfile")
 	if err != nil {
-		t.Errorf("Got unexpected error: %v", err)
+		t.Fatalf("Got unexpected error: %v", err)
 	}
 
 	res, err := lockfile.ParseFile(sourcefile, lockfile.Ruby)
 	if err != nil {
-		t.Errorf("Got unexpected error: %v", err)
+		t.Fatalf("Got unexpected error: %v", err)
 	}
 	defer res.Close()
 
@@ -58,7 +58,7 @@ func Test_ParseFile(t *testing.T) {
 		return nil
 	})
 	if err != nil {
-		t.Errorf("Got unexpected error: %v", err)
+		t.Fatalf("Got unexpected error: %v", err)
 	}
 
 	assert.Equal(t, 6, gemsCount)
@@ -69,19 +69,32 @@ func Test_ParseFile_BadQuery(t *testing.T) {
 
 	sourcefile, err := lockfile.OpenLocalDepFile("fixtures/bundler/one-package/Gemfile")
 	if err != nil {
-		t.Errorf("Got unexpected error: %v", err)
+		t.Fatalf("Got unexpected error: %v", err)
 	}
 
 	res, err := lockfile.ParseFile(sourcefile, lockfile.Ruby)
 	if err != nil {
-		t.Errorf("Got unexpected error: %v", err)
+		t.Fatalf("Got unexpected error: %v", err)
 	}
 	defer res.Close()
 
 	err = res.Node.Query(`((call)`, func(match *lockfile.MatchResult) error {
-		t.Errorf("Got unexpected match")
+		t.Fatalf("Got unexpected match")
 		return nil
 	})
 
 	assert.ErrorContains(t, err, "Invalid syntax")
+}
+
+func Test_ParseFile_Error(t *testing.T) {
+	t.Parallel()
+
+	sourcefile, err := lockfile.OpenLocalDepFile("fixtures/bundler/groups/Gemfile.lock")
+	if err != nil {
+		t.Fatalf("Got unexpected error: %v", err)
+	}
+
+	_, err = lockfile.ParseFile(sourcefile, lockfile.Ruby)
+
+	assert.ErrorContains(t, err, "Error parsing")
 }
