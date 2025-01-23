@@ -52,7 +52,7 @@ func Test_ParseFile(t *testing.T) {
 		}
 
 		if depName == "timeout" {
-			assert.Equal(t, 7, len(argumentNodes))
+			assert.Len(t, argumentNodes, 7)
 		}
 
 		return nil

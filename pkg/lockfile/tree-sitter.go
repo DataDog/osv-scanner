@@ -66,6 +66,7 @@ func (sc SourceContext) ExtractTextValue(node *treesitter.Node) (string, error) 
 		if stringContentNode == nil {
 			return "", nil
 		}
+
 		return stringContentNode.Utf8Text(sc.sourceFileContent), nil
 	} else if node.Kind() == "identifier" || node.Kind() == "string_content" {
 		// Strings are wrapped in quotes, so we need to extract the text from the inner node
