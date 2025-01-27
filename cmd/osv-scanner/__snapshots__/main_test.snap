@@ -13179,6 +13179,10 @@ No package sources found, --help for usage information.
       "purl": "pkg:gem/cucumber-rails@1.4.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -13215,6 +13219,10 @@ No package sources found, --help for usage information.
       "version": "0.10.0",
       "purl": "pkg:gem/cucumber-websteps@0.10.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -13278,6 +13286,10 @@ No package sources found, --help for usage information.
       "version": "2.0.2",
       "purl": "pkg:gem/database_cleaner@2.0.2",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -13354,6 +13366,10 @@ No package sources found, --help for usage information.
       "version": "4.9.0",
       "purl": "pkg:gem/factory_girl@4.9.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -13906,6 +13922,10 @@ No package sources found, --help for usage information.
       "purl": "pkg:gem/rspec-activemodel-mocks@1.2.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -13929,6 +13949,10 @@ No package sources found, --help for usage information.
       "version": "1.2.1",
       "purl": "pkg:gem/rspec-collection_matchers@1.2.1",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -14005,6 +14029,10 @@ No package sources found, --help for usage information.
       "version": "3.13.0",
       "purl": "pkg:gem/rspec@3.13.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -18049,6 +18077,10 @@ Filtered 3 local package/s from the scan.
       "purl": "pkg:gem/cucumber-rails@1.4.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -18085,6 +18117,10 @@ Filtered 3 local package/s from the scan.
       "version": "0.10.0",
       "purl": "pkg:gem/cucumber-websteps@0.10.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -18148,6 +18184,10 @@ Filtered 3 local package/s from the scan.
       "version": "2.0.2",
       "purl": "pkg:gem/database_cleaner@2.0.2",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -18224,6 +18264,10 @@ Filtered 3 local package/s from the scan.
       "version": "4.9.0",
       "purl": "pkg:gem/factory_girl@4.9.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -18776,6 +18820,10 @@ Filtered 3 local package/s from the scan.
       "purl": "pkg:gem/rspec-activemodel-mocks@1.2.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -18799,6 +18847,10 @@ Filtered 3 local package/s from the scan.
       "version": "1.2.1",
       "purl": "pkg:gem/rspec-collection_matchers@1.2.1",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -18875,6 +18927,10 @@ Filtered 3 local package/s from the scan.
       "version": "3.13.0",
       "purl": "pkg:gem/rspec@3.13.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -22851,6 +22907,10 @@ Filtered 2 local package/s from the scan.
       "purl": "pkg:gem/cucumber-rails@1.4.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -22887,6 +22947,10 @@ Filtered 2 local package/s from the scan.
       "version": "0.10.0",
       "purl": "pkg:gem/cucumber-websteps@0.10.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -22950,6 +23014,10 @@ Filtered 2 local package/s from the scan.
       "version": "2.0.2",
       "purl": "pkg:gem/database_cleaner@2.0.2",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -23026,6 +23094,10 @@ Filtered 2 local package/s from the scan.
       "version": "4.9.0",
       "purl": "pkg:gem/factory_girl@4.9.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -23578,6 +23650,10 @@ Filtered 2 local package/s from the scan.
       "purl": "pkg:gem/rspec-activemodel-mocks@1.2.0",
       "properties": [
         {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
+        {
           "name": "osv-scanner:is-direct",
           "value": "true"
         },
@@ -23601,6 +23677,10 @@ Filtered 2 local package/s from the scan.
       "version": "1.2.1",
       "purl": "pkg:gem/rspec-collection_matchers@1.2.1",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
@@ -23677,6 +23757,10 @@ Filtered 2 local package/s from the scan.
       "version": "3.13.0",
       "purl": "pkg:gem/rspec@3.13.0",
       "properties": [
+        {
+          "name": "osv-scanner:is-dev",
+          "value": "true"
+        },
         {
           "name": "osv-scanner:is-direct",
           "value": "true"
