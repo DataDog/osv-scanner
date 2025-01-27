@@ -74,17 +74,12 @@ func (m *MavenRegistryProject) Path() string {
 	return m.path
 }
 
-type MavenStringHolder struct {
-	Value string
-	models.FilePosition
-}
-
 type MavenLockDependency struct {
-	XMLName    xml.Name          `xml:"dependency"`
-	GroupID    MavenStringHolder `xml:"groupId"`
-	ArtifactID MavenStringHolder `xml:"artifactId"`
-	Version    MavenStringHolder `xml:"version"`
-	Scope      string            `xml:"scope"`
+	XMLName    xml.Name            `xml:"dependency"`
+	GroupID    models.StringHolder `xml:"groupId"`
+	ArtifactID models.StringHolder `xml:"artifactId"`
+	Version    models.StringHolder `xml:"version"`
+	Scope      string              `xml:"scope"`
 	SourceFile string
 	models.FilePosition
 }
@@ -101,8 +96,8 @@ type MavenLockDependencyHolder struct {
 	Dependencies []MavenLockDependency `xml:"dependency"`
 }
 
-func buildProjectProperties(lockfile MavenLockFile) map[string]MavenStringHolder {
-	return map[string]MavenStringHolder{
+func buildProjectProperties(lockfile MavenLockFile) map[string]models.StringHolder {
+	return map[string]models.StringHolder{
 		"project.version":      lockfile.Version,
 		"project.modelVersion": lockfile.ModelVersion,
 		"project.groupId":      lockfile.GroupID,
@@ -129,7 +124,7 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 		propName := propStr[2 : len(propStr)-1]
 
 		var lockProperty MavenLockProperty
-		var property MavenStringHolder
+		var property models.StringHolder
 		var ok bool
 
 		if strings.HasPrefix(propName, "pom.") {
@@ -158,7 +153,7 @@ func (mld MavenLockDependency) resolvePropertiesValue(lockfile MavenLockFile, fi
 					// Property uses other properties
 					var propertyStr string
 					propertyStr, position = mld.resolvePropertiesValue(lockfile, property.Value)
-					property = MavenStringHolder{
+					property = models.StringHolder{
 						Value: propertyStr,
 					}
 					if position != (models.FilePosition{}) {
@@ -218,10 +213,10 @@ func (mld MavenLockDependency) ResolveGroupID(lockfile MavenLockFile) (string, m
 type MavenLockFile struct {
 	XMLName                  xml.Name                  `xml:"project"`
 	Parent                   MavenLockParent           `xml:"parent"`
-	Version                  MavenStringHolder         `xml:"version"`
-	ModelVersion             MavenStringHolder         `xml:"modelVersion"`
-	GroupID                  MavenStringHolder         `xml:"groupId"`
-	ArtifactID               MavenStringHolder         `xml:"artifactId"`
+	Version                  models.StringHolder       `xml:"version"`
+	ModelVersion             models.StringHolder       `xml:"modelVersion"`
+	GroupID                  models.StringHolder       `xml:"groupId"`
+	ArtifactID               models.StringHolder       `xml:"artifactId"`
 	Properties               MavenLockProperties       `xml:"properties"`
 	Dependencies             MavenLockDependencyHolder `xml:"dependencies"`
 	ManagedDependencies      MavenLockDependencyHolder `xml:"dependencyManagement>dependencies"`
@@ -232,7 +227,7 @@ type MavenLockFile struct {
 const MavenEcosystem Ecosystem = "Maven"
 
 type MavenLockProperty struct {
-	Property   MavenStringHolder
+	Property   models.StringHolder
 	SourceFile string
 }
 
@@ -251,7 +246,7 @@ func (p *MavenLockProperties) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 
 		switch tt := t.(type) {
 		case xml.StartElement:
-			var s MavenStringHolder
+			var s models.StringHolder
 
 			if err := d.DecodeElement(&s, &tt); err != nil {
 				return fmt.Errorf("%w", err)
@@ -297,31 +292,6 @@ DecodingLoop:
 			}
 		}
 	}
-
-	return nil
-}
-
-func (stringHolder *MavenStringHolder) UnmarshalXML(decoder *xml.Decoder, start xml.StartElement) error {
-	var content string
-
-	lineStart, columnStart := decoder.InputPos()
-	err := decoder.DecodeElement(&content, &start)
-	if err != nil {
-		return err
-	}
-	stringHolder.Value = strings.TrimSpace(content)
-	stringStart := strings.Index(content, stringHolder.Value)
-	lineStart += strings.Count(content[:stringStart], "\n")
-	stringHolder.SetLineStart(lineStart)
-	stringHolder.SetLineEnd(lineStart)
-	contentLineStart := strings.LastIndex(content[:stringStart], "\n") + 1
-	if contentLineStart == 0 {
-		// There is no column reset, we should take the start of the tag into account
-		stringHolder.SetColumnStart(len(content[contentLineStart:stringStart]) + columnStart)
-	} else {
-		stringHolder.SetColumnStart(len(content[contentLineStart:stringStart]) + 1)
-	}
-	stringHolder.SetColumnEnd(stringHolder.Column.Start + len(stringHolder.Value))
 
 	return nil
 }
