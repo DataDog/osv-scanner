@@ -82,6 +82,20 @@ func TestStringHolder_UnmarshalXML_ShouldFindValueAndPosition(t *testing.T) {
 				},
 			},
 		},
+		{
+			filename:      "emoji.xml",
+			expectedValue: "value",
+			expectedPosition: FilePosition{
+				Line: Position{
+					Start: 3,
+					End:   4,
+				},
+				Column: Position{
+					Start: 48,
+					End:   29,
+				},
+			},
+		},
 	}
 
 	for _, tc := range testCases {
