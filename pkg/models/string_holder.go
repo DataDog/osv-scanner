@@ -5,6 +5,13 @@ import (
 	"strings"
 )
 
+/*
+StringHolder is a structure meant to deserialize string data along with the position of the data in the file when they can be mixed with other such as :
+  - spaces, tabs and newline for formatting
+  - comments (for example with XML based files)
+
+It supports XML based files through the UnmarshalXML method
+*/
 type StringHolder struct {
 	Value string
 	FilePosition
