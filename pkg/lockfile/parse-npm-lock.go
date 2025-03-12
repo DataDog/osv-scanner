@@ -105,20 +105,20 @@ func (pdm npmPackageDetailsMap) add(key string, details PackageDetails) {
 }
 
 func (dep *NpmLockDependency) depGroups() []string {
-	if dep.Dev && dep.Optional {
-		return []string{"dev", "optional"}
+	groups := make([]string, 0)
+	if dep.Optional {
+		groups = append(groups, "optional")
 	}
 	if dep.Dev {
-		return []string{"dev"}
-	}
-	if dep.Optional {
-		return []string{"optional"}
+		groups = append(groups, "dev")
+	} else {
+		groups = append(groups, "prod")
 	}
 
-	return nil
+	return groups
 }
 
-func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency, path string) map[string]PackageDetails {
+func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency) map[string]PackageDetails {
 	details := npmPackageDetailsMap{}
 
 	keys := reflect.ValueOf(dependencies).MapKeys()
@@ -129,7 +129,7 @@ func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency, path s
 		name := key.Interface().(string)
 		detail := dependencies[name]
 		if detail.Dependencies != nil {
-			nestedDeps := parseNpmLockDependencies(detail.Dependencies, path)
+			nestedDeps := parseNpmLockDependencies(detail.Dependencies)
 			for k, v := range nestedDeps {
 				details.add(k, v)
 			}
@@ -169,14 +169,8 @@ func parseNpmLockDependencies(dependencies map[string]*NpmLockDependency, path s
 			PackageManager: models.NPM,
 			Ecosystem:      NpmEcosystem,
 			CompareAs:      NpmEcosystem,
-			BlockLocation: models.FilePosition{
-				Line:     detail.Line,
-				Column:   detail.Column,
-				Filename: path,
-			},
-			Commit:    commit,
-			DepGroups: detail.depGroups(),
-			IsDirect:  true,
+			Commit:         commit,
+			DepGroups:      detail.depGroups(),
 		})
 	}
 
@@ -200,20 +194,24 @@ func extractRootKeyPackageName(name string) string {
 }
 
 func (pkg NpmLockPackage) depGroups() []string {
+	groups := make([]string, 0)
 	if pkg.Dev {
-		return []string{"dev"}
+		groups = append(groups, "dev")
 	}
 	if pkg.Optional {
-		return []string{"optional"}
+		groups = append(groups, "optional")
 	}
 	if pkg.DevOptional {
-		return []string{"dev", "optional"}
+		groups = append(groups, "dev", "optional")
+	}
+	if !pkg.Dev && !pkg.DevOptional {
+		groups = append(groups, "prod")
 	}
 
-	return nil
+	return groups
 }
 
-func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[string]PackageDetails {
+func parseNpmLockPackages(packages map[string]*NpmLockPackage) map[string]PackageDetails {
 	details := npmPackageDetailsMap{}
 
 	keys := reflect.ValueOf(packages).MapKeys()
@@ -252,14 +250,11 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[
 		// the dependencies with the version written as it appears in the package.json
 		var targetVersions []string
 		var targetVersion string
-		var isDirect bool
 		rootKey := extractRootKeyPackageName(namePath)
 		if p, ok := packages[""]; ok {
 			if dep, ok := p.Dependencies[rootKey]; ok {
 				targetVersion = dep
-				isDirect = true
 			} else if devDep, ok := p.DevDependencies[rootKey]; ok {
-				isDirect = true
 				targetVersion = devDep
 			}
 		}
@@ -291,13 +286,7 @@ func parseNpmLockPackages(packages map[string]*NpmLockPackage, path string) map[
 				Ecosystem:      NpmEcosystem,
 				CompareAs:      NpmEcosystem,
 				Commit:         commit,
-				BlockLocation: models.FilePosition{
-					Line:     detail.Line,
-					Column:   detail.Column,
-					Filename: path,
-				},
-				DepGroups: detail.depGroups(),
-				IsDirect:  isDirect,
+				DepGroups:      detail.depGroups(),
 			})
 		}
 	}
@@ -309,12 +298,12 @@ func parseNpmLock(lockfile NpmLockfile, lines []string) map[string]PackageDetail
 	if lockfile.Packages != nil {
 		fileposition.InJSON("packages", lockfile.Packages, lines, 0)
 
-		return parseNpmLockPackages(lockfile.Packages, lockfile.SourceFile)
+		return parseNpmLockPackages(lockfile.Packages)
 	}
 
 	fileposition.InJSON("dependencies", lockfile.Dependencies, lines, 0)
 
-	return parseNpmLockDependencies(lockfile.Dependencies, lockfile.SourceFile)
+	return parseNpmLockDependencies(lockfile.Dependencies)
 }
 
 type NpmLockExtractor struct {
@@ -345,7 +334,7 @@ func (e NpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 }
 
 var NpmExtractor = NpmLockExtractor{
-	WithMatcher{Matcher: PackageJSONMatcher{}},
+	WithMatcher{Matchers: []Matcher{&PackageJSONMatcher{}}},
 }
 
 //nolint:gochecknoinits
@@ -354,5 +343,5 @@ func init() {
 }
 
 func ParseNpmLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, NpmExtractor)
+	return ExtractFromFile(pathToLockfile, NpmExtractor)
 }

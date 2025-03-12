@@ -248,7 +248,7 @@ func (e PnpmLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 }
 
 var PnpmExtractor = PnpmLockExtractor{
-	WithMatcher{Matcher: PackageJSONMatcher{}},
+	WithMatcher{Matchers: []Matcher{&PackageJSONMatcher{}}},
 }
 
 //nolint:gochecknoinits
@@ -257,5 +257,5 @@ func init() {
 }
 
 func ParsePnpmLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, PnpmExtractor)
+	return ExtractFromFile(pathToLockfile, PnpmExtractor)
 }

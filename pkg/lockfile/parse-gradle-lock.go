@@ -87,7 +87,7 @@ func (e GradleLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 }
 
 var GradleExtractor = GradleLockExtractor{
-	WithMatcher{Matcher: BuildGradleMatcher{}},
+	WithMatcher{Matchers: []Matcher{&BuildGradleMatcher{}}},
 }
 
 //nolint:gochecknoinits
@@ -96,5 +96,5 @@ func init() {
 }
 
 func ParseGradleLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, GradleExtractor)
+	return ExtractFromFile(pathToLockfile, GradleExtractor)
 }

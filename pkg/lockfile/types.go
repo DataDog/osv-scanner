@@ -13,31 +13,43 @@ type PackageDetails struct {
 	Commit          string                `json:"commit,omitempty"`
 	Ecosystem       Ecosystem             `json:"ecosystem,omitempty"`
 	CompareAs       Ecosystem             `json:"compareAs,omitempty"`
-	DepGroups       []string              `json:"-"`
+	DepGroups       []string              `json:"depGroups,omitempty"`
 	BlockLocation   models.FilePosition   `json:"blockLocation,omitempty"`
 	VersionLocation *models.FilePosition  `json:"versionLocation,omitempty"`
 	NameLocation    *models.FilePosition  `json:"nameLocation,omitempty"`
 	PackageManager  models.PackageManager `json:"packageManager,omitempty"`
 	IsDirect        bool                  `json:"isDirect,omitempty"`
+	Dependencies    []*PackageDetails     `json:"dependencies,omitempty"`
 }
 
 type Ecosystem string
 
 type PackageDetailsParser = func(pathToLockfile string) ([]PackageDetails, error)
 
+type DepGroup string
+
+const (
+	DepGroupProd     DepGroup = "prod"
+	DepGroupDev      DepGroup = "dev"
+	DepGroupOptional DepGroup = "optional"
+)
+
 // IsDevGroup returns if any string in groups indicates the development dependency group for the specified ecosystem.
 func (sys Ecosystem) IsDevGroup(groups []string) bool {
 	switch sys {
 	case NpmEcosystem:
+		// Also PnpmEcosystem(=NpmEcosystem) and YarnEcosystem(=NpmEcosystem)
 		return sys.isNpmDevGroup(groups)
-	case ComposerEcosystem, PipEcosystem, PubEcosystem:
-		// Also PnpmEcosystem(=NpmEcosystem) and PipenvEcosystem(=PipEcosystem,=PoetryEcosystem).
-		return sys.isDevGroup(groups, "dev")
+	case ComposerEcosystem, PipEcosystem, PubEcosystem, NuGetEcosystem:
+		// Also PipenvEcosystem(=PipEcosystem,=PoetryEcosystem).
+		return sys.isDevGroup(groups, string(DepGroupDev))
 	case ConanEcosystem:
 		return sys.isDevGroup(groups, "build-requires")
 	case MavenEcosystem:
 		return sys.isMavenDevGroup(groups)
-	case AlpineEcosystem, DebianEcosystem, CargoEcosystem, BundlerEcosystem, GoEcosystem, MixEcosystem, NuGetEcosystem, CRANEcosystem:
+	case BundlerEcosystem:
+		return isBundlerDevGroup(groups)
+	case AlpineEcosystem, DebianEcosystem, CargoEcosystem, GoEcosystem, MixEcosystem, CRANEcosystem:
 		return false
 	}
 
@@ -66,14 +78,28 @@ func (sys Ecosystem) isNpmDevGroup(groups []string) bool {
 		return false
 	}
 	for _, g := range groups {
-		if g != "dev" && g != "optional" {
+		if g != string(DepGroupDev) && g != string(DepGroupOptional) {
 			return false
-		} else if g == "dev" {
+		} else if g == string(DepGroupDev) {
 			containsDev = true
 		}
 	}
 
 	return containsDev
+}
+
+func isBundlerDevGroup(groups []string) bool {
+	if len(groups) == 0 {
+		return false
+	}
+
+	for _, group := range groups {
+		if _, isDevGroup := knownBundlerDevelopmentGroups[group]; !isDevGroup {
+			return false
+		}
+	}
+
+	return true
 }
 
 func (sys Ecosystem) isDevGroup(groups []string, devGroupName string) bool {

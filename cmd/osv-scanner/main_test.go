@@ -298,7 +298,6 @@ func TestRun(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -326,7 +325,6 @@ func TestRunCallAnalysis(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -457,7 +455,6 @@ func TestRun_LockfileWithExplicitParseAs(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -483,7 +480,6 @@ func TestRun_GithubActions(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -576,7 +572,6 @@ func TestRun_LocalDatabases(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -645,7 +640,6 @@ func TestRun_Licenses(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -669,13 +663,11 @@ func TestRun_WithoutHostPathInformation(t *testing.T) {
 			args:         []string{"", "--experimental-only-packages", "--format=cyclonedx-1-5", "--paths-relative-to-scan-dir", "./fixtures/locks-many"},
 			wantExitCode: 0,
 			wantFilePaths: []string{
-				"package-lock.json", // TODO: remove when NPM is using the JSON matcher
 				"package.json",
 			},
 		},
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 			tc := tt
@@ -753,6 +745,66 @@ func TestRun_WithExplicitParsers(t *testing.T) {
 		args: args,
 		exit: 0,
 	})
+}
+
+func TestRun_YarnPackageOnly(t *testing.T) {
+	t.Parallel()
+	testCases := []string{
+		"v1.22.0",
+		"v3.8.7",
+		"v4.6.0",
+	}
+
+	for _, testCase := range testCases {
+		tt := testCase
+		t.Run(tt, func(t *testing.T) {
+			t.Parallel()
+			args := []string{
+				"",
+				"-r",
+				"--experimental-only-packages",
+				"--format=cyclonedx-1-5",
+				"--consider-scan-path-as-root",
+				"./fixtures/integration-yarn/" + tt,
+			}
+			testCli(t, cliTestCase{
+				name: "YarnPackageOnly " + tt,
+				args: args,
+				exit: 0,
+			})
+		})
+	}
+}
+
+func TestRun_NpmPackageOnly(t *testing.T) {
+	t.Parallel()
+	testCases := []string{
+		"v6.14.18",
+		"v7.24.2",
+		"v8.19.4",
+		"v9.9.4",
+		"v10.9.0",
+	}
+
+	for _, testCase := range testCases {
+		tt := testCase
+		t.Run(tt, func(t *testing.T) {
+			t.Parallel()
+			args := []string{
+				"",
+				"-r",
+				"--experimental-only-packages",
+				"--format=cyclonedx-1-5",
+				"--consider-scan-path-as-root",
+				"./fixtures/integration-npm/" + tt,
+			}
+			testCli(t, cliTestCase{
+				name: "Npm package only " + tt,
+				args: args,
+				exit: 0,
+			})
+		})
+	}
 }
 
 func TestRun_WithEncodedLockfile(t *testing.T) {
@@ -851,7 +903,6 @@ func TestRun_OCIImage(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -894,7 +945,6 @@ func TestRun_SubCommands(t *testing.T) {
 		// TODO: add tests for other future subcommands
 	}
 	for _, tt := range tests {
-		tt := tt
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
@@ -951,7 +1001,6 @@ func TestRun_InsertDefaultCommand(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		tt := tt
 		stdout := &bytes.Buffer{}
 		stderr := &bytes.Buffer{}
 		argsActual := insertDefaultCommand(tt.originalArgs, commands, defaultCommand, stdout, stderr)
@@ -988,8 +1037,7 @@ func TestRun_InsertDefaultCommand(t *testing.T) {
 //	}
 //
 //	for _, tt := range tests {
-//		tt := tt
-//		t.Run(tt.name, func(t *testing.T) {
+//		//		t.Run(tt.name, func(t *testing.T) {
 //			t.Parallel()
 //			testCli(t, tt)
 //		})

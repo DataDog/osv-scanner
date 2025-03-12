@@ -1,7 +1,6 @@
 package lockfile
 
 import (
-	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -13,8 +12,6 @@ import (
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
 )
-
-var ErrOpenNotSupported = errors.New("this file does not support opening files")
 
 // DepFile is an abstraction for a file that has been opened for extraction,
 // and that knows how to open other DepFiles relative to itself.
@@ -44,20 +41,20 @@ type Extractor interface {
 }
 
 type WithMatcher struct {
-	Matcher Matcher
+	Matchers []Matcher
 }
 
 type ExtractorWithMatcher interface {
 	Extractor
-	GetMatcher() Matcher
+	GetMatchers() []Matcher
 }
 
 type ArtifactExtractor interface {
 	GetArtifact(f DepFile) (*models.ScannedArtifact, error)
 }
 
-func (e WithMatcher) GetMatcher() Matcher {
-	return e.Matcher
+func (e WithMatcher) GetMatchers() []Matcher {
+	return e.Matchers
 }
 
 // A LocalFile represents a file that exists on the local filesystem.
@@ -98,7 +95,7 @@ func OpenLocalDepFile(path string) (NestedDepFile, error) {
 var _ DepFile = LocalFile{}
 var _ NestedDepFile = LocalFile{}
 
-func extractFromFile(pathToLockfile string, extractor Extractor) ([]PackageDetails, error) {
+func ExtractFromFile(pathToLockfile string, extractor Extractor) ([]PackageDetails, error) {
 	f, err := OpenLocalDepFile(pathToLockfile)
 
 	if err != nil {
@@ -114,10 +111,12 @@ func extractFromFile(pathToLockfile string, extractor Extractor) ([]PackageDetai
 
 	// Match extracted packages with source file to enrich their details
 	if e, ok := extractor.(ExtractorWithMatcher); ok {
-		if matcher := e.GetMatcher(); matcher != nil {
-			matchError := matchWithFile(f, packages, matcher)
-			if matchError != nil {
-				_, _ = fmt.Fprintf(os.Stderr, "there was an error matching the source file: %s\n", matchError.Error())
+		if matchers := e.GetMatchers(); len(matchers) > 0 {
+			for _, matcher := range matchers {
+				matchError := matchWithFile(f, packages, matcher)
+				if matchError != nil {
+					_, _ = fmt.Fprintf(os.Stderr, "there was an error matching the source file: %s\n", matchError.Error())
+				}
 			}
 		}
 	}

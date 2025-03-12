@@ -219,7 +219,10 @@ func (e GemfileLockExtractor) Extract(f DepFile) ([]PackageDetails, error) {
 }
 
 var GemfileExtractor = GemfileLockExtractor{
-	WithMatcher{Matcher: GemfileMatcher{}},
+	WithMatcher{Matchers: []Matcher{
+		&GemfileMatcher{},
+		&GemspecFileMatcher{},
+	}},
 }
 
 //nolint:gochecknoinits
@@ -228,5 +231,5 @@ func init() {
 }
 
 func ParseGemfileLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, GemfileExtractor)
+	return ExtractFromFile(pathToLockfile, GemfileExtractor)
 }

@@ -71,7 +71,7 @@ func addPkgDetails(details map[string]PackageDetails, packages map[string]Pipenv
 }
 
 var PipenvExtractor = PipenvLockExtractor{
-	WithMatcher{Matcher: PipfileMatcher{}},
+	WithMatcher{Matchers: []Matcher{&PipfileMatcher{}}},
 }
 
 //nolint:gochecknoinits
@@ -80,5 +80,5 @@ func init() {
 }
 
 func ParsePipenvLock(pathToLockfile string) ([]PackageDetails, error) {
-	return extractFromFile(pathToLockfile, PipenvExtractor)
+	return ExtractFromFile(pathToLockfile, PipenvExtractor)
 }
