@@ -17,8 +17,7 @@ builds:
       # prettier-ignore
       - '-s -w -X github.com/DataDog/osv-scanner/internal/version.OSVVersion={{.Version}} -X main.commit={{.Commit}} -X main.date={{.CommitDate}}'
     goos:
-      - windows
-      - darwin
+      - linux
     goarch:
       - amd64
       - arm64
