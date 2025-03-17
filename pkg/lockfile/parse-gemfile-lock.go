@@ -87,6 +87,7 @@ func (parser *gemfileLockfileParser) addDependency(name string, version string) 
 		if dep.Name == name {
 			parser.dependencies[i].IsDirect = true
 			found = true
+
 			break
 		}
 	}
