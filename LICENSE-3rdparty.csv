@@ -50,6 +50,7 @@ core,github.com/atotto/clipboard,BSD-3-Clause,Copyright (c) 2013 Ato Araki. All 
 core,github.com/aymanbagabas/go-osc52/v2,MIT,Copyright (c) 2022 Ayman Bagabas
 core,github.com/aymerick/douceur/css,MIT,Copyright (c) 2015 Aymerick JEHANNE
 core,github.com/aymerick/douceur/parser,MIT,Copyright (c) 2015 Aymerick JEHANNE
+core,github.com/bmatcuk/doublestar/v4,MIT,Copyright (c) 2014 Bob Matcuk
 core,github.com/charmbracelet/bubbles/cursor,MIT,"Copyright (c) 2020-2023 Charmbracelet, Inc"
 core,github.com/charmbracelet/bubbles/help,MIT,"Copyright (c) 2020-2023 Charmbracelet, Inc"
 core,github.com/charmbracelet/bubbles/key,MIT,"Copyright (c) 2020-2023 Charmbracelet, Inc"
