@@ -5,6 +5,10 @@ on:
     types:
       - published
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag"
+        required: true
 
 jobs:
   notify:
@@ -12,9 +16,17 @@ jobs:
     steps:
       - name: Launch workflow
         run: |
-          curl -X POST \
+          curl -X POST "https://api.datadoghq.com/api/v2/workflows/${{ secrets.DD_WORKFLOW_ID }}/instances" \
           -H "Content-Type: application/json" \
           -H "DD-API-KEY: ${{ secrets.DD_API_KEY }}" \
           -H "DD-APPLICATION-KEY: ${{ secrets.DD_APP_KEY }}" \
-          -d {} \
-          "https://api.datadoghq.com/api/v2/workflows/${{ secrets.DD_WORKFLOW_ID }}/instances"
+          -d @- << EOF
+          {
+            "meta": {
+              "payload": {
+                "version": "${{  github.event.inputs.tag || github.event.release.tag_name }}"
+              }
+            }
+          }
+          EOF
+          
