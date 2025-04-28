@@ -1,7 +1,6 @@
 package lockfile
 
 import (
-	"fmt"
 	"log"
 	"path/filepath"
 
@@ -227,7 +226,7 @@ func enrichPackagesWithLocation(sourceFile DepFile, gems []gemMetadata, packages
 		// If packages exist in the Gemfile but not in the Gemfile.lock, we skip the package as we treat the lockfile as
 		// the source of truth
 		if !ok {
-			log.Println(fmt.Sprintf("Skipping package %q from Gemfile as it does not exist in the Gemfile.lock", gem.name))
+			log.Printf("Skipping package %q from Gemfile as it does not exist in the Gemfile.lock\n", gem.name)
 			continue
 		}
 
