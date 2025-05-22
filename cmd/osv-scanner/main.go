@@ -130,8 +130,7 @@ func main() {
 }
 
 func printDeprecationNotice() {
-	//nolint:govet
-	_, _ = fmt.Fprintln(os.Stdout, `
+	_, _ = fmt.Fprintln(os.Stderr, `
 ==========================================
 ⚠ DEPRECATION NOTICE ⚠
 
@@ -142,6 +141,5 @@ We recommend migrating to our new tool:
   → https://github.com/DataDog/datadog-sbom-generator
 
 Please update your workflows and tooling accordingly.
-==========================================
-`)
+==========================================`)
 }
