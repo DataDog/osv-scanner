@@ -1,3 +1,10 @@
+> ⚠ Deprecation Notice ⚠
+>
+> This repository is no longer actively maintained.
+> We recommend using [datadog-sbom-generator](https://github.com/DataDog/datadog-sbom-generator) instead.
+>
+> This project was deprecated as of **May 2025**. No further updates or support will be provided.
+
 # OSV-Scanner
 
 The present repository contains the source code of the Datadog version of OSV-Scanner.
