@@ -1,11 +1,11 @@
 > ⚠ Deprecation Notice ⚠
 >
-> This repository is no longer actively maintained.
+> This fork of osv-scanner is no longer actively maintained. Please note [the upstream osv project](https://github.com/google/osv-scanner/) is still under development
 > We recommend using [datadog-sbom-generator](https://github.com/DataDog/datadog-sbom-generator) instead.
 >
-> This project was deprecated as of **May 2025**. No further updates or support will be provided.
+> This fork was deprecated as of **May 2025**. No further updates or support will be provided.
 
-# OSV-Scanner
+# Datadog's fork of OSV-Scanner
 
 The present repository contains the source code of the Datadog version of OSV-Scanner.
 OSV-Scanner is a project originally owned by Google to extract libraries from package managers' files and match them against the [OSV database](https://osv.dev/).
